@@ -20,7 +20,7 @@ class OpportunitiesCollection extends BaseCollection {
   constructor() {
     super('Opportunities', new SimpleSchema({
       title: String,
-      oppType: {
+      opportunityType: {
         type: String,
         allowedValues: opportunityTypes,
         defaultValue: 'event',
@@ -56,7 +56,7 @@ class OpportunitiesCollection extends BaseCollection {
   /**
    * Defines a new Opportunity item.
    * @param title the title of the opportunity.
-   * @param oppType the type of the opportunity.
+   * @param opportunityType the type of the opportunity.
    * @param startDate the start date of the opportunity.
    * @param endDate the end date of the opportunity.
    * @param recurring if the opportunity reoccurs.
@@ -75,10 +75,10 @@ class OpportunitiesCollection extends BaseCollection {
    * @param owner the owner of the item.
    * @return {String} the docID of the new document.
    */
-  define({ title, oppType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, owner }) {
+  define({ title, opportunityType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, owner }) {
     const docID = this._collection.insert({
       title,
-      oppType,
+      opportunityType,
       startDate,
       endDate,
       recurring,
@@ -103,7 +103,7 @@ class OpportunitiesCollection extends BaseCollection {
    * Updates the given document.
    * @param docID the id of the document to update.
    * @param title the new title.
-   * @param oppType the new type.
+   * @param opportunityType the new type.
    * @param startDate the new start date.
    * @param endDate the new end date.
    * @param recurring the new recurring state.
@@ -120,13 +120,13 @@ class OpportunitiesCollection extends BaseCollection {
    * @param ageGroup the new age group.
    * @param environment the new environment type.
    */
-  update(docID, { title, oppType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment }) {
+  update(docID, { title, opportunityType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment }) {
     const updateData = {};
     if (title) {
       updateData.title = title;
     }
-    if (oppType) {
-      updateData.oppType = oppType;
+    if (opportunityType) {
+      updateData.opportunityType = opportunityType;
     }
     if (startDate) {
       updateData.startDate = startDate;
@@ -251,12 +251,12 @@ class OpportunitiesCollection extends BaseCollection {
    * @param docID
    * @return {{owner: (*|number), environment: *, ageGroup: *, galleryImage: *, coverImage: *, galleryImage: *,
    * website: *, contactPosition: *, contactName: *, location: *,category: *, description: *, recurring: *, endDate: *,
-   * startDate: *, oppType: *, title}}
+   * startDate: *, opportunityType: *, title}}
    */
   dumpOne(docID) {
     const doc = this.findDoc(docID);
     const title = doc.title;
-    const oppType = doc.oppType;
+    const opportunityType = doc.opportunityType;
     const startDate = doc.startDate;
     const endDate = doc.endDate;
     const recurring = doc.recurring;
@@ -273,7 +273,7 @@ class OpportunitiesCollection extends BaseCollection {
     const ageGroup = doc.ageGroup;
     const environment = doc.environment;
     const owner = doc.owner;
-    return { title, oppType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, owner };
+    return { title, opportunityType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, owner };
   }
 }
 
