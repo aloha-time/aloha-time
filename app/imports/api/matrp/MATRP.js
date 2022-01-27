@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Stuffs } from '../stuff/StuffCollection';
 import { AdminProfiles } from '../user/AdminProfileCollection';
 import { UserProfiles } from '../user/UserProfileCollection';
-import { Opportunities } from '../stuff/OpportunitiesCollection';
+import { Opportunities } from '../opportunity/OpportunitiesCollection';
 
 class MATRPClass {
   collections;
