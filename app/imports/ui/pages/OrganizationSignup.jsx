@@ -11,7 +11,7 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
  * Signup component is similar to signin component, but we create a new user instead.
  */
 const Signup = ({ location }) => {
-  const [userName, setUserName] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -38,7 +38,7 @@ const Signup = ({ location }) => {
       setPassword(value);
       break;
     case 'userName':
-      setUserName(value);
+      setUsername(value);
       break;
     case 'firstName':
       setFirstName(value);
@@ -80,14 +80,15 @@ const Signup = ({ location }) => {
 
   /* Handle Signup submission. Create user account and a profile entry, then redirect to the home page. */
   const submit = () => {
-    Accounts.createUser({ email, userName, password }, (err) => {
+    Accounts.createUser({ email, username, password }, (err) => {
       if (err) {
         setError(err.reason);
       } else {
-        const owner = Meteor.user().userName;
+        const owner = Meteor.user().username;
         const data = { firstName, lastName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, privacyPolicy, owner };
-        let Organizaion;
-        Organizaion.collection.insert(data);
+        console.log(data);
+        // let Organizaion;
+        /// Organizaion.collection.insert(data);
         setError('');
         setRedirectToReferer(true);
       }
@@ -151,9 +152,9 @@ const Signup = ({ location }) => {
                   onChange={handleChange}
                 />
                 <Form.Group widths='equal'>
-                  <Form.Input fluid label='City' name= "City" placeholder='City' required />
-                  <Form.Input fluid label='State' name = "State"placeholder='State' required />
-                  <Form.Input fluid label='Zip/Postal Code'name = "zipCode" placeholder='Zip Code' required/>
+                  <Form.Input fluid label='City' name= "city" placeholder='City' onChange={handleChange} required />
+                  <Form.Input fluid label='State' name = "state" placeholder='State' onChange={handleChange} required />
+                  <Form.Input fluid label='Zip/Postal Code' name = "zipCode" placeholder='Zip Code' onChange={handleChange} required/>
                 </Form.Group>
                 <Form.Input
                   label="Phone Number"
@@ -167,7 +168,7 @@ const Signup = ({ location }) => {
                 <Form.Input required
                   label="Username"
                   id={COMPONENT_IDS.SIGN_UP_FORM_PASSWORD}
-                  name="userName"
+                  name="username"
                   placeholder="Username"
                   icon="user"
                   iconPosition="left"
@@ -349,7 +350,7 @@ const Signup = ({ location }) => {
                     </Grid.Row>
                   </Grid>
                 </Form.Group>
-                <Form.TextArea label='About' name="about" placeholder='Describe more information about your organization!!!' />
+                <Form.TextArea label='About' name="about" placeholder='Describe more information about your organization!!!' onChange={handleChange} />
                 <h5>Show privacy policy</h5>
                 <Form.Checkbox required
                   label = "Please confirm that you agree to our privacy policy"
