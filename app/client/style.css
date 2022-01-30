@@ -1,0 +1,23 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#nf-div {
+  background-image: url("images/notFoundBackground.jpg");
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: auto;
+}
+
+#nf-photo-credit {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+/* footer component */
+footer {
+  height:50px;   /* Height of the footer */
+}
