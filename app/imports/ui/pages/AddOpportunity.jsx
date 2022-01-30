@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Segment, Header, Radio } from 'semantic-ui-react';
+import { Grid, Segment, Header, Radio, Card } from 'semantic-ui-react';
 import { AutoForm, ErrorsField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
@@ -51,7 +51,7 @@ const formSchema = new SimpleSchema({
 const bridge = new SimpleSchema2Bridge(formSchema);
 
 /** Renders the Page for adding a document. */
-const CreateOpportunity = () => {
+const AddOpportunity = () => {
 
   // On submit, insert the data.
   const submit = (data, formRef) => {
@@ -70,31 +70,63 @@ const CreateOpportunity = () => {
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   let fRef = null;
   return (
-    <Grid id={PAGE_IDS.CREATE_OPPORTUNITY} container centered>
+    <Grid id={PAGE_IDS.ADD_OPPORTUNITY} container centered>
       <Grid.Column>
-        <Header as="h2" textAlign="center">Create a new listing</Header>
+        <Header as="h2" textAlign="center">Add a new opportunity</Header>
         <AutoForm ref={ref => {
           fRef = ref;
         }} schema={bridge} onSubmit={data => submit(data, fRef)}>
           <Segment>
-            <TextField name='title' />
-            <SelectField name='opportunityType' />
-            <TextField name='startDate' />
-            <TextField name='endDate' />
-            <Radio name='recurring' label='Recurring'/>
-            <TextField name='description' />
-            <SelectField name='category' />
-            <TextField name='location' />
-            <TextField name='contactName' />
-            <TextField name='contactPosition' />
-            <TextField name='email' />
-            <TextField name='phone' />
-            <TextField name='website' />
-            <TextField name='coverImage' />
-            <TextField name='galleryImage' />
-            <SelectField name='ageGroup' />
-            <SelectField name='environment' />
-            <SubmitField value='Submit' />
+            <Card fluid>
+              <Card.Content>
+                <Card.Header>General</Card.Header>
+              </Card.Content>
+              <Card.Content>
+                <SelectField name='opportunityType'/>
+              </Card.Content>
+            </Card>
+            <Card fluid>
+              <Card.Content>
+                <Card.Header>Volunteer Opportunity Information</Card.Header>
+              </Card.Content>
+              <Card.Content>
+                <TextField name='title'/>
+              </Card.Content>
+              <Card.Content>
+                <TextField name='startDate' />
+                <TextField name='endDate' />
+                <Radio toggle name='recurring' label='Recurring'/>
+              </Card.Content>
+              <Card.Content>
+                <TextField name='description'/>
+                <SelectField name='category'/>
+                <TextField name='location'/>
+              </Card.Content>
+            </Card>
+            <Card fluid>
+              <Card.Content>
+                <Card.Header>Contact Information</Card.Header>
+              </Card.Content>
+              <Card.Content>
+                <TextField name='contactName' />
+                <TextField name='contactPosition' />
+                <TextField name='email' />
+                <TextField name='phone' />
+                <TextField name='website' />
+              </Card.Content>
+            </Card>
+            <Card fluid>
+              <Card.Content>
+                <Card.Header>Additional information</Card.Header>
+              </Card.Content>
+              <Card.Content>
+                <TextField name='coverImage' />
+                <TextField name='galleryImage' />
+                <SelectField name='ageGroup' />
+                <SelectField name='environment' />
+              </Card.Content>
+            </Card>
+            <SubmitField value='Submit'/>
             <ErrorsField />
           </Segment>
         </AutoForm>
@@ -103,4 +135,4 @@ const CreateOpportunity = () => {
   );
 };
 
-export default CreateOpportunity;
+export default AddOpportunity;
