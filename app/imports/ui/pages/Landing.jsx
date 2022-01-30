@@ -6,10 +6,10 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 const Landing = () => (
   <div>
     <div className="landing-background">
-      <Grid id={PAGE_IDS.LANDING} verticalAlign='middle' textAlign='center' container fluid>
+      <Grid id={PAGE_IDS.LANDING} verticalAlign='middle' textAlign='center' container>
         <div className="VA-photo">
-          <img src="/images/VAlogo.png"/>
-          <div className="header">
+          <img src="/images/VAlogo.png" alt="Volunteer Ally's Logo"/>
+          <div className="landing-header">
             <Header inverted size="medium">A better way to volunteer.</Header>
           </div>
           <div color="white" className="description">
