@@ -25,8 +25,9 @@ html, body {
   color: white;
 }
 
-.opportunities{
+.opportunities {
   color: #007BA4 !important;
+}
 
 #nf-div {
   background-image: url("images/notFoundBackground.jpg");
