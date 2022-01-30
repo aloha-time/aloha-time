@@ -24,6 +24,7 @@ class MATRPClass {
       AdminProfiles,
       UserProfiles,
       Stuffs,
+      VolunteerProfiles,
     ];
 
     /*
