@@ -1,0 +1,25 @@
+.landing-background {
+  background-image: url("images/landingBackground.png");
+  background-size: cover;
+  height: 500px;
+}
+
+.VA-photo{
+  padding-top: 100px;
+  margin-bottom: 10px;
+}
+
+.landing-header{
+  font-size: 40px;
+}
+
+.description{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 21px;
+  color: white;
+}
+
+.opportunities{
+  color: #007BA4 !important;
+}
