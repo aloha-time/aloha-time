@@ -47,3 +47,16 @@ html, body {
 footer {
   height:50px;   /* Height of the footer */
 }
+
+.sign-in{
+  padding-top: 10%;
+  padding-bottom: 20%;
+  background: url("images/sign-in.jpeg") no-repeat center center fixed;
+  background-size: cover ;
+  position: relative;
+
+}
+.sign-in-icon{
+  padding-left: 44%;
+}
+
