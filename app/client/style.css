@@ -1,14 +1,11 @@
 .sign-in{
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 10%;
+  padding-bottom: 20%;
   background: url("images/sign-in.jpeg") no-repeat center center fixed;
   background-size: cover ;
+  position: relative;
 
 }
 .sign-in-icon{
   padding-left: 44%;
-}
-.sign-in-form{
-  width: 500px ;
-  padding-left:15% ;
 }

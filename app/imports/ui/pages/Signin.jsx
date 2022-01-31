@@ -89,10 +89,11 @@ const Signin = ({ location }) => {
                   </Segment>
                 </div>
               </Form>
+
+              <Message transparent>
+                <Link to="/signup">Click here to Register</Link>
+              </Message>
             </div>
-            <Message transparent>
-              <Link to="/signup">Click here to Register</Link>
-            </Message>
             {error === '' ? (
               ''
             ) : (
