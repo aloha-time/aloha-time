@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { Link, Redirect } from 'react-router-dom';
 import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
+import swal from 'sweetalert';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
@@ -14,6 +15,7 @@ const Signup = ({ location }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [redirectToReferer, setRedirectToReferer] = useState(false);
   const [firstName, setFirstName] = useState('');
@@ -23,11 +25,41 @@ const Signup = ({ location }) => {
   const [state, setState] = useState('');
   const [zipCode, setZipCode] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [fields, setFields] = useState('');
+  const [fields, setFields] = useState([]);// for initial fields to be a array
   const [environmental, setEnvironmental] = useState('');
   const [about, setAbout] = useState('');
   const [privacyPolicy, setPrivacyPolicy] = useState('');
+  function match(password1, password2) { // for match the password and confirm password value.
+    if (password1 === password2) {
+      return true;
+    }
+    setError(
+      'Password and confirm password does not match.',
+    );
+    swal('Error!', 'Password and confirm password does not match', 'error');
 
+    return false;
+  }
+
+  function checkedPrivacyPolicy(value) { // for user to agree the policy befor sign up
+    if (value !== 'true') {
+      setError(
+        'please to agree our privacy policy, thank you:) ',
+      );
+      swal('Error!', 'please to agree our privacy policy, thank you', 'error');
+      return false;
+    }
+    return value;
+  }
+  function checkedList(filedsArray, value) {
+    const indexOfValule = filedsArray.indexOf(value);
+    if (indexOfValule >= 0) {
+      filedsArray.splice(indexOfValule, 1);
+    } else {
+      filedsArray.push(value);
+    }
+    return filedsArray;
+  }
   // Update the form controls each time the user interacts with them.
   const handleChange = (e, { name, value }) => {
     switch (name) {
@@ -36,6 +68,9 @@ const Signup = ({ location }) => {
       break;
     case 'password':
       setPassword(value);
+      break;
+    case 'confirmPassword':
+      setConfirmPassword(value);
       break;
     case 'userName':
       setUsername(value);
@@ -62,7 +97,7 @@ const Signup = ({ location }) => {
       setPhoneNumber(value);
       break;
     case 'fields':
-      setFields(value);
+      setFields(checkedList(fields, value));
       break;
     case 'environmental':
       setEnvironmental(value);
@@ -80,19 +115,23 @@ const Signup = ({ location }) => {
 
   /* Handle Signup submission. Create user account and a profile entry, then redirect to the home page. */
   const submit = () => {
-    Accounts.createUser({ email, username, password }, (err) => {
-      if (err) {
-        setError(err.reason);
-      } else {
-        const owner = Meteor.user().username;
-        const data = { firstName, lastName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, privacyPolicy, owner };
-        console.log(data);
-        // let Organizaion;
-        /// Organizaion.collection.insert(data);
-        setError('');
-        setRedirectToReferer(true);
-      }
-    });
+    if (match(password, confirmPassword) && checkedPrivacyPolicy(privacyPolicy)) {
+      Accounts.createUser({ email, username, password }, (err) => {
+        if (err) {
+          setError(err.reason);
+        } else {
+          const owner = Meteor.user()._id;
+          const data = { firstName, lastName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, privacyPolicy, owner };
+          console.log(data);// waitfor Organizatino collection done to inset value.
+          /// Organizaion.collection.insert(data);
+          setError('');
+          setRedirectToReferer(true);
+        }
+      });
+    } else {
+      setError('please fix the errors');
+      // eslint-disable-next-line no-undef
+    }
   };
 
   /* Display the signup form. Redirect to add page after successful registration and login. */
@@ -101,7 +140,6 @@ const Signup = ({ location }) => {
   if (redirectToReferer) {
     return <Redirect to={from} />;
   }
-  let Environmental;
   return (
     <Container id={PAGE_IDS.ORGANIZATION_SIGN_UP}>
       <div className="organization-sign-up-top">
@@ -121,17 +159,17 @@ const Signup = ({ location }) => {
               <Segment stacked basic>
                 <Form.Input required
                   label="First Name"
-                  id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL}
+                  id={COMPONENT_IDS.SIGN_UP_FORM_FIRSTNAME}
                   name="firstName"
-                  type="firstname"
+                  type="firstName"
                   placeholder="First Name"
                   onChange={handleChange}
                 />
                 <Form.Input required
                   label="Last Name"
-                  id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL}
+                  id={COMPONENT_IDS.SIGN_UP_FORM_LASTNAME}
                   name="lastName"
-                  type="lastname"
+                  type="lastName"
                   placeholder="Last Name"
                   onChange={handleChange}
                 />
@@ -145,7 +183,7 @@ const Signup = ({ location }) => {
                 />
                 <Form.Input required
                   label="Primary Address"
-                  id={COMPONENT_IDS.SIGN_UP_FORM_PASSWORD}
+                  id={COMPONENT_IDS.SIGN_UP_FORM_PRIMARY_ADDRESS}
                   name="primaryAddress"
                   placeholder="Primary Address"
                   type="Address"
@@ -158,7 +196,7 @@ const Signup = ({ location }) => {
                 </Form.Group>
                 <Form.Input
                   label="Phone Number"
-                  id={COMPONENT_IDS.SIGN_UP_FORM_PASSWORD}
+                  id={COMPONENT_IDS.SIGN_UP_FORM_PHONE_NUMBER}
                   name="phoneNumber"
                   placeholder="Phone Number"
                   onChange={handleChange}
@@ -167,7 +205,7 @@ const Signup = ({ location }) => {
 
                 <Form.Input required
                   label="Username"
-                  id={COMPONENT_IDS.SIGN_UP_FORM_PASSWORD}
+                  id={COMPONENT_IDS.SIGN_UP_FORM_USERNAME}
                   name="username"
                   placeholder="Username"
                   icon="user"
@@ -187,7 +225,7 @@ const Signup = ({ location }) => {
                 />
                 <Form.Input required
                   label="Confirm Password"
-                  id={COMPONENT_IDS.SIGN_UP_FORM_PASSWORD}
+                  id={COMPONENT_IDS.SIGN_UP_FORM_CONFIRM_PASSWORD}
                   icon="lock"
                   iconPosition="left"
                   name="confirmPassword"
@@ -314,7 +352,7 @@ const Signup = ({ location }) => {
                           label='Indoor'
                           value= "Indoor"
                           name="environmental"
-                          checked={Environmental === 'Indoor'}
+                          checked={environmental === 'Indoor'}
                           onChange={handleChange}
                         />
                       </Grid.Column>
@@ -323,7 +361,7 @@ const Signup = ({ location }) => {
                           label='Outdoor'
                           value= "Outdoor"
                           name="environmental"
-                          checked={Environmental === 'Outdoor'}
+                          checked={environmental === 'Outdoor'}
                           onChange={handleChange}
                         />
                       </Grid.Column>
@@ -334,7 +372,7 @@ const Signup = ({ location }) => {
                           label='Both'
                           name="environmental"
                           value= "Both"
-                          checked={Environmental === 'Both'}
+                          checked={environmental === 'Both'}
                           onChange={handleChange}
                         />
                       </Grid.Column>
@@ -343,19 +381,19 @@ const Signup = ({ location }) => {
                           name="environmental"
                           label='No Preference'
                           value= "No Preference"
-                          checked={Environmental === 'No Preference'}
+                          checked={environmental === 'No Preference'}
                           onChange={handleChange}
                         />
                       </Grid.Column>
                     </Grid.Row>
                   </Grid>
                 </Form.Group>
-                <Form.TextArea label='About' name="about" placeholder='Describe more information about your organization!!!' onChange={handleChange} />
+                <Form.TextArea label='About' name="about" default value = 'None!!!' placeholder='Describe more information about your organization!!!' onChange={handleChange} />
                 <h5>Show privacy policy</h5>
                 <Form.Checkbox required
                   label = "Please confirm that you agree to our privacy policy"
                   name="privacyPolicy"
-                  value="checked"
+                  value="true"
                   onChange={handleChange}
                 />
 
