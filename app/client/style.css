@@ -1,8 +1,9 @@
  .sign-out{
-   padding-top: 10%;
+   padding-top: 15%;
    padding-bottom: 20%;
-   background-color: transparent;
    background: linear-gradient(#007ba4,#2acaf8);
+   background: url("images/sign-out.jpeg") no-repeat center center fixed;
+   background-size: cover ;
    padding-left: 30%;
    padding-right: 30%;
  }

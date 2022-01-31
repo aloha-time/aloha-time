@@ -8,10 +8,10 @@ const Signout = () => {
   Meteor.logout();
   return (
     <div className="sign-out">
-      <Segment stacked>
-        <Container id={PAGE_IDS.SIGN_OUT} as="h2" textAlign="center">
-          <p>You are now logged out</p>
-          <p>Thank you and have a great day.</p>
+      <Segment stacked basic>
+        <Container id={PAGE_IDS.SIGN_OUT} textAlign="center">
+          <Header as='h1' color="blue">You are now logged out</Header>
+          <Header as= 'h1' color='yellow'>Thank you and have a great day :) !!!</Header>
         </Container>
       </Segment>
     </div>
