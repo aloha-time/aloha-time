@@ -90,7 +90,7 @@ const Signin = ({ location }) => {
                 </div>
               </Form>
 
-              <Message transparent>
+              <Message>
                 <Link to="/signup">Click here to Register</Link>
               </Message>
             </div>
