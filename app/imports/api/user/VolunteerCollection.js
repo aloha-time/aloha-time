@@ -47,8 +47,8 @@ export const availability = [
 export const preferences = ['Indoor', 'Outdoor', 'Both', 'No Preference'];
 
 class VolunteerCollection extends BaseProfileCollection {
-  constructor(schema) {
-    super('VolunteerProfile', schema.extend(new SimpleSchema({
+  constructor() {
+    super('VolunteerProfile', new SimpleSchema({
       dateOfBirth: String,
       genderType: { type: String, allowedValues: gender },
       address: String,
@@ -61,7 +61,7 @@ class VolunteerCollection extends BaseProfileCollection {
       preferencesType: { type: String, allowedValues: preferences },
       availabilityType: { type: String, allowedValues: availability },
       hours: Number,
-    })));
+    }));
   }
 
   /**
