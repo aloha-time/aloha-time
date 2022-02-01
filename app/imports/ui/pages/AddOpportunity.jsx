@@ -8,7 +8,7 @@ import SimpleSchema from 'simpl-schema';
 import {
   Opportunities,
   opportunityAges,
-  opportunityCategories, opportunityEnvironments,
+  opportunityCategories, opportunityEnvironments, opportunityRecurring,
   opportunityTypes,
 } from '../../api/opportunity/OpportunitiesCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
@@ -24,7 +24,11 @@ const formSchema = new SimpleSchema({
   },
   startDate: String,
   endDate: String,
-  recurring: Boolean,
+  recurring: {
+    type: String,
+    allowedValues: opportunityRecurring,
+    defaultValue: 'no',
+  },
   description: String,
   category: {
     type: String,
@@ -95,7 +99,7 @@ const AddOpportunity = () => {
               <Card.Content>
                 <TextField name='startDate' />
                 <TextField name='endDate' />
-                <Radio toggle name='recurring' label='Recurring'/>
+                <SelectField name='recurring'/>
               </Card.Content>
               <Card.Content>
                 <TextField name='description'/>

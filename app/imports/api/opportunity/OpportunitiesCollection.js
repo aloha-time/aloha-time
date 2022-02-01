@@ -15,6 +15,7 @@ export const opportunityCategories = ['Animal Welfare/Rescue', 'Child/Family Sup
   'Homelessness/Poverty', 'Housing', 'Ongoing Positions', 'Special Needs'];
 export const opportunityAges = ['family-friendly', 'teens', 'adults', 'seniors'];
 export const opportunityEnvironments = ['indoors', 'outdoors', 'mixed', 'virtual'];
+export const opportunityRecurring = ['no', 'day', 'week', 'month', 'year'];
 
 class OpportunitiesCollection extends BaseCollection {
   constructor() {
@@ -27,7 +28,11 @@ class OpportunitiesCollection extends BaseCollection {
       },
       startDate: String,
       endDate: String,
-      recurring: Boolean,
+      recurring: {
+        type: String,
+        allowedValues: opportunityRecurring,
+        defaultValue: 'no',
+      },
       description: String,
       category: {
         type: String,
