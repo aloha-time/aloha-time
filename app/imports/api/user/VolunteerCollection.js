@@ -4,9 +4,64 @@ import BaseProfileCollection from './BaseProfileCollection';
 import { ROLE } from '../role/Role';
 import { Users } from './UserCollection';
 
+export const gender = ['Female', 'Male', 'Other', 'Prefer Not To Say'];
+export const interests = [
+  'Animal Welfare/Rescue',
+  'Child/Family Support',
+  'COVID-19 Recovery',
+  'Crisis/Disaster Relief',
+  'Education',
+  'Environment',
+  'Elderly/Senior Care',
+  'Food Banks',
+  'Housing',
+  'Homelessness/Poverty',
+  'Special Needs',
+];
+
+export const skills = [
+  'Agriculture',
+  'Construction',
+  'Education',
+  'Engineering',
+  'Event Planning',
+  'Sales/Marketing',
+  'Technology',
+  'Graphic/Web Design',
+  'CPR',
+  'First Aid',
+  'Nursing',
+  'Other',
+];
+
+export const availability = [
+  'One-time',
+  'Once a month',
+  'Once a week',
+  '1-3 times a week',
+  'More than 3 times a week',
+  'Weekends only',
+  'Weekdays only',
+];
+
+export const preferences = ['Indoor', 'Outdoor', 'Both', 'No Preference'];
+
 class VolunteerCollection extends BaseProfileCollection {
-  constructor() {
-    super('VolunteerProfile', new SimpleSchema({}));
+  constructor(schema) {
+    super('VolunteerProfile', schema.extend(new SimpleSchema({
+      dateOfBirth: String,
+      genderType: { type: String, allowedValues: gender },
+      address: String,
+      city: String,
+      state: String,
+      zip: Number,
+      username: String,
+      interestsType: { type: Array, allowedValues: interests },
+      skillsType: { type: Array, allowedValues: skills },
+      preferencesType: { type: String, allowedValues: preferences },
+      availabilityType: { type: String, allowedValues: availability },
+      hours: Number,
+    })));
   }
 
   /**
@@ -15,14 +70,25 @@ class VolunteerCollection extends BaseProfileCollection {
    * @param password The password for this user.
    * @param firstName The first name.
    * @param lastName The last name.
+   * @param dateOfBirth Date of birth of user.
+   * @param genderType Gender of user.
+   * @param address Street address of user.
+   * @param city City of user.
+   * @param state State where user is from.
+   * @param zip Zipcode of user.
+   * @param username Username for user.
+   * @param interestsType Interests the user has.
+   * @param skillsType Skills the user has.
+   * @param preferencesType Preferences of the user.
+   * @param availabilityType Availability of user.
    */
-  define({ email, firstName, lastName, password }) {
+  define({ email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, username, interestsType, skillsType, preferencesType, availabilityType }) {
     if (Meteor.isServer) {
-      const username = email;
+      // const username = email;
       const user = this.findOne({ email, firstName, lastName });
       if (!user) {
         const role = ROLE.USER;
-        const profileID = this._collection.insert({ email, firstName, lastName, userID: this.getFakeUserId(), role });
+        const profileID = this._collection.insert({ email, firstName, lastName, userID: this.getFakeUserId(), role, dateOfBirth, genderType, address, city, state, zip, username, interestsType, skillsType, preferencesType, availabilityType });
         const userID = Users.define({ username, role, password });
         this._collection.update(profileID, { $set: { userID } });
         return profileID;
