@@ -5,11 +5,11 @@ const Footer = () => {
   const divStyle = { paddingTop: '15px' };
   return (
     <footer>
-      <div style={divStyle} className="ui center aligned container">
-        Department of Information and Computer Sciences <br />
-        University of Hawaii<br />
-        Honolulu, HI 96822 <br />
-        <a href="http://ics-software-engineering.github.io/matrp">Template Home Page</a>
+      <div style={divStyle} className="ui center aligned fluid container">
+        <p> ©2021-2022 VolunteerAlly. All rights reserved.
+          <a href="https://volunteerally.org/privacy-policy"> Privacy Policy. </a>
+          <a href="https://volunteerally.org/terms-conditions">Terms and Conditions.</a>
+        </p>
       </div>
     </footer>
   );

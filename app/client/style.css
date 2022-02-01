@@ -27,6 +27,7 @@ html, body {
 
 .opportunities {
   color: #007BA4 !important;
+  padding-bottom: 20px;
 }
 
 /*not found page*/
@@ -46,9 +47,15 @@ html, body {
 
 /* footer component */
 footer {
-  height:50px;   /* Height of the footer */
+  color: white;
+  height:30px;   /* Height of the footer */
+}
+footer .ui.center.aligned.fluid.container {
+  padding-bottom: 1em;
+  background: #1B1C1D;
 }
 
+/*sign in page*/
 .sign-in{
   padding-top: 10%;
   padding-bottom: 20%;
@@ -60,6 +67,8 @@ footer {
 .sign-in-icon{
   padding-left: 44%;
 }
+
+/*sign out page*/
  .sign-out{
    padding-top: 15%;
    padding-bottom: 20%;
