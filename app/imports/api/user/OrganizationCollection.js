@@ -4,25 +4,60 @@ import BaseProfileCollection from './BaseProfileCollection';
 import { ROLE } from '../role/Role';
 import { Users } from './UserCollection';
 
+export const fields = [
+  'Animal Welfare/Rescue',
+  'Child/Family Support',
+  'COVID-19 Recovery',
+  'Crisis/Disaster Relief',
+  'Education',
+  'Environment',
+  'Elderly/Senior Care',
+  'Food Banks',
+  'Housing',
+  'Homelessness/Poverty',
+  'Special Needs',
+];
+
+export const environmental = ['Indoor', 'Outdoor', 'Both', 'No Preference'];
+
 class OrganizationCollection extends BaseProfileCollection {
   constructor() {
-    super('OrganizationProfile', new SimpleSchema({}));
+    super('OrganizationProfile', new SimpleSchema({
+      address: String,
+      city: String,
+      state: String,
+      zip: Number,
+      phone: String,
+      username: String,
+      fieldsType: { type: Array, allowedValues: fields },
+      environmentalType: { type: String, allowedValues: environmental },
+      about: String,
+    }));
   }
 
   /**
-   * Defines the profile associated with an User and the associated Meteor account.
+   * Defines the profile associated with an Organization and the associated Meteor account.
    * @param email The email associated with this profile. Will be the username.
    * @param password The password for this user.
    * @param firstName The first name.
    * @param lastName The last name.
+   * @param address The address of the organization.
+   * @param city The city where the organization is located.
+   * @param state The state where the organization is located.
+   * @param zip Zipcode of the organization location.
+   * @param phone Phone number of the organization.
+   * @param username Username for the organization.
+   * @param fieldsType The fields the organization covers.
+   * @param environmentalType Environment that the organization is active on.
+   * @param about Message about the organization.
    */
-  define({ email, firstName, lastName, password }) {
+  define({ email, firstName, lastName, password, address, city, state, zip, phone, username, fieldsType, environmentalType, about }) {
     if (Meteor.isServer) {
-      const username = email;
+      // const username = email;
       const user = this.findOne({ email, firstName, lastName });
       if (!user) {
         const role = ROLE.USER;
-        const profileID = this._collection.insert({ email, firstName, lastName, userID: this.getFakeUserId(), role });
+        const profileID = this._collection.insert({ email, firstName, lastName, userID: this.getFakeUserId(), role, address, city, state, zip, phone, username, fieldsType, environmentalType, about });
         const userID = Users.define({ username, role, password });
         this._collection.update(profileID, { $set: { userID } });
         return profileID;
