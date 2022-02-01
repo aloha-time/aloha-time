@@ -55,6 +55,7 @@ class VolunteerCollection extends BaseProfileCollection {
       city: String,
       state: String,
       zip: Number,
+      phone: String,
       username: String,
       interestsType: { type: Array, allowedValues: interests },
       skillsType: { type: Array, allowedValues: skills },
@@ -76,19 +77,20 @@ class VolunteerCollection extends BaseProfileCollection {
    * @param city City of user.
    * @param state State where user is from.
    * @param zip Zipcode of user.
+   * @param phone Phone number of user.
    * @param username Username for user.
    * @param interestsType Interests the user has.
    * @param skillsType Skills the user has.
    * @param preferencesType Preferences of the user.
    * @param availabilityType Availability of user.
    */
-  define({ email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, username, interestsType, skillsType, preferencesType, availabilityType }) {
+  define({ email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType }) {
     if (Meteor.isServer) {
       // const username = email;
       const user = this.findOne({ email, firstName, lastName });
       if (!user) {
         const role = ROLE.USER;
-        const profileID = this._collection.insert({ email, firstName, lastName, userID: this.getFakeUserId(), role, dateOfBirth, genderType, address, city, state, zip, username, interestsType, skillsType, preferencesType, availabilityType });
+        const profileID = this._collection.insert({ email, firstName, lastName, userID: this.getFakeUserId(), role, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType });
         const userID = Users.define({ username, role, password });
         this._collection.update(profileID, { $set: { userID } });
         return profileID;
