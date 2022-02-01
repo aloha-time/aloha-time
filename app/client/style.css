@@ -29,7 +29,8 @@ html, body {
   color: #007BA4 !important;
 }
 
-#nf-div {
+/*not found page*/
+.nf-div {
   background-image: url("images/notFoundBackground.jpg");
   height: 100vh;
   background-position: center;
@@ -39,7 +40,7 @@ html, body {
 }
 
 #nf-photo-credit {
-  padding-top: 1em;
+  padding-top: 3em;
   padding-bottom: 1em;
 }
 
@@ -71,5 +72,17 @@ footer {
   padding-top: 100px;
   padding-bottom: 120px;
   background: linear-gradient(#007ba4,#2acaf8);
+}
 
+/*navbar content*/
+i.bars.icon {
+  padding-left: 10px;
+}
+
+.ui.icon.input {
+  width: 125%;
+}
+
+.divider.text {
+  padding-right: 7px;
 }

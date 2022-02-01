@@ -3,11 +3,11 @@ import { Container, Header, Button, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
-const headerStyle = { paddingTop: '1em' };
+const headerStyle = { paddingTop: '4em' };
 
 /** Render a Not Found page if the user enters a URL that doesn't match any route. */
 const NotFound = () => (
-  <div id='nf-div'>
+  <div className="nf-div">
     <Container id={PAGE_IDS.NOT_FOUND} textAlign="center" fluid>
       <Header as="h1" textAlign="center" style={headerStyle}>
         Page not found
