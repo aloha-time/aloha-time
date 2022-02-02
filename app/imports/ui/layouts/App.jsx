@@ -8,6 +8,7 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import ListStuff from '../pages/ListStuff';
+import ListOpportunity from '../pages/ListOpportunity';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
 import AddStuff from '../pages/AddStuff';
 import AddOpportunity from '../pages/AddOpportunity';
@@ -34,6 +35,7 @@ class App extends React.Component {
             <Route path="/organization-signup" component={OrganizationSignup}/>
             <Route path="/signout" component={Signout}/>
             <ProtectedRoute path="/list" component={ListStuff}/>
+            <ProtectedRoute path="/browseOpportunities" component={ListOpportunity}/>
             <ProtectedRoute path="/add" component={AddStuff}/>
             <ProtectedRoute path="/add-opportunity" component={AddOpportunity}/>
             <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
