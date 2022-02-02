@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
-import { Roles } from 'meteor/alanning:roles';
 import { Link, Redirect } from 'react-router-dom';
 import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
@@ -9,8 +8,6 @@ import swal from 'sweetalert';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { OrganizationProfiles } from '../../api/user/OrganizationCollection';
-import { defineMethod } from '../../api/base/BaseCollection.methods';
-import { ROLE } from '../../api/role/Role';
 
 /**
  * Signup component is similar to signin component, but we create a new user instead.
@@ -127,10 +124,7 @@ const Signup = ({ location }) => {
           const owner = Meteor.user().owner;
 
           const definitionData = { firstName, lastName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, owner };
-          console.log(definitionData);
-          const collectionName = OrganizationProfiles.getCollectionName();
           OrganizationProfiles.define(definitionData);
-          // defineMethod.callPromise({ collectionName, definitionData }).then(() => swal('Success', 'success to sign up', 'success'));
           setError('');
           setRedirectToReferer(true);
         }
