@@ -7,6 +7,9 @@ import { Accounts } from 'meteor/accounts-base';
 import swal from 'sweetalert';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
+import { OrganizationProfiles } from '../../api/user/OrganizationCollection';
+import { defineMethod } from '../../api/base/BaseCollection.methods';
+import { ROLE } from '../../api/role/Role';
 
 /**
  * Signup component is similar to signin component, but we create a new user instead.
@@ -120,10 +123,12 @@ const Signup = ({ location }) => {
         if (err) {
           setError(err.reason);
         } else {
-          const owner = Meteor.user()._id;
-          const data = { firstName, lastName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, privacyPolicy, owner };
-          console.log(data);// waitfor Organizatino collection done to inset value.
-          /// Organizaion.collection.insert(data);
+          const owner = Meteor.user().owner;
+
+          const definitionData = { firstName, lastName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, owner };
+          console.log(definitionData);
+          const collectionName = OrganizationProfiles.getCollectionName();
+          defineMethod.callPromise({ collectionName, definitionData }).then(() => swal('Success', 'success to sign up', 'success'));
           setError('');
           setRedirectToReferer(true);
         }
