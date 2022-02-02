@@ -35,6 +35,7 @@ class OrganizationCollection extends BaseProfileCollection {
       environmental: { type: String, allowedValues: environmentalType, required: false },
       about: String,
       owner: String,
+      role: String,
     }));
   }
 
@@ -59,7 +60,7 @@ class OrganizationCollection extends BaseProfileCollection {
       const user = this.findOne({ owner, firstName, lastName });
       if (!user) {
         const role = ROLE.USER;
-        const profileID = this._collection.insert({ firstName, lastName, address, city, state, zip, phone, fields, environmental, about, owner });
+        const profileID = this._collection.insert({ firstName, lastName, address, city, state, zip, phone, fields, environmental, about, owner, role });
         const userID = Users.define({ owner, role, password });
         this._collection.update(profileID, { $set: { userID } });
         return profileID;

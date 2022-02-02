@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
+import { Roles } from 'meteor/alanning:roles';
 import { Link, Redirect } from 'react-router-dom';
 import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
@@ -128,7 +129,8 @@ const Signup = ({ location }) => {
           const definitionData = { firstName, lastName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, owner };
           console.log(definitionData);
           const collectionName = OrganizationProfiles.getCollectionName();
-          defineMethod.callPromise({ collectionName, definitionData }).then(() => swal('Success', 'success to sign up', 'success'));
+          OrganizationProfiles.define(definitionData);
+          // defineMethod.callPromise({ collectionName, definitionData }).then(() => swal('Success', 'success to sign up', 'success'));
           setError('');
           setRedirectToReferer(true);
         }
