@@ -30,6 +30,7 @@ class OrganizationCollection extends BaseProfileCollection {
       phone: String,
       username: String,
       fieldsType: { type: Array, allowedValues: fields },
+      'fieldsType.$': { type: String, required: false },
       environmentalType: { type: String, allowedValues: environmental },
       about: String,
     }));
