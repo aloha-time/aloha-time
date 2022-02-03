@@ -83,6 +83,11 @@ footer .ui.center.aligned.fluid.container {
   background: linear-gradient(#007ba4,#2acaf8);
 }
 
+.volunteer-sign-up-top{
+  padding-top: 100px;
+  padding-bottom: 120px;
+  background: linear-gradient(#007ba4,#2acaf8);
+}
 /*navbar content*/
 i.bars.icon {
   padding-left: 10px;

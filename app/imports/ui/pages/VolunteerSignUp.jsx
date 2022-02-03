@@ -7,7 +7,7 @@ import { Accounts } from 'meteor/accounts-base';
 import swal from 'sweetalert';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
-import { VolunteerProfiles } from '../../api/user/VolunteerCollection';
+// import { VolunteerProfiles } from '../../api/user/VolunteerCollection';
 
 /**
  * Signup component is similar to signin component, but we create a new user instead.
@@ -53,9 +53,9 @@ const Signup = ({ location }) => {
     return value;
   }
   function checkedList(filedsArray, value) {
-    const indexOfValule = filedsArray.indexOf(value);
-    if (indexOfValule >= 0) {
-      filedsArray.splice(indexOfValule, 1);
+    const indexOfValue = filedsArray.indexOf(value);
+    if (indexOfValue >= 0) {
+      filedsArray.splice(indexOfValue, 1);
     } else {
       filedsArray.push(value);
     }
@@ -123,7 +123,8 @@ const Signup = ({ location }) => {
         } else {
           const owner = Meteor.user().username;
           const definitionData = { firstName, lastName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, owner };
-          VolunteerProfiles.define(definitionData);
+          // VolunteerProfiles.define(definitionData);
+          console.log(definitionData);
           setError('');
           setRedirectToReferer(true);
         }
