@@ -1,0 +1,97 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.landing-background {
+  background-image: url("images/landingBackground.png");
+  background-size: cover;
+  height: 500px;
+}
+
+.VA-photo{
+  padding-top: 100px;
+  margin-bottom: 10px;
+}
+
+.landing-header{
+  font-size: 40px;
+}
+
+.description{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 21px;
+  color: white;
+}
+
+.opportunities {
+  color: #007BA4 !important;
+  padding-bottom: 20px;
+}
+
+/*not found page*/
+.nf-div {
+  background-image: url("images/notFoundBackground.jpg");
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: auto;
+}
+
+#nf-photo-credit {
+  padding-top: 3em;
+  padding-bottom: 1em;
+}
+
+/* footer component */
+footer {
+  color: white;
+  height:30px;   /* Height of the footer */
+}
+footer .ui.center.aligned.fluid.container {
+  padding-bottom: 1em;
+  background: #1B1C1D;
+}
+
+/*sign in page*/
+.sign-in{
+  padding-top: 10%;
+  padding-bottom: 20%;
+  background: url("images/sign-in.jpeg") no-repeat center center fixed;
+  background-size: cover ;
+  position: relative;
+
+}
+.sign-in-icon{
+  padding-left: 44%;
+}
+
+/*sign out page*/
+ .sign-out{
+   padding-top: 20%;
+   padding-bottom: 25%;
+   background: url("images/sign-out.jpeg") no-repeat center center fixed;
+   background-size: cover ;
+   padding-left: 30%;
+   padding-right: 30%;
+ }
+.organization-sign-up-top{
+  padding-top: 100px;
+  padding-bottom: 120px;
+  background: linear-gradient(#007ba4,#2acaf8);
+}
+
+/*navbar content*/
+i.bars.icon {
+  padding-left: 10px;
+}
+
+.ui.icon.input {
+  width: 125%;
+}
+
+.divider.text {
+  padding-right: 7px;
+}
