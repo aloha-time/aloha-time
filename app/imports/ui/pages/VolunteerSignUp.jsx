@@ -183,6 +183,61 @@ const VolunteerSignUp = ({ location }) => {
                   onChange={handleChange}
                 />
                 <Form.Input required
+                  label="Birth Date (You must be at least 16 years olf to join Volunteer Ally)"
+                  id={COMPONENT_IDS.SIGN_UP_FORM_PRIMARY_ADDRESS}
+                  name="Birth Date (You must be at least 16 years olf to join Volunteer Ally)"
+                  placeholder="Birth Date (You must be at least 16 years olf to join Volunteer Ally)"
+                  type="Address"
+                  onChange={handleChange}
+                />
+                <Header as="h5">
+                  Gender
+                </Header>
+                <Form.Group>
+                  <Grid columns={2}>
+                    <Grid.Row>
+                      <Grid.Column>
+                        <Form.Checkbox radio
+                          label='Female'
+                          value= "Female"
+                          name="environmental"
+                          checked={environmental === 'Indoor'}
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                      <Grid.Column>
+                        <Form.Checkbox radio
+                          label='Male'
+                          value= "Male"
+                          name="environmental"
+                          checked={environmental === 'Outdoor'}
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column>
+                        <Form.Checkbox radio
+                          label='Other'
+                          value= "Other"
+                          name="environmental"
+                          checked={environmental === 'Both'}
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                      <Grid.Column>
+                        <Form.Checkbox radio
+                          label='Prefer Not To Say'
+                          value= "Prefer Not To Say"
+                          name="environmental"
+                          checked={environmental === 'No Preference'}
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                    </Grid.Row>
+                  </Grid>
+                </Form.Group>
+                <Form.Input required
                   label="Primary Address"
                   id={COMPONENT_IDS.SIGN_UP_FORM_PRIMARY_ADDRESS}
                   name="primaryAddress"
@@ -577,7 +632,6 @@ const VolunteerSignUp = ({ location }) => {
                     </Grid.Row>
                   </Grid>
                 </Form.Group>
-                <Form.TextArea label='About' name="about" default value = 'None!!!' placeholder='Describe more information about your organization!!!' onChange={handleChange} />
                 <h5>Show privacy policy</h5>
                 <Form.Checkbox required
                   label = "Please confirm that you agree to our privacy policy"
