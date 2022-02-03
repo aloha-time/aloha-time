@@ -1,5 +1,5 @@
 import React from 'react';
-import { Accordion, Card, Icon, Image, List } from 'semantic-ui-react';
+import { Accordion, Card, Icon, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
@@ -57,7 +57,7 @@ class OpportunityCard extends React.Component {
           </Accordion>
         </Card.Content>
         <Card.Content extra>
-          <Link className={COMPONENT_IDS.LIST_STUFF_EDIT} to={`/edit/${this.props.opportunity._id}`}>Edit</Link>
+          <Link className={COMPONENT_IDS.LIST_OPPORTUNITY_EDIT} to={`/edit/${this.props.opportunity._id}`}>Edit</Link>
         </Card.Content>
       </Card>
     );

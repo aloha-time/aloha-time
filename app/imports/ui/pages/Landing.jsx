@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Header, Image, Button } from 'semantic-ui-react';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import { NavLink } from 'react-router-dom';
 
 /** A simple static component to render some text for the landing page. */
 const Landing = () => (
@@ -53,7 +54,7 @@ const Landing = () => (
           <Image size="small" src="/images/logo15.png"/>
           <Image size="small" src="/images/logo16.png"/>
         </Grid.Column>
-        <Button size="huge" color="blue" >View All Opportunities</Button>
+        <Button size="huge" color="blue" as={NavLink} exact to="/browseOpportunities">View All Opportunities</Button>
       </Grid.Row>
     </Grid>
   </div>

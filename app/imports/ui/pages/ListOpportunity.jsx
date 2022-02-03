@@ -1,7 +1,8 @@
 import React from 'react';
-import { Container, Header, Loader, Card } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Grid, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 import OpportunityCard from '../components/OpportunityCard';
 import { PAGE_IDS } from '../utilities/PageIDs';
@@ -16,7 +17,7 @@ class ListOpportunity extends React.Component {
   /** Render the page once subscriptions have been received. */
   renderPage() {
     return (
-      <Container id={PAGE_IDS.LIST_STUFF}>
+      <Container id={PAGE_IDS.LIST_OPPORTUNITY}>
         <div className="organization-sign-up-top">
           <Header as="h2" textAlign="center" inverted>
             Browse Opportunities
@@ -31,6 +32,24 @@ class ListOpportunity extends React.Component {
           key={index}
           opportunity={opportunities}/>)}
         </Card.Group>
+        <Grid columns={3}>
+          <Grid.Row/>
+          <Grid.Row>
+            <Grid.Column/>
+            <Grid.Column>
+              <Button animated='vertical' fluid color='blue' as={NavLink} exact to="/add-opportunity">
+                <Button.Content hidden>
+                  Add a new opportunity
+                </Button.Content>
+                <Button.Content visible>
+                  Are you an organization?
+                </Button.Content>
+              </Button>
+            </Grid.Column>
+            <Grid.Column/>
+          </Grid.Row>
+          <Grid.Row/>
+        </Grid>
       </Container>
     );
   }
