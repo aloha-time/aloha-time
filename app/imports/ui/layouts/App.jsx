@@ -19,7 +19,7 @@ import Signout from '../pages/Signout';
 import ManageDatabase from '../pages/ManageDatabase';
 import { ROLE } from '../../api/role/Role';
 import OrganizationSignup from '../pages/OrganizationSignup';
-import VolunteerSignup from '../pages/VolunteerSignup';
+import VolunteerSignUp from '../pages/VolunteerSignUp';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -33,7 +33,7 @@ class App extends React.Component {
             <Route path="/signin" component={Signin}/>
             <Route path="/signup" component={Signup}/>
             <Route path="/organization-signup" component={OrganizationSignup}/>
-            <Route path="/volunteer-signup" component={VolunteerSignup}/>
+            <Route path="/volunteer-signup" component={VolunteerSignUp}/>
             <Route path="/signout" component={Signout}/>
             <ProtectedRoute path="/list" component={ListStuff}/>
             <ProtectedRoute path="/add" component={AddStuff}/>

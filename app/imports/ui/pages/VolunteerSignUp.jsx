@@ -12,7 +12,7 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 /**
  * Signup component is similar to signin component, but we create a new user instead.
  */
-const Signup = ({ location }) => {
+const VolunteerSignUp = ({ location }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -235,7 +235,7 @@ const Signup = ({ location }) => {
                   onChange={handleChange}
                 />
                 <Header as="h5">
-                    Fields
+                    Interests
                 </Header>
                 <Form.Group>
                   <Grid columns={2}>
@@ -343,7 +343,123 @@ const Signup = ({ location }) => {
                   </Grid>
                 </Form.Group>
                 <Header as="h5">
-                    Environmental
+                  Special Skills (optional)
+                </Header>
+                <Form.Group>
+                  <Grid columns={2}>
+                    <Grid.Row>
+                      <Grid.Column>
+                        <Form.Checkbox
+                          label='Agriculture'
+                          value='Agriculture'
+                          name="fields"
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                      <Grid.Column>
+                        <Form.Checkbox
+                          label='Construction'
+                          value='Construction'
+                          name="fields"
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                    </Grid.Row>
+
+                    <Grid.Row>
+                      <Grid.Column>
+                        <Form.Checkbox
+                          label='Education'
+                          value='Education'
+                          name="fields"
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                      <Grid.Column>
+                        <Form.Checkbox
+                          label='Engineering'
+                          value='Engineering'
+                          name="fields"
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column>
+                        <Form.Checkbox
+                          label='Event Planning'
+                          value='Event Planning'
+                          name="fields"
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                      <Grid.Column>
+                        <Form.Checkbox
+                          label='Sales/Marketing'
+                          value='Sales/Marketing'
+                          name="fields"
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column>
+                        <Form.Checkbox
+                          label='Technology'
+                          value='Technology'
+                          name="fields"
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                      <Grid.Column>
+                        <Form.Checkbox
+                          label='Graphic/Web Design'
+                          value='Graphic/Web Design'
+                          name="fields"
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column>
+                        <Form.Checkbox
+                          label='CPR (Certification Required)'
+                          value='CPR (Certification Required)'
+                          name="fields"
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                      <Grid.Column>
+                        <Form.Checkbox
+                          label='First Aid (Certification Required)'
+                          value='First Aid (Certification Required)'
+                          name="fields"
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column>
+                        <Form.Checkbox
+                          label='Nursing (CNA/RNA Certified)'
+                          value='Nursing (CNA/RNA Certified)'
+                          name="fields"
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                      <Grid.Column>
+                        <Form.Checkbox
+                          label='Other'
+                          value='Other'
+                          name="fields"
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                    </Grid.Row>
+                  </Grid>
+                </Form.Group>
+                <Header as="h5">
+                    Environmental Preference
                 </Header>
                 <Form.Group>
                   <Grid columns={2}>
@@ -389,6 +505,78 @@ const Signup = ({ location }) => {
                     </Grid.Row>
                   </Grid>
                 </Form.Group>
+                <Header as="h5">
+                  Availability
+                </Header>
+                <Form.Group>
+                  <Grid columns={2}>
+                    <Grid.Row>
+                      <Grid.Column>
+                        <Form.Checkbox
+                          label='One-time'
+                          value='One-time'
+                          name="fields"
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                      <Grid.Column>
+                        <Form.Checkbox
+                          label='Once a month'
+                          value='Once a month'
+                          name="fields"
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                    </Grid.Row>
+
+                    <Grid.Row>
+                      <Grid.Column>
+                        <Form.Checkbox
+                          label='Once a week'
+                          value='Once a week'
+                          name="fields"
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                      <Grid.Column>
+                        <Form.Checkbox
+                          label='1-3 times a week'
+                          value='1-3 times a week'
+                          name="fields"
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column>
+                        <Form.Checkbox
+                          label='More than 3 times a week'
+                          value='More than 3 times a week'
+                          name="fields"
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                      <Grid.Column>
+                        <Form.Checkbox
+                          label='Weekends only'
+                          value='Weekends only'
+                          name="fields"
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column>
+                        <Form.Checkbox
+                          label='Weekdays only'
+                          value='Weekdays only'
+                          name="fields"
+                          onChange={handleChange}
+                        />
+                      </Grid.Column>
+                    </Grid.Row>
+                  </Grid>
+                </Form.Group>
                 <Form.TextArea label='About' name="about" default value = 'None!!!' placeholder='Describe more information about your organization!!!' onChange={handleChange} />
                 <h5>Show privacy policy</h5>
                 <Form.Checkbox required
@@ -422,8 +610,8 @@ const Signup = ({ location }) => {
 };
 
 /* Ensure that the React Router location object is available in case we need to redirect. */
-Signup.propTypes = {
+VolunteerSignUp.propTypes = {
   location: PropTypes.object,
 };
 
-export default Signup;
+export default VolunteerSignUp;
