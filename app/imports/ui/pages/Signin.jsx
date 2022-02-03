@@ -12,7 +12,7 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
  */
 const Signin = ({ location }) => {
 
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [redirectToReferer, setRedirectToReferer] = useState(false);
@@ -20,8 +20,8 @@ const Signin = ({ location }) => {
   // Update the form controls each time the user interacts with them.
   const handleChange = (e, { name, value }) => {
     switch (name) {
-    case 'email':
-      setEmail(value);
+    case 'username':
+      setUsername(value);
       break;
     case 'password':
       setPassword(value);
@@ -33,7 +33,7 @@ const Signin = ({ location }) => {
 
   // Handle Signin submission using Meteor's account mechanism.
   const submit = () => {
-    Meteor.loginWithPassword(email, password, (err) => {
+    Meteor.loginWithPassword(username, password, (err) => {
       if (err) {
         setError(err.reason);
       } else {
@@ -66,13 +66,13 @@ const Signin = ({ location }) => {
                 <div className = "Segment">
                   <Segment stacked basic>
                     <Form.Input
-                      label="Email"
+                      label="Username"
                       id={COMPONENT_IDS.SIGN_IN_FORM_EMAIL}
                       icon="user"
                       iconPosition="left"
-                      name="email"
-                      type="email"
-                      placeholder="E-mail address"
+                      name="username"
+                      type="username"
+                      placeholder="Username"
                       onChange={handleChange}
                     />
                     <Form.Input
