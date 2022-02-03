@@ -7,6 +7,7 @@ import { Accounts } from 'meteor/accounts-base';
 import swal from 'sweetalert';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
+import { OrganizationProfiles } from '../../api/user/OrganizationCollection';
 
 /**
  * Signup component is similar to signin component, but we create a new user instead.
@@ -72,7 +73,7 @@ const Signup = ({ location }) => {
     case 'confirmPassword':
       setConfirmPassword(value);
       break;
-    case 'userName':
+    case 'username':
       setUsername(value);
       break;
     case 'firstName':
@@ -120,10 +121,9 @@ const Signup = ({ location }) => {
         if (err) {
           setError(err.reason);
         } else {
-          const owner = Meteor.user()._id;
-          const data = { firstName, lastName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, privacyPolicy, owner };
-          console.log(data);// waitfor Organizatino collection done to inset value.
-          /// Organizaion.collection.insert(data);
+          const owner = Meteor.user().username;
+          const definitionData = { firstName, lastName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, owner };
+          OrganizationProfiles.define(definitionData);
           setError('');
           setRedirectToReferer(true);
         }
@@ -210,7 +210,7 @@ const Signup = ({ location }) => {
                   placeholder="Username"
                   icon="user"
                   iconPosition="left"
-                  type="name"
+                  type="username"
                   onChange={handleChange}
                 />
                 <Form.Input required

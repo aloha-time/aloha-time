@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Stuffs } from '../stuff/StuffCollection';
 import { AdminProfiles } from '../user/AdminProfileCollection';
 import { UserProfiles } from '../user/UserProfileCollection';
+import { OrganizationProfiles } from '../user/OrganizationCollection';
 import { Opportunities } from '../opportunity/OpportunitiesCollection';
 
 class MATRPClass {
@@ -17,6 +18,7 @@ class MATRPClass {
       AdminProfiles,
       Stuffs,
       UserProfiles,
+      OrganizationProfiles,
       Opportunities,
     ];
     /*
@@ -26,6 +28,7 @@ class MATRPClass {
       AdminProfiles,
       UserProfiles,
       Stuffs,
+      OrganizationProfiles,
       Opportunities,
     ];
 

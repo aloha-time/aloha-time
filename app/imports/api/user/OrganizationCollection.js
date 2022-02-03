@@ -4,7 +4,7 @@ import BaseProfileCollection from './BaseProfileCollection';
 import { ROLE } from '../role/Role';
 import { Users } from './UserCollection';
 
-export const fields = [
+export const fieldsType = [
   'Animal Welfare/Rescue',
   'Child/Family Support',
   'COVID-19 Recovery',
@@ -18,26 +18,30 @@ export const fields = [
   'Special Needs',
 ];
 
-export const environmental = ['Indoor', 'Outdoor', 'Both', 'No Preference'];
+export const environmentalType = ['Indoor', 'Outdoor', 'Both', 'No Preference'];
 
 class OrganizationCollection extends BaseProfileCollection {
   constructor() {
     super('OrganizationProfile', new SimpleSchema({
-      address: String,
+      firstName: String,
+      lastName: String,
+      primaryAddress: String,
       city: String,
       state: String,
-      zip: Number,
-      phone: String,
-      username: String,
-      fieldsType: { type: Array, allowedValues: fields },
-      environmentalType: { type: String, allowedValues: environmental },
+      zipCode: String,
+      phoneNumber: String,
+      fields: { type: Array, required: false },
+      'fields.$': { type: String, allowedValues: fieldsType, required: false },
+      environmental: { type: String, allowedValues: environmentalType, required: false },
       about: String,
+      owner: String,
+      role: String,
     }));
   }
 
   /**
    * Defines the profile associated with an Organization and the associated Meteor account.
-   * @param email The email associated with this profile. Will be the username.
+   * @param owner The email associated with this profile. Will be the username.
    * @param password The password for this user.
    * @param firstName The first name.
    * @param lastName The last name.
@@ -46,19 +50,18 @@ class OrganizationCollection extends BaseProfileCollection {
    * @param state The state where the organization is located.
    * @param zip Zipcode of the organization location.
    * @param phone Phone number of the organization.
-   * @param username Username for the organization.
-   * @param fieldsType The fields the organization covers.
-   * @param environmentalType Environment that the organization is active on.
+   * @param fields The fields the organization covers.
+   * @param environmental Environment that the organization is active on.
    * @param about Message about the organization.
    */
-  define({ email, firstName, lastName, password, address, city, state, zip, phone, username, fieldsType, environmentalType, about }) {
+  define({ firstName, lastName, password, address, city, state, zip, phone, fields, environmental, about, owner }) {
     if (Meteor.isServer) {
       // const username = email;
-      const user = this.findOne({ email, firstName, lastName });
+      const user = this.findOne({ owner, firstName, lastName });
       if (!user) {
         const role = ROLE.USER;
-        const profileID = this._collection.insert({ email, firstName, lastName, userID: this.getFakeUserId(), role, address, city, state, zip, phone, username, fieldsType, environmentalType, about });
-        const userID = Users.define({ username, role, password });
+        const profileID = this._collection.insert({ firstName, lastName, address, city, state, zip, phone, fields, environmental, about, owner, role });
+        const userID = Users.define({ owner, role, password });
         this._collection.update(profileID, { $set: { userID } });
         return profileID;
       }

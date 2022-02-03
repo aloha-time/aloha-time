@@ -70,8 +70,8 @@ footer .ui.center.aligned.fluid.container {
 
 /*sign out page*/
  .sign-out{
-   padding-top: 15%;
-   padding-bottom: 20%;
+   padding-top: 20%;
+   padding-bottom: 25%;
    background: url("images/sign-out.jpeg") no-repeat center center fixed;
    background-size: cover ;
    padding-left: 30%;
