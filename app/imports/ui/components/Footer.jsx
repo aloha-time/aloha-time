@@ -2,7 +2,7 @@ import React from 'react';
 
 /** The Footer appears at the bottom of every page. Rendered by the App Layout component. */
 const Footer = () => {
-  const divStyle = { paddingTop: '15px' };
+  const divStyle = { position: 'absolute', bottom: '0' };
   return (
     <footer>
       <div style={divStyle} className="ui center aligned fluid container">
