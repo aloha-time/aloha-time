@@ -179,7 +179,7 @@ const AddOpportunity = () => {
               <Grid.Row>
                 <Grid.Column/>
                 <Grid.Column>
-                  <Button fluid color='blue' as={NavLink} exact to="/browseOpportunities">
+                  <Button fluid color='blue' as={NavLink} exact to="/browse-opportunities">
                       View Opportunities
                   </Button>
                 </Grid.Column>

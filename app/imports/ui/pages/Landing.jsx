@@ -54,7 +54,7 @@ const Landing = () => (
           <Image size="small" src="/images/logo15.png"/>
           <Image size="small" src="/images/logo16.png"/>
         </Grid.Column>
-        <Button size="huge" color="blue" as={NavLink} exact to="/browseOpportunities">View All Opportunities</Button>
+        <Button size="huge" color="blue" as={NavLink} exact to="/browse-opportunities">View All Opportunities</Button>
       </Grid.Row>
     </Grid>
   </div>
