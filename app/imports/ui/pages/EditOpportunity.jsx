@@ -1,96 +1,47 @@
 import React from 'react';
-import { Grid, Header, Card, Container, Segment, Form, Icon, Button } from 'semantic-ui-react';
+import { Grid, Loader, Header, Segment, Container, Card, Icon, Form, Button } from 'semantic-ui-react';
+import swal from 'sweetalert';
 import {
   AutoForm,
   ErrorsField,
+  HiddenField,
   LongTextField,
   SelectField,
   SubmitField,
   TextField,
 } from 'uniforms-semantic';
-import swal from 'sweetalert';
-import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
+import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import SimpleSchema from 'simpl-schema';
+import { useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import {
-  Opportunities,
-  opportunityAges,
-  opportunityCategories, opportunityEnvironments, opportunityRecurring,
-  opportunityTypes,
-} from '../../api/opportunity/OpportunitiesCollection';
-import { defineMethod } from '../../api/base/BaseCollection.methods';
+import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
+import { updateMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
-// Create a schema to specify the structure of the data to appear in the form.
-const formSchema = new SimpleSchema({
-  title: String,
-  opportunityType: {
-    type: String,
-    allowedValues: opportunityTypes,
-    defaultValue: 'Event',
-  },
-  startDate: String,
-  endDate: String,
-  startTime: String,
-  endTime: String,
-  recurring: {
-    type: String,
-    allowedValues: opportunityRecurring,
-    defaultValue: 'No',
-  },
-  description: String,
-  category: {
-    type: String,
-    allowedValues: opportunityCategories,
-  },
-  location: String,
-  contactName: String,
-  contactPosition: String,
-  email: String,
-  phone: String,
-  website: String,
-  coverImage: String,
-  galleryImage: String,
-  ageGroup: {
-    type: String,
-    allowedValues: opportunityAges,
-  },
-  environment: {
-    type: String,
-    allowedValues: opportunityEnvironments,
-  },
-});
+const bridge = new SimpleSchema2Bridge(Opportunities._schema);
 
-const bridge = new SimpleSchema2Bridge(formSchema);
+/** Renders the Page for editing a single document. */
+const EditOpportunity = ({ doc, ready }) => {
 
-/** Renders the Page for adding a document. */
-const AddOpportunity = () => {
-
-  // On submit, insert the data.
-  const submit = (data, formRef) => {
-    const { title, opportunityType, startDate, endDate, startTime, endTime, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment } = data;
-    const owner = Meteor.user().username;
+  // On successful submit, insert the data.
+  const submit = (data) => {
+    const { title, opportunityType, startDate, endDate, startTime, endTime, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, _id } = data;
     const collectionName = Opportunities.getCollectionName();
-    const definitionData = { title, opportunityType, startDate, endDate, startTime, endTime, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, owner };
-    defineMethod.callPromise({ collectionName, definitionData })
+    const updateData = { id: _id, title, opportunityType, startDate, endDate, startTime, endTime, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment };
+    updateMethod.callPromise({ collectionName, updateData })
       .catch(error => swal('Error', error.message, 'error'))
-      .then(() => {
-        swal('Success', 'Item added successfully', 'success');
-        formRef.reset();
-      });
+      .then(() => swal('Success', 'Item updated successfully', 'success'));
   };
 
-  // Render the form. Use Uniforms: https://github.com/vazco/uniforms
-  let fRef = null;
-  return (
-    <Container id={PAGE_IDS.ADD_OPPORTUNITY}>
+  return (ready) ? (
+    <Container id={PAGE_IDS.EDIT_OPPORTUNITY}>
       <div className="organization-sign-up-top">
         <Header as="h2" textAlign="center" inverted>
-            Add Opportunity
+          Edit Opportunity
         </Header>
         <Header as="h5" textAlign="center" inverted>
-            Your new listing details
+          Modify your listing
         </Header>
       </div>
       <br/>
@@ -98,15 +49,13 @@ const AddOpportunity = () => {
       <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
         <Grid.Column>
           <div className="orgnization-signup-form">
-            <AutoForm ref={ref => {
-              fRef = ref;
-            }} schema={bridge} onSubmit={data => submit(data, fRef)}>
+            <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
               <Segment stacked basic>
                 <Card fluid>
                   <Card.Content>
                     <Card.Header>
                       <Icon name='pencil alternate'/>
-                        General
+                      General
                     </Card.Header>
                   </Card.Content>
                   <Card.Content>
@@ -117,7 +66,7 @@ const AddOpportunity = () => {
                   <Card.Content>
                     <Card.Header>
                       <Icon name='pencil alternate'/>
-                        Volunteer Opportunity Information
+                      Volunteer Opportunity Information
                     </Card.Header>
                   </Card.Content>
                   <Card.Content>
@@ -145,7 +94,7 @@ const AddOpportunity = () => {
                   <Card.Content>
                     <Card.Header>
                       <Icon name='pencil alternate'/>
-                        Contact Information
+                      Contact Information
                     </Card.Header>
                   </Card.Content>
                   <Card.Content>
@@ -160,7 +109,7 @@ const AddOpportunity = () => {
                   <Card.Content>
                     <Card.Header>
                       <Icon name='pencil alternate'/>
-                        Additional information
+                      Additional information
                     </Card.Header>
                   </Card.Content>
                   <Card.Content>
@@ -172,6 +121,7 @@ const AddOpportunity = () => {
                 </Card>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
+                <HiddenField name='owner' />
               </Segment>
             </AutoForm>
             <Grid columns={3}>
@@ -180,7 +130,7 @@ const AddOpportunity = () => {
                 <Grid.Column/>
                 <Grid.Column>
                   <Button fluid color='blue' as={NavLink} exact to="/browseOpportunities">
-                      View Opportunities
+                    View Opportunities
                   </Button>
                 </Grid.Column>
                 <Grid.Column/>
@@ -191,7 +141,28 @@ const AddOpportunity = () => {
         </Grid.Column>
       </Grid>
     </Container>
-  );
+  ) : <Loader active>Getting data</Loader>;
 };
 
-export default AddOpportunity;
+// Require the presence of a Opportunity document in the props object. Uniforms adds 'model' to the props, which we use.
+EditOpportunity.propTypes = {
+  doc: PropTypes.object,
+  ready: PropTypes.bool.isRequired,
+};
+
+// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
+export default withTracker(() => {
+  // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
+  const { _id } = useParams();
+  const documentId = _id;
+  // Get access to Opportunity documents.
+  const subscription = Opportunities.subscribeOpportunity();
+  // Determine if the subscription is ready
+  const ready = subscription.ready();
+  // Get the document
+  const doc = Opportunities.findDoc(documentId);
+  return {
+    doc,
+    ready,
+  };
+})(EditOpportunity);

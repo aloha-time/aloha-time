@@ -13,6 +13,7 @@ import ListStuffAdmin from '../pages/ListStuffAdmin';
 import AddStuff from '../pages/AddStuff';
 import AddOpportunity from '../pages/AddOpportunity';
 import EditStuff from '../pages/EditStuff';
+import EditOpportunity from '../pages/EditOpportunity';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
@@ -39,6 +40,7 @@ class App extends React.Component {
             <ProtectedRoute path="/add" component={AddStuff}/>
             <ProtectedRoute path="/add-opportunity" component={AddOpportunity}/>
             <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
+            <ProtectedRoute path="/edit-opportunity/:_id" component={EditOpportunity}/>
             <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
             <AdminProtectedRoute path="/manage-database" component={ManageDatabase}/>
             <Route component={NotFound}/>

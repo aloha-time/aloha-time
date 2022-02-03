@@ -57,7 +57,7 @@ class OpportunityCard extends React.Component {
           </Accordion>
         </Card.Content>
         <Card.Content extra>
-          <Link className={COMPONENT_IDS.LIST_OPPORTUNITY_EDIT} to={`/edit/${this.props.opportunity._id}`}>Edit</Link>
+          <Link className={COMPONENT_IDS.LIST_OPPORTUNITY_EDIT} to={`/edit-opportunity/${this.props.opportunity._id}`}>Edit</Link>
         </Card.Content>
       </Card>
     );
