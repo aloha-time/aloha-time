@@ -14,10 +14,10 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { useParams } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 import { updateMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
-import { NavLink } from 'react-router-dom';
 
 const bridge = new SimpleSchema2Bridge(Opportunities._schema);
 

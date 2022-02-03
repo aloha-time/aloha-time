@@ -12,6 +12,7 @@ import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
+import { NavLink } from 'react-router-dom';
 import {
   Opportunities,
   opportunityAges,
@@ -20,7 +21,6 @@ import {
 } from '../../api/opportunity/OpportunitiesCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
-import { NavLink } from 'react-router-dom';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
