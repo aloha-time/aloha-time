@@ -20,57 +20,41 @@ class OpportunityCard extends React.Component {
     const OpportunityInfo = this.props.opportunity;
     const { activeIndex } = this.state;
     return (
-      <Card>
+      <Card link>
         <Image large src={OpportunityInfo.coverImage} wrapped ui={false} />
         <Card.Content>
-          <Card.Header>{OpportunityInfo.title}</Card.Header>
-          <Card.Meta>{OpportunityInfo.startDate}</Card.Meta>
-          <Card.Meta>{OpportunityInfo.endDate}</Card.Meta>
-          <Card.Meta>{OpportunityInfo.location}</Card.Meta>
-          <Card.Meta>{OpportunityInfo.category}</Card.Meta>
-          <Card.Description>
-            <Accordion exclusive={false}>
-              <Accordion.Title
-                active={activeIndex === 0}
-                index={0}
-                onClick={this.handleClick}
-              >
-                <Icon name='dropdown' />
-                See details
-              </Accordion.Title>
-              <Accordion.Content active={activeIndex === 0}>
-                <List bulleted>
-                  <List.Item>Description: {OpportunityInfo.description}</List.Item>
-                  <List.Item>Type: {OpportunityInfo.opportunityType}</List.Item>
-                  <List.Item>Reoccurring: {OpportunityInfo.recurring}</List.Item>
-                  <List.Item>
-                    Contact Info
-                    <List.List>Name: {OpportunityInfo.contactName}</List.List>
-                    <List.List>Position: {OpportunityInfo.contactPosition}</List.List>
-                    <List.List>{OpportunityInfo.email}</List.List>
-                    <List.List>{OpportunityInfo.phone}</List.List>
-                    <List.List>{OpportunityInfo.website}</List.List>
-                  </List.Item>
-                  <List.Item>
-                    Additional Info
-                    <List.List>{OpportunityInfo.ageGroup}</List.List>
-                    <List.List>{OpportunityInfo.environment}</List.List>
-                  </List.Item>
-                </List>
-              </Accordion.Content>
-              <Accordion.Title
-                active={activeIndex === 1}
-                index={1}
-                onClick={this.handleClick}
-              >
-                <Icon name='dropdown' />
-                See images
-              </Accordion.Title>
-              <Accordion.Content active={activeIndex === 1}>
-                <Image large src={OpportunityInfo.galleryImage} wrapped ui={false} />
-              </Accordion.Content>
-            </Accordion>
-          </Card.Description>
+          <Card.Header>
+            <h1>{OpportunityInfo.title}</h1>
+          </Card.Header>
+          <Card.Meta>
+            <Icon name='calendar alternate'/>
+            {OpportunityInfo.startDate} - {OpportunityInfo.endDate}
+          </Card.Meta>
+          <Card.Meta>
+            <Icon name='clock'/>
+            {OpportunityInfo.startTime} - {OpportunityInfo.endTime}</Card.Meta>
+          <Card.Meta>
+            <Icon name='map marker alternate'/>
+            {OpportunityInfo.location}
+          </Card.Meta>
+          <Card.Meta>Category: {OpportunityInfo.category}</Card.Meta>
+        </Card.Content>
+        <Card.Content>
+          <Accordion>
+            <Accordion.Title
+              active={activeIndex === 0}
+              index={0}
+              onClick={this.handleClick}
+            >
+              <h4><Icon name='dropdown'/>
+                See more</h4>
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 0}>
+              <p>
+                {OpportunityInfo.description}
+              </p>
+            </Accordion.Content>
+          </Accordion>
         </Card.Content>
         <Card.Content extra>
           <Link className={COMPONENT_IDS.LIST_STUFF_EDIT} to={`/edit/${this.props.opportunity._id}`}>Edit</Link>

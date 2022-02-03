@@ -17,8 +17,17 @@ class ListOpportunity extends React.Component {
   renderPage() {
     return (
       <Container id={PAGE_IDS.LIST_STUFF}>
-        <Header as="h2" textAlign="center">Browse Opportunities</Header>
-        <Card.Group centered>{this.props.opportunities.map((opportunities, index) => <OpportunityCard
+        <div className="organization-sign-up-top">
+          <Header as="h2" textAlign="center" inverted>
+            Browse Opportunities
+          </Header>
+          <Header as="h5" textAlign="center" inverted>
+            Volunteer for upcoming or existing events
+          </Header>
+        </div>
+        <br/>
+        <br/>
+        <Card.Group stackable itemsPerRow={3} centered>{this.props.opportunities.map((opportunities, index) => <OpportunityCard
           key={index}
           opportunity={opportunities}/>)}
         </Card.Group>
