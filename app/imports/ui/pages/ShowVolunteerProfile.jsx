@@ -2,17 +2,19 @@ import React from 'react';
 import { Container, Grid, Header, Loader, Image } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-// import { Profiles } from '../../api/Profiles';
-// import { Users } from '../../api/user/UserCollection';
 import { PAGE_IDS } from '../utilities/PageIDs';
-// import { mockProfiles } from '../../api/MockProfiles';
-// import VolunteerProfile from '../components/VolunteerProfile';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 const ShowVolunteerProfile = ({ ready }) => ((ready) ? (
   <Container id={PAGE_IDS.SHOW_VOLUNTEER_PROFILE}>
-    <Header as="h2" textAlign="center">Volunteer Profile</Header>
-    <Header as="h3" textAlign="center">John Foo{/* this.props.profiles.name */}</Header>
+    <Grid float='left' padded>
+      <Grid.Row>
+        <Image size='small' src="/images/johnfoo.jpeg"/>
+      </Grid.Row>
+      <Grid.Row>
+        <Header as="h1" className="opportunities">John Foo{/* this.props.profiles.name */}</Header>
+      </Grid.Row>
+    </Grid>
 
     <Grid divided='vertically'>
       <Grid.Row columns='equal'>
@@ -29,9 +31,10 @@ const ShowVolunteerProfile = ({ ready }) => ((ready) ? (
       <Grid.Row columns='equal'>
         <Grid.Column>
           <Header as='h3'>Friendly event</Header>
+          <p>A friendly event where volunteers walked through a city volunteering.</p>
         </Grid.Column>
         <Grid.Column>
-          <Image src='https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fd.ibtimes.co.uk%2Fen%2Ffull%2F1509402%2Flaughing-humans.jpg&f=1&nofb=1'/>
+          <Image src="/images/laughing.jpeg"/>
         </Grid.Column>
         <Grid.Column>
           <Header as='h3'>3 Hours</Header>
@@ -40,9 +43,10 @@ const ShowVolunteerProfile = ({ ready }) => ((ready) ? (
       <Grid.Row columns='equal'>
         <Grid.Column>
           <Header as='h3'>Friendlier event</Header>
+          <p>An even friendlier event where volunteers threw a party for children and puppies.</p>
         </Grid.Column>
         <Grid.Column>
-          <Image src='https://bestlifeonline.com/wp-content/uploads/sites/3/2018/07/young-people-laughing-in-europe.jpg?quality=82&strip=1&resize=640%2C360'/>
+          <Image src='/images/party.jpg'/>
         </Grid.Column>
         <Grid.Column>
           <Header as='h3'>5 Hours</Header>
