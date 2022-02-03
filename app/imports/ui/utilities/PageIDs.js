@@ -8,8 +8,9 @@ export const PAGE_IDS = {
   LIST_STUFF_ADMIN: 'list-stuff-admin',
   MANAGE_DATABASE: 'manage-database',
   NOT_FOUND: 'not-found',
-  SIGN_IN: 'sigin-in',
+  SIGN_IN: 'sign-in',
   SIGN_OUT: 'sign-out',
   SIGN_UP: 'sign-up',
   ORGANIZATION_SIGN_UP: 'organization-sign-up',
+  VOLUNTEER_SIGN_UP: 'volunteer-sign-up',
 };
