@@ -73,7 +73,7 @@ const Signup = ({ location }) => {
     case 'confirmPassword':
       setConfirmPassword(value);
       break;
-    case 'userName':
+    case 'username':
       setUsername(value);
       break;
     case 'firstName':
@@ -121,8 +121,7 @@ const Signup = ({ location }) => {
         if (err) {
           setError(err.reason);
         } else {
-          const owner = Meteor.user().owner;
-
+          const owner = Meteor.user().username;
           const definitionData = { firstName, lastName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, owner };
           OrganizationProfiles.define(definitionData);
           setError('');
@@ -211,7 +210,7 @@ const Signup = ({ location }) => {
                   placeholder="Username"
                   icon="user"
                   iconPosition="left"
-                  type="name"
+                  type="username"
                   onChange={handleChange}
                 />
                 <Form.Input required
