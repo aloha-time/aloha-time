@@ -7,10 +7,10 @@ import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
-import ListStuff from '../pages/ListStuff';
+import ListOrg from '../pages/ListOrg';
+import OrgInfo from '../pages/OrgInfo';
 import ListOpportunity from '../pages/ListOpportunity';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
-import AddStuff from '../pages/AddStuff';
 import AddOpportunity from '../pages/AddOpportunity';
 import EditStuff from '../pages/EditStuff';
 import EditOpportunity from '../pages/EditOpportunity';
@@ -18,7 +18,9 @@ import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
+import ShowVolunteerProfile from '../pages/ShowVolunteerProfile';
 import ManageDatabase from '../pages/ManageDatabase';
+import AboutUs from '../pages/AboutUs';
 import { ROLE } from '../../api/role/Role';
 import OrganizationSignup from '../pages/OrganizationSignup';
 import VolunteerSignUp from '../pages/VolunteerSignUp';
@@ -33,13 +35,16 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Landing}/>
             <Route path="/signin" component={Signin}/>
+            <Route path="/myprofile" component={ShowVolunteerProfile}/>
             <Route path="/signup" component={Signup}/>
             <Route path="/organization-signup" component={OrganizationSignup}/>
             <Route path="/volunteer-signup" component={VolunteerSignUp}/>
             <Route path="/signout" component={Signout}/>
-            <ProtectedRoute path="/list" component={ListStuff}/>
-            <ProtectedRoute path="/browseOpportunities" component={ListOpportunity}/>
-            <ProtectedRoute path="/add" component={AddStuff}/>
+            <ProtectedRoute path="/organization-library" component={ListOrg}/>
+            <ProtectedRoute path="/orginfo" component={OrgInfo}/>
+            <ProtectedRoute path="/my-opportunities" component={ListOpportunity}/>
+            <ProtectedRoute path="/browse-opportunities" component={ListOpportunity}/>
+            <ProtectedRoute path="/about-us" component={AboutUs}/>
             <ProtectedRoute path="/add-opportunity" component={AddOpportunity}/>
             <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
             <ProtectedRoute path="/edit-opportunity/:_id" component={EditOpportunity}/>

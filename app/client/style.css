@@ -100,3 +100,19 @@ i.bars.icon {
 .divider.text {
   padding-right: 7px;
 }
+
+/*about us page*/
+#about-us.ui.fluid.container {
+  height: 100%;
+}
+.about-us-content {
+  padding: 35px 0px 25px 35px;
+}
+
+.about-us-content .ui.left.aligned.header {
+  color: #007BA4 !important;
+}
+
+.ui.container.about-us-content p {
+  color: #838485 !important;
+}

@@ -10,7 +10,7 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
 const NavBar = ({ currentUser }) => {
-  const menuStyle = { paddingBottom: '8px' };
+  const menuStyle = { marginBottom: '30px' };
   return (
     <Menu attached="top" style={menuStyle} borderless inverted>
       <Menu.Item id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} activeClassName="" exact to="/">
@@ -30,25 +30,25 @@ const NavBar = ({ currentUser }) => {
           </Dropdown>,
           <Dropdown id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU} icon="bars" pointing="top right" key="mainMenu">
             <Dropdown.Menu>
-              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_BROWSE_OPPORTUNITIES} text="Browse Opportunities" as={NavLink} exact to="/browseOpportunities" />
-              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_ORGANIZATION_LIBRARY} text="Organization Library" as={NavLink} exact to="/organizationLibrary" />
-              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_ABOUT_US} text="About Us" as={NavLink} exact to="/aboutUs" />
+              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_BROWSE_OPPORTUNITIES} text="Browse Opportunities" as={NavLink} exact to="/browse-opportunities" />
+              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_ORGANIZATION_LIBRARY} text="Organization Library" as={NavLink} exact to="/organization-library" />
+              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_ABOUT_US} text="About Us" as={NavLink} exact to="/about-us" />
             </Dropdown.Menu>
           </Dropdown>]
         ) : (
           [<Dropdown id={COMPONENT_IDS.NAVBAR_CURRENT_USER} text={currentUser} pointing="top right" icon={'user'} key="logout">
             <Dropdown.Menu>
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MY_PROFILE} text="My Profile" as={NavLink} exact to="/myProfile"/>
-              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MY_OPPORTUNITIES} text="My Opportunities" as={NavLink} exact to="/myOpportunities"/>
+              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MY_OPPORTUNITIES} text="My Opportunities" as={NavLink} exact to="/my-opportunities"/>
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_ACCOUNT_SETTINGS} text="Account Settings" as={NavLink} exact to="/accountSettings"/>
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_SIGN_OUT} icon="sign out" text="Sign Out" as={NavLink} exact to="/signout" />
             </Dropdown.Menu>
           </Dropdown>,
           <Dropdown id={COMPONENT_IDS.NAVBAR_USER_HAMBURGER_MENU} icon="bars" pointing="top right" key="userMainMenu">
             <Dropdown.Menu>
-              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_BROWSE_OPPORTUNITIES} text="Browse Opportunities" as={NavLink} exact to="/browseOpportunities" />
-              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_ORGANIZATION_LIBRARY} text="Organization Library" as={NavLink} exact to="/organizationLibrary" />
-              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_ABOUT_US} text="About Us" as={NavLink} exact to="/aboutUs"/>
+              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_BROWSE_OPPORTUNITIES} text="Browse Opportunities" as={NavLink} exact to="/browse-opportunities" />
+              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_ORGANIZATION_LIBRARY} text="Organization Library" as={NavLink} exact to="/organization-library" />
+              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_ABOUT_US} text="About Us" as={NavLink} exact to="/about-us"/>
             </Dropdown.Menu>
           </Dropdown>]
         ) }
