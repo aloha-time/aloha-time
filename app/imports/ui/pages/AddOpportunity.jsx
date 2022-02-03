@@ -1,6 +1,13 @@
 import React from 'react';
-import { Grid, Segment, Header, Radio, Card } from 'semantic-ui-react';
-import { AutoForm, ErrorsField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
+import { Grid, Header, Card, Container, Segment, Form, Icon } from 'semantic-ui-react';
+import {
+  AutoForm,
+  ErrorsField,
+  LongTextField,
+  SelectField,
+  SubmitField,
+  TextField,
+} from 'uniforms-semantic';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -20,14 +27,16 @@ const formSchema = new SimpleSchema({
   opportunityType: {
     type: String,
     allowedValues: opportunityTypes,
-    defaultValue: 'event',
+    defaultValue: 'Event',
   },
   startDate: String,
   endDate: String,
+  startTime: String,
+  endTime: String,
   recurring: {
     type: String,
     allowedValues: opportunityRecurring,
-    defaultValue: 'no',
+    defaultValue: 'No',
   },
   description: String,
   category: {
@@ -59,10 +68,10 @@ const AddOpportunity = () => {
 
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { title, opportunityType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment } = data;
+    const { title, opportunityType, startDate, endDate, startTime, endTime, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment } = data;
     const owner = Meteor.user().username;
     const collectionName = Opportunities.getCollectionName();
-    const definitionData = { title, opportunityType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, owner };
+    const definitionData = { title, opportunityType, startDate, endDate, startTime, endTime, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, owner };
     defineMethod.callPromise({ collectionName, definitionData })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => {
@@ -74,68 +83,100 @@ const AddOpportunity = () => {
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   let fRef = null;
   return (
-    <Grid id={PAGE_IDS.ADD_OPPORTUNITY} container centered>
-      <Grid.Column>
-        <Header as="h2" textAlign="center">Add a new opportunity</Header>
-        <AutoForm ref={ref => {
-          fRef = ref;
-        }} schema={bridge} onSubmit={data => submit(data, fRef)}>
-          <Segment>
-            <Card fluid>
-              <Card.Content>
-                <Card.Header>General</Card.Header>
-              </Card.Content>
-              <Card.Content>
-                <SelectField name='opportunityType'/>
-              </Card.Content>
-            </Card>
-            <Card fluid>
-              <Card.Content>
-                <Card.Header>Volunteer Opportunity Information</Card.Header>
-              </Card.Content>
-              <Card.Content>
-                <TextField name='title'/>
-              </Card.Content>
-              <Card.Content>
-                <TextField name='startDate' />
-                <TextField name='endDate' />
-                <SelectField name='recurring'/>
-              </Card.Content>
-              <Card.Content>
-                <TextField name='description'/>
-                <SelectField name='category'/>
-                <TextField name='location'/>
-              </Card.Content>
-            </Card>
-            <Card fluid>
-              <Card.Content>
-                <Card.Header>Contact Information</Card.Header>
-              </Card.Content>
-              <Card.Content>
-                <TextField name='contactName' />
-                <TextField name='contactPosition' />
-                <TextField name='email' />
-                <TextField name='phone' />
-                <TextField name='website' />
-              </Card.Content>
-            </Card>
-            <Card fluid>
-              <Card.Content>
-                <Card.Header>Additional information</Card.Header>
-              </Card.Content>
-              <Card.Content>
-                <TextField name='coverImage' />
-                <TextField name='galleryImage' />
-                <SelectField name='ageGroup' />
-                <SelectField name='environment' />
-              </Card.Content>
-            </Card>
-            <SubmitField value='Submit'/>
-            <ErrorsField />
-          </Segment>
-        </AutoForm>
-      </Grid.Column>
-    </Grid>
+    <Container id={PAGE_IDS.ADD_OPPORTUNITY}>
+      <div className="organization-sign-up-top">
+        <Header as="h2" textAlign="center" inverted>
+            Add A New Opportunity
+        </Header>
+        <Header as="h5" textAlign="center" inverted>
+            Your listing details
+        </Header>
+      </div>
+      <br/>
+      <br/>
+      <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
+        <Grid.Column>
+          <div className="orgnization-signup-form">
+            <AutoForm ref={ref => {
+              fRef = ref;
+            }} schema={bridge} onSubmit={data => submit(data, fRef)}>
+              <Segment stacked basic>
+                <Card fluid>
+                  <Card.Content>
+                    <Card.Header>
+                      <Icon name='pencil alternate'/>
+                        General
+                    </Card.Header>
+                  </Card.Content>
+                  <Card.Content>
+                    <SelectField checkboxes label='Opportunity Type' name='opportunityType'/>
+                  </Card.Content>
+                </Card>
+                <Card fluid>
+                  <Card.Content>
+                    <Card.Header>
+                      <Icon name='pencil alternate'/>
+                        Volunteer Opportunity Information
+                    </Card.Header>
+                  </Card.Content>
+                  <Card.Content>
+                    <TextField label='Title' name='title' placeholder='Title'/>
+                  </Card.Content>
+                  <Card.Content>
+                    <Form.Group widths='equal'>
+                      <TextField label='From' name='startDate' placeholder='mm/dd/yyyy'/>
+                      <TextField label='To' name='endDate' placeholder='mm/dd/yyyy'/>
+                    </Form.Group>
+                    <Form.Group widths='equal'>
+                      <TextField label='Start Time' name='startTime' placeholder='hh : mm am/pm' />
+                      <TextField label='End Time' name='endTime' placeholder='hh : mm am/pm' />
+                    </Form.Group>
+                    <SelectField label='Is recurring?' name='recurring'/>
+                  </Card.Content>
+                  <Card.Content>
+                    <LongTextField label='Description' name='description' placeholder='Please enter a detailed description of the volunteer opportunity.
+'/>
+                    <SelectField checkboxes label='Category' name='category'/>
+                    <TextField label='Location' name='location' placeholder='e.g. "Honolulu"'/>
+                  </Card.Content>
+                </Card>
+                <Card fluid>
+                  <Card.Content>
+                    <Card.Header>
+                      <Icon name='pencil alternate'/>
+                        Contact Information
+                    </Card.Header>
+                  </Card.Content>
+                  <Card.Content>
+                    <TextField label='Primary Contact Name' name='contactName' placeholder='First Last'/>
+                    <TextField label='Primary Contact Position' name='contactPosition' placeholder='Contact Position'/>
+                    <TextField label='Email' name='email' placeholder='Email'/>
+                    <TextField label='Phone' name='phone' placeholder='( ___ ) - ___ - ____'/>
+                    <TextField label='Website' name='website' placeholder='URL to your website'/>
+                  </Card.Content>
+                </Card>
+                <Card fluid>
+                  <Card.Content>
+                    <Card.Header>
+                      <Icon name='pencil alternate'/>
+                        Additional information
+                    </Card.Header>
+                  </Card.Content>
+                  <Card.Content>
+                    <TextField label='Cover Image' name='coverImage' placeholder='URL to your image'/>
+                    <TextField label='Gallery Images' name='galleryImage' placeholder='URL to your image'/>
+                    <SelectField checkboxes label='Age Group' name='ageGroup'/>
+                    <SelectField checkboxes label='Environment' name='environment'/>
+                  </Card.Content>
+                </Card>
+                <SubmitField value='Submit'/>
+                <ErrorsField/>
+              </Segment>
+            </AutoForm>
+          </div>
+        </Grid.Column>
+      </Grid>
+    </Container>
   );
 };
 
