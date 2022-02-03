@@ -11,7 +11,6 @@ import ListOrg from '../pages/ListOrg';
 import OrgInfo from '../pages/OrgInfo';
 import ListOpportunity from '../pages/ListOpportunity';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
-import AddStuff from '../pages/AddStuff';
 import AddOpportunity from '../pages/AddOpportunity';
 import EditStuff from '../pages/EditStuff';
 import EditOpportunity from '../pages/EditOpportunity';
@@ -21,6 +20,7 @@ import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import ShowVolunteerProfile from '../pages/ShowVolunteerProfile';
 import ManageDatabase from '../pages/ManageDatabase';
+import AboutUs from '../pages/AboutUs';
 import { ROLE } from '../../api/role/Role';
 import OrganizationSignup from '../pages/OrganizationSignup';
 
@@ -38,10 +38,11 @@ class App extends React.Component {
             <Route path="/signup" component={Signup}/>
             <Route path="/organization-signup" component={OrganizationSignup}/>
             <Route path="/signout" component={Signout}/>
-            <ProtectedRoute path="/list" component={ListOrg}/>
+            <ProtectedRoute path="/organization-library" component={ListOrg}/>
             <ProtectedRoute path="/orginfo" component={OrgInfo}/>
-            <ProtectedRoute path="/browseOpportunities" component={ListOpportunity}/>
-            <ProtectedRoute path="/add" component={AddStuff}/>
+            <ProtectedRoute path="/my-opportunities" component={ListOpportunity}/>
+            <ProtectedRoute path="/browse-opportunities" component={ListOpportunity}/>
+            <ProtectedRoute path="/about-us" component={AboutUs}/>
             <ProtectedRoute path="/add-opportunity" component={AddOpportunity}/>
             <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
             <ProtectedRoute path="/edit-opportunity/:_id" component={EditOpportunity}/>
