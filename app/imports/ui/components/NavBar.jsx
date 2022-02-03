@@ -10,7 +10,7 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
 const NavBar = ({ currentUser }) => {
-  const menuStyle = { paddingBottom: '8px' };
+  const menuStyle = { marginBottom: '30px' };
   return (
     <Menu attached="top" style={menuStyle} borderless inverted>
       <Menu.Item id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} activeClassName="" exact to="/">
@@ -31,7 +31,7 @@ const NavBar = ({ currentUser }) => {
           <Dropdown id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU} icon="bars" pointing="top right" key="mainMenu">
             <Dropdown.Menu>
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_BROWSE_OPPORTUNITIES} text="Browse Opportunities" as={NavLink} exact to="/browseOpportunities" />
-              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_ORGANIZATION_LIBRARY} text="Organization Library" as={NavLink} exact to="/organizationLibrary" />
+              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_ORGANIZATION_LIBRARY} text="Organization Library" as={NavLink} exact to="/list" />
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_ABOUT_US} text="About Us" as={NavLink} exact to="/aboutUs" />
             </Dropdown.Menu>
           </Dropdown>]
@@ -47,7 +47,7 @@ const NavBar = ({ currentUser }) => {
           <Dropdown id={COMPONENT_IDS.NAVBAR_USER_HAMBURGER_MENU} icon="bars" pointing="top right" key="userMainMenu">
             <Dropdown.Menu>
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_BROWSE_OPPORTUNITIES} text="Browse Opportunities" as={NavLink} exact to="/browseOpportunities" />
-              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_ORGANIZATION_LIBRARY} text="Organization Library" as={NavLink} exact to="/organizationLibrary" />
+              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_ORGANIZATION_LIBRARY} text="Organization Library" as={NavLink} exact to="/list" />
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_ABOUT_US} text="About Us" as={NavLink} exact to="/aboutUs"/>
             </Dropdown.Menu>
           </Dropdown>]
