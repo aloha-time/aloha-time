@@ -9,7 +9,7 @@ import OrgItem from '../components/OrgItem';
 const ListOrg = ({ ready }) => ((ready) ? (
   <Container>
     <Search placeholder="Search for Organization"/>
-    <Card.Group itemsPerRow={5}>
+    <Card.Group itemsPerRow={5}> {/* will eventually be a single OrgItem, something along the lines of {orgs.map((org) => <OrgItem key={org._id} org={org} />)} */}
       <OrgItem/>
       <OrgItem/>
       <OrgItem/>

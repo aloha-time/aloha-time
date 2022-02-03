@@ -6,14 +6,11 @@ import { withRouter, Link } from 'react-router-dom';
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 const OrgItem = () => (
   <Card>
-    <Image src='https://react.semantic-ui.com/images/avatar/large/daniel.jpg' wrapped ui={false} />
+    <Image src='https://react.semantic-ui.com/images/avatar/large/daniel.jpg' wrapped ui={false} /> {/* will call to the organization collection using something like org.logo */}
     <Card.Content>
-      <Card.Header>Organization Name</Card.Header>
-      <Card.Meta>Established in 2016</Card.Meta>
-      <Card.Description>
-        Organization summary...
-      </Card.Description>
-      <Link>More info</Link>
+      <Card.Header>Organization Name</Card.Header> {/* will call to the organization collection using something like org.name */}
+      <Card.Meta>Insert Organization Type Here</Card.Meta> {/* will call to the organization collection using something like org.type */}
+      <Link to='/orginfo'>More info</Link> {/* Eventually this line will have the id for the specific organization */}
     </Card.Content>
   </Card>
 );
