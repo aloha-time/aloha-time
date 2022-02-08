@@ -13,9 +13,7 @@ const Landing = () => (
           <div className="landing-header">
             <Header inverted size="medium">A better way to volunteer.</Header>
           </div>
-          <div color="white" className="description">
-            <p>We connect passionate volunteers with charitable organizations in order to build community. Let us help you easily find service opportunities for organizations in your area of interest.</p>
-          </div>
+          <Header inverted size="large">We connect passionate volunteers with charitable organizations in order to build community. Let us help you easily find service opportunities for organizations in your area of interest.</Header>
         </div>
       </Grid>
     </div>
