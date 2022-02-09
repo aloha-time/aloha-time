@@ -1,147 +1,162 @@
 import { Meteor } from 'meteor/meteor';
-import SimpleSchema from 'simpl-schema';
-import BaseProfileCollection from './BaseProfileCollection';
-import { ROLE } from '../role/Role';
-import { Users } from './UserCollection';
+import { Accounts } from 'meteor/accounts-base';
+import { Roles } from 'meteor/alanning:roles';
+import _ from 'lodash';
 
-export const fieldsType = [
-  'Animal Welfare/Rescue',
-  'Child/Family Support',
-  'COVID-19 Recovery',
-  'Crisis/Disaster Relief',
-  'Education',
-  'Environment',
-  'Elderly/Senior Care',
-  'Food Banks',
-  'Housing',
-  'Homelessness/Poverty',
-  'Special Needs',
-];
+/**
+ * Represents a user, which is someone who has a Meteor account.
+ *
+ * Users are defined when the various Profile collections are initialized, so the User collection is the union
+ * of Users, plus the single Admin account who also has a Meteor account.
+ *
+ * Note that this collection does not extend any of our Base collections, because it has a very limited API
+ * which should be used by clients to access the various Profile collections.
+ *
+ * It is not saved out or restored when the DB is dumped. It is not listed in RadGrad.collections.
+ *
+ * Clients provide a "user" as a parameter, which is either the username (i.e. email) or userID.
+ */
+class OrganizationCollection {
+  _collectionName
 
-export const environmentalType = ['Indoor', 'Outdoor', 'Both', 'No Preference'];
-
-class OrganizationCollection extends BaseProfileCollection {
   constructor() {
-    super('OrganizationProfile', new SimpleSchema({
-      firstName: String,
-      lastName: String,
-      primaryAddress: String,
-      city: String,
-      state: String,
-      zipCode: String,
-      phoneNumber: String,
-      fields: { type: Array, required: false },
-      'fields.$': { type: String, allowedValues: fieldsType, required: false },
-      environmental: { type: String, allowedValues: environmentalType, required: false },
-      about: String,
-      owner: String,
-      role: String,
-    }));
+    this._collectionName = 'OrganizationCollection';
+  }
+
+  _generateCredential() {
+    if (Meteor.isTest || Meteor.isAppTest || Meteor.settings.public.development) {
+      return 'changeme';
+    }
+    // adapted from: https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
+    let credential = '';
+    const maxPasswordLength = 30;
+    const minPasswordLength = 6;
+    const passwordLength = Math.floor(Math.random() * (maxPasswordLength - (minPasswordLength + 1))) + minPasswordLength;
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (let i = 0; i < passwordLength; i++) {
+      credential += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return credential;
   }
 
   /**
-   * Defines the profile associated with an Organization and the associated Meteor account.
-   * @param owner The email associated with this profile. Will be the username.
-   * @param password The password for this user.
-   * @param firstName The first name.
-   * @param lastName The last name.
-   * @param address The address of the organization.
-   * @param city The city where the organization is located.
-   * @param state The state where the organization is located.
-   * @param zip Zipcode of the organization location.
-   * @param phone Phone number of the organization.
-   * @param fields The fields the organization covers.
-   * @param environmental Environment that the organization is active on.
-   * @param about Message about the organization.
+   * Define a new user, which means creating an entry in Meteor.Accounts.
+   * This is called in the various Profile define() methods.
+   * @param username The username to be defined (must be an email address).
+   * @param password The password for the user.
+   * @param role The role.
+   * @returns { String } The docID of the newly created user.
+   * @throws { Meteor.Error } If the user exists.
    */
-  define({ firstName, lastName, password, address, city, state, zip, phone, fields, environmental, about, owner }) {
+  define({ username, email, role, password }) {
     if (Meteor.isServer) {
-      // const username = email;
-      const user = this.findOne({ owner, firstName, lastName });
-      if (!user) {
-        const role = ROLE.USER;
-        const profileID = this._collection.insert({ firstName, lastName, address, city, state, zip, phone, fields, environmental, about, owner, role });
-        const userID = Users.define({ owner, role, password });
-        this._collection.update(profileID, { $set: { userID } });
-        return profileID;
+      Roles.createRole(role, { unlessExists: true });
+      // In test Meteor.settings is not set from settings.development.json so we use _.get to see if it is set.
+      const credential = password || this._generateCredential();
+      if (_.get(Meteor, 'settings.public.development', false)) {
+        const userID = Accounts.createUser({ username: username, email: email, password: credential });
+        Roles.addUsersToRoles(userID, [role]);
+        console.log(`Defining ${role} ${username} with password ${credential}`);
+        return userID;
       }
-      return user._id;
+      // Otherwise define this user with a Meteor login and randomly generated password.
+      console.log(`Defining ${role} ${username} with password ${credential}`);
+      const userID = Accounts.createUser({ username, email: email, password: credential });
+      Roles.addUsersToRoles(userID, [role]);
+      return userID;
     }
     return undefined;
   }
 
   /**
-   * Updates the UserProfile. You cannot change the email or role.
-   * @param docID the id of the UserProfile
-   * @param firstName new first name (optional).
-   * @param lastName new last name (optional).
+   * Asserts that the passed user has the specified role.
+   * @param user The user (username or userID).
+   * @param role The role or an array of roles.
+   * @throws { Meteor.Error } If the user does not have the role, or if user or role is not valid.
    */
-  update(docID, { firstName, lastName }) {
-    this.assertDefined(docID);
-    const updateData = {};
-    if (firstName) {
-      updateData.firstName = firstName;
-    }
-    if (lastName) {
-      updateData.lastName = lastName;
-    }
-    this._collection.update(docID, { $set: updateData });
-  }
-
-  /**
-   * Removes this profile, given its profile ID.
-   * Also removes this user from Meteor Accounts.
-   * @param profileID The ID for this profile object.
-   */
-  removeIt(profileID) {
-    if (this.isDefined(profileID)) {
-      return super.removeIt(profileID);
-    }
-    return null;
-  }
-
-  /**
-   * Implementation of assertValidRoleForMethod. Asserts that userId is logged in as an Admin or User.
-   * This is used in the define, update, and removeIt Meteor methods associated with each class.
-   * @param userId The userId of the logged in user. Can be null or undefined
-   * @throws { Meteor.Error } If there is no logged in user, or the user is not an Admin or User.
-   */
-  assertValidRoleForMethod(userId) {
-    this.assertRole(userId, [ROLE.ADMIN, ROLE.USER]);
-  }
-
-  /**
-   * Returns an array of strings, each one representing an integrity problem with this collection.
-   * Returns an empty array if no problems were found.
-   * Checks the profile common fields and the role..
-   * @returns {Array} A (possibly empty) array of strings indicating integrity issues.
-   */
-  checkIntegrity() {
-    const problems = [];
-    this.find().forEach((doc) => {
-      if (doc.role !== ROLE.User) {
-        problems.push(`UserProfile instance does not have ROLE.USER: ${doc}`);
+  assertInRole(user, role) {
+    // console.log('assertInRole(%o, %o)', user, role);
+    const userID = this.getID(user);
+    const profile = this.getProfile(userID);
+    if (Array.isArray(role)) {
+      if (!(role.includes(profile.role))) {
+        throw new Meteor.Error(`${userID} (${this.getProfile(userID).username}) is not in role ${role}.`);
       }
-    });
-    return problems;
+    } else if (profile.role !== role) {
+      throw new Meteor.Error(`${userID} (${this.getProfile(userID).username}) is not in role ${role}.`);
+    }
   }
 
   /**
-   * Returns an object representing the UserProfile docID in a format acceptable to define().
-   * @param docID The docID of a UserProfile
-   * @returns { Object } An object representing the definition of docID.
-   */
-  dumpOne(docID) {
-    const doc = this.findDoc(docID);
-    const email = doc.email;
-    const firstName = doc.firstName;
-    const lastName = doc.lastName;
-    return { email, firstName, lastName };
+   * Returns true if user is referenced by other "public" entities. Specifically user owns Stuff.
+   * Used to determine if user can be deleted.
+   * @param user
+   * @return {boolean}
+
+  isReferenced(user) {
+    return Stuffs.find({ owner: user }).fetch().length > 0;
   }
+   */
+
+  /**
+   * Returns true if user is a defined userID or username.
+   * @param user The user.
+   * @returns { boolean } True if user is defined, false otherwise.
+   */
+  isDefined(user) {
+    const userDoc = (Meteor.users.findOne({ _id: user })) || (Meteor.users.findOne({ username: user }));
+    return userDoc;
+  }
+
+  /**
+   * Returns the userID associated with user, or throws an error if not defined.
+   * @param user The user (username or userID).
+   * @returns { String } The userID
+   * @throws { Meteor.Error } If user is not a defined username or userID.
+   */
+  getID(user) {
+    const userDoc = (Meteor.users.findOne({ _id: user })) || (Meteor.users.findOne({ username: user }));
+    if (!userDoc) {
+      console.error('Error: user is not defined: ', user);
+    }
+    return userDoc?._id;
+  }
+
+  /**
+   * Returns the userIDs associated with users, or throws an error if any cannot be found.
+   * @param { String[] } users An array of valid users.
+   * @returns { String[] } The docIDs associated with users.
+   * @throws { Meteor.Error } If any instance is not a user.
+   */
+  getIDs(users) {
+    let ids;
+    try {
+      ids = (users) ? users.map((instance) => this.getID(instance)) : [];
+    } catch (err) {
+      throw new Meteor.Error(`Error in getIDs(): Failed to convert one of ${users} to an ID.`);
+    }
+    return ids;
+  }
+
+  /**
+   * Returns the profile document associated with user.
+   * @param user The username or userID.
+   * @returns { Object } The profile document.
+   * @throws { Meteor.Error } If the document was not found.
+   */
+  getProfile(user) {
+    // First, let's check to see if user is actually a profile (or looks like one). If so, just return it.
+    if (_.isObject(user) && _.has(user, 'firstName') && _.has(user, 'lastName') && _.has(user, 'role')) {
+      return user;
+    }
+    const profile = this.hasProfile(user);
+    if (!profile) {
+      console.error(`No profile found for user ${user}`);
+      throw new Meteor.Error(`No profile found for user ${user}`);
+    }
+    return profile;
+  }
+
 }
 
-/**
- * Provides the singleton instance of this class to all other entities.
- * @type {OrganizationCollection}
- */
-export const OrganizationProfiles = new OrganizationCollection();
+export const Organizations = new OrganizationCollection();

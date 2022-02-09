@@ -11,7 +11,9 @@
     { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
     { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
   ],
-
+  "defaultOrganizations": [
+    {"username": "beatiful", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "Alex@foo.com", "primaryAddress":"" , "city": "", "state": "", "zipCode": "", "phoneNumber": "", "fields": "", "environmental":"", "about": ""}
+  ],
   "defaultOpportunities": [
     { "title": "Health Help", "opportunityType": "Event", "startDate": "02/03/2022", "endDate": "02/03/2022",
       "startTime": "9:45 am", "endTime": "10:30 pm", "recurring": "No", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "category": "COVID-19 Recovery", "location": "Honolulu", "contactName": "John Doe", "contactPosition": "Coordinator", "email": "healthhelp@hawaii.edu", "phone": "(808)-555-1234", "website": "healthhelp.com", "coverImage": "../images/opportunity_images/opportunity_hospital.jpg", "galleryImage": "../images/opportunity_images/opportunity_hospital.jpg", "ageGroup": "Adults", "environment": "Indoors", "owner": "john@foo.com" },
