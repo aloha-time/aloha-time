@@ -4,7 +4,9 @@ import { Meteor } from 'meteor/meteor';
 
 export const ROLE = {
   ADMIN: 'ADMIN',
+  ORGANIZATION: 'ORGANIZATION',
   USER: 'USER',
+  VOLUNTEER: 'VOLUNTEER',
 };
 
 export const ROLES = _.values(ROLE);

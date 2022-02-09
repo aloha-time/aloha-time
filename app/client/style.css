@@ -7,6 +7,7 @@ html, body {
   background-image: url("images/landingBackground.png");
   background-size: cover;
   height: 500px;
+  margin-top: 10px;
 }
 
 .VA-photo{
