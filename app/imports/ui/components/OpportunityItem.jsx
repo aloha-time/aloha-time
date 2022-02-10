@@ -5,7 +5,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 /** Renders a single row in the List Opportunity table. See pages/ListOpportunity.jsx. */
-class OpportunityCard extends React.Component {
+class OpportunityItem extends React.Component {
   state = { activeIndex: -1 }
 
   handleClick = (e, titleProps) => {
@@ -65,9 +65,9 @@ class OpportunityCard extends React.Component {
 }
 
 // Require a document to be passed to this component.
-OpportunityCard.propTypes = {
+OpportunityItem.propTypes = {
   opportunity: PropTypes.object.isRequired,
 };
 
 // Wrap this component in withRouter since we use the <Link> React Router element.
-export default withRouter(OpportunityCard);
+export default withRouter(OpportunityItem);
