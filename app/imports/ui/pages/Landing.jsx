@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Header, Image, Button } from 'semantic-ui-react';
+import { Grid, Header, Image, Button, Segment } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
@@ -11,23 +11,35 @@ const Landing = () => (
         <div className="VA-photo">
           <img src="/images/VAlogo.png" alt="Volunteer Ally's Logo"/>
           <div className="landing-header">
-            <Header inverted size="medium">A better way to volunteer.</Header>
+            <Header inverted size="medium">
+                A better way to volunteer.
+            </Header>
           </div>
-          <Header inverted size="large">We connect passionate volunteers with charitable organizations in order to build community. Let us help you easily find service opportunities for organizations in your area of interest.</Header>
+          <Header inverted size="large">
+            We connect passionate volunteers with charitable organizations in order to build community. Let us help you easily find service opportunities for organizations in your area of interest.
+          </Header>
         </div>
       </Grid>
     </div>
     <Header className="opportunities" textAlign='center' size="huge">Dozens of Opportunities for Organizations and Volunteers</Header>
-    <Grid textAlign='center' container>
-      <Grid.Row columns={5}>
-        <Grid.Column>
-          <br></br>
-          <br></br>
-          <Header as="h3">Take a look at the various organizations Volunteer Ally works with, each with unique volunteer opportunities offering various dates, times, and locations.</Header>
+    <br></br>
+    <Grid textAlign='center'>
+      <Grid.Row columns={2}>
+        <Grid.Column width={6}>
+          <Header size="medium">Take a look at the various organizations Volunteer Ally works with, each with unique volunteer opportunities offering various dates, times, and locations.</Header>
           <p>Volunteer Ally is a non-profit organization match system designed to pair organizations with volunteers. We partner with various organizations in need of passionate volunteers. </p>
           <p>Becoming a user is required to ensure committed reliable volunteers for our organizations.</p>
-          <Button size="huge" color="blue">Join Now!</Button>
         </Grid.Column>
+        <Grid.Column width={3}>
+          <Button size="huge" color="blue">Join Now!</Button>
+          <br></br>
+          <br></br>
+          <Button size="huge" color="blue" as={NavLink} exact to="/browse-opportunities">View All Opportunities</Button>
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+    <Grid textAlign='center' container>
+      <Grid.Row columns={6}>
         <Grid.Column>
           <Image size="small" src="/images/logo1.png"/>
           <Image size="small" src="/images/logo2.png"/>
@@ -52,7 +64,6 @@ const Landing = () => (
           <Image size="small" src="/images/logo15.png"/>
           <Image size="small" src="/images/logo16.png"/>
         </Grid.Column>
-        <Button size="huge" color="blue" as={NavLink} exact to="/browse-opportunities">View All Opportunities</Button>
       </Grid.Row>
     </Grid>
   </div>

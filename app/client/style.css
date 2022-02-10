@@ -28,6 +28,7 @@ html, body {
 .opportunities {
   color: #007BA4 !important;
   padding-bottom: 20px;
+  font-size: 40px !important;
 }
 
 /*not found page*/
