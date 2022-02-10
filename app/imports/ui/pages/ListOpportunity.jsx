@@ -4,10 +4,10 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
-import OpportunityCard from '../components/OpportunityCard';
+import OpportunityItem from '../components/OpportunityItem';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
-/** Renders a table containing all the Opportunity documents. Use <OpportunityCard> to render each row. */
+/** Renders a table containing all the Opportunity documents. Use <OpportunityItem> to render each row. */
 class ListOpportunity extends React.Component {
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
@@ -28,7 +28,7 @@ class ListOpportunity extends React.Component {
         </div>
         <br/>
         <br/>
-        <Card.Group stackable itemsPerRow={3} centered>{this.props.opportunities.map((opportunities, index) => <OpportunityCard
+        <Card.Group stackable itemsPerRow={3} centered>{this.props.opportunities.map((opportunities, index) => <OpportunityItem
           key={index}
           opportunity={opportunities}/>)}
         </Card.Group>
