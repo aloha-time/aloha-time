@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
 import BaseProfileCollection from './BaseProfileCollection';
 import { ROLE } from '../role/Role';
-import { Organizations } from './OrganizationCollection';
+import { Users } from './UserCollection';
 
 export const fieldsType = [
   'Animal Welfare/Rescue',
@@ -58,7 +58,7 @@ class OrganizationProfileCollection extends BaseProfileCollection {
       if (!user) {
         const role = ROLE.ORGANIZATION;
         const profileID = this._collection.insert({ firstName, lastName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email, userID: this.getFakeUserId(), role });
-        const userID = Organizations.define({ username, email, role, password });
+        const userID = Users.define({ username, email, role, password });
         this._collection.update(profileID, { $set: { userID } });
         return profileID;
       }

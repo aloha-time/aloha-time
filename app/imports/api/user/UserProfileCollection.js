@@ -23,7 +23,7 @@ class UserProfileCollection extends BaseProfileCollection {
       if (!user) {
         const role = ROLE.USER;
         const profileID = this._collection.insert({ email, firstName, lastName, userID: this.getFakeUserId(), role });
-        const userID = Users.define({ username, role, password });
+        const userID = Users.define({ username, email, role, password });
         this._collection.update(profileID, { $set: { userID } });
         return profileID;
       }
