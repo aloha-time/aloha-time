@@ -20,14 +20,6 @@ const NavBar = ({ currentUser }) => {
         <Search placeholder='Search for an opportunity...' fluid/>
       </Menu.Item>
       <Menu.Item position="right">
-        {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? (
-          [<Menu.Item id={COMPONENT_IDS.NAVBAR_LIST_STUFF_ADMIN} as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>,
-            <Dropdown id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN} item text="Manage" key="manage-dropdown">
-              <Dropdown.Menu>
-                <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN_DATABASE} key="manage-database" as={NavLink} exact to="/manage-database" content="Database" />
-              </Dropdown.Menu>
-            </Dropdown>]
-        ) : ''}
         {currentUser === '' ? (
           [<Dropdown id={COMPONENT_IDS.NAVBAR_LOGIN_DROPDOWN} icon="user" text="Login" pointing="top right"
             key="login">
@@ -58,6 +50,10 @@ const NavBar = ({ currentUser }) => {
                 to="/myProfile"/>
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MY_OPPORTUNITIES} text="My Opportunities" as={NavLink} exact
                 to="/my-opportunities"/>
+              {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? (
+                <Dropdown.Item id={COMPONENT_IDS.NAVBAR_ADMIN_VERIFY} text="Verify Accounts" as={NavLink} exact
+                  to="/verifyAccounts"/>
+              ) : ''}
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_ACCOUNT_SETTINGS} text="Account Settings" as={NavLink} exact
                 to="/accountSettings"/>
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_SIGN_OUT} icon="sign out" text="Sign Out" as={NavLink} exact

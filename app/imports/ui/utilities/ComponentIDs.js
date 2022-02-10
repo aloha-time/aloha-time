@@ -4,7 +4,7 @@ export const COMPONENT_IDS = {
   NAVBAR_ADD_STUFF: 'navbar-add-stuff',
   NAVBAR_ADD_OPPORTUNITY: 'navbar-add-opportunity',
   NAVBAR_LIST_STUFF: 'navbar-list-stuff',
-  NAVBAR_LIST_STUFF_ADMIN: 'navbar-list-stuff-admin',
+  NAVBAR_ADMIN_VERIFY: 'navbar-admin-verify',
   NAVBAR_CURRENT_USER: 'navbar-current-user',
   NAVBAR_VOLUNTEER_USER: 'navbar-volunteer-user',
   NAVBAR_ORGANIZATION_USER: 'navbar_organization_user',
