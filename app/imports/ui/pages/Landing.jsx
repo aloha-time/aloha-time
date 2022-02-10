@@ -5,9 +5,9 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 
 /** A simple static component to render some text for the landing page. */
 const Landing = () => (
-  <div>
+  <div id={PAGE_IDS.LANDING}>
     <div className="landing-background">
-      <Grid id={PAGE_IDS.LANDING} verticalAlign='middle' textAlign='center' container>
+      <Grid verticalAlign='middle' textAlign='center' container>
         <div className="VA-photo">
           <img src="/images/VAlogo.png" alt="Volunteer Ally's Logo"/>
           <div className="landing-header">
