@@ -82,6 +82,18 @@ footer .ui.center.aligned.fluid.container {
   padding-bottom: 120px;
   background: linear-gradient(#007ba4,#2acaf8);
 }
+.my-organization-medium{
+  background-color: #eeeeee;
+}
+.my-organization-top{
+  padding-top: 50px;
+  padding-bottom: 70px;
+  margin-bottom: -100px;
+
+  background: linear-gradient(#007ba4,#2acaf8);
+
+
+}
 
 .volunteer-sign-up-top{
   padding-top: 100px;

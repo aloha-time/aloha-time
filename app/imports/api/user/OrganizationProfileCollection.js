@@ -21,6 +21,7 @@ export const environmentalType = ['Indoor', 'Outdoor', 'Both', 'No Preference'];
 class OrganizationProfileCollection extends BaseProfileCollection {
   constructor() {
     super('OrganizationProfile', new SimpleSchema({
+      username: String,
       firstName: String,
       lastName: String,
       email: String,
@@ -57,7 +58,7 @@ class OrganizationProfileCollection extends BaseProfileCollection {
       const user = this.findOne({ email, firstName, lastName });
       if (!user) {
         const role = ROLE.ORGANIZATION;
-        const profileID = this._collection.insert({ firstName, lastName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email, userID: this.getFakeUserId(), role });
+        const profileID = this._collection.insert({ username, firstName, lastName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email, userID: this.getFakeUserId(), role });
         const userID = Users.define({ username, email, role, password });
         this._collection.update(profileID, { $set: { userID } });
         return profileID;
