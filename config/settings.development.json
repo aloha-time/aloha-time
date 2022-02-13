@@ -2,8 +2,7 @@
   "defaultAccounts": [
     { "email": "admin@foo.com", "password": "changeme", "role": "ADMIN", "firstName": "Admin", "lastName": "MATRP"
     },
-    { "email": "john@foo.com", "password": "changeme", "role": "USER" , "firstName": "John", "lastName": "Doe" },
-    {"username": "beat", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "Alex@foo.com", "primaryAddress":"1617 Dole st" , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"}
+    { "email": "john@foo.com", "password": "changeme", "role": "USER" , "firstName": "John", "lastName": "Doe" }
   ],
 
   "defaultData": [
@@ -11,6 +10,10 @@
     { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
     { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
     { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
+  ],
+  "defaultOrganizations": [
+    {"username": "beat", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "Alex@foo.com", "primaryAddress":"1617 Dole st" , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"}
+
   ],
   "defaultOpportunities": [
     { "title": "Health Help", "opportunityType": "Event", "startDate": "02/03/2022", "endDate": "02/03/2022",
