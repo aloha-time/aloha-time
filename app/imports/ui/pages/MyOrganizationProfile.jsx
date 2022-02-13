@@ -43,10 +43,19 @@ const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
             </List.Content>
           </List.Item>
           <List.Item>
+            <List.Icon color= "yellow" name='phone' size='large' verticalAlign='middle' />
+            <List.Content>
+              <List.Header as='a'>Primary Contact Phone Number</List.Header>
+              <List.Description as='a'>{doc.phoneNumber}</List.Description>
+            </List.Content>
+          </List.Item>
+          <List.Item>
             <List.Icon color= "yellow" name='location arrow' size='large' verticalAlign='middle' />
             <List.Content>
               <List.Header as='a'>primary Address</List.Header>
-              <List.Description as='a'>{doc.primaryAddress}, {doc.city},{doc.state},{doc.zipCode}</List.Description>
+              <List.Description as='a'>{doc.primaryAddress}, {doc.city},
+                {doc.state},
+                {doc.zipCode}</List.Description>
             </List.Content>
           </List.Item>
           <List.Item>
