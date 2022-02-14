@@ -101,7 +101,9 @@ const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
           </Card>
           <Card fluid color='yellow'>
             <Card.Content>
-              <Card.Header><Icon color="yellow" name="list ul"/>Fileds </Card.Header>
+              <Card.Header><Icon color="yellow" name="list ul"/>Fields </Card.Header>
+            </Card.Content>
+            <Card.Content>
               <List bulleted size="large" items={doc.fields}/>
             </Card.Content>
           </Card>
