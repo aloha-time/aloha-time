@@ -26,7 +26,7 @@ const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
           <Card.Group>
             <Card fluid color='red'>
               <Card.Content>
-                <Card.Header><Icon color="yellow" name="paper plane outline"/>Primary Information</Card.Header>
+                <Card.Header><Icon color="yellow" name="paper plane outline"/>Primary Contact Name</Card.Header>
               </Card.Content>
               <Card.Content>
                 <List divided relaxed>
@@ -44,14 +44,23 @@ const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
                       <List.Description as='a'>{doc.lastName}</List.Description>
                     </List.Content>
                   </List.Item>
-                  <List.Item>
-                    <List.Icon color= "yellow" name='mail' size='large' />
-                    <List.Content>
-                      <List.Header as='a'>Primary Contact E-mail Address</List.Header>
-                      <List.Description as='a'>{doc.email}</List.Description>
-                    </List.Content>
-                  </List.Item>
                 </List>
+              </Card.Content>
+            </Card>
+            <Card fluid color='yellow'>
+              <Card.Content>
+                <Card.Header><Icon color="yellow" name="mail"/>Primary Contact E-mail Address</Card.Header>
+              </Card.Content>
+              <Card.Content>
+                <Card.Description>{doc.email}</Card.Description>
+              </Card.Content>
+            </Card>
+            <Card fluid color='yellow'>
+              <Card.Content>
+                <Card.Header><Icon color="yellow" name="phone"/>Primary Contact Phone Number</Card.Header>
+              </Card.Content>
+              <Card.Content>
+                <Card.Description>{doc.phoneNumber}</Card.Description>
               </Card.Content>
             </Card>
             <Card fluid color='orange'>
@@ -59,13 +68,7 @@ const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
                 <Card.Header><Icon color="yellow" name="map signs"/>Primary Address</Card.Header>
               </Card.Content>
               <Card.Content>
-                <List>
-                  <List.Item>
-                    <List.Content>
-                      <List.Description>{doc.primaryAddress} {doc.state} {doc.city} {doc.zipCode}</List.Description>
-                    </List.Content>
-                  </List.Item>
-                </List>
+                <Card.Description>{doc.primaryAddress} {doc.state} {doc.city} {doc.zipCode}</Card.Description>
               </Card.Content>
             </Card>
           </Card.Group>
@@ -73,30 +76,10 @@ const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
         <Grid.Column>
           <Card fluid color='yellow'>
             <Card.Content>
-              <Card.Header><Icon color="yellow" name="phone"/>Primary Contact Phone Number</Card.Header>
-            </Card.Content>
-            <Card.Content>
-              <List>
-                <List.Item>
-                  <List.Content>
-                    <List.Description>{doc.phoneNumber}</List.Description>
-                  </List.Content>
-                </List.Item>
-              </List>
-            </Card.Content>
-          </Card>
-          <Card fluid color='yellow'>
-            <Card.Content>
               <Card.Header><Icon color="yellow" name="star outline"/>Environmental</Card.Header>
             </Card.Content>
             <Card.Content>
-              <List>
-                <List.Item>
-                  <List.Content>
-                    <List.Description>{doc.environmental}</List.Description>
-                  </List.Content>
-                </List.Item>
-              </List>
+              <Card.Description>{doc.environmental}</Card.Description>
             </Card.Content>
           </Card>
           <Card fluid color='yellow'>
@@ -112,13 +95,7 @@ const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
               <Card.Header><Icon color="yellow" name="bullhorn"/>Description</Card.Header>
             </Card.Content>
             <Card.Content>
-              <List>
-                <List.Item>
-                  <List.Content>
-                    <List.Header>{doc.about}</List.Header>
-                  </List.Content>
-                </List.Item>
-              </List>
+              <Card.Description>{doc.about}</Card.Description>
             </Card.Content>
           </Card>
         </Grid.Column>
