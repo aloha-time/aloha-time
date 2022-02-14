@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Grid, List, Loader, Image } from 'semantic-ui-react';
+import { Container, Grid, List, Loader, Image, Card, Icon, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
@@ -18,70 +18,113 @@ const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
         <Image size='small' padding-left ='20px' src="/images/volunteerAllyIcon.svg"/>
       </Grid.Row>
     </Grid>
-    <Grid textAlign="left" verticalAlign="middle" centered columns={2}>
+    <div className="my-organization-title">
+      <p>My organization profile</p>
+    </div>
+
+    <Grid columns={2}>
       <Grid.Column>
-        <List divided relaxed>
-          <List.Item>
-            <List.Icon color= "yellow" name='user circle' size='large' verticalAlign='middle' />
-            <List.Content>
-              <List.Header as='a'>Primary Contact First Name</List.Header>
-              <List.Description as='a'>{doc.firstName}</List.Description>
-            </List.Content>
-          </List.Item>
-          <List.Item>
-            <List.Icon color= "yellow"name='user' size='large' verticalAlign='middle' />
-            <List.Content>
-              <List.Header as='a'>Primary Contact Last Name</List.Header>
-              <List.Description as='a'>{doc.lastName}</List.Description>
-            </List.Content>
-          </List.Item>
-          <List.Item>
-            <List.Icon color= "yellow" name='mail' size='large' verticalAlign='middle' />
-            <List.Content>
-              <List.Header as='a'>Primary Contact E-mail Address</List.Header>
-              <List.Description as='a'>{doc.email}</List.Description>
-            </List.Content>
-          </List.Item>
-          <List.Item>
-            <List.Icon color= "yellow" name='phone' size='large' verticalAlign='middle' />
-            <List.Content>
-              <List.Header as='a'>Primary Contact Phone Number</List.Header>
-              <List.Description as='a'>{doc.phoneNumber}</List.Description>
-            </List.Content>
-          </List.Item>
-          <List.Item>
-            <List.Icon color= "yellow" name='location arrow' size='large' verticalAlign='middle' />
-            <List.Content>
-              <List.Header as='a'>primary Address</List.Header>
-              <List.Description as='a'>{doc.primaryAddress}, {doc.city},
-                {doc.state},
-                {doc.zipCode}</List.Description>
-            </List.Content>
-          </List.Item>
-          <List.Item>
-            <List.Icon color= "yellow"name='list ul' size='large' verticalAlign='middle' />
-            <List.Content>
-              <List.Header as='a'>Fields</List.Header>
-              <List.Description as='a'>{doc.fields}</List.Description>
-            </List.Content>
-          </List.Item>
-          <List.Item>
-            <List.Icon color= "yellow" name='warning circle' size='large' verticalAlign='middle' />
-            <List.Content>
-              <List.Header as='a'>Environmental</List.Header>
-              <List.Description as='a'>{doc.environmental}</List.Description>
-            </List.Content>
-          </List.Item>
-          <List.Item>
-            <List.Icon color= "yellow" name='bullhorn' size='large' verticalAlign='middle' />
-            <List.Content>
-              <List.Header as='a'>Description</List.Header>
-              <List.Description as='a'>{doc.about}</List.Description>
-            </List.Content>
-          </List.Item>
-        </List>
+        <Card.Group>
+          <Card fluid color='red'>
+            <Card.Content>
+              <Card.Header><Icon color="yellow" name="paper plane outline"/>Primary Information</Card.Header>
+            </Card.Content>
+            <Card.Content>
+              <List divided relaxed>
+                <List.Item>
+                  <List.Icon color= "yellow" name='user circle' size='large' />
+                  <List.Content>
+                    <List.Header as='a'>Primary Contact First Name</List.Header>
+                    <List.Description as='a'>{doc.firstName}</List.Description>
+                  </List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Icon color= "yellow"name='user' size='large'/>
+                  <List.Content>
+                    <List.Header as='a'>Primary Contact Last Name</List.Header>
+                    <List.Description as='a'>{doc.lastName}</List.Description>
+                  </List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Icon color= "yellow" name='mail' size='large' />
+                  <List.Content>
+                    <List.Header as='a'>Primary Contact E-mail Address</List.Header>
+                    <List.Description as='a'>{doc.email}</List.Description>
+                  </List.Content>
+                </List.Item>
+              </List>
+            </Card.Content>
+          </Card>
+          <Card fluid color='orange'>
+            <Card.Content>
+              <Card.Header><Icon color="yellow" name="map signs"/>Primary Address</Card.Header>
+            </Card.Content>
+            <Card.Content>
+              <List>
+                <List.Item>
+                  <List.Content>
+                    <List.Description>{doc.primaryAddress} {doc.state} {doc.city} {doc.zipCode}</List.Description>
+                  </List.Content>
+                </List.Item>
+              </List>
+            </Card.Content>
+          </Card>
+        </Card.Group>
+      </Grid.Column>
+      <Grid.Column>
+        <Card fluid color='yellow'>
+          <Card.Content>
+            <Card.Header><Icon color="yellow" name="phone"/>Primary Contact Phone Number</Card.Header>
+          </Card.Content>
+          <Card.Content>
+            <List>
+              <List.Item>
+                <List.Content>
+                  <List.Description>{doc.phoneNumber}</List.Description>
+                </List.Content>
+              </List.Item>
+            </List>
+          </Card.Content>
+        </Card>
+        <Card fluid color='yellow'>
+          <Card.Content>
+            <Card.Header><Icon color="yellow" name="star outline"/>Environmental</Card.Header>
+          </Card.Content>
+          <Card.Content>
+            <List>
+              <List.Item>
+                <List.Content>
+                  <List.Description>{doc.environmental}</List.Description>
+                </List.Content>
+              </List.Item>
+            </List>
+          </Card.Content>
+        </Card>
+        <Card fluid color='yellow'>
+          <Card.Content>
+            <Card.Header><Icon color="yellow" name="list ul"/>Fileds </Card.Header>
+            <List bulleted size="large" items={doc.fields}/>
+          </Card.Content>
+        </Card>
+        <Card fluid color='yellow'>
+          <Card.Content>
+            <Card.Header><Icon color="yellow" name="bullhorn"/>Description</Card.Header>
+          </Card.Content>
+          <Card.Content>
+            <List>
+              <List.Item>
+                <List.Content>
+                  <List.Header>{doc.about}</List.Header>
+                </List.Content>
+              </List.Item>
+            </List>
+          </Card.Content>
+        </Card>
       </Grid.Column>
     </Grid>
+    <div className="my-organization-bottom" centered>
+      <Button size= "big" color="blue">Edit My Organization Profile</Button>
+    </div>
   </Container>
 ) : <Loader active>Getting data</Loader>);
 
