@@ -3,6 +3,7 @@ import { Container, Grid, List, Loader, Image, Card, Icon, Button, Segment } fro
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
+import { Link } from 'react-router-dom';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection';
 
@@ -101,7 +102,7 @@ const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
         </Grid.Column>
       </Grid>
       <div className="my-organization-bottom" >
-        <Button size= "big" color="blue">Edit My Organization Profile</Button>
+        <Button inverted size= "big" color="blue"><Link to="/signin">Edit My Organization Profile</Link></Button>
       </div>
     </Segment>
   </Container>
