@@ -76,7 +76,7 @@ const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
         <Grid.Column>
           <Card fluid color='yellow'>
             <Card.Content>
-              <Card.Header><Icon color="yellow" name="star outline"/>Environmental</Card.Header>
+              <Card.Header><Icon color="yellow" name="star outline"/>Environmental (Indoor, Outdoor)</Card.Header>
             </Card.Content>
             <Card.Content>
               <Card.Description>{doc.environmental}</Card.Description>
