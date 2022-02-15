@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection';
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
+/** Renders the page for my organization profile document. */
+const MyOrganizationProfile = ({ orgProfile, ready }) => ((ready) ? (
   <Container id={PAGE_IDS.MY_ORGANIZATION_PROFILE}>
     <Segment color='yellow'>
       <div className="my-organization-top">
@@ -20,7 +20,7 @@ const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
         </Grid.Row>
       </Grid>
       <div className="my-organization-title">
-        <p>{doc.organizationName} profile</p>
+        <p>{orgProfile.organizationName} profile</p>
       </div>
       <Grid columns={2}>
         <Grid.Column>
@@ -35,14 +35,14 @@ const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
                     <List.Icon color= "yellow" name='user circle' size='large' />
                     <List.Content>
                       <List.Header as='a'>Primary Contact First Name</List.Header>
-                      <List.Description as='a'>{doc.firstName}</List.Description>
+                      <List.Description as='a'>{orgProfile.firstName}</List.Description>
                     </List.Content>
                   </List.Item>
                   <List.Item>
                     <List.Icon color= "yellow"name='user' size='large'/>
                     <List.Content>
                       <List.Header as='a'>Primary Contact Last Name</List.Header>
-                      <List.Description as='a'>{doc.lastName}</List.Description>
+                      <List.Description as='a'>{orgProfile.lastName}</List.Description>
                     </List.Content>
                   </List.Item>
                 </List>
@@ -53,7 +53,7 @@ const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
                 <Card.Header><Icon color="yellow" name="mail"/>Primary Contact E-mail Address</Card.Header>
               </Card.Content>
               <Card.Content>
-                <Card.Description>{doc.email}</Card.Description>
+                <Card.Description>{orgProfile.email}</Card.Description>
               </Card.Content>
             </Card>
             <Card fluid color='yellow'>
@@ -61,7 +61,7 @@ const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
                 <Card.Header><Icon color="yellow" name="phone"/>Primary Contact Phone Number</Card.Header>
               </Card.Content>
               <Card.Content>
-                <Card.Description>{doc.phoneNumber}</Card.Description>
+                <Card.Description>{orgProfile.phoneNumber}</Card.Description>
               </Card.Content>
             </Card>
             <Card fluid color='orange'>
@@ -69,7 +69,7 @@ const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
                 <Card.Header><Icon color="yellow" name="map signs"/>Primary Address</Card.Header>
               </Card.Content>
               <Card.Content>
-                <Card.Description>{doc.primaryAddress} {doc.state} {doc.city} {doc.zipCode}</Card.Description>
+                <Card.Description>{orgProfile.primaryAddress} {orgProfile.state} {orgProfile.city} {orgProfile.zipCode}</Card.Description>
               </Card.Content>
             </Card>
           </Card.Group>
@@ -80,7 +80,7 @@ const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
               <Card.Header><Icon color="yellow" name="star outline"/>Environmental (Indoor, Outdoor)</Card.Header>
             </Card.Content>
             <Card.Content>
-              <Card.Description>{doc.environmental}</Card.Description>
+              <Card.Description>{orgProfile.environmental}</Card.Description>
             </Card.Content>
           </Card>
           <Card fluid color='yellow'>
@@ -88,7 +88,7 @@ const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
               <Card.Header><Icon color="yellow" name="list ul"/>Fields </Card.Header>
             </Card.Content>
             <Card.Content>
-              <List bulleted size="large" items={doc.fields}/>
+              <List bulleted size="large" items={orgProfile.fields}/>
             </Card.Content>
           </Card>
           <Card fluid color='yellow'>
@@ -96,7 +96,7 @@ const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
               <Card.Header><Icon color="yellow" name="bullhorn"/>Description</Card.Header>
             </Card.Content>
             <Card.Content>
-              <Card.Description>{doc.about}</Card.Description>
+              <Card.Description>{orgProfile.about}</Card.Description>
             </Card.Content>
           </Card>
         </Grid.Column>
@@ -108,9 +108,9 @@ const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
   </Container>
 ) : <Loader active>Getting data</Loader>);
 
-// Require an array of Stuff documents in the props.
+// Require the organization profile documents in the props.
 MyOrganizationProfile.propTypes = {
-  doc: PropTypes.object,
+  orgProfile: PropTypes.object,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -119,9 +119,9 @@ export default withTracker(() => {
   const currentUser = Meteor.user() ? Meteor.user().username : ' ';
   const subscription = OrganizationProfiles.subscribe();
   const ready = subscription.ready();
-  const doc = ready ? OrganizationProfiles.findDoc({ username: currentUser }) : undefined;
+  const orgProfile = ready ? OrganizationProfiles.findDoc({ username: currentUser }) : undefined;
   return {
-    doc,
+    orgProfile,
     ready,
   };
 })(MyOrganizationProfile);
