@@ -20,7 +20,7 @@ const MyOrganizationProfile = ({ doc, ready }) => ((ready) ? (
         </Grid.Row>
       </Grid>
       <div className="my-organization-title">
-        <p>My organization profile</p>
+        <p>{doc.organizationName} profile</p>
       </div>
       <Grid columns={2}>
         <Grid.Column>

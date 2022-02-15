@@ -12,7 +12,8 @@
     { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
   ],
   "defaultOrganizations": [
-    {"username": "beat", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "Alex@foo.com", "primaryAddress":"1617 Dole st" , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"}
+
+    {"organizationName":"Hawaii Food Bank","username": "beat", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "Alex@foo.com", "primaryAddress":"1617 Dole st" , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"}
 
   ],
   "defaultOpportunities": [
