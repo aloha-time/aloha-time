@@ -8,7 +8,7 @@ import swal from 'sweetalert';
 import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-semantic';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
-import { signUpNewOrganizationrMethod } from '../../api/user/OrganizationProfileCollection.methods';
+import { signUpNewOrganizationMethod } from '../../api/user/OrganizationProfileCollection.methods';
 import MultiSelectField from '../components/form-fields/MultiSelectField';
 import RadioField from '../components/form-fields/RadioField';
 
@@ -27,6 +27,7 @@ export const fieldsType = [
 ];
 export const environmentalType = ['Indoor', 'Outdoor', 'Both', 'No Preference'];
 const formSchema = new SimpleSchema({
+  organizationName: String,
   firstName: String,
   username: String,
   password: String,
@@ -82,28 +83,26 @@ const OrganizationSignup = ({ location }) => {
   /* Handle Signup submission. Create user account and a profile entry, then redirect to the home page. */
   const submit = (data, formRef) => {
     if (match(data.password, confirmPassword) && checkedPrivacyPolicy(privacyPolicy)) {
-      signUpNewOrganizationrMethod.callPromise(data)
+      signUpNewOrganizationMethod.callPromise(data)
         .catch(error => {
-          swal('Error', error.message, 'error');
+          const message = `${error.message}, you already have a account, so you can try to login in`;
+          swal('Error', message, 'error');
           console.error(error);
-        })
-        .then(() => {
-          formRef.reset();
-          swal({
-            title: 'Signed Up',
-            text: 'You now have an account. Next you need to login.',
-            icon: 'success',
-            timer: 1500,
-          });
-          setRedirectToReferer(true);
         });
+      formRef.reset();
+      swal({
+        title: 'Signed Up',
+        text: 'You now have an account. Next you need to login.',
+        icon: 'success',
+      });
+      setRedirectToReferer(true);
     } else {
       // do nothing
     }
   };
 
   /* Display the signup form. Redirect to add page after successful registration and login. */
-  const { from } = location.state || { from: { pathname: '/add' } };
+  const { from } = location.state || { from: { pathname: '/signin' } };
   // if correct authentication, redirect to from: page instead of signup screen
   if (redirectToReferer) {
     return <Redirect to={from}/>;
@@ -128,14 +127,19 @@ const OrganizationSignup = ({ location }) => {
           }} schema={bridge} onSubmit={data => submit(data, fRef)}>
             <Segment stacked basic>
               <TextField
+                id={COMPONENT_IDS.SIGN_UP_FORM_ORGANIZATION_NAME}
+                name="organizationName"
+                placeholder="Organization Name"
+              />
+              <TextField
                 id={COMPONENT_IDS.SIGN_UP_FORM_FIRSTNAME}
                 name="firstName"
-                placeholder="First Name"
+                placeholder="Contact First Name"
               />
               <TextField
                 id={COMPONENT_IDS.SIGN_UP_FORM_LASTNAME}
                 name="lastName"
-                placeholder="Last Name"
+                placeholder="Contact Last Name"
               />
               <TextField
                 id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL}

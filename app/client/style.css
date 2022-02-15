@@ -10,7 +10,7 @@ html, body {
 }
 
 .VA-photo{
-  padding-top: 100px;
+  padding-top: 20px;
   margin-bottom: 10px;
 }
 
@@ -28,6 +28,7 @@ html, body {
 .opportunities {
   color: #007BA4 !important;
   padding-bottom: 20px;
+  font-size: 40px !important;
 }
 
 /*not found page*/
@@ -82,7 +83,30 @@ footer .ui.center.aligned.fluid.container {
   padding-bottom: 120px;
   background: linear-gradient(#007ba4,#2acaf8);
 }
+.my-organization-medium{
+  background-color: #eeeeee;
+}
+.my-organization-top{
+  padding-top: 50px;
+  padding-bottom: 70px;
+  margin-bottom: -100px;
+  background: linear-gradient(#007ba4,#2acaf8);
 
+}
+.my-organization-title{
+  padding-top: 50px;
+  padding-bottom: 40px;
+  text-align: center;
+  font-size: 50px;
+  font-family: cursive;
+  color:yellowgreen;
+
+}
+.my-organization-bottom{
+  padding-top: 40px;
+ padding-bottom: 50px;
+  text-align: center;
+}
 .volunteer-sign-up-top{
   padding-top: 100px;
   padding-bottom: 120px;

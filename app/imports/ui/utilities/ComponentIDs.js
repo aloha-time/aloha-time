@@ -20,6 +20,7 @@ export const COMPONENT_IDS = {
   NAVBAR_MY_PROFILE: 'navbar-my-profile',
   NAVBAR_MY_OPPORTUNITIES: 'navbar-my-opportunities',
   NAVBAR_ACCOUNT_SETTINGS: 'navbar-account-settings',
+  NAVBAR_MY_ORGANIZATION_PROFILE: 'navbar-my-organization-profile',
   NAVBAR_SIGN_OUT: 'navbar-sign-out',
   SIGN_IN_FORM_EMAIL: 'sign-in-form-email',
   SIGN_IN_FORM_PASSWORD: 'sign-in-form-password',
@@ -31,6 +32,7 @@ export const COMPONENT_IDS = {
   SIGN_UP_FORM_LASTNAME: 'sign-up-form-lastname',
   SIGN_UP_FORM_PHONE_NUMBER: 'sign-up-form-phone-umber',
   SIGN_UP_FORM_USERNAME: 'sign-up-form-username',
+  SIGN_UP_FORM_ORGANIZATION_NAME: 'sign-up-form-organization-name',
   SIGN_UP_FORM_PRIMARY_ADDRESS: 'sign-up-form-primary-address',
   SIGN_UP_FORM_SUBMIT: 'sign-up-form-submit',
 };

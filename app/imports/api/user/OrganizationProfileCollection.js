@@ -24,6 +24,8 @@ export const orgPublications = {
 class OrganizationProfileCollection extends BaseProfileCollection {
   constructor() {
     super('OrganizationProfile', new SimpleSchema({
+      username: String,
+      organizationName: String,
       firstName: String,
       lastName: String,
       email: String,
@@ -56,13 +58,13 @@ class OrganizationProfileCollection extends BaseProfileCollection {
    * @param environmental Environment that the organization is active on.
    * @param about Message about the organization.
    */
-  define({ username, firstName, lastName, password, organizationName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email }) {
+  define({ username, organizationName, firstName, lastName, password, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email }) {
     if (Meteor.isServer) {
       // const username = email;
       const user = this.findOne({ email, firstName, lastName });
       if (!user) {
         const role = ROLE.ORGANIZATION;
-        const profileID = this._collection.insert({ firstName, lastName, organizationName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email, userID: this.getFakeUserId(), role });
+        const profileID = this._collection.insert({ organizationName, username, firstName, lastName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email, userID: this.getFakeUserId(), role });
         const userID = Users.define({ username, email, role, password });
         this._collection.update(profileID, { $set: { userID } });
         return profileID;
@@ -78,9 +80,12 @@ class OrganizationProfileCollection extends BaseProfileCollection {
    * @param firstName new first name (optional).
    * @param lastName new last name (optional).
    */
-  update(docID, { firstName, lastName, organizationName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about }) {
+  update(docID, { firstName, organizationName, lastName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about }) {
     this.assertDefined(docID);
     const updateData = {};
+    if (organizationName) {
+      updateData.organizationName = organizationName;
+    }
     if (firstName) {
       updateData.firstName = firstName;
     }
@@ -170,13 +175,14 @@ class OrganizationProfileCollection extends BaseProfileCollection {
     const organizationName = doc.organizationName;
     const primaryAddress = doc.primaryAddress;
     const city = doc.city;
+    const organizationName = doc.organizationName;
     const state = doc.state;
     const zipCode = doc.zipCode;
     const phoneNumber = doc.phoneNumber;
     const fields = doc.fields;
     const environmental = doc.environmental;
     const about = doc.about;
-    return { email, firstName, lastName, username, organizationName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about };
+    return { email, organizationName, firstName, lastName, username, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about };
   }
 
   publish() {
