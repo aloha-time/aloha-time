@@ -28,7 +28,7 @@ export default withTracker(() => {
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // Get the Stuff documents and sort them by name.
-  const orgs = OrganizationProfiles.find({}, { sort: { orgName: 1 } }).fetch();
+  const orgs = OrganizationProfiles.find({}, { sort: { organizationName: 1 } }).fetch();
   return {
     orgs,
     ready,

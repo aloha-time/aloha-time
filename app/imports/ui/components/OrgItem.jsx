@@ -8,7 +8,7 @@ const OrgItem = ({ org }) => (
   <Card>
     <Image src='https://react.semantic-ui.com/images/avatar/large/daniel.jpg' wrapped ui={false} /> {/* will call to the organization collection using something like org.logo */}
     <Card.Content>
-      <Card.Header>{org.orgName}</Card.Header> {/* will call to the organization collection using something like org.name */}
+      <Card.Header>{org.organizationName}</Card.Header> {/* will call to the organization collection using something like org.name */}
       <Card.Meta>{org.fields}</Card.Meta> {/* will call to the organization collection using something like org.type */}
       <Link to={`/orginfo/${org._id}`}>More info</Link> {/* Eventually this line will have the id for the specific organization */}
     </Card.Content>
@@ -19,7 +19,7 @@ const OrgItem = ({ org }) => (
 // since it is only a mockup don't need to have this part finished yet
 OrgItem.propTypes = {
   org: PropTypes.shape({
-    orgName: PropTypes.string,
+    organizationName: PropTypes.string,
     fields: PropTypes.array,
     _id: PropTypes.string,
   }).isRequired,

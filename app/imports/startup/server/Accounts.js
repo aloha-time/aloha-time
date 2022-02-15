@@ -6,12 +6,12 @@ import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollecti
 
 /* eslint-disable no-console */
 
-function createUser(username, firstName, lastName, password, orgName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email, role) {
+function createUser(username, firstName, lastName, password, organizationName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email, role) {
   console.log(`  Creating user ${email} with role ${role}.`);
   if (role === ROLE.ADMIN) {
     AdminProfiles.define({ email, firstName, lastName, password });
   } else if (role === ROLE.ORGANIZATION) {
-    OrganizationProfiles.define({ username, firstName, lastName, password, orgName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email });
+    OrganizationProfiles.define({ username, firstName, lastName, password, organizationName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email });
   } else { // everyone else is just a user.
     UserProfiles.define({ email, firstName, lastName, password });
   }
@@ -21,9 +21,9 @@ if (Meteor.users.find().count() === 0) {
   if (Meteor.settings.defaultAccounts) {
     console.log('Creating the default user(s)');
     Meteor.settings.defaultAccounts.map(({ username, firstName, lastName, password,
-      orgName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental,
+      organizationName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental,
       about, email, role }) => createUser(username, firstName, lastName, password,
-      orgName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental,
+      organizationName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental,
       about, email, role));
   } else {
     console.log('Cannot initialize the database!  Please invoke meteor with a settings file.');
