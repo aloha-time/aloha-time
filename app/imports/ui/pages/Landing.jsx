@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Header, Image, Button, Segment } from 'semantic-ui-react';
+import { Grid, Header, Image, Button } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
