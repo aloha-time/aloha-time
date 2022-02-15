@@ -9,7 +9,7 @@ const OrgItem2 = ({ org }) => (
     <Image src='https://react.semantic-ui.com/images/avatar/large/daniel.jpg' wrapped ui={false} /> {/* will call to the organization collection using something like org.logo */}
     <Card.Content>
       <Card.Header>{org.orgName}</Card.Header> {/* will call to the organization collection using something like org.name */}
-      <Card.Meta>{org.field}</Card.Meta> {/* will call to the organization collection using something like org.startDate */}
+      <Card.Meta>{org.fields}</Card.Meta> {/* will call to the organization collection using something like org.startDate */}
       <Card.Meta>{org.primaryAddress}</Card.Meta>
       <Card.Description>
         {org.about} {/* will call to the organization collection using something like org.missionStatement */}
