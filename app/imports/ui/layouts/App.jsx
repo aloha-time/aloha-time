@@ -25,7 +25,6 @@ import { ROLE } from '../../api/role/Role';
 import OrganizationSignup from '../pages/OrganizationSignup';
 import VolunteerSignUp from '../pages/VolunteerSignUp';
 import MyOrganizationProfile from '../pages/MyOrganizationProfile';
-import AdminVerifyPage from '../pages/AdminVerifyPage';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -53,7 +52,6 @@ class App extends React.Component {
             <ProtectedRoute path="/edit-opportunity/:_id" component={EditOpportunity}/>
             <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
             <AdminProtectedRoute path="/manage-database" component={ManageDatabase}/>
-            <AdminProtectedRoute path="/admin-verify" component={AdminVerifyPage}/>
             <Route component={NotFound}/>
           </Switch>
           <Footer/>
