@@ -1,7 +1,7 @@
 import React from 'react';
 import { Accordion, Card, Icon, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link, NavLink } from 'react-router-dom';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 /** Renders a single row in the List Opportunity table. See pages/ListOpportunity.jsx. */
@@ -21,7 +21,8 @@ class OpportunityItem extends React.Component {
     const { activeIndex } = this.state;
     return (
       <Card link>
-        <Image large src={OpportunityInfo.coverImage} wrapped ui={false} />
+        <Image large src={OpportunityInfo.coverImage} wrapped ui={false} as={NavLink}
+          exact to={`/view-opportunity/${this.props.opportunity._id}`}/>
         <Card.Content>
           <Card.Header>
             <h1>{OpportunityInfo.title}</h1>
