@@ -2,10 +2,7 @@
   "defaultAccounts": [
     { "email": "admin@foo.com", "password": "changeme", "role": "ADMIN", "firstName": "Admin", "lastName": "MATRP"
     },
-    { "email": "john@foo.com", "password": "changeme", "role": "USER" , "firstName": "John", "lastName": "Doe" },
-    {"username": "beat", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "Alex@foo.com", "organizationName": "Random Organization 1", "primaryAddress":"1617 Dole st" , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"},
-    {"username": "beat1", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "tyler@foo.com", "organizationName": "Random Organization 2", "primaryAddress":"2500 Campus Rd" , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"},
-    {"username": "feet", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "matt@foo.com", "organizationName": "Random Organization 3", "primaryAddress":"777 Ward Ave," , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"}
+    { "email": "john@foo.com", "password": "changeme", "role": "USER" , "firstName": "John", "lastName": "Doe" }
   ],
 
   "defaultData": [
@@ -14,7 +11,14 @@
     { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
     { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
   ],
+  "defaultOrganizations": [
 
+    {"organizationName":"Hawaii Food Bank","username": "beat", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "Alex@foo.com", "primaryAddress":"1617 Dole st" , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"},
+    {"organizationName":"Hawaii Food Bank 1","username": "beat1", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "tyler@foo.com", "primaryAddress":"2500 Campus Rd" , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"},
+    {"organizationName":"Hawaii Food Bank 2","username": "feet", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "matt@foo.com", "primaryAddress":"777 Ward Ave" , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"},
+    {"organizationName":"Hawaii Food Bank 3","username": "meat", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "jake@foo.com", "primaryAddress":"1887 Makuakane St" , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"}
+
+  ],
   "defaultOpportunities": [
     { "title": "Health Help", "opportunityType": "Event", "startDate": "02/03/2022", "endDate": "02/03/2022",
       "startTime": "9:45 am", "endTime": "10:30 pm", "recurring": "No", "description": "Lorem [ipsum dolor sit amet, consectetur adipiscing elit.", "category": "COVID-19 Recovery", "location": "Honolulu", "contactName": "John Doe", "contactPosition": "Coordinator", "email": "healthhelp@hawaii.edu", "phone": "(808)-555-1234", "website": "healthhelp.com", "coverImage": "../images/opportunity_images/opportunity_hospital.jpg", "galleryImage": "../images/opportunity_images/opportunity_hospital.jpg", "ageGroup": "Adults", "environment": "Indoors", "owner": "john@foo.com" },

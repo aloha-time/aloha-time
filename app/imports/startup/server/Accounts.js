@@ -6,26 +6,39 @@ import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollecti
 
 /* eslint-disable no-console */
 
-function createUser(username, firstName, lastName, password, organizationName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email, role) {
+function createUser(email, firstName, lastName, password, role) {
   console.log(`  Creating user ${email} with role ${role}.`);
   if (role === ROLE.ADMIN) {
     AdminProfiles.define({ email, firstName, lastName, password });
-  } else if (role === ROLE.ORGANIZATION) {
-    OrganizationProfiles.define({ username, firstName, lastName, password, organizationName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email });
   } else { // everyone else is just a user.
     UserProfiles.define({ email, firstName, lastName, password });
+  }
+}
+
+function createOrganization(organizationName, username, firstName, lastName, password, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email, role) {
+  console.log(`  Creating organization ${username} with role ${role}.`);
+  if (role === ROLE.ORGANIZATION) {
+    OrganizationProfiles.define({ organizationName, username, firstName, lastName, password, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email });
   }
 }
 // When running app for first time, pass a settings file to set up a default user account.
 if (Meteor.users.find().count() === 0) {
   if (Meteor.settings.defaultAccounts) {
     console.log('Creating the default user(s)');
-    Meteor.settings.defaultAccounts.map(({ username, firstName, lastName, password,
-      organizationName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental,
-      about, email, role }) => createUser(username, firstName, lastName, password,
-      organizationName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental,
-      about, email, role));
+    Meteor.settings.defaultAccounts.map(({ email, password, role, firstName, lastName }) => createUser(email, firstName, lastName, password, role));
   } else {
     console.log('Cannot initialize the database!  Please invoke meteor with a settings file.');
+  }
+  if (Meteor.settings.defaultOrganizations) {
+    console.log('Creating the default organization(s)');
+    Meteor.settings.defaultOrganizations.map(({ organizationName,
+      username, firstName, lastName, password,
+      primaryAddress, city, state, zipCode,
+      phoneNumber, fields, environmental,
+      about, email, role,
+    }) => createOrganization(organizationName, username, firstName, lastName, password, primaryAddress,
+      city, state, zipCode, phoneNumber, fields, environmental, about, email, role));
+  } else {
+    console.log('Cannot initialize the database for organization!  Please invoke meteor with a settings file.');
   }
 }
