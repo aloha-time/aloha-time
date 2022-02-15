@@ -134,6 +134,7 @@ const OrganizationSignup = ({ location }) => {
               <TextField
                 id={COMPONENT_IDS.SIGN_UP_FORM_FIRSTNAME}
                 name="firstName"
+                placeholder="Contact First Name"
               />
               <TextField
                 id={COMPONENT_IDS.SIGN_UP_FORM_LASTNAME}
