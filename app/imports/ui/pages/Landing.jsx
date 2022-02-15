@@ -18,6 +18,19 @@ const Landing = () => (
           <Header inverted size="large">
             We connect passionate volunteers with charitable organizations in order to build community. Let us help you easily find service opportunities for organizations in your area of interest.
           </Header>
+          <Header inverted size="huge">
+            Join Now!
+          </Header>
+          <Grid textAlign='center'>
+            <Grid.Row columns={2}>
+              <Grid.Column width={4}>
+                <Button size="huge" color="blue" as={NavLink} exact to="/volunteer-signup">As a Volunteer</Button>
+              </Grid.Column>
+              <Grid.Column width={4}>
+                <Button size="huge" color="blue" as={NavLink} exact to="/organization-signup">As a Organization</Button>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
         </div>
       </Grid>
     </div>
@@ -31,7 +44,6 @@ const Landing = () => (
           <p>Becoming a user is required to ensure committed reliable volunteers for our organizations.</p>
         </Grid.Column>
         <Grid.Column width={3}>
-          <Button size="huge" color="blue">Join Now!</Button>
           <br></br>
           <br></br>
           <Button size="huge" color="blue" as={NavLink} exact to="/browse-opportunities">View All Opportunities</Button>
