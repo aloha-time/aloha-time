@@ -3,7 +3,9 @@
     { "email": "admin@foo.com", "password": "changeme", "role": "ADMIN", "firstName": "Admin", "lastName": "MATRP"
     },
     { "email": "john@foo.com", "password": "changeme", "role": "USER" , "firstName": "John", "lastName": "Doe" },
-    {"username": "beat", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "Alex@foo.com", "primaryAddress":"1617 Dole st" , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"}
+    {"username": "beat", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "Alex@foo.com", "orgName": "Random Organization 1", "primaryAddress":"1617 Dole st" , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"},
+    {"username": "beat1", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "tyler@foo.com", "orgName": "Random Organization 2", "primaryAddress":"2500 Campus Rd" , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"},
+    {"username": "feet", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "matt@foo.com", "orgName": "Random Organization 3", "primaryAddress":"777 Ward Ave," , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"}
   ],
 
   "defaultData": [
