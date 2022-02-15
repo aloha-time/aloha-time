@@ -92,9 +92,6 @@ class OrganizationProfileCollection extends BaseProfileCollection {
     if (lastName) {
       updateData.lastName = lastName;
     }
-    if (organizationName) {
-      updateData.organizationName = organizationName;
-    }
     if (primaryAddress) {
       updateData.primaryAddress = firstName;
     }
@@ -172,7 +169,6 @@ class OrganizationProfileCollection extends BaseProfileCollection {
     const username = doc.username;
     const firstName = doc.firstName;
     const lastName = doc.lastName;
-    const organizationName = doc.organizationName;
     const primaryAddress = doc.primaryAddress;
     const city = doc.city;
     const organizationName = doc.organizationName;
