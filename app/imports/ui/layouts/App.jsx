@@ -26,6 +26,7 @@ import OrganizationSignup from '../pages/OrganizationSignup';
 import VolunteerSignUp from '../pages/VolunteerSignUp';
 import MyOrganizationProfile from '../pages/MyOrganizationProfile';
 import AdminVerifyPage from '../pages/AdminVerifyPage';
+import ViewOpportunity from '../pages/ViewOpportunity';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -51,6 +52,7 @@ class App extends React.Component {
             <ProtectedRoute path="/add-opportunity" component={AddOpportunity}/>
             <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
             <ProtectedRoute path="/edit-opportunity/:_id" component={EditOpportunity}/>
+            <ProtectedRoute path="/view-opportunity/:_id" component={ViewOpportunity}/>
             <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
             <AdminProtectedRoute path="/manage-database" component={ManageDatabase}/>
             <AdminProtectedRoute path="/admin-verify" component={AdminVerifyPage}/>
