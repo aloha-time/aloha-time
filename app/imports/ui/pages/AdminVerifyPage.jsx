@@ -2,7 +2,7 @@ import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Container, Loader } from 'semantic-ui-react';
-import AdminVerification from '../components/AdminVerification';
+import AdminVerificationTab from '../components/AdminVerificationTab';
 
 const AdminVerifyPage = ({ ready }) => ((ready) ? (
   <Container>
@@ -11,7 +11,7 @@ const AdminVerifyPage = ({ ready }) => ((ready) ? (
         Verify User
       </h1>
     </div>
-    <AdminVerification/>
+    <AdminVerificationTab/>
   </Container>
 ) : <Loader active>Getting data</Loader>);
 
