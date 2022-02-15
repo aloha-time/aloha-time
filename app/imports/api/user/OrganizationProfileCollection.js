@@ -18,6 +18,9 @@ export const fieldsType = [
   'Special Needs',
 ];
 export const environmentalType = ['Indoor', 'Outdoor', 'Both', 'No Preference'];
+export const orgPublications = {
+  org: 'Org',
+}
 class OrganizationProfileCollection extends BaseProfileCollection {
   constructor() {
     super('OrganizationProfile', new SimpleSchema({
@@ -26,6 +29,7 @@ class OrganizationProfileCollection extends BaseProfileCollection {
       firstName: String,
       lastName: String,
       email: String,
+      organizationName: String,
       primaryAddress: String,
       city: String,
       state: String,
@@ -44,7 +48,8 @@ class OrganizationProfileCollection extends BaseProfileCollection {
    * @param password The password for this user.
    * @param firstName The first name.
    * @param lastName The last name.
-   * @param address The address of the organization.
+   * @param organizationName The name of the organization.
+   * @param primaryAddress The address of the organization.
    * @param city The city where the organization is located.
    * @param state The state where the organization is located.
    * @param zipCode Zipcode of the organization location.
@@ -86,6 +91,9 @@ class OrganizationProfileCollection extends BaseProfileCollection {
     }
     if (lastName) {
       updateData.lastName = lastName;
+    }
+    if (organizationName) {
+      updateData.organizationName = organizationName;
     }
     if (primaryAddress) {
       updateData.primaryAddress = firstName;
@@ -157,13 +165,14 @@ class OrganizationProfileCollection extends BaseProfileCollection {
    * @param docID The docID of a UserProfile
    * @returns { Object } An object representing the definition of docID.
    */
-  // firstName, lastName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about
+  // firstName, lastName, organizationName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about
   dumpOne(docID) {
     const doc = this.findDoc(docID);
     const email = doc.email;
     const username = doc.username;
     const firstName = doc.firstName;
     const lastName = doc.lastName;
+    const organizationName = doc.organizationName;
     const primaryAddress = doc.primaryAddress;
     const city = doc.city;
     const organizationName = doc.organizationName;
@@ -175,6 +184,28 @@ class OrganizationProfileCollection extends BaseProfileCollection {
     const about = doc.about;
     return { email, organizationName, firstName, lastName, username, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about };
   }
+
+  publish() {
+    if (Meteor.isServer) {
+      // get the StuffCollection instance.
+      const instance = this;    
+
+      /** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
+      Meteor.publish(orgPublications.org, function publish() {
+        return instance._collection.find();
+      });
+    }
+  }
+
+   /**
+   * Subscription method for stuff owned by the current user.
+   */
+    subscribeOrg() {
+      if (Meteor.isClient) {
+        return Meteor.subscribe(orgPublications.org);
+      }
+      return null;
+    }
 }
 
 /**

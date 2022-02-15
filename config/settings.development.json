@@ -13,7 +13,10 @@
   ],
   "defaultOrganizations": [
 
-    {"organizationName":"Hawaii Food Bank","username": "beat", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "Alex@foo.com", "primaryAddress":"1617 Dole st" , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"}
+    {"organizationName":"Hawaii Food Bank","username": "beat", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "Alex@foo.com", "primaryAddress":"1617 Dole st" , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"},
+    {"organizationName":"Hawaii Food Bank 1","username": "beat1", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "tyler@foo.com", "primaryAddress":"2500 Campus Rd" , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"},
+    {"organizationName":"Hawaii Food Bank 2","username": "feet", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "matt@foo.com", "primaryAddress":"777 Ward Ave" , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"},
+    {"organizationName":"Hawaii Food Bank 3","username": "meat", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "jake@foo.com", "primaryAddress":"1887 Makuakane St" , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"}
 
   ],
   "defaultOpportunities": [
