@@ -15,10 +15,10 @@ function createUser(email, role, firstName, lastName, password) {
   }
 }
 
-function createOrganization(username, firstName, lastName, password, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email, role) {
+function createOrganization(organizationName, username, firstName, lastName, password, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email, role) {
   console.log(`  Creating organization ${username} with role ${role}.`);
   if (role === ROLE.ORGANIZATION) {
-    OrganizationProfiles.define({ username, firstName, lastName, password, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email });
+    OrganizationProfiles.define({ organizationName, username, firstName, lastName, password, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email });
   }
 }
 
@@ -32,11 +32,12 @@ if (Meteor.users.find().count() === 0) {
   }
   if (Meteor.settings.defaultOrganizations) {
     console.log('Creating the default organization(s)');
-    Meteor.settings.defaultOrganizations.map(({
+    Meteor.settings.defaultOrganizations.map(({ organizationName,
       username, firstName, lastName, password,
       primaryAddress, city, state, zipCode, phoneNumber, fields, environmental,
       about, email, role,
-    }) => createOrganization(username, firstName, lastName, password, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email, role));
+    }) => createOrganization(organizationName, username, firstName, lastName, password, primaryAddress,
+      city, state, zipCode, phoneNumber, fields, environmental, about, email, role));
   } else {
     console.log('Cannot initialize the database for organization!  Please invoke meteor with a settings file.');
   }

@@ -27,6 +27,7 @@ export const fieldsType = [
 ];
 export const environmentalType = ['Indoor', 'Outdoor', 'Both', 'No Preference'];
 const formSchema = new SimpleSchema({
+  organizationName: String,
   firstName: String,
   username: String,
   password: String,
@@ -128,14 +129,19 @@ const OrganizationSignup = ({ location }) => {
           }} schema={bridge} onSubmit={data => submit(data, fRef)}>
             <Segment stacked basic>
               <TextField
+                id={COMPONENT_IDS.SIGN_UP_FORM_ORGANIZATION_NAME}
+                name="organizationName"
+                placeholder="Organization Name"
+              />
+              <TextField
                 id={COMPONENT_IDS.SIGN_UP_FORM_FIRSTNAME}
                 name="firstName"
-                placeholder="First Name"
+                placeholder="Contact First Name"
               />
               <TextField
                 id={COMPONENT_IDS.SIGN_UP_FORM_LASTNAME}
                 name="lastName"
-                placeholder="Last Name"
+                placeholder="Contact Last Name"
               />
               <TextField
                 id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL}
