@@ -58,7 +58,7 @@ export default withTracker(() => {
   const { _id } = useParams();
   const documentId = _id;
   // Get access to Stuff documents.
-  const subscription = OrganizationProfiles.subscribeOrg();
+  const subscription = OrganizationProfiles.subscribe();
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // Get the Stuff documents and sort them by name.

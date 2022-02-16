@@ -180,28 +180,6 @@ class OrganizationProfileCollection extends BaseProfileCollection {
     const about = doc.about;
     return { email, organizationName, firstName, lastName, username, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about };
   }
-
-  publish() {
-    if (Meteor.isServer) {
-      // get the StuffCollection instance.
-      const instance = this;    
-
-      /** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
-      Meteor.publish(orgPublications.org, function publish() {
-        return instance._collection.find();
-      });
-    }
-  }
-
-   /**
-   * Subscription method for stuff owned by the current user.
-   */
-    subscribeOrg() {
-      if (Meteor.isClient) {
-        return Meteor.subscribe(orgPublications.org);
-      }
-      return null;
-    }
 }
 
 /**

@@ -9,7 +9,7 @@ import OrgItem from '../components/OrgItem';
 const ListOrg = ({ ready, orgs }) => ((ready) ? (
   <Container>
     <Search small placeholder="Search for Organization"/>
-    <Card.Group itemsPerRow={5}> {/* will eventually be a single OrgItem, something along the lines of {orgs.map((org) => <OrgItem key={org._id} org={org} />)} */}
+    <Card.Group> {/* will eventually be a single OrgItem, something along the lines of {orgs.map((org) => <OrgItem key={org._id} org={org} />)} */}
       {orgs.map((org) => <OrgItem key={org._id} org={org} />)}
     </Card.Group>
   </Container>
@@ -24,7 +24,7 @@ ListOrg.propTypes = {
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = OrganizationProfiles.subscribeOrg();
+  const subscription = OrganizationProfiles.subscribe();
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // Get the Stuff documents and sort them by name.
