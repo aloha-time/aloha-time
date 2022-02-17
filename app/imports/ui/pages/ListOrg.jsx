@@ -5,9 +5,11 @@ import PropTypes from 'prop-types';
 import { Stuffs } from '../../api/stuff/StuffCollection';
 import OrgItem from '../components/OrgItem';
 
+const pageStyle = { paddingTop: '15px', paddingBottom: '15px' };
+
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 const ListOrg = ({ ready }) => ((ready) ? (
-  <Container>
+  <Container style={pageStyle}>
     <Search placeholder="Search for Organization"/>
     <Card.Group itemsPerRow={5}> {/* will eventually be a single OrgItem, something along the lines of {orgs.map((org) => <OrgItem key={org._id} org={org} />)} */}
       <OrgItem/>

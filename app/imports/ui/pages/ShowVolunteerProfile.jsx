@@ -4,9 +4,11 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
+const pageStyle = { paddingTop: '15px', paddingBottom: '15px' };
+
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 const ShowVolunteerProfile = ({ ready }) => ((ready) ? (
-  <Container id={PAGE_IDS.SHOW_VOLUNTEER_PROFILE}>
+  <Container id={PAGE_IDS.SHOW_VOLUNTEER_PROFILE} style={pageStyle}>
     <Grid float='left' padded>
       <Grid.Row>
         <Image size='small' src="/images/johnfoo.jpeg"/>
