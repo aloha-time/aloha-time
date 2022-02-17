@@ -39,16 +39,16 @@ class App extends React.Component {
             <Route exact path="/" component={Landing}/>
             <Route path="/signin" component={Signin}/>
             <Route path="/myprofile" component={ShowVolunteerProfile}/>
+            <Route path="/my-opportunities" component={ListOpportunity}/>
+            <Route path="/browse-opportunities" component={ListOpportunity}/>
+            <Route path="/organization-library" component={ListOrg}/>
+            <Route path="/about-us" component={AboutUs}/>
             <Route path="/signup" component={Signup}/>
             <Route path="/organization-signup" component={OrganizationSignup}/>
             <Route path="/volunteer-signup" component={VolunteerSignUp}/>
             <Route path="/signout" component={Signout}/>
             <OrganizationProtectedRoute path="/my-organization-profile" component={MyOrganizationProfile}/>
-            <ProtectedRoute path="/organization-library" component={ListOrg}/>
             <ProtectedRoute path="/orginfo/:_id" component={OrgInfo}/>
-            <ProtectedRoute path="/my-opportunities" component={ListOpportunity}/>
-            <ProtectedRoute path="/browse-opportunities" component={ListOpportunity}/>
-            <ProtectedRoute path="/about-us" component={AboutUs}/>
             <ProtectedRoute path="/add-opportunity" component={AddOpportunity}/>
             <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
             <ProtectedRoute path="/edit-opportunity/:_id" component={EditOpportunity}/>

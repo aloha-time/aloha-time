@@ -54,8 +54,6 @@ const NavBar = ({ currentUser }) => {
                 <Dropdown.Item id={COMPONENT_IDS.NAVBAR_ADMIN_VERIFY} text="Verify Accounts" as={NavLink} exact
                   to="/verifyAccounts"/>
               ) : ''}
-              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_ACCOUNT_SETTINGS} text="Account Settings" as={NavLink} exact
-                to="/accountSettings"/>
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_SIGN_OUT} icon="sign out" text="Sign Out" as={NavLink} exact
                 to="/signout"/>
             </Dropdown.Menu>
