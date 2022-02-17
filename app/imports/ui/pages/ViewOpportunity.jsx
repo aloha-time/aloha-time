@@ -1,12 +1,11 @@
 import React from 'react';
-import { Container, Header, Loader, Card, Grid, Button, Image, Icon } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Grid, Button, Icon, Segment, Image } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useParams } from 'react-router';
 import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 import { PAGE_IDS } from '../utilities/PageIDs';
-import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 /** Renders a table containing all the Opportunity documents. Use <OpportunityItem> to render each row. */
 class ViewOpportunity extends React.Component {
@@ -28,42 +27,136 @@ class ViewOpportunity extends React.Component {
           </Header>
         </div>
         <br/>
-        <br/>
-        <Card link>
-          <Image large src={this.props.opportunity.coverImage} wrapped ui={false} />
-          <Card.Content>
-            <Card.Header>
-              <h1>{this.props.opportunity.title}</h1>
-            </Card.Header>
-            <Card.Meta>
-              <Icon name='calendar alternate'/>
-              {this.props.opportunity.startDate} - {this.props.opportunity.endDate}
-            </Card.Meta>
-            <Card.Meta>
-              <Icon name='clock'/>
-              {this.props.opportunity.startTime} - {this.props.opportunity.endTime}</Card.Meta>
-            <Card.Meta>
-              <Icon name='map marker alternate'/>
-              {this.props.opportunity.location}
-            </Card.Meta>
-            <Card.Meta>Category: {this.props.opportunity.category}</Card.Meta>
-            <Card.Meta>Description: {this.props.opportunity.description}</Card.Meta>
-          </Card.Content>
-          <Card.Content extra>
-            <Link className={COMPONENT_IDS.LIST_OPPORTUNITY_EDIT} to={`/edit-opportunity/${this.props.opportunity._id}`}>Edit</Link>
-          </Card.Content>
+        <Card fluid>
+          <img src={this.props.opportunity.coverImage} height={500} alt="cover image"/>
         </Card>
+        <br/>
+        <Grid columns={3}>
+          <Grid.Row stretched>
+            <Grid.Column>
+              <Segment size='massive' textAlign='center'>
+                <h1>{this.props.opportunity.title}</h1>
+              </Segment>
+            </Grid.Column>
+            <Grid.Column>
+              <Segment size='medium' textAlign='center'>
+                <p>
+                  <h3>
+                    <Icon name='calendar alternate'/>
+                    {this.props.opportunity.startDate} - {this.props.opportunity.endDate}
+                  </h3>
+                </p>
+                <p>
+                  <h3>
+                    <Icon name='clock'/>
+                    {this.props.opportunity.startTime} - {this.props.opportunity.endTime}
+                  </h3>
+                </p>
+              </Segment>
+            </Grid.Column>
+            <Grid.Column>
+              <Segment size='small' textAlign='center'>
+                <h4>
+                  <p>
+                    <Icon name='user'/>
+                    {this.props.opportunity.contactName} - {this.props.opportunity.contactPosition}
+                  </p>
+                  <p>
+                    <Icon name='mail'/>
+                    {this.props.opportunity.email} | <Icon name='phone'/>
+                    {this.props.opportunity.phone}
+                  </p>
+                </h4>
+              </Segment>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+        <br/>
+        <br/>
+        <Grid centered column>
+          <Button color='blue'>
+            <Icon name='map marker alternate'/> Get directions
+          </Button>
+          <Button color='blue'>
+            <Icon name='heart'/> Bookmark
+          </Button>
+          <Button color='blue'>
+            <Icon name='share alternate'/> Share
+          </Button>
+          <Button color='blue'>
+            <Icon name='mail'/> Send an email
+          </Button>
+          <Button color='blue'>
+            <Icon name='chat'/> Direct message
+          </Button>
+          <Button color='blue'>
+            <Icon name='exclamation circle'/> Report
+          </Button>
+        </Grid>
+        <br/>
+        <br/>
+        <Grid columns={2} divided>
+          <Grid.Row stretched>
+            <Grid.Column>
+              <Segment>
+                <Icon name='map marker alternate'/> Location
+                <p><h3>{this.props.opportunity.location}</h3></p>
+              </Segment>
+              <Segment>
+                <Icon name='content'/> Description
+                <p><h3>{this.props.opportunity.description}</h3></p>
+              </Segment>
+              <Segment>
+                <Icon name='tree'/> Environment
+                <p><h3>{this.props.opportunity.environment}</h3></p>
+              </Segment>
+              <Segment>
+                <Icon name='block layout'/> Other Details
+                <p><h3>{this.props.opportunity.ageGroup}</h3></p>
+              </Segment>
+            </Grid.Column>
+            <Grid.Column>
+              <Segment>
+                <Icon name='ellipsis horizontal'/> Opportunity Type
+                <p><h3>{this.props.opportunity.opportunityType}</h3></p>
+              </Segment>
+              <Segment>
+                <Icon name='block layout'/> Category
+                <p><h3>{this.props.opportunity.category}</h3></p>
+              </Segment>
+              <Segment>
+                <Icon name='globe'/> Website
+                <p><h3>{this.props.opportunity.website}</h3></p>
+              </Segment>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+        <br/>
+        <Card.Group stackable itemsPerRow={4}>
+          <Card link>
+            <Image src={this.props.opportunity.galleryImage}/>
+          </Card>
+          <Card link>
+            <Image src={this.props.opportunity.galleryImage}/>
+          </Card>
+          <Card link>
+            <Image src={this.props.opportunity.galleryImage}/>
+          </Card>
+          <Card link>
+            <Image src={this.props.opportunity.galleryImage}/>
+          </Card>
+        </Card.Group>
         <Grid columns={3}>
           <Grid.Row/>
           <Grid.Row>
             <Grid.Column/>
             <Grid.Column>
-              <Button animated='vertical' fluid color='blue' as={NavLink} exact to="/add-opportunity">
+              <Button animated='vertical' fluid color='blue' as={NavLink} exact to="/browse-opportunities">
                 <Button.Content hidden>
-                  Add a new opportunity
+                  View all opportunities
                 </Button.Content>
                 <Button.Content visible>
-                  Are you an organization?
+                  Want to volunteer for more?
                 </Button.Content>
               </Button>
             </Grid.Column>
