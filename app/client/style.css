@@ -3,10 +3,21 @@ html, body {
   margin: 0;
 }
 
+/*buttons*/
+.ui.blue.huge.button {
+  background-color: #0494c4 !important;
+}
+
+/*landing page*/
+#landing {
+  padding-bottom: 20px;
+}
+
 .landing-background {
   background-image: url("images/landingBackground.png");
   background-size: cover;
   height: 500px;
+  margin-top: 10px;
 }
 
 .VA-photo{
@@ -51,9 +62,14 @@ footer {
   color: white;
   height:30px;   /* Height of the footer */
 }
+
+footer a {
+  color: white;
+}
+
 footer .ui.center.aligned.fluid.container {
   padding-bottom: 1em;
-  background: #1B1C1D;
+  background: #0494c4;
 }
 
 /*sign in page*/
@@ -129,12 +145,13 @@ i.bars.icon {
 #about-us.ui.fluid.container {
   height: 100%;
 }
+
 .about-us-content {
   padding: 35px 0px 25px 35px;
 }
 
 .about-us-content .ui.left.aligned.header {
-  color: #007BA4 !important;
+  color: rgb(4, 148, 196) !important;
 }
 
 .ui.container.about-us-content p {

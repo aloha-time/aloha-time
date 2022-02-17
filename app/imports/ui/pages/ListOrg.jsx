@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Loader, Card, Search } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection'
+import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection';
 import OrgItem from '../components/OrgItem';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */

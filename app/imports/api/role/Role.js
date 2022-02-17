@@ -6,6 +6,7 @@ export const ROLE = {
   ADMIN: 'ADMIN',
   USER: 'USER',
   ORGANIZATION: 'ORGANIZATION',
+  VOLUNTEER: 'VOLUNTEER',
 };
 
 export const ROLES = _.values(ROLE);
