@@ -17,7 +17,7 @@ class ListOpportunity extends React.Component {
   /** Render the page once subscriptions have been received. */
   renderPage() {
     return (
-      <Container id={PAGE_IDS.LIST_OPPORTUNITY} fluid>
+      <Container id={PAGE_IDS.LIST_OPPORTUNITY}>
         <div className="organization-sign-up-top">
           <Header as="h2" textAlign="center" inverted>
             Browse Opportunities
