@@ -23,7 +23,7 @@ const OrgItem2 = ({ org }) => (
 OrgItem2.propTypes = {
   org: PropTypes.shape({
     organizationName: PropTypes.string,
-    field: PropTypes.array,
+    fields: PropTypes.array,
     primaryAddress: PropTypes.string,
     about: PropTypes.string,
   }).isRequired,

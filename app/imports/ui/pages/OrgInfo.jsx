@@ -3,8 +3,7 @@ import { Container, Loader, Grid, Embed, Header, Feed } from 'semantic-ui-react'
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router';
-import { Stuffs } from '../../api/stuff/StuffCollection';
-import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection'
+import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection';
 import OrgItem2 from '../components/OrgItem2';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
@@ -63,7 +62,7 @@ export default withTracker(() => {
   const ready = subscription.ready();
   // Get the Stuff documents and sort them by name.
   const orgs = OrganizationProfiles.find({}, { sort: { organizationName: 1 } }).fetch();
-  // Get the document 
+  // Get the document
   const doc = orgs.find((org) => org._id === documentId);
   return {
     orgs,

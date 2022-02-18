@@ -20,7 +20,7 @@ export const fieldsType = [
 export const environmentalType = ['Indoor', 'Outdoor', 'Both', 'No Preference'];
 export const orgPublications = {
   org: 'Org',
-}
+};
 class OrganizationProfileCollection extends BaseProfileCollection {
   constructor() {
     super('OrganizationProfile', new SimpleSchema({
@@ -29,7 +29,6 @@ class OrganizationProfileCollection extends BaseProfileCollection {
       firstName: String,
       lastName: String,
       email: String,
-      organizationName: String,
       primaryAddress: String,
       city: String,
       state: String,
