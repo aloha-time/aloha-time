@@ -6,7 +6,7 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 
 const pageStyle = { paddingTop: '15px', paddingBottom: '15px' };
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
+/** Renders a page containing all information for a single Volunteer. */
 const ShowVolunteerProfile = ({ ready }) => ((ready) ? (
   <Container id={PAGE_IDS.SHOW_VOLUNTEER_PROFILE} style={pageStyle}>
     <Grid float='left' padded>
@@ -59,7 +59,7 @@ const ShowVolunteerProfile = ({ ready }) => ((ready) ? (
   </Container>
 ) : <Loader active>Getting data</Loader>);
 
-// Require an array of Stuff documents in the props.
+// Require a single Volunteer profile in the props.
 ShowVolunteerProfile.propTypes = {
 //  stuffs: PropTypes.array,
   profiles: PropTypes.array,

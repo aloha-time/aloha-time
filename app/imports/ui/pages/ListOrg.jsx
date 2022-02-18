@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection';
 import OrgItem from '../components/OrgItem';
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
+/** Renders a table containing all of the Organizations. Use <OrgItem> to render each row. */
 const ListOrg = ({ ready, orgs }) => ((ready) ? (
   <Container>
     <Search small placeholder="Search for Organization"/>
