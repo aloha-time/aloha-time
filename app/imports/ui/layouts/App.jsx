@@ -10,9 +10,7 @@ import Landing from '../pages/Landing';
 import ListOrg from '../pages/ListOrg';
 import OrgInfo from '../pages/OrgInfo';
 import ListOpportunity from '../pages/ListOpportunity';
-import ListStuffAdmin from '../pages/ListStuffAdmin';
 import AddOpportunity from '../pages/AddOpportunity';
-import EditStuff from '../pages/EditStuff';
 import EditOpportunity from '../pages/EditOpportunity';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
@@ -50,10 +48,8 @@ class App extends React.Component {
             <OrganizationProtectedRoute path="/my-organization-profile" component={MyOrganizationProfile}/>
             <ProtectedRoute path="/orginfo/:_id" component={OrgInfo}/>
             <ProtectedRoute path="/add-opportunity" component={AddOpportunity}/>
-            <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
             <ProtectedRoute path="/edit-opportunity/:_id" component={EditOpportunity}/>
             <ProtectedRoute path="/view-opportunity/:_id" component={ViewOpportunity}/>
-            <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
             <AdminProtectedRoute path="/manage-database" component={ManageDatabase}/>
             <AdminProtectedRoute path="/admin-verify" component={AdminVerifyPage}/>
             <Route component={NotFound}/>

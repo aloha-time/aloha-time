@@ -61,7 +61,7 @@ const ShowVolunteerProfile = ({ ready }) => ((ready) ? (
 
 // Require an array of Stuff documents in the props.
 ShowVolunteerProfile.propTypes = {
-  stuffs: PropTypes.array,
+//  stuffs: PropTypes.array,
   profiles: PropTypes.array,
   ready: PropTypes.bool.isRequired,
 };

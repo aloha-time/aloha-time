@@ -1,9 +1,6 @@
 export const COMPONENT_IDS = {
-  LIST_STUFF_EDIT: 'list-stuff-edit',
   LIST_OPPORTUNITY_EDIT: 'list-opportunity-edit',
-  NAVBAR_ADD_STUFF: 'navbar-add-stuff',
   NAVBAR_ADD_OPPORTUNITY: 'navbar-add-opportunity',
-  NAVBAR_LIST_STUFF: 'navbar-list-stuff',
   NAVBAR_ADMIN_VERIFY: 'navbar-admin-verify',
   NAVBAR_CURRENT_USER: 'navbar-current-user',
   NAVBAR_VOLUNTEER_USER: 'navbar-volunteer-user',
