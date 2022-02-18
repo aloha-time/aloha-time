@@ -66,13 +66,13 @@ const Signin = ({ location }) => {
                 <div className = "Segment">
                   <Segment stacked basic>
                     <Form.Input
-                      label="Username"
+                      label="Username/Email"
                       id={COMPONENT_IDS.SIGN_IN_FORM_EMAIL}
                       icon="user"
                       iconPosition="left"
                       name="username"
                       type="username"
-                      placeholder="Username"
+                      placeholder="Username/Email"
                       onChange={handleChange}
                     />
                     <Form.Input
