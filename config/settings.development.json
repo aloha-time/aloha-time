@@ -19,6 +19,12 @@
     {"organizationName":"Hawaii Food Bank 3","username": "meat", "firstName": "smart", "lastName": "Chen", "password": "changeme", "email": "jake@foo.com", "primaryAddress":"1887 Makuakane St" , "city": "Honolulu", "state": "HI", "zipCode": "96817", "phoneNumber": "8083045787", "fields": ["Food Banks"], "environmental":"Both", "about": "no", "role": "ORGANIZATION"}
 
   ],
+  "defaultVolunteers": [{
+    "username":"Eric",
+    "password": "changeme",
+    "email": "Eric@foo.com",
+    "firstName":"Eric", "lastName":"Chong", "dateOfBirth":"02/22/2020", "genderType":"Male", "address":"1997 Dole st", "city":"Honolulu", "state":"HI", "zip":"96814", "phone":"8083867777", "interestsType":["Animal Welfare/Rescue"], "skillsType":["Agriculture"], "preferencesType":"Indoor", "availabilityType":"One-time", "role":"VOLUNTEER"}
+  ],
   "defaultOpportunities": [
     { "title": "Health Help", "opportunityType": "Event", "startDate": "02/03/2022", "endDate": "02/03/2022",
       "startTime": "9:45 am", "endTime": "10:30 pm", "recurring": "No", "description": "Lorem [ipsum dolor sit amet, consectetur adipiscing elit.", "category": "COVID-19 Recovery", "location": "Honolulu", "contactName": "John Doe", "contactPosition": "Coordinator", "email": "healthhelp@hawaii.edu", "phone": "(808)-555-1234", "website": "healthhelp.com", "coverImage": "../images/opportunity_images/opportunity_hospital.jpg", "galleryImage": "../images/opportunity_images/opportunity_hospital.jpg", "ageGroup": "Adults", "environment": "Indoors", "owner": "john@foo.com" },

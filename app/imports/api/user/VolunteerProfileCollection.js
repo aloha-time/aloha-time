@@ -5,6 +5,7 @@ import { ROLE } from '../role/Role';
 import { Users } from './UserCollection';
 
 export const gender = ['Female', 'Male', 'Other', 'Prefer Not To Say'];
+
 export const interests = [
   'Animal Welfare/Rescue',
   'Child/Family Support',
@@ -46,9 +47,12 @@ export const availability = [
 
 export const preferences = ['Indoor', 'Outdoor', 'Both', 'No Preference'];
 
-class VolunteerCollection extends BaseProfileCollection {
+class VolunteerProfileCollection extends BaseProfileCollection {
   constructor() {
     super('VolunteerProfile', new SimpleSchema({
+      firstName: String,
+      lastName: String,
+      email: String,
       dateOfBirth: String,
       genderType: { type: String, allowedValues: gender },
       address: String,
@@ -57,11 +61,12 @@ class VolunteerCollection extends BaseProfileCollection {
       zip: Number,
       phone: String,
       username: String,
-      interestsType: { type: Array, allowedValues: interests },
-      skillsType: { type: Array, allowedValues: skills },
+      interestsType: { type: Array, required: false },
+      'interestsType.$': { type: String, allowedValues: interests },
+      skillsType: { type: Array, required: false },
+      'skillsType.$': { type: String, allowedValues: skills },
       preferencesType: { type: String, allowedValues: preferences },
       availabilityType: { type: String, allowedValues: availability },
-      hours: Number,
     }));
   }
 
@@ -89,9 +94,9 @@ class VolunteerCollection extends BaseProfileCollection {
       // const username = email;
       const user = this.findOne({ email, firstName, lastName });
       if (!user) {
-        const role = ROLE.USER;
+        const role = ROLE.VOLUNTEER;
         const profileID = this._collection.insert({ email, firstName, lastName, userID: this.getFakeUserId(), role, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType });
-        const userID = Users.define({ username, role, password });
+        const userID = Users.define({ username, email, role, password });
         this._collection.update(profileID, { $set: { userID } });
         return profileID;
       }
@@ -101,12 +106,12 @@ class VolunteerCollection extends BaseProfileCollection {
   }
 
   /**
-   * Updates the UserProfile. You cannot change the email or role.
+   * Updates the UserProfile. You cannot change the email or role or username.
    * @param docID the id of the UserProfile
    * @param firstName new first name (optional).
    * @param lastName new last name (optional).
    */
-  update(docID, { firstName, lastName }) {
+  update(docID, { firstName, lastName, dateOfBirth, genderType, address, city, state, zip, phone, interestsType, skillsType, preferencesType, availabilityType }) {
     this.assertDefined(docID);
     const updateData = {};
     if (firstName) {
@@ -114,6 +119,39 @@ class VolunteerCollection extends BaseProfileCollection {
     }
     if (lastName) {
       updateData.lastName = lastName;
+    }
+    if (dateOfBirth) {
+      updateData.dateOfBirth = dateOfBirth;
+    }
+    if (genderType) {
+      updateData.genderType = genderType;
+    }
+    if (address) {
+      updateData.address = address;
+    }
+    if (city) {
+      updateData.city = city;
+    }
+    if (state) {
+      updateData.state = state;
+    }
+    if (zip) {
+      updateData.zip = zip;
+    }
+    if (phone) {
+      updateData.phone = phone;
+    }
+    if (interestsType) {
+      updateData.interestsType = interestsType;
+    }
+    if (skillsType) {
+      updateData.skillsType = skillsType;
+    }
+    if (preferencesType) {
+      updateData.preferencesType = preferencesType;
+    }
+    if (availabilityType) {
+      updateData.availabilityType = availabilityType;
     }
     this._collection.update(docID, { $set: updateData });
   }
@@ -149,8 +187,8 @@ class VolunteerCollection extends BaseProfileCollection {
   checkIntegrity() {
     const problems = [];
     this.find().forEach((doc) => {
-      if (doc.role !== ROLE.User) {
-        problems.push(`UserProfile instance does not have ROLE.USER: ${doc}`);
+      if (doc.role !== ROLE.VOLUNTEER) {
+        problems.push(`VolunteerProfile instance does not have ROLE.Volunteer: ${doc}`);
       }
     });
     return problems;
@@ -166,12 +204,23 @@ class VolunteerCollection extends BaseProfileCollection {
     const email = doc.email;
     const firstName = doc.firstName;
     const lastName = doc.lastName;
-    return { email, firstName, lastName };
+    const dateOfBirth = doc.dateOfBirth;
+    const genderType = doc.genderType;
+    const address = doc.address;
+    const city = doc.city;
+    const state = doc.state;
+    const zip = doc.zip;
+    const phone = doc.phone;
+    const interestsType = doc.interestsType;
+    const skillsType = doc.skillsType;
+    const preferencesType = doc.preferencesType;
+    const availabilityType = doc.availabilityType;
+    return { firstName, lastName, email, dateOfBirth, genderType, address, city, state, zip, phone, interestsType, skillsType, preferencesType, availabilityType };
   }
 }
 
 /**
  * Provides the singleton instance of this class to all other entities.
- * @type {VolunteerCollection}
+ * @type {VolunteerProfileCollection}
  */
-export const VolunteerProfiles = new VolunteerCollection();
+export const VolunteerProfiles = new VolunteerProfileCollection();

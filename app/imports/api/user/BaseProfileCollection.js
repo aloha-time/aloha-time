@@ -9,6 +9,7 @@ const rolesToCollectionNames = {};
 rolesToCollectionNames[ROLE.ADMIN] = 'AdminProfileCollection';
 rolesToCollectionNames[ROLE.USER] = 'UserProfileCollection';
 rolesToCollectionNames[ROLE.ORGANIZATION] = 'OrganizationProfileCollection';
+rolesToCollectionNames[ROLE.VOLUNTEER] = 'VolunteerProfileCollection';
 
 class BaseProfileCollection extends BaseCollection {
   constructor(type, schema) {
