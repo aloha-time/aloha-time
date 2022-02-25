@@ -41,7 +41,7 @@ const EditMyProfile = ({ volProfile, ready, location }) => {
     return <Redirect to={from}/>;
   }
   return (ready) ? (
-    <Container id={PAGE_IDS.EDIT_OPPORTUNITY}>
+    <Container id={PAGE_IDS.EDIT_MY_PROFILE}>
       <div className="organization-sign-up-top">
         <Header as="h2" textAlign="center" inverted>
           Edit My Profile
