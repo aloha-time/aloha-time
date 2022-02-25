@@ -27,6 +27,7 @@ import VolunteerSignUp from '../pages/VolunteerSignUp';
 import MyOrganizationProfile from '../pages/MyOrganizationProfile';
 import AdminVerifyPage from '../pages/AdminVerifyPage';
 import ViewOpportunity from '../pages/ViewOpportunity';
+import EditMyProfile from '../pages/EditMyProfile';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -47,6 +48,7 @@ class App extends React.Component {
             <Route path="/organization-signup" component={OrganizationSignup}/>
             <Route path="/volunteer-signup" component={VolunteerSignUp}/>
             <Route path="/signout" component={Signout}/>
+            <Route path="/edit-my-profile" component={EditMyProfile}/>
             <OrganizationProtectedRoute path="/my-organization-profile" component={MyOrganizationProfile}/>
             <ProtectedRoute path="/orginfo/:_id" component={OrgInfo}/>
             <ProtectedRoute path="/add-opportunity" component={AddOpportunity}/>

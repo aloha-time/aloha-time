@@ -52,6 +52,13 @@ const ShowVolunteerProfile = ({ volProfile, ready }) => ((ready) ? (
                       <List.Description as='a'>{volProfile.genderType}</List.Description>
                     </List.Content>
                   </List.Item>
+                  <List.Item>
+                    <List.Icon color= "yellow" name='birthday' size='large'/>
+                    <List.Content>
+                      <List.Header as='a'>Date of Birth</List.Header>
+                      <List.Description as='a'>{volProfile.dateOfBirth}</List.Description>
+                    </List.Content>
+                  </List.Item>
                 </List>
               </Card.Content>
             </Card>
@@ -117,7 +124,7 @@ const ShowVolunteerProfile = ({ volProfile, ready }) => ((ready) ? (
         </Grid.Column>
       </Grid>
       <div className="my-organization-bottom" >
-        <Button inverted size= "big" color="blue"><Link to="/signin">Edit My Organization Profile</Link></Button>
+        <Button inverted size= "big" color="blue"><Link to="/edit-my-profile">Edit My Organization Profile</Link></Button>
       </div>
     </Segment>
   </Container>
