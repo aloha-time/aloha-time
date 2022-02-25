@@ -98,8 +98,8 @@ const EditMyProfile = ({ volProfile, ready, location }) => {
                   </Card.Content>
                   <Card.Content>
                     <TextField label='address' name='address' placeholder='address'/>
-                    <TextField label='state' name='state' placeholder='Honolulu'/>
                     <TextField label='city' name='city' placeholder='HI'/>
+                    <TextField label='state' name='state' placeholder='Honolulu'/>
                     <TextField label='zip' name='zip' placeholder='96817'/>
                   </Card.Content>
                 </Card>
