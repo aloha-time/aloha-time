@@ -10,7 +10,7 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
 const NavBar = ({ currentUser }) => {
-  const navbarStyle = { paddingBottom: '5px', backgroundColor: '#0494c4' };
+  const navbarStyle = { height: '85px', paddingBottom: '5px', backgroundColor: '#0494c4' };
   return (
     <Menu attached="top" style={navbarStyle} borderless inverted>
       <Menu.Item id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} activeClassName="" exact to="/">
@@ -46,8 +46,10 @@ const NavBar = ({ currentUser }) => {
           [<Dropdown id={COMPONENT_IDS.NAVBAR_CURRENT_USER} text={currentUser} pointing="top right" icon={'user'}
             key="logout">
             <Dropdown.Menu>
-              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MY_PROFILE} text="My Profile" as={NavLink} exact
-                to="/myProfile"/>
+              {Roles.userIsInRole(Meteor.userId(), [ROLE.VOLUNTEER]) ? (
+                <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MY_PROFILE} text="My Profile" as={NavLink} exact
+                  to="/myProfile"/>)
+                : ''}
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MY_OPPORTUNITIES} text="My Opportunities" as={NavLink} exact
                 to="/my-opportunities"/>
               {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? (
