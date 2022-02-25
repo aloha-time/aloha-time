@@ -1,81 +1,142 @@
 import React from 'react';
-import { Container, Grid, Header, Loader, Image } from 'semantic-ui-react';
+import { Container, Grid, List, Loader, Image, Card, Icon, Button, Segment } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
+import { Link } from 'react-router-dom';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import { VolunteerProfiles } from '../../api/user/VolunteerProfileCollection';
 
-const pageStyle = { paddingTop: '15px', paddingBottom: '15px' };
-
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-const ShowVolunteerProfile = ({ ready }) => ((ready) ? (
-  <Container id={PAGE_IDS.SHOW_VOLUNTEER_PROFILE} style={pageStyle}>
-    <Grid float='left' padded>
-      <Grid.Row>
-        <Image size='small' src="/images/johnfoo.jpeg"/>
-      </Grid.Row>
-      <Grid.Row>
-        <Header as="h1" className="opportunities">John Foo{/* this.props.profiles.name */}</Header>
-      </Grid.Row>
-    </Grid>
-
-    <Grid divided='vertically'>
-      <Grid.Row columns='equal'>
+/** Renders the page for volunteer profile document. */
+const ShowVolunteerProfile = ({ volProfile, ready }) => ((ready) ? (
+  <Container id={PAGE_IDS.MY_PROFILE}>
+    <Segment color='yellow'>
+      <div className="my-organization-top">
+        <Image size='medium' src="/images/VAlogo.png" centered/>
+      </div>
+      <Grid className="my-organization-medium">
+        <Grid.Row>
+          <Image size='small' padding-left ='20px' src="/images/volunteerAllyIcon.svg"/>
+        </Grid.Row>
+      </Grid>
+      <div className="my-organization-title">
+        <p>My Profile</p>
+      </div>
+      <Grid columns={2}>
         <Grid.Column>
-          <Header as='h2'>Event Name</Header>
+          <Card.Group>
+            <Card fluid color='red'>
+              <Card.Content>
+                <Card.Header><Icon color="yellow" name="paper plane outline"/>Primary Information</Card.Header>
+              </Card.Content>
+              <Card.Content>
+                <List divided relaxed>
+                  <List.Item>
+                    <List.Icon color= "yellow" name='user circle' size='large' />
+                    <List.Content>
+                      <List.Header as='a'>Primary Contact First Name</List.Header>
+                      <List.Description as='a'>{volProfile.firstName}</List.Description>
+                    </List.Content>
+                  </List.Item>
+                  <List.Item>
+                    <List.Icon color= "yellow"name='user' size='large'/>
+                    <List.Content>
+                      <List.Header as='a'>Primary Contact Last Name</List.Header>
+                      <List.Description as='a'>{volProfile.lastName}</List.Description>
+                    </List.Content>
+                  </List.Item>
+                  <List.Item>
+                    <List.Icon color= "yellow"name='user' size='large'/>
+                    <List.Content>
+                      <List.Header as='a'>Gender</List.Header>
+                      <List.Description as='a'>{volProfile.genderType}</List.Description>
+                    </List.Content>
+                  </List.Item>
+                </List>
+              </Card.Content>
+            </Card>
+            <Card fluid color='yellow'>
+              <Card.Content>
+                <Card.Header><Icon color="yellow" name="mail"/>Primary Contact E-mail Address</Card.Header>
+              </Card.Content>
+              <Card.Content>
+                <Card.Description>{volProfile.email}</Card.Description>
+              </Card.Content>
+            </Card>
+            <Card fluid color='yellow'>
+              <Card.Content>
+                <Card.Header><Icon color="yellow" name="phone"/>Primary Contact Phone Number</Card.Header>
+              </Card.Content>
+              <Card.Content>
+                <Card.Description>{volProfile.phone}</Card.Description>
+              </Card.Content>
+            </Card>
+            <Card fluid color='orange'>
+              <Card.Content>
+                <Card.Header><Icon color="yellow" name="map signs"/>Primary Address</Card.Header>
+              </Card.Content>
+              <Card.Content>
+                <Card.Description>{volProfile.address} {volProfile.state} {volProfile.city} {volProfile.zip}</Card.Description>
+              </Card.Content>
+            </Card>
+          </Card.Group>
         </Grid.Column>
         <Grid.Column>
-          <Header as='h2'>Pictures</Header>
+          <Card fluid color='yellow'>
+            <Card.Content>
+              <Card.Header><Icon color="yellow" name="star outline"/>Environmental (Indoor, Outdoor)</Card.Header>
+            </Card.Content>
+            <Card.Content>
+              <Card.Description>{volProfile.preferencesType}</Card.Description>
+            </Card.Content>
+          </Card>
+          <Card fluid color='yellow'>
+            <Card.Content>
+              <Card.Header><Icon color="yellow" name="list ul"/>Interests </Card.Header>
+            </Card.Content>
+            <Card.Content>
+              <List bulleted size="large" items={volProfile.interestsType}/>
+            </Card.Content>
+          </Card>
+          <Card fluid color='yellow'>
+            <Card.Content>
+              <Card.Header><Icon color="yellow" name="list ul"/>Skills</Card.Header>
+            </Card.Content>
+            <Card.Content>
+              <List bulleted size="large" items={volProfile.skillsType}/>
+            </Card.Content>
+          </Card>
+          <Card fluid color='yellow'>
+            <Card.Content>
+              <Card.Header><Icon color="yellow" name="star outline"/>Availability</Card.Header>
+            </Card.Content>
+            <Card.Content>
+              <Card.Description>{volProfile.availabilityType}</Card.Description>
+            </Card.Content>
+          </Card>
         </Grid.Column>
-        <Grid.Column>
-          <Header as='h2'>Hours Volunteered</Header>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row columns='equal'>
-        <Grid.Column>
-          <Header as='h3'>Friendly event</Header>
-          <p>A friendly event where volunteers walked through a city volunteering.</p>
-        </Grid.Column>
-        <Grid.Column>
-          <Image src="/images/laughing.jpeg"/>
-        </Grid.Column>
-        <Grid.Column>
-          <Header as='h3'>3 Hours</Header>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row columns='equal'>
-        <Grid.Column>
-          <Header as='h3'>Friendlier event</Header>
-          <p>An even friendlier event where volunteers threw a party for children and puppies.</p>
-        </Grid.Column>
-        <Grid.Column>
-          <Image src='/images/party.jpg'/>
-        </Grid.Column>
-        <Grid.Column>
-          <Header as='h3'>5 Hours</Header>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
-
+      </Grid>
+      <div className="my-organization-bottom" >
+        <Button inverted size= "big" color="blue"><Link to="/signin">Edit My Organization Profile</Link></Button>
+      </div>
+    </Segment>
   </Container>
 ) : <Loader active>Getting data</Loader>);
 
-// Require an array of Stuff documents in the props.
+// Require the organization profile documents in the props.
 ShowVolunteerProfile.propTypes = {
-  stuffs: PropTypes.array,
-  profiles: PropTypes.array,
+  volProfile: PropTypes.object,
   ready: PropTypes.bool.isRequired,
 };
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
-  // Get access to Stuff documents.
-  // const subscription = Meteor.subscribe(Profiles.userPublicationName);
-  // Determine if the subscription is ready
-  const ready = true; // subscription.ready();
-  // Get the Profile documents and sort them by name.
-  // const profiles = Users.getProfile({}, { sort: { name: 1 } }).fetch();
+  const currentUser = Meteor.user() ? Meteor.user().username : ' ';
+  const subscription = VolunteerProfiles.subscribe();
+  const ready = subscription.ready();
+  const volProfile = ready ? VolunteerProfiles.findDoc({ username: currentUser }) : undefined;
   return {
-    // profiles,
+    volProfile,
     ready,
   };
 })(ShowVolunteerProfile);
