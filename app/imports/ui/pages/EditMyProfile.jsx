@@ -144,7 +144,6 @@ EditMyProfile.propTypes = {
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
   const currentUser = Meteor.user() ? Meteor.user().username : ' ';
-  console.log(currentUser);
   const subscription = VolunteerProfiles.subscribe();
   const ready = subscription.ready();
   const volProfile = ready ? VolunteerProfiles.findDoc({ username: currentUser }) : undefined;
