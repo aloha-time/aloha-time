@@ -8,7 +8,7 @@ const AdminVerifyPage = ({ ready }) => ((ready) ? (
   <Container>
     <div>
       <h1 className="ui center aligned header">
-        Verify User
+        Admin Page
       </h1>
     </div>
     <AdminVerificationTab/>
