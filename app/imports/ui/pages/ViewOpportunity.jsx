@@ -46,7 +46,7 @@ class ViewOpportunity extends React.Component {
                 </p>
                 <p>
                   <Icon name='clock'/>
-                  {this.props.opportunity.startTime} - {this.props.opportunity.endTime}
+                  {this.props.opportunity.startDate.toLocaleTimeString('en-US').replace(/:\d+ /, ' ')} - {this.props.opportunity.endDate.toLocaleTimeString('en-US').replace(/:\d+ /, ' ')}
                 </p>
               </Segment>
             </Grid.Column>

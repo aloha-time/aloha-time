@@ -33,7 +33,7 @@ class OpportunityItem extends React.Component {
           </Card.Meta>
           <Card.Meta>
             <Icon name='clock'/>
-            {OpportunityInfo.startTime} - {OpportunityInfo.endTime}</Card.Meta>
+            {OpportunityInfo.startDate.toLocaleTimeString('en-US').replace(/:\d+ /, ' ')} - {OpportunityInfo.endDate.toLocaleTimeString('en-US').replace(/:\d+ /, ' ')}</Card.Meta>
           <Card.Meta>
             <Icon name='map marker alternate'/>
             {OpportunityInfo.location}

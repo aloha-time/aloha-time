@@ -33,8 +33,6 @@ const formSchema = new SimpleSchema({
   },
   startDate: Date,
   endDate: String,
-  startTime: String,
-  endTime: String,
   recurring: {
     type: String,
     allowedValues: opportunityRecurring,
@@ -70,10 +68,10 @@ const AddOpportunity = () => {
 
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { title, opportunityType, startDate, endDate, startTime, endTime, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment } = data;
+    const { title, opportunityType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment } = data;
     const owner = Meteor.user().username;
     const collectionName = Opportunities.getCollectionName();
-    const definitionData = { title, opportunityType, startDate, endDate, startTime, endTime, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, owner };
+    const definitionData = { title, opportunityType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, owner };
     defineMethod.callPromise({ collectionName, definitionData })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => {
@@ -128,10 +126,6 @@ const AddOpportunity = () => {
                     <Form.Group widths='equal'>
                       <DateField name='startDate'/>
                       <DateField name='endDate'/>
-                    </Form.Group>
-                    <Form.Group widths='equal'>
-                      <TextField label='Start Time' name='startTime' placeholder='hh : mm am/pm' />
-                      <TextField label='End Time' name='endTime' placeholder='hh : mm am/pm' />
                     </Form.Group>
                     <SelectField label='Is recurring?' name='recurring'/>
                   </Card.Content>

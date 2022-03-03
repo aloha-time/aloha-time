@@ -28,8 +28,6 @@ class OpportunitiesCollection extends BaseCollection {
       },
       startDate: Date,
       endDate: Date,
-      startTime: String,
-      endTime: String,
       recurring: {
         type: String,
         allowedValues: opportunityRecurring,
@@ -66,8 +64,6 @@ class OpportunitiesCollection extends BaseCollection {
    * @param opportunityType the type of the opportunity.
    * @param startDate the start date of the opportunity.
    * @param endDate the end date of the opportunity.
-   * @param startTime the time the opportunity starts.
-   * @param endTime the time the opportunity ends.
    * @param recurring if the opportunity reoccurs.
    * @param description the description of the opportunity.
    * @param category the category of the opportunity.
@@ -84,14 +80,12 @@ class OpportunitiesCollection extends BaseCollection {
    * @param owner the owner of the item.
    * @return {String} the docID of the new document.
    */
-  define({ title, opportunityType, startDate, endDate, startTime, endTime, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, owner }) {
+  define({ title, opportunityType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, owner }) {
     const docID = this._collection.insert({
       title,
       opportunityType,
       startDate,
       endDate,
-      startTime,
-      endTime,
       recurring,
       description,
       category,
@@ -117,8 +111,6 @@ class OpportunitiesCollection extends BaseCollection {
    * @param opportunityType the new type.
    * @param startDate the new start date.
    * @param endDate the new end date.
-   * @param startTime the new start time.
-   * @param endTime the new end time.
    * @param recurring the new recurring state.
    * @param description the new description.
    * @param category the new category.
@@ -133,7 +125,7 @@ class OpportunitiesCollection extends BaseCollection {
    * @param ageGroup the new age group.
    * @param environment the new environment type.
    */
-  update(docID, { title, opportunityType, startDate, endDate, startTime, endTime, recurring, description,
+  update(docID, { title, opportunityType, startDate, endDate, recurring, description,
     category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup,
     environment }) {
     const updateData = {};
@@ -148,12 +140,6 @@ class OpportunitiesCollection extends BaseCollection {
     }
     if (endDate) {
       updateData.endDate = endDate;
-    }
-    if (startTime) {
-      updateData.startTime = startTime;
-    }
-    if (endTime) {
-      updateData.endTime = endTime;
     }
     if (recurring) {
       updateData.recurring = recurring;
@@ -280,8 +266,6 @@ class OpportunitiesCollection extends BaseCollection {
     const opportunityType = doc.opportunityType;
     const startDate = doc.startDate;
     const endDate = doc.endDate;
-    const startTime = doc.startTime;
-    const endTime = doc.endTime;
     const recurring = doc.recurring;
     const description = doc.description;
     const category = doc.category;
@@ -296,7 +280,7 @@ class OpportunitiesCollection extends BaseCollection {
     const ageGroup = doc.ageGroup;
     const environment = doc.environment;
     const owner = doc.owner;
-    return { title, opportunityType, startDate, endDate, startTime, endTime, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, owner };
+    return { title, opportunityType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, owner };
   }
 }
 
