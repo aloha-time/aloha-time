@@ -111,8 +111,8 @@
       "email": "healthhelp@hawaii.edu",
       "phone": "(808)-555-1234",
       "website": "healthhelp.com",
-      "coverImage": "../images/opportunity_images/opportunity_hospital.jpg",
-      "galleryImage": "../images/opportunity_images/opportunity_hospital.jpg",
+      "coverImage": "https://www.westhawaiitoday.com/wp-content/uploads/2019/06/web1_8464105-846afdfbbc4e4f6695e734c1e5eb24ed.jpg",
+      "galleryImage": "https://www.redcross.org/content/dam/redcross/local/hawaii/images/714x410-Hawaii-Locations.jpg.transform/1288/q82/feature/image.jpeg",
       "ageGroup": "Adults",
       "environment": "Indoors",
       "owner": "john@foo.com"
@@ -130,8 +130,8 @@
       "email": "beachcleanup@hawaii.edu",
       "phone": "(808)-555-5678",
       "website": "beachcleanup.com",
-      "coverImage": "../images/opportunity_images/opportunity_palm.jpg",
-      "galleryImage": "../images/opportunity_images/opportunity_palm.jpg",
+      "coverImage": "https://cdn.shopify.com/s/files/1/0996/1022/files/getinvolved-covidmodule_68a5702c-a234-4c42-9dc8-bba55fbbf489_1600x.jpg?v=1592568876",
+      "galleryImage": "https://images.squarespace-cdn.com/content/v1/5b231afb297114b57e11002d/1579574099361-2KUGNED7EHSF6KR6UEAJ/IMG_4160%2B%25281%2529.jpg?format=1500w",
       "ageGroup": "Teens",
       "environment": "Outdoors",
       "owner": "john@foo.com"
@@ -149,8 +149,8 @@
       "email": "fooddrive@hawaii.edu",
       "phone": "(808)-555-4321",
       "website": "fooddrive.com",
-      "coverImage": "../images/opportunity_images/opportunity_cupcake.jpg",
-      "galleryImage": "../images/opportunity_images/opportunity_cupcake.jpg",
+      "coverImage": "https://i0.wp.com/hawaiifoodbank.org/wp-content/uploads/2020/08/HawaiiFoodbank_COVID.jpg?fit=1920%2C1080&ssl=1",
+      "galleryImage": "https://www.staradvertiser.com/wp-content/uploads/2020/05/web1_CTY-food-drive-lcc-26843.jpg",
       "ageGroup": "Family-Friendly",
       "environment": "Mixed",
       "owner": "john@foo.com"
@@ -168,8 +168,8 @@
       "email": "virtualdogwalk@hawaii.edu",
       "phone": "(808)-555-9876",
       "website": "virtualdogwalk.com",
-      "coverImage": "../images/opportunity_images/opportunity_dog.jpg",
-      "galleryImage": "../images/opportunity_images/opportunity_dog.jpg",
+      "coverImage": "https://images.unsplash.com/photo-1530700131180-d43d9b8cc41f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1434&q=80",
+      "galleryImage": "https://images.unsplash.com/photo-1611759284397-079b3495f061?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHdhbGtpbmclMjBkb2d8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
       "ageGroup": "Seniors",
       "environment": "Virtual",
       "owner": "john@foo.com"
