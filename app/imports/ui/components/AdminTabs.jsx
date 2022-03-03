@@ -2,9 +2,16 @@ import React from 'react';
 import { Tab, Item } from 'semantic-ui-react';
 import OrgVerifyList from './OrgVerifyList';
 import VolunteerVerifyList from './VolunteerVerifyList';
+import AdminSettingsForm from './AdminSettingsForm';
+import AdminOrgSearch from './AdminOrgSearch';
+import AdminVolunteerSearch from './AdminVolunteerSearch';
 
 const panes = [
-  { menuItem: 'Organizations', render: () => <Tab.Pane>
+  { menuItem: 'Manage Account', render: () => <Tab.Pane>
+    <AdminSettingsForm/>
+  </Tab.Pane> },
+  { menuItem: 'Manage Organizations', render: () => <Tab.Pane>
+    <AdminOrgSearch/>
     <Item.Group divided>
       <OrgVerifyList/>
       <OrgVerifyList/>
@@ -13,7 +20,8 @@ const panes = [
       <OrgVerifyList/>
     </Item.Group>
   </Tab.Pane> },
-  { menuItem: 'Volunteers', render: () => <Tab.Pane>
+  { menuItem: 'Manage Volunteers', render: () => <Tab.Pane>
+    <AdminVolunteerSearch/>
     <Item.Group divided>
       <VolunteerVerifyList/>
       <VolunteerVerifyList/>
@@ -24,6 +32,6 @@ const panes = [
   </Tab.Pane> },
 ];
 
-const AdminVerificationTab = () => <Tab panes={panes} />;
+const AdminTabs = () => <Tab menu={{ fluid: true, vertical: true, tabular: true }} panes={panes} />;
 
-export default AdminVerificationTab;
+export default AdminTabs;
