@@ -13,9 +13,15 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 import MultiSelectField from '../components/form-fields/MultiSelectField';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
-const makeSchema = (allOpportunities) => new SimpleSchema({
-  opportunities: { type: Array, label: 'Opportunities', optional: true },
-  'opportunities.$': { type: String, allowedValues: allOpportunities },
+const makeSchema = (allTitles, allCategories, allAges, allEnvironments) => new SimpleSchema({
+  titles: { type: Array, label: 'Title', optional: true },
+  'titles.$': { type: String, allowedValues: allTitles },
+  categories: { type: Array, label: 'Category', optional: true },
+  'categories.$': { type: String, allowedValues: allCategories },
+  ages: { type: Array, label: 'Age Groups', optional: true },
+  'ages.$': { type: String, allowedValues: allAges },
+  environments: { type: Array, label: 'Environments', optional: true },
+  'environments.$': { type: String, allowedValues: allEnvironments },
 });
 
 /** Renders a table containing all the Opportunity documents. Use <OpportunityItem> to render each row. */
@@ -37,10 +43,13 @@ class ListOpportunity extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
-    const allOpportunities = _.pluck(Opportunities.find({}, {}).fetch(), 'title');
-    const formSchema = makeSchema(allOpportunities);
+    const allTitles = _.pluck(Opportunities.find({}, {}).fetch(), 'title');
+    const allCategories = _.pluck(Opportunities.find({}, {}).fetch(), 'category');
+    const allAges = _.pluck(Opportunities.find({}, {}).fetch(), 'ageGroup');
+    const allEnvironments = _.pluck(Opportunities.find({}, {}).fetch(), 'environment');
+    const formSchema = makeSchema(allTitles, allCategories, allAges, allEnvironments);
     const bridge = new SimpleSchema2Bridge(formSchema);
-    const opportunityList = Opportunities.find({ title: { $in: this.state.opportunities } }, {}).fetch();
+    // const opportunityList = Opportunities.find({ title: { $in: this.state.opportunities } }, {}).fetch();
     return (
       <Container id={PAGE_IDS.LIST_OPPORTUNITY}>
         <div className="organization-sign-up-top">
@@ -52,18 +61,29 @@ class ListOpportunity extends React.Component {
           </Header>
         </div>
         <br/>
-        <div className="map">
-          <iframe width="725" height="350" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=-158.42234810348603%2C21.16792215058402%2C-157.6793976640329%2C21.7615698948541&amp;layer=mapnik"/>
-        </div>
+        <Grid>
+          <Grid.Row>
+            <Grid.Column width={5}>
+              <AutoForm style={{ paddingBottom: '20px' }} schema={bridge} onSubmit={data => this.submit(data)} >
+                <Segment>
+                  <MultiSelectField id='titles' name='titles' showInlineError={true} placeholder={'Find by Title'}/>
+                  <MultiSelectField id='categories' name='categories' showInlineError={true} placeholder={'Pick a Category'}/>
+                  <MultiSelectField id='ages' name='ages' showInlineError={true} placeholder={'Pick an Age Group'}/>
+                  <MultiSelectField id='environments' name='environments' showInlineError={true} placeholder={'Pick an Environment'}/>
+                  <SubmitField id='submit' value='Submit'/>
+                </Segment>
+              </AutoForm>
+            </Grid.Column>
+            <Grid.Column width={11}>
+              <div className="map">
+                <iframe width="765" height="370" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=-158.42234810348603%2C21.16792215058402%2C-157.6793976640329%2C21.7615698948541&amp;layer=mapnik"/>
+              </div>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
         <br/>
-        <AutoForm style={{ paddingBottom: '20px' }} schema={bridge} onSubmit={data => this.submit(data)} >
-          <Segment>
-            <MultiSelectField id='opportunities' name='opportunities' showInlineError={true} placeholder={'Pick an Opportunity'}/>
-            <SubmitField id='submit' value='Submit'/>
-          </Segment>
-        </AutoForm>
-        <Card.Group stackable itemsPerRow={3} centered>{opportunityList.map((opportunities, index) => <OpportunityItem
+        <Card.Group stackable itemsPerRow={3} centered>{this.props.opportunities.map((opportunities, index) => <OpportunityItem
           key={index}
           opportunity={opportunities}/>)}
         </Card.Group>
