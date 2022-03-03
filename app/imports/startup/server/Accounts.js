@@ -16,10 +16,10 @@ function createUser(email, firstName, lastName, password, role) {
   }
 }
 
-function createOrganization(organizationName, username, firstName, lastName, password, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email, role) {
+function createOrganization(organizationName, username, firstName, lastName, password, image, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email, role) {
   console.log(`  Creating organization ${username} with role ${role}.`);
   if (role === ROLE.ORGANIZATION) {
-    OrganizationProfiles.define({ organizationName, username, firstName, lastName, password, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email });
+    OrganizationProfiles.define({ organizationName, username, firstName, lastName, password, image, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email });
   }
 }
 function createVolunteer(email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType, role) {
@@ -39,11 +39,11 @@ if (Meteor.users.find().count() === 0) {
   if (Meteor.settings.defaultOrganizations) {
     console.log('Creating the default organization(s)');
     Meteor.settings.defaultOrganizations.map(({ organizationName,
-      username, firstName, lastName, password,
+      username, firstName, lastName, password, image,
       primaryAddress, city, state, zipCode,
       phoneNumber, fields, environmental,
       about, email, role,
-    }) => createOrganization(organizationName, username, firstName, lastName, password, primaryAddress,
+    }) => createOrganization(organizationName, username, firstName, lastName, password, image, primaryAddress,
       city, state, zipCode, phoneNumber, fields, environmental, about, email, role));
   } else {
     console.log('Cannot initialize the database for organization!  Please invoke meteor with a settings file.');
