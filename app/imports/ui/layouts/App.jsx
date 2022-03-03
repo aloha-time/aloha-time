@@ -25,7 +25,7 @@ import { ROLE } from '../../api/role/Role';
 import OrganizationSignup from '../pages/OrganizationSignup';
 import VolunteerSignUp from '../pages/VolunteerSignUp';
 import MyOrganizationProfile from '../pages/MyOrganizationProfile';
-import AdminVerifyPage from '../pages/AdminVerifyPage';
+import AdminPage from '../pages/AdminPage';
 import ViewOpportunity from '../pages/ViewOpportunity';
 import EditMyProfile from '../pages/EditMyProfile';
 
@@ -57,7 +57,7 @@ class App extends React.Component {
             <ProtectedRoute path="/view-opportunity/:_id" component={ViewOpportunity}/>
             <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
             <AdminProtectedRoute path="/manage-database" component={ManageDatabase}/>
-            <AdminProtectedRoute path="/admin-verify" component={AdminVerifyPage}/>
+            <AdminProtectedRoute path="/admin-page" component={AdminPage}/>
             <Route component={NotFound}/>
           </Switch>
           <Footer/>
