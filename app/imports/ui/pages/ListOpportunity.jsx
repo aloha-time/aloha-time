@@ -27,6 +27,10 @@ class ListOpportunity extends React.Component {
           </Header>
         </div>
         <br/>
+        <div className="map">
+          <iframe width="725" height="350" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-158.42234810348603%2C21.16792215058402%2C-157.6793976640329%2C21.7615698948541&amp;layer=mapnik"/>
+        </div>
         <br/>
         <Card.Group stackable itemsPerRow={3} centered>{this.props.opportunities.map((opportunities, index) => <OpportunityItem
           key={index}
