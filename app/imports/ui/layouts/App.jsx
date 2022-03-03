@@ -26,6 +26,7 @@ import MyOrganizationProfile from '../pages/MyOrganizationProfile';
 import AdminPage from '../pages/AdminPage';
 import ViewOpportunity from '../pages/ViewOpportunity';
 import EditMyProfile from '../pages/EditMyProfile';
+import OpportunityHours from '../pages/OpportunityHours';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -52,6 +53,7 @@ class App extends React.Component {
             <ProtectedRoute path="/add-opportunity" component={AddOpportunity}/>
             <ProtectedRoute path="/edit-opportunity/:_id" component={EditOpportunity}/>
             <ProtectedRoute path="/view-opportunity/:_id" component={ViewOpportunity}/>
+            <ProtectedRoute path="/opportunity-hours/:_id" component={OpportunityHours}/>
             <AdminProtectedRoute path="/manage-database" component={ManageDatabase}/>
             <AdminProtectedRoute path="/admin-page" component={AdminPage}/>
             <Route component={NotFound}/>

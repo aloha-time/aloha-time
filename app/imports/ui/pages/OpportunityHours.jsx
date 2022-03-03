@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Header, Loader, Card, Grid, Button, Icon, Segment, Image } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Grid, Button, Segment, Icon } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
@@ -8,7 +8,7 @@ import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
 /** Renders a table containing all the Opportunity documents. Use <OpportunityItem> to render each row. */
-class ViewOpportunity extends React.Component {
+class OpportunityHours extends React.Component {
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
@@ -20,23 +20,39 @@ class ViewOpportunity extends React.Component {
       <Container id={PAGE_IDS.VIEW_OPPORTUNITY}>
         <div className="organization-sign-up-top">
           <Header as="h2" textAlign="center" inverted>
-            Opportunity Details
+            Submit Your Hours
           </Header>
           <Header as="h5" textAlign="center" inverted>
-            Information about this listing
+            Submit the total time you have volunteered for this opportunity
           </Header>
         </div>
+        <Header as="h1" textAlign="center">
+          Record Your Time
+        </Header>
         <br/>
-        <Button floated='right' animated='vertical' color='blue' as={NavLink}
-          exact to={`/opportunity-hours/${this.props.opportunity._id}`}>
-          <Button.Content hidden>
-            <Icon name='hourglass half'/> Confirm Your Hours
-          </Button.Content>
-          <Button.Content visible>
-            <Icon name='check circle'/>Did You Finish Volunteering?
-          </Button.Content>
-        </Button>
-        <br/>
+        <Grid columns={4} divided textAlign='center'>
+          <Grid.Row>
+            <Grid.Column>
+              <Header>Date</Header>
+              <input type="date" id="start" name="trip-start"
+                value="2018-07-22"
+                min="2018-01-01" max="2018-12-31" />
+            </Grid.Column>
+            <Grid.Column>
+              <Header>Start Time</Header>
+              <input type="time" id="appt" name="appt"
+                min="09:00" max="18:00" required />
+            </Grid.Column>
+            <Grid.Column>
+              <Header>End Time</Header>
+              <input type="time" id="appt" name="appt"
+                min="09:00" max="18:00" required />
+            </Grid.Column>
+            <Grid.Column>
+              <Button type='submit' color='blue'>Submit</Button>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
         <br/>
         <Card fluid>
           <img src={this.props.opportunity.coverImage} height={500} alt="cover image"/>
@@ -79,85 +95,25 @@ class ViewOpportunity extends React.Component {
           </Grid.Row>
         </Grid>
         <br/>
-        <br/>
-        <Grid centered column>
-          <Button color='blue'>
-            <Icon name='map marker alternate'/> Get directions
-          </Button>
-          <Button color='blue'>
-            <Icon name='heart'/> Bookmark
-          </Button>
-          <Button color='blue'>
-            <Icon name='share alternate'/> Share
-          </Button>
-          <Button color='blue'>
-            <Icon name='mail'/> Send an email
-          </Button>
-          <Button color='blue'>
-            <Icon name='chat'/> Direct message
-          </Button>
-          <Button color='blue'>
-            <Icon name='exclamation circle'/> Report
-          </Button>
-        </Grid>
-        <br/>
-        <br/>
-        <Grid columns={2} divided>
-          <Grid.Row stretched>
-            <Grid.Column>
-              <Segment>
-                <Icon name='map marker alternate'/> Location
-                <p><h3>{this.props.opportunity.location}</h3></p>
-              </Segment>
-              <Segment>
-                <Icon name='content'/> Description
-                <p><h3>{this.props.opportunity.description}</h3></p>
-              </Segment>
-              <Segment>
-                <Icon name='tree'/> Environment
-                <p><h3>{this.props.opportunity.environment}</h3></p>
-              </Segment>
-              <Segment>
-                <Icon name='block layout'/> Other Details
-                <p><h3>{this.props.opportunity.ageGroup}</h3></p>
-              </Segment>
-            </Grid.Column>
-            <Grid.Column>
-              <Segment>
-                <Icon name='ellipsis horizontal'/> Opportunity Type
-                <p><h3>{this.props.opportunity.opportunityType}</h3></p>
-              </Segment>
-              <Segment>
-                <Icon name='block layout'/> Category
-                <p><h3>{this.props.opportunity.category}</h3></p>
-              </Segment>
-              <Segment>
-                <Icon name='globe'/> Website
-                <p><h3>{this.props.opportunity.website}</h3></p>
-              </Segment>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-        <br/>
-        <Card.Group stackable itemsPerRow={4}>
-          <Card link>
-            <Image src={this.props.opportunity.galleryImage}/>
-          </Card>
-          <Card link>
-            <Image src={this.props.opportunity.galleryImage}/>
-          </Card>
-          <Card link>
-            <Image src={this.props.opportunity.galleryImage}/>
-          </Card>
-          <Card link>
-            <Image src={this.props.opportunity.galleryImage}/>
-          </Card>
-        </Card.Group>
-        <Grid columns={3}>
+        <Header as="h1" textAlign="center">
+          Mahalo For Helping Out!
+        </Header>
+        <Grid>
           <Grid.Row/>
           <Grid.Row>
-            <Grid.Column/>
-            <Grid.Column>
+            <Grid.Column width={3}/>
+            <Grid.Column width={5}>
+              <Button animated='vertical' fluid color='blue' as={NavLink}
+                exact to={`/view-opportunity/${this.props.opportunity._id}`}>
+                <Button.Content hidden>
+                  View Opportunity Details
+                </Button.Content>
+                <Button.Content visible>
+                  Return To Listing
+                </Button.Content>
+              </Button>
+            </Grid.Column>
+            <Grid.Column width={5}>
               <Button animated='vertical' fluid color='blue' as={NavLink} exact to="/browse-opportunities">
                 <Button.Content hidden>
                   View all opportunities
@@ -167,7 +123,7 @@ class ViewOpportunity extends React.Component {
                 </Button.Content>
               </Button>
             </Grid.Column>
-            <Grid.Column/>
+            <Grid.Column width={3}/>
           </Grid.Row>
           <Grid.Row/>
         </Grid>
@@ -177,7 +133,7 @@ class ViewOpportunity extends React.Component {
 }
 
 // Require an array of Opportunity documents in the props.
-ViewOpportunity.propTypes = {
+OpportunityHours.propTypes = {
   opportunity: PropTypes.object,
   ready: PropTypes.bool.isRequired,
 };
@@ -197,4 +153,4 @@ export default withTracker(() => {
     opportunity,
     ready,
   };
-})(ViewOpportunity);
+})(OpportunityHours);
