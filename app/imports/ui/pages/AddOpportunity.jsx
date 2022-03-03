@@ -49,8 +49,14 @@ const formSchema = new SimpleSchema({
   email: String,
   phone: String,
   website: String,
-  coverImage: String,
-  galleryImage: String,
+  coverImage: {
+    type: String,
+    defaultValue: '../images/opportunity_images/opportunity-default.jpg',
+  },
+  galleryImage: {
+    type: String,
+    defaultValue: '../images/opportunity_images/opportunity-default.jpg',
+  },
   ageGroup: {
     type: String,
     allowedValues: opportunityAges,
