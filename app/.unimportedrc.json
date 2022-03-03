@@ -2,7 +2,6 @@
   "ignoreUnresolved": [],
   "ignoreUnimported": [
     "imports/api/base/BaseUtilities.js",
-    "imports/api/stuff/StuffCollection.methods.app-test.js",
     "imports/build-version.js",
     "imports/test-utilities/test-utilities.js"
   ],

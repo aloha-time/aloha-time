@@ -132,7 +132,7 @@ class BaseProfileCollection extends BaseCollection {
       Meteor.users.remove({ _id: userID });
       return super.removeIt(profileID);
     }
-    throw new Meteor.Error(`User ${profile.email} owns Stuff.`);
+    throw new Meteor.Error(`User ${profile.email} owns this account.`);
   }
 
 }

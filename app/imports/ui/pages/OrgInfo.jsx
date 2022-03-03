@@ -6,7 +6,7 @@ import { useParams } from 'react-router';
 import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection';
 import OrgItem2 from '../components/OrgItem2';
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
+/** Renders a table containing all of the Organization documents. Use <OrgItem2> to render each row. */
 const OrgInfo = ({ ready, doc }) => ((ready) ? (
   <Container>
     <Grid columns='equal'>
@@ -44,7 +44,7 @@ const OrgInfo = ({ ready, doc }) => ((ready) ? (
   </Container>
 ) : <Loader active>Getting data</Loader>);
 
-// Require an array of Stuff documents in the props.
+// Require an array of Organization documents in the props.
 OrgInfo.propTypes = {
   orgs: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
@@ -56,11 +56,11 @@ export default withTracker(() => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const { _id } = useParams();
   const documentId = _id;
-  // Get access to Stuff documents.
+  // Get access to Organization Profiles.
   const subscription = OrganizationProfiles.subscribe();
   // Determine if the subscription is ready
   const ready = subscription.ready();
-  // Get the Stuff documents and sort them by name.
+  // Get the Organization Profiles and sort them by name.
   const orgs = OrganizationProfiles.find({}, { sort: { organizationName: 1 } }).fetch();
   // Get the document
   const doc = orgs.find((org) => org._id === documentId);
