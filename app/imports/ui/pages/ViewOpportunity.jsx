@@ -106,8 +106,8 @@ class ViewOpportunity extends React.Component {
           <Grid.Row stretched>
             <Grid.Column>
               <Segment>
-                <Icon name='map marker alternate'/> Location
-                <p><h3>{this.props.opportunity.location}</h3></p>
+                <Icon name='ellipsis horizontal'/> Opportunity Type
+                <p><h3>{this.props.opportunity.opportunityType}</h3></p>
               </Segment>
               <Segment>
                 <Icon name='content'/> Description
@@ -124,8 +124,12 @@ class ViewOpportunity extends React.Component {
             </Grid.Column>
             <Grid.Column>
               <Segment>
-                <Icon name='ellipsis horizontal'/> Opportunity Type
-                <p><h3>{this.props.opportunity.opportunityType}</h3></p>
+                <Icon name='map marker alternate'/> Location
+                <p><h3>{this.props.opportunity.location}</h3></p>
+                <div className="map">
+                  <iframe width="500" height="200" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=-158.42234810348603%2C21.16792215058402%2C-157.6793976640329%2C21.7615698948541&amp;layer=mapnik"/>
+                </div>
               </Segment>
               <Segment>
                 <Icon name='block layout'/> Category
