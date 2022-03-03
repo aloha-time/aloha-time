@@ -3,6 +3,7 @@ import { Grid, Loader, Header, Segment, Container, Card, Icon, Form, Button } fr
 import swal from 'sweetalert';
 import {
   AutoForm,
+  DateField,
   ErrorsField,
   HiddenField,
   LongTextField,
@@ -74,8 +75,8 @@ const EditOpportunity = ({ doc, ready }) => {
                   </Card.Content>
                   <Card.Content>
                     <Form.Group widths='equal'>
-                      <TextField label='From' name='startDate' placeholder='mm/dd/yyyy'/>
-                      <TextField label='To' name='endDate' placeholder='mm/dd/yyyy'/>
+                      <DateField name='startDate'/>
+                      <DateField name='endDate'/>
                     </Form.Group>
                     <Form.Group widths='equal'>
                       <TextField label='Start Time' name='startTime' placeholder='hh : mm am/pm' />

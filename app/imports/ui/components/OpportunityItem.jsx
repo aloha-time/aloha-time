@@ -29,7 +29,7 @@ class OpportunityItem extends React.Component {
           </Card.Header>
           <Card.Meta>
             <Icon name='calendar alternate'/>
-            {OpportunityInfo.startDate} - {OpportunityInfo.endDate}
+            {OpportunityInfo.startDate.toLocaleDateString('en-US')} - {OpportunityInfo.endDate.toLocaleDateString('en-US')}
           </Card.Meta>
           <Card.Meta>
             <Icon name='clock'/>

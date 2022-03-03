@@ -26,8 +26,8 @@ class OpportunitiesCollection extends BaseCollection {
         allowedValues: opportunityTypes,
         defaultValue: 'Event',
       },
-      startDate: String,
-      endDate: String,
+      startDate: Date,
+      endDate: Date,
       startTime: String,
       endTime: String,
       recurring: {
