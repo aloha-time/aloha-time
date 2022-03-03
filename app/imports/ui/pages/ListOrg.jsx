@@ -4,11 +4,12 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection';
 import OrgItem from '../components/OrgItem';
+import SearchBar from '../components/SearchBar';
 
 /** Renders a table containing all of the Organizations. Use <OrgItem> to render each row. */
 const ListOrg = ({ ready, orgs }) => ((ready) ? (
   <Container>
-    <Search small placeholder="Search for Organization"/>
+    <SearchBar/>
     <Card.Group> {/* will eventually be a single OrgItem, something along the lines of {orgs.map((org) => <OrgItem key={org._id} org={org} />)} */}
       {orgs.map((org) => <OrgItem key={org._id} org={org} />)}
     </Card.Group>
