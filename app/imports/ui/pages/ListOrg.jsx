@@ -23,11 +23,11 @@ ListOrg.propTypes = {
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
-  // Get access to Stuff documents.
+  // Get access to OrganizationProfiles documents.
   const subscription = OrganizationProfiles.subscribe();
   // Determine if the subscription is ready
   const ready = subscription.ready();
-  // Get the Stuff documents and sort them by name.
+  // Get the OrganizationProfiles documents and sort them by name.
   const orgs = OrganizationProfiles.find({}, { sort: { organizationName: 1 } }).fetch();
   return {
     orgs,
