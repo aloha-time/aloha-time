@@ -7,6 +7,7 @@ import {
   SelectField,
   SubmitField,
   TextField,
+  DateField,
 } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
@@ -30,10 +31,8 @@ const formSchema = new SimpleSchema({
     allowedValues: opportunityTypes,
     defaultValue: 'Event',
   },
-  startDate: String,
+  startDate: Date,
   endDate: String,
-  startTime: String,
-  endTime: String,
   recurring: {
     type: String,
     allowedValues: opportunityRecurring,
@@ -69,10 +68,10 @@ const AddOpportunity = () => {
 
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { title, opportunityType, startDate, endDate, startTime, endTime, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment } = data;
+    const { title, opportunityType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment } = data;
     const owner = Meteor.user().username;
     const collectionName = Opportunities.getCollectionName();
-    const definitionData = { title, opportunityType, startDate, endDate, startTime, endTime, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, owner };
+    const definitionData = { title, opportunityType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, owner };
     defineMethod.callPromise({ collectionName, definitionData })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => {
@@ -125,12 +124,8 @@ const AddOpportunity = () => {
                   </Card.Content>
                   <Card.Content>
                     <Form.Group widths='equal'>
-                      <TextField label='From' name='startDate' placeholder='mm/dd/yyyy'/>
-                      <TextField label='To' name='endDate' placeholder='mm/dd/yyyy'/>
-                    </Form.Group>
-                    <Form.Group widths='equal'>
-                      <TextField label='Start Time' name='startTime' placeholder='hh : mm am/pm' />
-                      <TextField label='End Time' name='endTime' placeholder='hh : mm am/pm' />
+                      <DateField name='startDate'/>
+                      <DateField name='endDate'/>
                     </Form.Group>
                     <SelectField label='Is recurring?' name='recurring'/>
                   </Card.Content>

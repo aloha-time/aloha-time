@@ -41,16 +41,12 @@ class ViewOpportunity extends React.Component {
             <Grid.Column>
               <Segment size='medium' textAlign='center'>
                 <p>
-                  <h3>
-                    <Icon name='calendar alternate'/>
-                    {this.props.opportunity.startDate} - {this.props.opportunity.endDate}
-                  </h3>
+                  <Icon name='calendar alternate'/>
+                  {this.props.opportunity.startDate.toLocaleDateString('en-US')} - {this.props.opportunity.endDate.toLocaleDateString('en-US')}
                 </p>
                 <p>
-                  <h3>
-                    <Icon name='clock'/>
-                    {this.props.opportunity.startTime} - {this.props.opportunity.endTime}
-                  </h3>
+                  <Icon name='clock'/>
+                  {this.props.opportunity.startDate.toLocaleTimeString('en-US').replace(/:\d+ /, ' ')} - {this.props.opportunity.endDate.toLocaleTimeString('en-US').replace(/:\d+ /, ' ')}
                 </p>
               </Segment>
             </Grid.Column>

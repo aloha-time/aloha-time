@@ -3,6 +3,7 @@ import { Grid, Loader, Header, Segment, Container, Card, Icon, Form, Button } fr
 import swal from 'sweetalert';
 import {
   AutoForm,
+  DateField,
   ErrorsField,
   HiddenField,
   LongTextField,
@@ -26,9 +27,9 @@ const EditOpportunity = ({ doc, ready }) => {
 
   // On successful submit, insert the data.
   const submit = (data) => {
-    const { title, opportunityType, startDate, endDate, startTime, endTime, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, _id } = data;
+    const { title, opportunityType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, _id } = data;
     const collectionName = Opportunities.getCollectionName();
-    const updateData = { id: _id, title, opportunityType, startDate, endDate, startTime, endTime, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment };
+    const updateData = { id: _id, title, opportunityType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment };
     updateMethod.callPromise({ collectionName, updateData })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => swal('Success', 'Item updated successfully', 'success'));
@@ -74,12 +75,8 @@ const EditOpportunity = ({ doc, ready }) => {
                   </Card.Content>
                   <Card.Content>
                     <Form.Group widths='equal'>
-                      <TextField label='From' name='startDate' placeholder='mm/dd/yyyy'/>
-                      <TextField label='To' name='endDate' placeholder='mm/dd/yyyy'/>
-                    </Form.Group>
-                    <Form.Group widths='equal'>
-                      <TextField label='Start Time' name='startTime' placeholder='hh : mm am/pm' />
-                      <TextField label='End Time' name='endTime' placeholder='hh : mm am/pm' />
+                      <DateField name='startDate'/>
+                      <DateField name='endDate'/>
                     </Form.Group>
                     <SelectField label='Is recurring?' name='recurring'/>
                   </Card.Content>
