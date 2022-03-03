@@ -6,9 +6,11 @@ import { useParams } from 'react-router';
 import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection';
 import OrgItem2 from '../components/OrgItem2';
 
+const pageStyle = { paddingTop: '15px', paddingBottom: '15px' };
+
 /** Renders a table containing all of the Organization documents. Use <OrgItem2> to render each row. */
 const OrgInfo = ({ ready, doc }) => ((ready) ? (
-  <Container>
+  <Container style={pageStyle}>
     <Grid columns='equal'>
       <Grid.Column>
         <OrgItem2 org={doc}/>

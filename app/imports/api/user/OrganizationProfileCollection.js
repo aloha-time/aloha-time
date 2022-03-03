@@ -28,6 +28,7 @@ class OrganizationProfileCollection extends BaseProfileCollection {
       organizationName: String,
       firstName: String,
       lastName: String,
+      image: String,
       email: String,
       primaryAddress: String,
       city: String,
@@ -48,6 +49,7 @@ class OrganizationProfileCollection extends BaseProfileCollection {
    * @param firstName The first name.
    * @param lastName The last name.
    * @param organizationName The name of the organization.
+   * @param image The name of the organization.
    * @param primaryAddress The address of the organization.
    * @param city The city where the organization is located.
    * @param state The state where the organization is located.
@@ -57,13 +59,13 @@ class OrganizationProfileCollection extends BaseProfileCollection {
    * @param environmental Environment that the organization is active on.
    * @param about Message about the organization.
    */
-  define({ username, organizationName, firstName, lastName, password, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email }) {
+  define({ username, organizationName, firstName, lastName, password, image, email, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about }) {
     if (Meteor.isServer) {
       // const username = email;
       const user = this.findOne({ email, firstName, lastName });
       if (!user) {
         const role = ROLE.ORGANIZATION;
-        const profileID = this._collection.insert({ organizationName, username, firstName, lastName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email, userID: this.getFakeUserId(), role });
+        const profileID = this._collection.insert({ organizationName, username, firstName, lastName, image, email, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, userID: this.getFakeUserId(), role });
         const userID = Users.define({ username, email, role, password });
         this._collection.update(profileID, { $set: { userID } });
         return profileID;
@@ -79,7 +81,7 @@ class OrganizationProfileCollection extends BaseProfileCollection {
    * @param firstName new first name (optional).
    * @param lastName new last name (optional).
    */
-  update(docID, { firstName, organizationName, lastName, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about }) {
+  update(docID, { firstName, organizationName, lastName, image, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about }) {
     this.assertDefined(docID);
     const updateData = {};
     if (organizationName) {
@@ -90,6 +92,9 @@ class OrganizationProfileCollection extends BaseProfileCollection {
     }
     if (lastName) {
       updateData.lastName = lastName;
+    }
+    if (image) {
+      updateData.image = image;
     }
     if (primaryAddress) {
       updateData.primaryAddress = firstName;
@@ -168,6 +173,7 @@ class OrganizationProfileCollection extends BaseProfileCollection {
     const username = doc.username;
     const firstName = doc.firstName;
     const lastName = doc.lastName;
+    const image = doc.image;
     const primaryAddress = doc.primaryAddress;
     const city = doc.city;
     const organizationName = doc.organizationName;
@@ -177,7 +183,7 @@ class OrganizationProfileCollection extends BaseProfileCollection {
     const fields = doc.fields;
     const environmental = doc.environmental;
     const about = doc.about;
-    return { email, organizationName, firstName, lastName, username, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about };
+    return { email, organizationName, firstName, lastName, username, image, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about };
   }
 }
 

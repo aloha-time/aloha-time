@@ -6,10 +6,10 @@ import { withRouter } from 'react-router-dom';
 /** Renders a single card in the Organization Library. See pages/ListOrg.jsx. */
 const OrgItem2 = ({ org }) => (
   <Card>
-    <Image src='https://react.semantic-ui.com/images/avatar/large/daniel.jpg' wrapped ui={false} /> {/* will call to the organization collection using something like org.logo */}
+    <Image src={org.image} wrapped ui={false} /> {/* will call to the organization collection using something like org.logo */}
     <Card.Content>
       <Card.Header>{org.organizationName}</Card.Header> {/* will call to the organization collection using something like org.name */}
-      <Card.Meta>{org.field}</Card.Meta> {/* will call to the organization collection using something like org.startDate */}
+      <Card.Meta>{org.fields}</Card.Meta> {/* will call to the organization collection using something like org.startDate */}
       <Card.Meta>{org.primaryAddress}</Card.Meta>
       <Card.Description>
         {org.about} {/* will call to the organization collection using something like org.missionStatement */}
@@ -22,6 +22,7 @@ const OrgItem2 = ({ org }) => (
 // since it is only a mockup don't need to have this part finished yet
 OrgItem2.propTypes = {
   org: PropTypes.shape({
+    image: PropTypes.string,
     organizationName: PropTypes.string,
     fields: PropTypes.array,
     primaryAddress: PropTypes.string,
