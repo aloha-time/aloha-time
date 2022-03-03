@@ -124,7 +124,7 @@ const ShowVolunteerProfile = ({ volProfile, ready }) => ((ready) ? (
         </Grid.Column>
       </Grid>
       <div className="my-organization-bottom" >
-        <Button inverted size= "big" color="blue"><Link to="/edit-my-profile">Edit My Organization Profile</Link></Button>
+        <Button inverted size= "big" color="blue"><Link to="/edit-my-profile">Edit My Profile</Link></Button>
       </div>
     </Segment>
   </Container>
