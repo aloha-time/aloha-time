@@ -34,6 +34,8 @@ const NavBar = ({ currentUser }) => {
             <Dropdown.Menu>
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_BROWSE_OPPORTUNITIES}
                 text="Browse Opportunities" as={NavLink} exact to="/browse-opportunities"/>
+              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_CALENDAR_SCHEDULE}
+                text="Calendar Schedule" as={NavLink} exact to="/calendar-schedule"/>
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_ORGANIZATION_LIBRARY}
                 text="Organization Library" as={NavLink} exact to="/organization-library"/>
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_ABOUT_US} text="About Us" as={NavLink} exact
@@ -62,6 +64,8 @@ const NavBar = ({ currentUser }) => {
             <Dropdown.Menu>
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_BROWSE_OPPORTUNITIES}
                 text="Browse Opportunities" as={NavLink} exact to="/browse-opportunities"/>
+              <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_CALENDAR_SCHEDULE}
+                text="Calendar Schedule" as={NavLink} exact to="/calendar-schedule"/>
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_ORGANIZATION_LIBRARY}
                 text="Organization Library" as={NavLink} exact to="/organization-library"/>
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_ABOUT_US} text="About Us" as={NavLink} exact

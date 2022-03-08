@@ -27,6 +27,7 @@ import AdminPage from '../pages/AdminPage';
 import ViewOpportunity from '../pages/ViewOpportunity';
 import EditMyProfile from '../pages/EditMyProfile';
 import OpportunityHours from '../pages/OpportunityHours';
+import CalendarSchedule from '../pages/CalendarSchedule';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -47,6 +48,7 @@ class App extends React.Component {
             <Route path="/organization-signup" component={OrganizationSignup}/>
             <Route path="/volunteer-signup" component={VolunteerSignUp}/>
             <Route path="/signout" component={Signout}/>
+            <Route path="/calendar-schedule" component={CalendarSchedule}/>
             <VolunteerProtectedRoute path="/edit-my-profile" component={EditMyProfile}/>
             <OrganizationProtectedRoute path="/my-organization-profile" component={MyOrganizationProfile}/>
             <ProtectedRoute path="/orginfo/:_id" component={OrgInfo}/>

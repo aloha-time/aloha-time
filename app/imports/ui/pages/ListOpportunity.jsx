@@ -61,6 +61,13 @@ class ListOpportunity extends React.Component {
           </Header>
         </div>
         <br/>
+        <Button floated='right' color='blue' as={NavLink}
+          exact to="/calendar-schedule">
+          View Calendar Schedule
+        </Button>
+        <br/>
+        <br/>
+        <br/>
         <Grid>
           <Grid.Row>
             <Grid.Column width={5}>

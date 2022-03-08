@@ -1,12 +1,10 @@
 import React from 'react';
-// import { render } from 'react-dom';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import { Container, Header } from 'semantic-ui-react';
+import { Button, Container, Header } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
 import { PAGE_IDS } from '../utilities/PageIDs';
-// import { Container, Header, Segment } from 'semantic-ui-react';
-// import { PAGE_IDS } from '../utilities/PageIDs';
 
 const localizer = momentLocalizer(moment);
 
@@ -21,6 +19,13 @@ const CalendarSchedule = () => (
         View the schedule of upcoming opportunities
       </Header>
     </div>
+    <br/>
+    <Button floated='right' color='blue' as={NavLink}
+      exact to="/browse-opportunities">
+      See all Available Opportunities
+    </Button>
+    <br/>
+    <br/>
     <br/>
     <div>
       <Calendar

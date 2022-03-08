@@ -55,10 +55,8 @@ function AdminOrgSearch() {
       });
     }, 300);
   }, []);
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(timeoutRef.current);
-    };
+  React.useEffect(() => () => {
+    clearTimeout(timeoutRef.current);
   }, []);
 
   return (
@@ -75,18 +73,18 @@ function AdminOrgSearch() {
         />
       </Grid.Column>
 
-      {/* <Grid.Column width={10}>*/}
-      {/*  <Segment>*/}
-      {/*    <Header>State</Header>*/}
-      {/*    <pre style={{ overflowX: 'auto' }}>*/}
-      {/*      {JSON.stringify({ loading, results, value }, null, 2)}*/}
-      {/*    </pre>*/}
+      {/* <Grid.Column width={10}> */}
+      {/*  <Segment> */}
+      {/*    <Header>State</Header> */}
+      {/*    <pre style={{ overflowX: 'auto' }}> */}
+      {/*      {JSON.stringify({ loading, results, value }, null, 2)} */}
+      {/*    </pre> */}
       {/*      <Header>Options</Header> */}
-      {/*      <pre style={{ overflowX: 'auto' }}>*/}
-      {/*      {JSON.stringify(source, null, 2)}*/}
-      {/*    </pre>*/}
-      {/*    </Segment>*/}
-      {/*  </Grid.Column>*/}
+      {/*      <pre style={{ overflowX: 'auto' }}> */}
+      {/*      {JSON.stringify(source, null, 2)} */}
+      {/*    </pre> */}
+      {/*    </Segment> */}
+      {/*  </Grid.Column> */}
     </Grid>
   );
 }
