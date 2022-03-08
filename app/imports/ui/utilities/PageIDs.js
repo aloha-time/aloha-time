@@ -16,4 +16,6 @@ export const PAGE_IDS = {
   ABOUT_US: 'about-us',
   VOLUNTEER_SIGN_UP: 'volunteer-sign-up',
   VIEW_OPPORTUNITY: 'view-opportunity',
+  OPPORTUNITY_HOURS: 'opportunity-hours',
+  CALENDAR_SCHEDULE: 'calendar-schedule',
 };

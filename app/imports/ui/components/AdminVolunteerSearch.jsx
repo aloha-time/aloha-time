@@ -15,17 +15,17 @@ const source = OrganizationProfiles.find().fetch();
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'CLEAN_QUERY':
-      return initialState;
-    case 'START_SEARCH':
-      return { ...state, loading: true, value: action.query };
-    case 'FINISH_SEARCH':
-      return { ...state, loading: false, results: action.results };
-    case 'UPDATE_SELECTION':
-      return { ...state, value: action.selection };
+  case 'CLEAN_QUERY':
+    return initialState;
+  case 'START_SEARCH':
+    return { ...state, loading: true, value: action.query };
+  case 'FINISH_SEARCH':
+    return { ...state, loading: false, results: action.results };
+  case 'UPDATE_SELECTION':
+    return { ...state, value: action.selection };
 
-    default:
-      throw new Error();
+  default:
+    throw new Error();
   }
 }
 
@@ -55,39 +55,37 @@ function AdminVolunteerSearch() {
       });
     }, 300);
   }, []);
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(timeoutRef.current);
-    };
+  React.useEffect(() => () => {
+    clearTimeout(timeoutRef.current);
   }, []);
 
   return (
-      <Grid>
-        <Grid.Column width={6}>
-          <Search
-              loading={loading}
-              onResultSelect={(e, data) => dispatch({ type: 'UPDATE_SELECTION', selection: data.result.organizationName })
-              }
-              onSearchChange={handleSearchChange}
-              resultRenderer={resultRenderer}
-              results={results}
-              value={value}
-          />
-        </Grid.Column>
+    <Grid>
+      <Grid.Column width={6}>
+        <Search
+          loading={loading}
+          onResultSelect={(e, data) => dispatch({ type: 'UPDATE_SELECTION', selection: data.result.organizationName })
+          }
+          onSearchChange={handleSearchChange}
+          resultRenderer={resultRenderer}
+          results={results}
+          value={value}
+        />
+      </Grid.Column>
 
-        {/*<Grid.Column width={10}>*/}
-        {/*  <Segment>*/}
-        {/*    <Header>State</Header>*/}
-        {/*    <pre style={{ overflowX: 'auto' }}>*/}
-        {/*    {JSON.stringify({ loading, results, value }, null, 2)}*/}
-        {/*  </pre>*/}
-        {/*    <Header>Options</Header>*/}
-        {/*    <pre style={{ overflowX: 'auto' }}>*/}
-        {/*    {JSON.stringify(source, null, 2)}*/}
-        {/*  </pre>*/}
-        {/*  </Segment>*/}
-        {/*</Grid.Column>*/}
-      </Grid>
+      {/* <Grid.Column width={10}> */}
+      {/*  <Segment> */}
+      {/*    <Header>State</Header> */}
+      {/*    <pre style={{ overflowX: 'auto' }}> */}
+      {/*    {JSON.stringify({ loading, results, value }, null, 2)} */}
+      {/*  </pre> */}
+      {/*    <Header>Options</Header> */}
+      {/*    <pre style={{ overflowX: 'auto' }}> */}
+      {/*    {JSON.stringify(source, null, 2)} */}
+      {/*  </pre> */}
+      {/*  </Segment> */}
+      {/* </Grid.Column> */}
+    </Grid>
   );
 }
 

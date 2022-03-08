@@ -17,7 +17,7 @@ class OpportunityHours extends React.Component {
   /** Render the page once subscriptions have been received. */
   renderPage() {
     return (
-      <Container id={PAGE_IDS.VIEW_OPPORTUNITY}>
+      <Container id={PAGE_IDS.OPPORTUNITY_HOURS}>
         <div className="organization-sign-up-top">
           <Header as="h2" textAlign="center" inverted>
             Submit Your Hours
