@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { Label, Grid, Search, Segment, Header } from 'semantic-ui-react';
+import { Label, Grid, Search } from 'semantic-ui-react';
 import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection';
 
 const initialState = { loading: false, results: [], value: '' };

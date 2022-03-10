@@ -7,9 +7,11 @@ import AdminOrgSearch from './AdminOrgSearch';
 import AdminVolunteerSearch from './AdminVolunteerSearch';
 
 const panes = [
+  // eslint-disable-next-line react/display-name
   { menuItem: 'Manage Account', render: () => <Tab.Pane>
     <AdminSettingsForm/>
   </Tab.Pane> },
+  // eslint-disable-next-line react/display-name
   { menuItem: 'Manage Organizations', render: () => <Tab.Pane>
     <AdminOrgSearch/>
     <Item.Group divided>
@@ -20,6 +22,7 @@ const panes = [
       <OrgVerifyList/>
     </Item.Group>
   </Tab.Pane> },
+  // eslint-disable-next-line react/display-name
   { menuItem: 'Manage Volunteers', render: () => <Tab.Pane>
     <AdminVolunteerSearch/>
     <Item.Group divided>

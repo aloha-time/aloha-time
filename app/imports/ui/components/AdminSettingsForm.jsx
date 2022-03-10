@@ -13,7 +13,7 @@ class AdminSettingsForm extends Component {
   }
 
   render() {
-    const { password, submittedPassword } = this.state;
+    const { password } = this.state;
 
     return (
       <div>

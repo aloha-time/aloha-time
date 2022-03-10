@@ -5,7 +5,7 @@ import { Container, Loader } from 'semantic-ui-react';
 import AdminTabs from '../components/AdminTabs';
 import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection';
 
-const AdminPage = ({ ready, organization }) => ((ready) ? (
+const AdminPage = ({ ready }) => ((ready) ? (
   <Container>
     <div>
       <h1 className="ui center aligned header">
