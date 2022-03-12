@@ -16,17 +16,18 @@ html, body {
 .landing-background {
   background-image: url("images/landingBackground.png");
   background-size: cover;
-  height: 500px;
+  height: 600px;
   margin-top: 10px;
 }
 
 .VA-photo{
-  padding-top: 20px;
+  padding-top: 100px;
   margin-bottom: 10px;
 }
 
 .landing-header{
   font-size: 40px;
+  padding-top: 20px;
 }
 
 .map{
