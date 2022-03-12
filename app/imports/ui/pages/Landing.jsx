@@ -1,7 +1,10 @@
 import React from 'react';
 import { Grid, Header, Image, Button } from 'semantic-ui-react';
+import { Meteor } from 'meteor/meteor';
 import { NavLink } from 'react-router-dom';
+import { Roles } from 'meteor/alanning:roles';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import { ROLE } from '../../api/role/Role';
 
 /** A simple static component to render some text for the landing page. */
 const Landing = () => (
@@ -18,13 +21,15 @@ const Landing = () => (
           <Header inverted size="large">
             We connect passionate volunteers with charitable organizations in order to build community. Let us help you easily find service opportunities for organizations in your area of interest.
           </Header>
-          <Grid textAlign='center'>
-            <Grid.Row>
-              <Grid.Column>
-                <Button size="huge" color="blue" as={NavLink} exact to="/volunteer-signup">Join Now!</Button>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
+          {(Meteor.userId() == null) && !Roles.userIsInRole(Meteor.userId(), [ROLE.VOLUNTEER]) && !Roles.userIsInRole(Meteor.userId(), [ROLE.ORGANIZATION]) ? (
+            <Grid textAlign='center'>
+              <Grid.Row>
+                <Grid.Column>
+                  <Button size="huge" color="blue" as={NavLink} exact to="/volunteer-signup">Join Now!</Button>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          ) : ''}
         </div>
       </Grid>
     </div>
