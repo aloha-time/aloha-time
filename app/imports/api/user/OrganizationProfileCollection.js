@@ -97,7 +97,7 @@ class OrganizationProfileCollection extends BaseProfileCollection {
       updateData.image = image;
     }
     if (primaryAddress) {
-      updateData.primaryAddress = firstName;
+      updateData.primaryAddress = primaryAddress;
     }
     if (city) {
       updateData.city = city;

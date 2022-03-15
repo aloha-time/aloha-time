@@ -2,6 +2,7 @@
 export const PAGE_IDS = {
   ADD_OPPORTUNITY: 'add-opportunity',
   EDIT_MY_PROFILE: 'edit-my-profile',
+  EDIT_MY_ORGANIZATION_PROFILE: 'edit-my-organization-profile',
   EDIT_OPPORTUNITY: 'edit-opportunity',
   LANDING: 'landing',
   LIST_OPPORTUNITY: 'list-opportunity',

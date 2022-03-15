@@ -31,7 +31,7 @@
       "password": "changeme",
       "image": "https://edit-files-prod.s3.us-west-1.amazonaws.com/partners/Hawaiian%20Humane%20Society.png",
       "email": "tyler@foo.com",
-      "primaryAddress":"2700 Waialae Ave" ,
+      "primaryAddress":"2700 Waialae Ave",
       "city": "Honolulu",
       "state": "HI",
       "zipCode": "96826",

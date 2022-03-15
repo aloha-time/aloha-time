@@ -26,6 +26,7 @@ const MyOrganizationProfile = ({ orgProfile, ready }) => ((ready) ? (
         <Grid.Column>
           <Card.Group>
             <Card fluid color='red'>
+              <Image siez='tiny' src={orgProfile.image} wrapped ui={false} />
               <Card.Content>
                 <Card.Header><Icon color="yellow" name="paper plane outline"/>Primary Contact Name</Card.Header>
               </Card.Content>
@@ -102,7 +103,7 @@ const MyOrganizationProfile = ({ orgProfile, ready }) => ((ready) ? (
         </Grid.Column>
       </Grid>
       <div className="my-organization-bottom" >
-        <Button inverted size= "big" color="blue"><Link to="/signin">Edit My Organization Profile</Link></Button>
+        <Button inverted size= "big" color="blue"><Link to="/edit-my-organization-profile">Edit My Organization Profile</Link></Button>
       </div>
     </Segment>
   </Container>

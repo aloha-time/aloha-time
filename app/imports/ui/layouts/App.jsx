@@ -28,6 +28,7 @@ import ViewOpportunity from '../pages/ViewOpportunity';
 import EditMyProfile from '../pages/EditMyProfile';
 import OpportunityHours from '../pages/OpportunityHours';
 import CalendarSchedule from '../pages/CalendarSchedule';
+import EditMyOrganizationProfile from '../pages/EditMyOrganizatonProfile';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -51,6 +52,7 @@ class App extends React.Component {
             <Route path="/calendar-schedule" component={CalendarSchedule}/>
             <VolunteerProtectedRoute path="/edit-my-profile" component={EditMyProfile}/>
             <OrganizationProtectedRoute path="/my-organization-profile" component={MyOrganizationProfile}/>
+            <OrganizationProtectedRoute path="/edit-my-organization-profile" component={EditMyOrganizationProfile}/>
             <ProtectedRoute path="/orginfo/:_id" component={OrgInfo}/>
             <ProtectedRoute path="/add-opportunity" component={AddOpportunity}/>
             <ProtectedRoute path="/edit-opportunity/:_id" component={EditOpportunity}/>

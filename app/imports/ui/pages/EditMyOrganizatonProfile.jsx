@@ -4,7 +4,7 @@ import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import {
   AutoForm,
-  ErrorsField,
+  ErrorsField, LongTextField,
   SubmitField,
   TextField,
 } from 'uniforms-semantic';
@@ -12,39 +12,39 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { Redirect } from 'react-router-dom';
-import RadioField from '../components/form-fields/RadioField';
 import MultiSelectField from '../components/form-fields/MultiSelectField';
-import { VolunteerProfiles } from '../../api/user/VolunteerProfileCollection';
+import RadioField from '../components/form-fields/RadioField';
 import { updateMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection';
 
-const bridge = new SimpleSchema2Bridge(VolunteerProfiles._schema);
+const bridge = new SimpleSchema2Bridge(OrganizationProfiles._schema);
 
 /** Renders the Page for editing a single document. */
-const EditMyProfile = ({ volProfile, ready, location }) => {
+const EditMyOrganizationProfile = ({ orgProfile, ready, location }) => {
   const [redirectToReferer, setRedirectToReferer] = useState(false);
 
   // On successful submit, insert the data.
   const submit = (data) => {
-    const { firstName, lastName, dateOfBirth, genderType, address, city, state, zip, phone, interestsType, skillsType, preferencesType, availabilityType, _id } = data;
-    const collectionName = VolunteerProfiles.getCollectionName();
-    const updateData = { id: _id, firstName, lastName, dateOfBirth, genderType, address, city, state, zip, phone, interestsType, skillsType, preferencesType, availabilityType };
+    const { organizationName, firstName, lastName, image, email, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, _id } = data;
+    const collectionName = OrganizationProfiles.getCollectionName();
+    const updateData = { id: _id, organizationName, firstName, lastName, image, email, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about };
     updateMethod.callPromise({ collectionName, updateData })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => swal('Success', 'Item updated successfully', 'success'));
     setRedirectToReferer(true);
   };
   /* Display the signup form. Redirect my profile page . */
-  const { from } = location.state || { from: { pathname: '/myProfile' } };
+  const { from } = location.state || { from: { pathname: '/my-organization-profile' } };
   // if correct authentication, redirect to from: page instead of edit screen
   if (redirectToReferer) {
     return <Redirect to={from}/>;
   }
   return (ready) ? (
-    <Container id={PAGE_IDS.EDIT_MY_PROFILE}>
+    <Container id={PAGE_IDS.EDIT_MY_ORGANIZATION_PROFILE}>
       <div className="organization-sign-up-top">
         <Header as="h2" textAlign="center" inverted>
-          Edit My Profile
+          Edit My Organization Profile
         </Header>
         <Header as="h5" textAlign="center" inverted>
           Modify your listing
@@ -55,7 +55,7 @@ const EditMyProfile = ({ volProfile, ready, location }) => {
       <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
         <Grid.Column>
           <div className="orgnization-signup-form">
-            <AutoForm schema={bridge} onSubmit={data => submit(data)} model={volProfile}>
+            <AutoForm schema={bridge} onSubmit={data => submit(data)} model={orgProfile}>
               <Segment stacked basic>
                 <Card fluid>
                   <Card.Content>
@@ -65,16 +65,12 @@ const EditMyProfile = ({ volProfile, ready, location }) => {
                     </Card.Header>
                   </Card.Content>
                   <Card.Content>
+                    <TextField label='Organization Name' name='organizationName'/>
+                  </Card.Content>
+                  <Card.Content>
                     <TextField label='First Name' name='firstName'/>
-                  </Card.Content>
-                  <Card.Content>
                     <TextField label='Last Name' name='lastName'/>
-                  </Card.Content>
-                  <Card.Content>
-                    <RadioField label='Gender' name='genderType'/>
-                  </Card.Content>
-                  <Card.Content>
-                    <TextField label='Date of Birth' name='dateOfBirth'/>
+                    <TextField label='image' name='image'/>
                   </Card.Content>
                 </Card>
                 <Card fluid>
@@ -85,41 +81,24 @@ const EditMyProfile = ({ volProfile, ready, location }) => {
                     </Card.Header>
                   </Card.Content>
                   <Card.Content>
-                    <TextField label='Phone' name='phone' placeholder='**********'/>
+                    <TextField label='Primary Address' name='primaryAddress'/>
+                    <TextField label='City' name='city'/>
+                    <TextField label='State' name='state'/>
+                    <TextField label='ZipCode' name='zipCode'/>
+                    <TextField label='Phone Number' name='phoneNumber'/>
                   </Card.Content>
                 </Card>
                 <Card fluid>
                   <Card.Content>
                     <Card.Header>
                       <Icon name='pencil alternate'/>
-                      Primary Address
+                    Addition Information
                     </Card.Header>
                   </Card.Content>
                   <Card.Content>
-                    <TextField label='address' name='address' placeholder='address'/>
-                    <TextField label='city' name='city' placeholder='HI'/>
-                    <TextField label='state' name='state' placeholder='Honolulu'/>
-                    <TextField label='zip' name='zip' placeholder='96817'/>
-                  </Card.Content>
-                </Card>
-                <Card fluid>
-                  <Card.Content>
-                    <Card.Header>
-                      <Icon name='pencil alternate'/>
-                      Addition Information
-                    </Card.Header>
-                  </Card.Content>
-                  <Card.Content>
-                    <RadioField label='Environmental' name='preferencesType' placeholder='environment preferences'/>
-                  </Card.Content>
-                  <Card.Content>
-                    <MultiSelectField label='Interests' name='interestsType'/>
-                  </Card.Content>
-                  <Card.Content>
-                    <MultiSelectField label='Skills' name='skillsType'/>
-                  </Card.Content>
-                  <Card.Content>
-                    <RadioField label='availability' name='availabilityType'/>
+                    <MultiSelectField label='Fields' name='fields'/>
+                    <RadioField label='Environmental' name='environmental'/>
+                    <LongTextField label='Description' name='about'/>
                   </Card.Content>
                 </Card>
                 <SubmitField value='Submit'/>
@@ -134,8 +113,8 @@ const EditMyProfile = ({ volProfile, ready, location }) => {
 };
 
 // Require the presence of a Opportunity document in the props object. Uniforms adds 'model' to the props, which we use.
-EditMyProfile.propTypes = {
-  volProfile: PropTypes.object,
+EditMyOrganizationProfile.propTypes = {
+  orgProfile: PropTypes.object,
   ready: PropTypes.bool.isRequired,
   location: PropTypes.object,
 };
@@ -143,11 +122,11 @@ EditMyProfile.propTypes = {
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
   const currentUser = Meteor.user() ? Meteor.user().username : ' ';
-  const subscription = VolunteerProfiles.subscribe();
+  const subscription = OrganizationProfiles.subscribe();
   const ready = subscription.ready();
-  const volProfile = ready ? VolunteerProfiles.findDoc({ username: currentUser }) : undefined;
+  const orgProfile = ready ? OrganizationProfiles.findDoc({ username: currentUser }) : undefined;
   return {
-    volProfile,
+    orgProfile,
     ready,
   };
-})(EditMyProfile);
+})(EditMyOrganizationProfile);
