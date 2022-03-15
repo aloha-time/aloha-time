@@ -1,3 +1,3 @@
-![ci-badge](https://github.com/ics-software-engineering/matrp/workflows/ci-matrp/badge.svg)
+![ci-badge](https://github.com/aloha-time/aloha-time/actions/workflows/ci.yml)
 
 For details, please see https://aloha-time.github.io/
