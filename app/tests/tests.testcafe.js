@@ -29,8 +29,6 @@ test('Test that sign in and sign out work', async () => {
 test('Test that volunteer sign up and sign out work', async () => {
   await navBar.gotoSignupPage();
   await volunteerSignUp.signupVolunteer(newCredentials.username, newCredentials.password);
-  await navBar.isLoggedIn(newCredentials.username);
-  await navBar.logout();
 });
 
 test('Test that user pages show up', async () => {
