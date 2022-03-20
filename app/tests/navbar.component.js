@@ -33,7 +33,7 @@ class NavBar {
 
   /** Pull down login menu, go to sign up page. */
   async gotoVolunteerSignupPage() {
-    // await this.ensureLogout();
+    await this.ensureLogout();
     await t.click(`#${COMPONENT_IDS.NAVBAR_LOGIN_DROPDOWN}`);
     await t.click(`#${COMPONENT_IDS.NAVBAR_LOGIN_DROPDOWN_SIGN_UP}`);
   }
