@@ -31,7 +31,6 @@ test('Test that volunteer sign up and sign out work', async () => {
   await volunteerSignUp.signupVolunteer(newCredentials.username, newCredentials.password);
   await navBar.isLoggedIn(newCredentials.username);
   await navBar.logout();
-  await signOutPage.isDisplayed();
 });
 
 test('Test that user pages show up', async () => {
