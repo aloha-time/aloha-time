@@ -140,7 +140,7 @@ const VolunteerSignup = ({ location }) => {
   }
   let fRef = null;
   return (
-    <Container id={PAGE_IDS.ORGANIZATION_SIGN_UP}>
+    <Container id={PAGE_IDS.VOLUNTEER_SIGN_UP}>
       <div className="volunteer-sign-up-top">
         <Header as="h2" textAlign="center" inverted>
           Volunteer Sign Up
