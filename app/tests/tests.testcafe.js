@@ -1,7 +1,7 @@
 import { manageDatabasePage, signOutPage } from './simple.page';
 import { signInPage } from './signin.page';
 import { navBar } from './navbar.component';
-import { signUpPage } from './signup.page';
+import { volunteerSignUp } from './volunteersignup.page';
 import { landingPage } from './landing.page';
 
 /* global fixture:false, test:false */
@@ -26,9 +26,9 @@ test('Test that sign in and sign out work', async () => {
   await signOutPage.isDisplayed();
 });
 
-test('Test that sign up and sign out work', async () => {
+test('Test that volunteer sign up and sign out work', async () => {
   await navBar.gotoSignupPage();
-  await signUpPage.signupUser(newCredentials.username, newCredentials.password);
+  await volunteerSignUp.signupVolunteer(newCredentials.username, newCredentials.password);
   await navBar.isLoggedIn(newCredentials.username);
   await navBar.logout();
   await signOutPage.isDisplayed();
