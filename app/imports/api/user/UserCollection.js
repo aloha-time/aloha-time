@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
 import _ from 'lodash';
+import { Opportunities } from '../opportunity/OpportunitiesCollection';
 
 /**
  * Represents a user, which is someone who has a Meteor account.
@@ -85,6 +86,16 @@ class UserCollection {
     } else if (profile.role !== role) {
       throw new Meteor.Error(`${userID} (${this.getProfile(userID).username}) is not in role ${role}.`);
     }
+  }
+
+  /**
+   * Returns true if user is referenced by other "public" entities. Specifically user owns Stuff.
+   * Used to determine if user can be deleted.
+   * @param user
+   * @return {boolean}
+   */
+  isReferenced(user) {
+    return Opportunities.find({ owner: user }).fetch().length > 0;
   }
 
   /**
