@@ -43,6 +43,4 @@ test('Test that admin pages show up', async () => {
   await navBar.gotoSigninPage();
   await signInPage.signin(adminCredentials.username, adminCredentials.password);
   await navBar.isLoggedIn(adminCredentials.username);
-  await navBar.gotoManageDatabasePage();
-  await manageDatabasePage.isDisplayed();
 });
