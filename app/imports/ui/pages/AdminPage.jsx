@@ -12,7 +12,7 @@ const AdminPage = ({ ready, organization }) => ((ready) ? (
         Admin Page
       </h1>
     </div>
-    <AdminTabs/>
+    <AdminTabs organizations={organization}/>
   </Container>
 ) : <Loader active>Getting data</Loader>);
 
@@ -24,7 +24,7 @@ AdminPage.propTypes = {
 export default withTracker(() => {
   const subscription = OrganizationProfiles.subscribe();
   const ready = subscription.ready();
-  const organization = OrganizationProfiles.find().fetch();
+  const organization = OrganizationProfiles.find({}, { sort: { organizationName: 1 } }).fetch();
   return {
     ready,
     organization,

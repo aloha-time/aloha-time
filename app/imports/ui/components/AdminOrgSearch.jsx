@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withTracker } from 'meteor/react-meteor-data';
 import _ from 'lodash';
-import { Label, Grid, Search } from 'semantic-ui-react';
+import { Label, Grid, Search, Header, Segment } from 'semantic-ui-react';
 import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection';
 
 const initialState = { loading: false, results: [], value: '' };
@@ -11,7 +13,7 @@ const initialState = { loading: false, results: [], value: '' };
 //   organizationName: org.organization;
 // });
 
-const source = OrganizationProfiles.find().fetch();
+// const source = OrganizationProfiles.find().fetch();
 
 function reducer(state, action) {
   switch (action.type) {
@@ -31,7 +33,7 @@ function reducer(state, action) {
 
 const resultRenderer = ({ organizationName }) => <Label content={organizationName} />;
 
-function AdminOrgSearch() {
+function AdminOrgSearch({ source }) {
   const [state, dispatch] = React.useReducer(reducer, initialState);
   const { loading, results, value } = state;
 
@@ -47,7 +49,7 @@ function AdminOrgSearch() {
       }
 
       const re = new RegExp(_.escapeRegExp(data.value), 'i');
-      const isMatch = (result) => re.organizationName(result.organizationName);
+      const isMatch = (result) => re.test(result.organizationName);
 
       dispatch({
         type: 'FINISH_SEARCH',
@@ -55,10 +57,8 @@ function AdminOrgSearch() {
       });
     }, 300);
   }, []);
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(timeoutRef.current);
-    };
+  React.useEffect(() => () => {
+    clearTimeout(timeoutRef.current);
   }, []);
 
   return (
@@ -75,20 +75,32 @@ function AdminOrgSearch() {
         />
       </Grid.Column>
 
-      {/* <Grid.Column width={10}>*/}
-      {/*  <Segment>*/}
-      {/*    <Header>State</Header>*/}
-      {/*    <pre style={{ overflowX: 'auto' }}>*/}
-      {/*      {JSON.stringify({ loading, results, value }, null, 2)}*/}
-      {/*    </pre>*/}
-      {/*      <Header>Options</Header> */}
-      {/*      <pre style={{ overflowX: 'auto' }}>*/}
-      {/*      {JSON.stringify(source, null, 2)}*/}
-      {/*    </pre>*/}
-      {/*    </Segment>*/}
-      {/*  </Grid.Column>*/}
+      {/* <Grid.Column width={10}>
+        <Segment>
+          <Header>State</Header>
+          <pre style={{ overflowX: 'auto' }}>
+            {JSON.stringify({ loading, results, value }, null, 2)}
+          </pre>
+          <Header>Options</Header>
+          <pre style={{ overflowX: 'auto' }}>
+            {JSON.stringify(source, null, 2)}</pre>
+        </Segment>
+      </Grid.Column> */}
     </Grid>
   );
 }
 
-export default AdminOrgSearch;
+AdminOrgSearch.propTypes = {
+  ready: PropTypes.bool.isRequired,
+  source: PropTypes.array.isRequired,
+};
+
+export default withTracker(() => {
+  const subscription = OrganizationProfiles.subscribe();
+  const ready = subscription.ready();
+  const source = OrganizationProfiles.find({}, { sort: { organizationName: 1 } }).fetch();
+  return {
+    ready,
+    source,
+  };
+})(AdminOrgSearch);
