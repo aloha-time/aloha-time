@@ -7,6 +7,8 @@ import { ROLE } from '../role/Role';
 
 export const opportunityPublications = {
   opportunity: 'Opportunity',
+  opportunityVolunteer: 'OpportunityVolunteer',
+  opportunityOrganization: 'OpportunityOrganization',
   opportunityAdmin: 'OpportunityAdmin',
 };
 export const opportunityTypes = ['Event', 'Ongoing'];
@@ -203,9 +205,26 @@ class OpportunitiesCollection extends BaseCollection {
     if (Meteor.isServer) {
       // get the OpportunitiesCollection instance.
       const instance = this;
-      /** This subscription publishes only the documents associated with the logged in user */
+
+      /** This subscription publishes all documents regardless of Roles. */
       Meteor.publish(opportunityPublications.opportunity, function publish() {
-        if (this.userId) {
+        if (Meteor.isServer) {
+          return instance._collection.find();
+        }
+        return this.ready();
+      });
+
+      /** This subscription publishes all documents regardless of user, but only if the logged in user is a Volunteer. */
+      Meteor.publish(opportunityPublications.opportunityVolunteer, function publish() {
+        if (this.userId && Roles.userIsInRole(this.userId, ROLE.VOLUNTEER)) {
+          return instance._collection.find();
+        }
+        return this.ready();
+      });
+
+      /** This subscription publishes only the documents associated with the logged in Organization role. */
+      Meteor.publish(opportunityPublications.opportunityOrganization, function publish() {
+        if (this.userId && Roles.userIsInRole(this.userId, ROLE.ORGANIZATION)) {
           const username = Meteor.users.findOne(this.userId).username;
           return instance._collection.find({ owner: username });
         }
@@ -228,6 +247,26 @@ class OpportunitiesCollection extends BaseCollection {
   subscribeOpportunity() {
     if (Meteor.isClient) {
       return Meteor.subscribe(opportunityPublications.opportunity);
+    }
+    return null;
+  }
+
+  /**
+   * Subscription method for opportunity owned by the volunteer user.
+   */
+  subscribeOpportunityVolunteer() {
+    if (Meteor.isClient) {
+      return Meteor.subscribe(opportunityPublications.opportunityVolunteer);
+    }
+    return null;
+  }
+
+  /**
+   * Subscription method for opportunity owned by the organization user.
+   */
+  subscribeOpportunityOrganization() {
+    if (Meteor.isClient) {
+      return Meteor.subscribe(opportunityPublications.opportunityOrganization);
     }
     return null;
   }
