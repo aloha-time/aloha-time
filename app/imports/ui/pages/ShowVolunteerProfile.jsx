@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Grid, List, Loader, Image, Card, Icon, Button, Segment } from 'semantic-ui-react';
+import { Container, Loader, Button, Header, Image, Grid, List, Segment } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
@@ -7,126 +7,80 @@ import { Link } from 'react-router-dom';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { VolunteerProfiles } from '../../api/user/VolunteerProfileCollection';
 
+const headerStyle = { padding: '1em' };
+const columnStyle = { paddingTop: '9em' };
+const margSides = { marginLeft: '4em', marginRight: '4em' };
+
 /** Renders the page for volunteer profile document. */
 const ShowVolunteerProfile = ({ volProfile, ready }) => ((ready) ? (
-  <Container id={PAGE_IDS.MY_PROFILE}>
-    <Segment color='yellow'>
-      <div className="my-organization-top">
-        <Image size='medium' src="/images/VAlogo.png" centered/>
-      </div>
-      <Grid className="my-organization-medium">
-        <Grid.Row>
-          <Image size='small' padding-left ='20px' src="/images/volunteerAllyIcon.svg"/>
-        </Grid.Row>
-      </Grid>
-      <div className="my-organization-title">
-        <p>My Profile</p>
-      </div>
-      <Grid columns={2}>
-        <Grid.Column>
-          <Card.Group>
-            <Card fluid color='red'>
-              <Card.Content>
-                <Card.Header><Icon color="yellow" name="paper plane outline"/>Primary Information</Card.Header>
-              </Card.Content>
-              <Card.Content>
-                <List divided relaxed>
-                  <List.Item>
-                    <List.Icon color= "yellow" name='user circle' size='large' />
-                    <List.Content>
-                      <List.Header as='a'>Primary Contact First Name</List.Header>
-                      <List.Description as='a'>{volProfile.firstName}</List.Description>
-                    </List.Content>
-                  </List.Item>
-                  <List.Item>
-                    <List.Icon color= "yellow"name='user' size='large'/>
-                    <List.Content>
-                      <List.Header as='a'>Primary Contact Last Name</List.Header>
-                      <List.Description as='a'>{volProfile.lastName}</List.Description>
-                    </List.Content>
-                  </List.Item>
-                  <List.Item>
-                    <List.Icon color= "yellow"name='user' size='large'/>
-                    <List.Content>
-                      <List.Header as='a'>Gender</List.Header>
-                      <List.Description as='a'>{volProfile.genderType}</List.Description>
-                    </List.Content>
-                  </List.Item>
-                  <List.Item>
-                    <List.Icon color= "yellow" name='birthday' size='large'/>
-                    <List.Content>
-                      <List.Header as='a'>Date of Birth</List.Header>
-                      <List.Description as='a'>{volProfile.dateOfBirth}</List.Description>
-                    </List.Content>
-                  </List.Item>
-                </List>
-              </Card.Content>
-            </Card>
-            <Card fluid color='yellow'>
-              <Card.Content>
-                <Card.Header><Icon color="yellow" name="mail"/>Primary Contact E-mail Address</Card.Header>
-              </Card.Content>
-              <Card.Content>
-                <Card.Description>{volProfile.email}</Card.Description>
-              </Card.Content>
-            </Card>
-            <Card fluid color='yellow'>
-              <Card.Content>
-                <Card.Header><Icon color="yellow" name="phone"/>Primary Contact Phone Number</Card.Header>
-              </Card.Content>
-              <Card.Content>
-                <Card.Description>{volProfile.phone}</Card.Description>
-              </Card.Content>
-            </Card>
-            <Card fluid color='orange'>
-              <Card.Content>
-                <Card.Header><Icon color="yellow" name="map signs"/>Primary Address</Card.Header>
-              </Card.Content>
-              <Card.Content>
-                <Card.Description>{volProfile.address} {volProfile.state} {volProfile.city} {volProfile.zip}</Card.Description>
-              </Card.Content>
-            </Card>
-          </Card.Group>
-        </Grid.Column>
-        <Grid.Column>
-          <Card fluid color='yellow'>
-            <Card.Content>
-              <Card.Header><Icon color="yellow" name="star outline"/>Environmental (Indoor, Outdoor)</Card.Header>
-            </Card.Content>
-            <Card.Content>
-              <Card.Description>{volProfile.preferencesType}</Card.Description>
-            </Card.Content>
-          </Card>
-          <Card fluid color='yellow'>
-            <Card.Content>
-              <Card.Header><Icon color="yellow" name="list ul"/>Interests </Card.Header>
-            </Card.Content>
-            <Card.Content>
-              <List bulleted size="large" items={volProfile.interestsType}/>
-            </Card.Content>
-          </Card>
-          <Card fluid color='yellow'>
-            <Card.Content>
-              <Card.Header><Icon color="yellow" name="list ul"/>Skills</Card.Header>
-            </Card.Content>
-            <Card.Content>
-              <List bulleted size="large" items={volProfile.skillsType}/>
-            </Card.Content>
-          </Card>
-          <Card fluid color='yellow'>
-            <Card.Content>
-              <Card.Header><Icon color="yellow" name="star outline"/>Availability</Card.Header>
-            </Card.Content>
-            <Card.Content>
-              <Card.Description>{volProfile.availabilityType}</Card.Description>
-            </Card.Content>
-          </Card>
-        </Grid.Column>
-      </Grid>
-      <div className="my-organization-bottom" >
-        <Button inverted size= "big" color="blue"><Link to="/edit-my-profile">Edit My Profile</Link></Button>
-      </div>
-    </Segment>
+  <Container fluid id={PAGE_IDS.MY_PROFILE}>
+    <div className="my-organization-top">
+      <Image size='medium' src="/images/VAlogo.png" centered/>
+    </div>
+    <Grid style={headerStyle}>
+      <Grid.Column width={3}>
+        <Image centered size='small' src='https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg' />
+      </Grid.Column>
+      <Grid.Column verticalAlign='middle' width={9} style={columnStyle}>
+        <Header as='h1'>
+          {volProfile.firstName} {volProfile.lastName}
+        </Header>
+        <p>Gender: {volProfile.genderType}</p>
+        <p>Date of Birth: {volProfile.dateOfBirth}</p>
+      </Grid.Column>
+      <Grid.Column verticalAlign='middle' width={4} style={columnStyle}>
+        <Segment>
+          <Header as='h1' textAlign='center'>
+            Hours volunteered
+          </Header>
+          <Header as='h2' textAlign='center'>
+            20 hours
+          </Header>
+        </Segment>
+      </Grid.Column>
+    </Grid>
+    <Segment.Group horizontal style={margSides}>
+      <Segment padded='very'>
+        <Header as='h3'> Personal Information </Header>
+        <List relaxed>
+          <List.Item>
+            <List.Icon name='location arrow' />
+            <List.Content>{volProfile.address} {volProfile.state} {volProfile.city} {volProfile.zip}</List.Content>
+          </List.Item>
+          <List.Item>
+            <List.Icon name='phone' />
+            <List.Content> {volProfile.phone} </List.Content>
+          </List.Item>
+          <List.Item>
+            <List.Icon name='mail' />
+            <List.Content> {volProfile.email} </List.Content>
+          </List.Item>
+          <List.Item>
+            <List.Icon name='clock outline' />
+            <List.Content> Availability: {volProfile.preferencesType}</List.Content>
+          </List.Item>
+        </List>
+      </Segment>
+      <Segment padded='very'>
+        <Header as='h3'> Other Information </Header>
+        <List bulleted relaxed>
+          <List.Item>
+            <List.Content> Environmental Preference: {volProfile.preferencesType}</List.Content>
+          </List.Item>
+          <List.Item>
+            <List.Content> Interests:  </List.Content>
+            <List bulleted items={volProfile.interestsType}/>
+          </List.Item>
+          <List.Item>
+            <List.Content> Skills:  </List.Content>
+            <List bulleted items={volProfile.skillsType}/>
+          </List.Item>
+        </List>
+      </Segment>
+    </Segment.Group>
+    <div className="my-organization-bottom" >
+      <Button inverted size= "big" color="blue"><Link to="/edit-my-profile">Edit My Profile</Link></Button>
+    </div>
   </Container>
 ) : <Loader active>Getting data</Loader>);
 
