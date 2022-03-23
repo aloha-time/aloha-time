@@ -1,40 +1,14 @@
 import React from 'react';
-import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import SimpleSchema from 'simpl-schema';
-import { AutoForm, SubmitField } from 'uniforms-semantic';
-import { _ } from 'meteor/underscore';
-import { Container, Header, Loader, Card, Grid, Button, Segment } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Grid, Button, Tab } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 import OpportunityItem from '../components/OpportunityItem';
 import { PAGE_IDS } from '../utilities/PageIDs';
-import MultiSelectField from '../components/form-fields/MultiSelectField';
-
-/** Create a schema to specify the structure of the data to appear in the form. */
-const makeSchema = (allTitles, allCategories, allAges, allEnvironments) => new SimpleSchema({
-  titles: { type: Array, label: 'Title', optional: true },
-  'titles.$': { type: String, allowedValues: allTitles },
-  categories: { type: Array, label: 'Category', optional: true },
-  'categories.$': { type: String, allowedValues: allCategories },
-  ages: { type: Array, label: 'Age Groups', optional: true },
-  'ages.$': { type: String, allowedValues: allAges },
-  environments: { type: Array, label: 'Environments', optional: true },
-  'environments.$': { type: String, allowedValues: allEnvironments },
-});
 
 /** Renders a table containing all the Opportunity documents. Use <OpportunityItem> to render each row. */
 class ListOpportunity extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = { opportunities: [] };
-  }
-
-  submit(data) {
-    this.setState({ opportunities: data.opportunities || [] });
-  }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
@@ -43,13 +17,12 @@ class ListOpportunity extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
-    const allTitles = _.pluck(Opportunities.find({}, {}).fetch(), 'title');
-    const allCategories = _.pluck(Opportunities.find({}, {}).fetch(), 'category');
-    const allAges = _.pluck(Opportunities.find({}, {}).fetch(), 'ageGroup');
-    const allEnvironments = _.pluck(Opportunities.find({}, {}).fetch(), 'environment');
-    const formSchema = makeSchema(allTitles, allCategories, allAges, allEnvironments);
-    const bridge = new SimpleSchema2Bridge(formSchema);
-    // const opportunityList = Opportunities.find({ title: { $in: this.state.opportunities } }, {}).fetch();
+    const panes = [
+      { menuItem: 'Tab 1', render: () => <Tab.Pane>Tab 1 Content</Tab.Pane> },
+      { menuItem: 'Tab 2', render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
+      { menuItem: 'Tab 3', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
+      { menuItem: 'Tab 4', render: () => <Tab.Pane>Tab 4 Content</Tab.Pane> },
+    ];
     return (
       <Container id={PAGE_IDS.LIST_OPPORTUNITY}>
         <div className="organization-sign-up-top">
@@ -71,15 +44,7 @@ class ListOpportunity extends React.Component {
         <Grid>
           <Grid.Row>
             <Grid.Column width={5}>
-              <AutoForm style={{ paddingBottom: '20px' }} schema={bridge} onSubmit={data => this.submit(data)} >
-                <Segment>
-                  <MultiSelectField id='titles' name='titles' showInlineError={true} placeholder={'Find by Title'}/>
-                  <MultiSelectField id='categories' name='categories' showInlineError={true} placeholder={'Pick a Category'}/>
-                  <MultiSelectField id='ages' name='ages' showInlineError={true} placeholder={'Pick an Age Group'}/>
-                  <MultiSelectField id='environments' name='environments' showInlineError={true} placeholder={'Pick an Environment'}/>
-                  <SubmitField id='submit' value='Submit'/>
-                </Segment>
-              </AutoForm>
+              <Tab panes={panes} />
             </Grid.Column>
             <Grid.Column width={11}>
               <div className="map">
