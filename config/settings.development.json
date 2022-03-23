@@ -97,9 +97,9 @@
     "role":"VOLUNTEER"
     },
     {
-      "username":"John",
+      "username":"john@foo.com",
       "password": "changeme",
-      "email": "John@foo.com",
+      "email": "john@foo.com",
       "firstName":"John",
       "lastName":"Doe",
       "dateOfBirth":"01/11/2001",
