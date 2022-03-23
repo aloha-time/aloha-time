@@ -88,15 +88,19 @@ class ViewOpportunity extends React.Component {
         <br/>
         <br/>
         <Grid centered column>
-          <Button color='blue'>
-            <Icon name='map marker alternate'/> Get directions
-          </Button>
-          <Button color='blue'>
-            <Icon name='share alternate'/> Share
-          </Button>
-          <Button color='blue'>
-            <Icon name='mail'/> Send an email
-          </Button>
+          {!Roles.userIsInRole(Meteor.userId(), [ROLE.ORGANIZATION]) ? (
+            <div>
+              <Button color='blue'>
+                <Icon name='map marker alternate'/> Get directions
+              </Button>
+              <Button color='blue'>
+                <Icon name='share alternate'/> Share
+              </Button>
+              <Button color='blue'>
+                <Icon name='mail'/> Send an email
+              </Button>
+            </div>)
+            : ''}
           {Roles.userIsInRole(Meteor.userId(), [ROLE.VOLUNTEER]) ? (
             <div>
               <Button color='blue'>
@@ -107,6 +111,19 @@ class ViewOpportunity extends React.Component {
               </Button>
               <Button color='blue'>
                 <Icon name='exclamation circle'/> Report
+              </Button>
+            </div>)
+            : ''}
+          {this.props.currentUser === this.props.opportunity.owner && Roles.userIsInRole(Meteor.userId(), [ROLE.ORGANIZATION]) ? (
+            <div>
+              <Button color='blue' as={NavLink} exact to={`/edit-opportunity/${this.props.opportunity._id}`}>
+                <Icon name='pencil alternate'/> Edit this opportunity
+              </Button>
+              <Button color='blue' as={NavLink} exact to="/add-opportunity">
+                <Icon name='add circle'/> Add new opportunity
+              </Button>
+              <Button color='red'>
+                <Icon name='trash alternate'/> Delete this opportunity
               </Button>
             </div>)
             : ''}
@@ -193,12 +210,14 @@ class ViewOpportunity extends React.Component {
 
 // Require an array of Opportunity documents in the props.
 ViewOpportunity.propTypes = {
-  opportunity: PropTypes.object,
+  opportunity: PropTypes.object.isRequired,
   ready: PropTypes.bool.isRequired,
+  currentUser: PropTypes.string,
 };
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
+  const currentUser = Meteor.user() ? Meteor.user().username : ' ';
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const { _id } = useParams();
   const opportunityId = _id;
@@ -211,5 +230,6 @@ export default withTracker(() => {
   return {
     opportunity,
     ready,
+    currentUser,
   };
 })(ViewOpportunity);

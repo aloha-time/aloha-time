@@ -1,14 +1,10 @@
 import React from 'react';
-import { Accordion, Card, Icon, Image } from 'semantic-ui-react';
+import { Accordion, Button, Card, Icon, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter, Link, NavLink } from 'react-router-dom';
-import { Meteor } from 'meteor/meteor';
-import { Roles } from 'meteor/alanning:roles';
-import { COMPONENT_IDS } from '../utilities/ComponentIDs';
-import { ROLE } from '../../api/role/Role';
+import { withRouter, NavLink } from 'react-router-dom';
 
 /** Renders a single row in the List Opportunity table. See pages/ListOpportunity.jsx. */
-class OpportunityItem extends React.Component {
+class OpportunityItemOrganization extends React.Component {
   state = { activeIndex: -1 }
 
   handleClick = (e, titleProps) => {
@@ -60,20 +56,27 @@ class OpportunityItem extends React.Component {
             </Accordion.Content>
           </Accordion>
         </Card.Content>
-        {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? (
-          <Card.Content extra>
-            <Link className={COMPONENT_IDS.LIST_OPPORTUNITY_EDIT} to={`/edit-opportunity/${this.props.opportunity._id}`}>Edit</Link>
-          </Card.Content>)
-          : ''}
+        <Card.Content extra>
+          <Button color='blue' as={NavLink} exact to={`/edit-opportunity/${this.props.opportunity._id}`}>
+            Edit
+          </Button>
+          <Button color='red'>
+            Delete
+          </Button>
+        </Card.Content>
+        <Card.Content extra>
+          <Icon name='user'/>
+          {OpportunityInfo.owner}
+        </Card.Content>
       </Card>
     );
   }
 }
 
 // Require a document to be passed to this component.
-OpportunityItem.propTypes = {
+OpportunityItemOrganization.propTypes = {
   opportunity: PropTypes.object.isRequired,
 };
 
 // Wrap this component in withRouter since we use the <Link> React Router element.
-export default withRouter(OpportunityItem);
+export default withRouter(OpportunityItemOrganization);

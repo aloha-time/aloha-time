@@ -10,6 +10,7 @@ import Landing from '../pages/Landing';
 import ListOrg from '../pages/ListOrg';
 import OrgInfo from '../pages/OrgInfo';
 import ListOpportunity from '../pages/ListOpportunity';
+import ListOpportunityOrganization from '../pages/ListOpportunityOrganization';
 import AddOpportunity from '../pages/AddOpportunity';
 import EditOpportunity from '../pages/EditOpportunity';
 import NotFound from '../pages/NotFound';
@@ -41,7 +42,6 @@ class App extends React.Component {
             <Route exact path="/" component={Landing}/>
             <Route path="/signin" component={Signin}/>
             <VolunteerProtectedRoute path="/myprofile" component={ShowVolunteerProfile}/>
-            <Route path="/my-opportunities" component={ListOpportunity}/>
             <Route path="/browse-opportunities" component={ListOpportunity}/>
             <Route path="/view-opportunity/:_id" component={ViewOpportunity}/>
             <Route path="/organization-library" component={ListOrg}/>
@@ -53,6 +53,7 @@ class App extends React.Component {
             <Route path="/calendar-schedule" component={CalendarSchedule}/>
             <VolunteerProtectedRoute path="/edit-my-profile" component={EditMyProfile}/>
             <VolunteerProtectedRoute path="/opportunity-hours/:_id" component={OpportunityHours}/>
+            <OrganizationProtectedRoute path="/my-opportunities" component={ListOpportunityOrganization}/>
             <OrganizationProtectedRoute path="/my-organization-profile" component={MyOrganizationProfile}/>
             <OrganizationProtectedRoute path="/edit-my-organization-profile" component={EditMyOrganizationProfile}/>
             <ProtectedRoute path="/orginfo/:_id" component={OrgInfo}/>
