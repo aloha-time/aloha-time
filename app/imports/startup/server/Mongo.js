@@ -4,7 +4,7 @@ import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 
 // Initialize the database with a default opportunity document.
 function addOpportunities(data) {
-  console.log(`  Adding: ${data.name} (${data.owner})`);
+  console.log(`  Adding: ${data.title} (${data.owner})`);
   Opportunities.define(data);
 }
 

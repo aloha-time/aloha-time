@@ -20,7 +20,7 @@ class OpportunityItem extends React.Component {
     const OpportunityInfo = this.props.opportunity;
     const { activeIndex } = this.state;
     return (
-      <Card link>
+      <Card link fluid>
         <Image large src={OpportunityInfo.coverImage} wrapped ui={false} as={NavLink}
           exact to={`/view-opportunity/${this.props.opportunity._id}`}/>
         <Card.Content>
