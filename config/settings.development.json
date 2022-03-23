@@ -99,7 +99,7 @@
     {
       "username":"John",
       "password": "changeme",
-      "email": "john@foo.com",
+      "email": "John@foo.com",
       "firstName":"John",
       "lastName":"Doe",
       "dateOfBirth":"01/11/2001",
