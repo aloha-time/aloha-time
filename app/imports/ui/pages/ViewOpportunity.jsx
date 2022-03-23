@@ -4,8 +4,11 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { useParams } from 'react-router';
+import { Meteor } from 'meteor/meteor';
+import { Roles } from 'meteor/alanning:roles';
 import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import { ROLE } from '../../api/role/Role';
 
 /** Renders a table containing all the Opportunity documents. Use <OpportunityItem> to render each row. */
 class ViewOpportunity extends React.Component {
@@ -27,17 +30,21 @@ class ViewOpportunity extends React.Component {
           </Header>
         </div>
         <br/>
-        <Button floated='right' animated='vertical' color='blue' as={NavLink}
-          exact to={`/opportunity-hours/${this.props.opportunity._id}`}>
-          <Button.Content hidden>
-            <Icon name='hourglass half'/> Confirm Your Hours
-          </Button.Content>
-          <Button.Content visible>
-            <Icon name='check circle'/>Did You Finish Volunteering?
-          </Button.Content>
-        </Button>
-        <br/>
-        <br/>
+        {Roles.userIsInRole(Meteor.userId(), [ROLE.VOLUNTEER]) ? (
+          <div>
+            <Button floated='right' animated='vertical' color='blue' as={NavLink}
+              exact to={`/opportunity-hours/${this.props.opportunity._id}`}>
+              <Button.Content hidden>
+                <Icon name='hourglass half'/> Confirm Your Hours
+              </Button.Content>
+              <Button.Content visible>
+                <Icon name='check circle'/>Did You Finish Volunteering?
+              </Button.Content>
+            </Button>
+            <br/>
+            <br/>
+          </div>)
+          : ''}
         <Card fluid>
           <img src={this.props.opportunity.coverImage} height={500} alt="cover image"/>
         </Card>
@@ -85,20 +92,24 @@ class ViewOpportunity extends React.Component {
             <Icon name='map marker alternate'/> Get directions
           </Button>
           <Button color='blue'>
-            <Icon name='heart'/> Bookmark
-          </Button>
-          <Button color='blue'>
             <Icon name='share alternate'/> Share
           </Button>
           <Button color='blue'>
             <Icon name='mail'/> Send an email
           </Button>
-          <Button color='blue'>
-            <Icon name='chat'/> Direct message
-          </Button>
-          <Button color='blue'>
-            <Icon name='exclamation circle'/> Report
-          </Button>
+          {Roles.userIsInRole(Meteor.userId(), [ROLE.VOLUNTEER]) ? (
+            <div>
+              <Button color='blue'>
+                <Icon name='chat'/> Direct message
+              </Button>
+              <Button color='blue'>
+                <Icon name='heart'/> Bookmark
+              </Button>
+              <Button color='blue'>
+                <Icon name='exclamation circle'/> Report
+              </Button>
+            </div>)
+            : ''}
         </Grid>
         <br/>
         <br/>
@@ -167,7 +178,7 @@ class ViewOpportunity extends React.Component {
                   View all opportunities
                 </Button.Content>
                 <Button.Content visible>
-                  Want to volunteer for more?
+                  Interested in something else?
                 </Button.Content>
               </Button>
             </Grid.Column>

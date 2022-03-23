@@ -7,10 +7,13 @@ import { Container, Header, Loader, Card, Grid, Button, Tab } from 'semantic-ui-
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { Meteor } from 'meteor/meteor';
+import { Roles } from 'meteor/alanning:roles';
 import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 import OpportunityItem from '../components/OpportunityItem';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import MultiSelectField from '../components/form-fields/MultiSelectField';
+import { ROLE } from '../../api/role/Role';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = (allOpportunities) => new SimpleSchema({
@@ -136,24 +139,27 @@ class ListOpportunity extends React.Component {
           key={index}
           opportunity={opportunities}/>)}
         </Card.Group>
-        <Grid columns={3}>
-          <Grid.Row/>
-          <Grid.Row>
-            <Grid.Column/>
-            <Grid.Column>
-              <Button animated='vertical' fluid color='blue' as={NavLink} exact to="/add-opportunity">
-                <Button.Content hidden>
-                    Add a new opportunity
-                </Button.Content>
-                <Button.Content visible>
-                    Are you an organization?
-                </Button.Content>
-              </Button>
-            </Grid.Column>
-            <Grid.Column/>
-          </Grid.Row>
-          <Grid.Row/>
-        </Grid>
+        {Roles.userIsInRole(Meteor.userId(), [ROLE.ORGANIZATION]) ? (
+          <Grid columns={3}>
+            <Grid.Row/>
+            <Grid.Row>
+              <Grid.Column/>
+              <Grid.Column>
+                <Button animated='vertical' fluid color='blue' as={NavLink} exact to="/add-opportunity">
+                  <Button.Content hidden>
+                          Add a new opportunity
+                  </Button.Content>
+                  <Button.Content visible>
+                          Do you have an upcoming event?
+                  </Button.Content>
+                </Button>
+              </Grid.Column>
+              <Grid.Column/>
+            </Grid.Row>
+            <Grid.Row/>
+          </Grid>)
+          : ''}
+        <br/>
       </Container>
     );
   }

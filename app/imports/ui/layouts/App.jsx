@@ -43,6 +43,7 @@ class App extends React.Component {
             <VolunteerProtectedRoute path="/myprofile" component={ShowVolunteerProfile}/>
             <Route path="/my-opportunities" component={ListOpportunity}/>
             <Route path="/browse-opportunities" component={ListOpportunity}/>
+            <Route path="/view-opportunity/:_id" component={ViewOpportunity}/>
             <Route path="/organization-library" component={ListOrg}/>
             <Route path="/about-us" component={AboutUs}/>
             <Route path="/signup" component={Signup}/>
@@ -51,13 +52,12 @@ class App extends React.Component {
             <Route path="/signout" component={Signout}/>
             <Route path="/calendar-schedule" component={CalendarSchedule}/>
             <VolunteerProtectedRoute path="/edit-my-profile" component={EditMyProfile}/>
+            <VolunteerProtectedRoute path="/opportunity-hours/:_id" component={OpportunityHours}/>
             <OrganizationProtectedRoute path="/my-organization-profile" component={MyOrganizationProfile}/>
             <OrganizationProtectedRoute path="/edit-my-organization-profile" component={EditMyOrganizationProfile}/>
             <ProtectedRoute path="/orginfo/:_id" component={OrgInfo}/>
-            <ProtectedRoute path="/add-opportunity" component={AddOpportunity}/>
-            <ProtectedRoute path="/edit-opportunity/:_id" component={EditOpportunity}/>
-            <ProtectedRoute path="/view-opportunity/:_id" component={ViewOpportunity}/>
-            <ProtectedRoute path="/opportunity-hours/:_id" component={OpportunityHours}/>
+            <OrganizationProtectedRoute path="/add-opportunity" component={AddOpportunity}/>
+            <OrganizationProtectedRoute path="/edit-opportunity/:_id" component={EditOpportunity}/>
             <AdminProtectedRoute path="/manage-database" component={ManageDatabase}/>
             <AdminProtectedRoute path="/admin-page" component={AdminPage}/>
             <Route component={NotFound}/>

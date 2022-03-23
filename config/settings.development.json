@@ -1,8 +1,7 @@
 {
   "defaultAccounts": [
     { "email": "admin@foo.com", "password": "changeme", "role": "ADMIN", "firstName": "Admin", "lastName": "MATRP"
-    },
-    { "email": "john@foo.com", "password": "changeme", "role": "USER" , "firstName": "John", "lastName": "Doe" }
+    }
   ],
   
   "defaultOrganizations": [
@@ -77,7 +76,8 @@
     }
 
   ],
-  "defaultVolunteers": [{
+  "defaultVolunteers": [
+    {
     "username":"Eric",
     "password": "changeme",
     "email": "Eric@foo.com",
@@ -95,7 +95,26 @@
     "preferencesType":"Indoor",
     "availabilityType":"One-time",
     "role":"VOLUNTEER"
-  }
+    },
+    {
+      "username":"John",
+      "password": "changeme",
+      "email": "john@foo.com",
+      "firstName":"John",
+      "lastName":"Doe",
+      "dateOfBirth":"01/11/2001",
+      "genderType":"Male",
+      "address":"2001 King St",
+      "city":"Honolulu",
+      "state":"HI",
+      "zip":"96822",
+      "phone":"8085551234",
+      "interestsType":["Animal Welfare/Rescue"],
+      "skillsType":["Agriculture"],
+      "preferencesType":"Indoor",
+      "availabilityType":"One-time",
+      "role":"VOLUNTEER"
+    }
   ],
   "defaultOpportunities": [
     { "title": "Health Help",
