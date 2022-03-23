@@ -9,7 +9,7 @@ const options = [
 
 const OrgVerifyItem = ({ organization }) => (
   <Item>
-    <Item.Image src='https://react.semantic-ui.com/images/avatar/large/daniel.jpg' />
+    <Item.Image src={organization.image} />
     <Item.Content verticalAlign='middle'>
       <Item.Header as='a'>{organization.organizationName}</Item.Header>
       <Item.Meta>
@@ -37,6 +37,7 @@ OrgVerifyItem.propTypes = {
     organizationName: PropTypes.string,
     firstName: PropTypes.string,
     lastName: PropTypes.string,
+    image: PropTypes.string,
   }).isRequired,
 };
 
