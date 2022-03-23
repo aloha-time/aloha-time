@@ -134,7 +134,7 @@
       "galleryImage": "https://www.redcross.org/content/dam/redcross/local/hawaii/images/714x410-Hawaii-Locations.jpg.transform/1288/q82/feature/image.jpeg",
       "ageGroup": "Adults",
       "environment": "Indoors",
-      "owner": "matt@foo.com"
+      "owner": "HelpIsOnTheWay"
     },
     { "title": "Beach Cleanup",
       "opportunityType": "Ongoing",
@@ -153,7 +153,7 @@
       "galleryImage": "https://images.squarespace-cdn.com/content/v1/5b231afb297114b57e11002d/1579574099361-2KUGNED7EHSF6KR6UEAJ/IMG_4160%2B%25281%2529.jpg?format=1500w",
       "ageGroup": "Teens",
       "environment": "Outdoors",
-      "owner": "jake@foo.com"
+      "owner": "MakeAWishHI"
     },
     { "title": "Food Drive",
       "opportunityType": "Event",
@@ -172,7 +172,7 @@
       "galleryImage": "https://www.staradvertiser.com/wp-content/uploads/2020/05/web1_CTY-food-drive-lcc-26843.jpg",
       "ageGroup": "Family-Friendly",
       "environment": "Mixed",
-      "owner": "Alex@foo.com"
+      "owner": "HIFoodBank"
     },
     { "title": "Virtual Dog Walk",
       "opportunityType": "Event",
@@ -191,7 +191,7 @@
       "galleryImage": "https://images.unsplash.com/photo-1611759284397-079b3495f061?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHdhbGtpbmclMjBkb2d8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
       "ageGroup": "Seniors",
       "environment": "Virtual",
-      "owner": "tyler@foo.com"
+      "owner": "SaveTheAnimals"
     }
   ],
   "public": {
