@@ -36,4 +36,5 @@ export const COMPONENT_IDS = {
   SIGN_UP_FORM_ORGANIZATION_NAME: 'sign-up-form-organization-name',
   SIGN_UP_FORM_PRIMARY_ADDRESS: 'sign-up-form-primary-address',
   SIGN_UP_FORM_SUBMIT: 'sign-up-form-submit',
+  OPPORTUNITY_CARD_EDIT: 'opportunity-card-edit',
 };

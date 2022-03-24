@@ -19,4 +19,5 @@ export const PAGE_IDS = {
   VIEW_OPPORTUNITY: 'view-opportunity',
   OPPORTUNITY_HOURS: 'opportunity-hours',
   CALENDAR_SCHEDULE: 'calendar-schedule',
+  BROWSE_OPPORTUNITIES: 'browse-opportunities',
 };

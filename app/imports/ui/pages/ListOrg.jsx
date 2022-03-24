@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Loader, Card, Search } from 'semantic-ui-react';
+import { Container, Loader, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection';
