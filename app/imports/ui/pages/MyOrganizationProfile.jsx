@@ -33,6 +33,16 @@ const MyOrganizationProfile = ({ orgProfile, ready }) => ((ready) ? (
           Primary Contact Name: {orgProfile.firstName} {orgProfile.lastName}
         </Header>
       </Grid.Column>
+      <Grid.Column width={3} verticalAlign='middle' style={columnStyle}>
+        <List relaxed floated='right'>
+          <List.Content>
+            <Button> Change Username </Button>
+          </List.Content>
+          <List.Content>
+            <Button> Change Password </Button>
+          </List.Content>
+        </List>
+      </Grid.Column>
       <Grid.Row style={margSides}>
         <Grid.Column width={9} verticalAlign='middle'>
           <Header as='h1'>
@@ -68,7 +78,7 @@ const MyOrganizationProfile = ({ orgProfile, ready }) => ((ready) ? (
           </Segment>
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row style={margSides}>
+      <Grid.Row centered style={margSides}>
         <Grid.Column width={9} className='organizationCarousel'>
           <Header as='h1' textAlign='center'>
             Gallery
@@ -101,11 +111,6 @@ const MyOrganizationProfile = ({ orgProfile, ready }) => ((ready) ? (
             <CustomDotGroup slides={6} />
           </CarouselProvider>
           <Button> Upload Image </Button>
-        </Grid.Column>
-        <Grid.Column width={7}>
-          <p>
-            This is where i want to add a segment with all the opportunities created by a certain organization. it will be scrollable so that it is not too cluttered. i also want it to use Item instead of Card.
-          </p>
         </Grid.Column>
       </Grid.Row>
     </Grid>
