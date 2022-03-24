@@ -1,17 +1,17 @@
-import React from 'react';
+import React from 'react'; // y
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import { AutoForm, SubmitField } from 'uniforms-semantic';
 import { _ } from 'meteor/underscore';
-import { Container, Header, Loader, Card, Grid, Button, Tab } from 'semantic-ui-react';
-import { withTracker } from 'meteor/react-meteor-data';
-import PropTypes from 'prop-types';
+import { Container, Header, Loader, Card, Grid, Button, Tab } from 'semantic-ui-react'; // y
+import { withTracker } from 'meteor/react-meteor-data'; // y
+import PropTypes from 'prop-types'; // y
 import { NavLink } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
-import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
-import OpportunityItem from '../components/OpportunityItem';
-import { PAGE_IDS } from '../utilities/PageIDs';
+import { Opportunities } from '../../api/opportunity/OpportunitiesCollection'; // y
+import OpportunityItem from '../components/OpportunityItem'; // y
+import { PAGE_IDS } from '../utilities/PageIDs'; // y
 import MultiSelectField from '../components/form-fields/MultiSelectField';
 import { ROLE } from '../../api/role/Role';
 
