@@ -31,7 +31,7 @@ const EditMyProfile = ({ volProfile, ready, location }) => {
     const updateData = { id: _id, firstName, lastName, dateOfBirth, genderType, address, city, state, zip, phone, interestsType, skillsType, preferencesType, availabilityType };
     updateMethod.callPromise({ collectionName, updateData })
       .catch(error => swal('Error', error.message, 'error'))
-      .then(() => swal('Success', 'Item updated successfully', 'success'));
+      .then(() => swal('Success', 'Profile updated successfully', 'success'));
     setRedirectToReferer(true);
   };
   /* Display the signup form. Redirect my profile page . */
