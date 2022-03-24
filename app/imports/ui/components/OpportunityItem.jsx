@@ -1,10 +1,9 @@
 import React from 'react';
 import { Accordion, Card, Icon, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter, Link, NavLink } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
-import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { ROLE } from '../../api/role/Role';
 
 /** Renders a single row in the List Opportunity table. See pages/ListOpportunity.jsx. */
@@ -62,7 +61,8 @@ class OpportunityItem extends React.Component {
         </Card.Content>
         {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? (
           <Card.Content extra>
-            <Link className={COMPONENT_IDS.LIST_OPPORTUNITY_EDIT} to={`/edit-opportunity/${this.props.opportunity._id}`}>Edit</Link>
+            <Icon name='user'/>
+            {OpportunityInfo.owner}
           </Card.Content>)
           : ''}
       </Card>
