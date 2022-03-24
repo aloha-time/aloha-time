@@ -26,6 +26,7 @@ class OrganizationProfileCollection extends BaseProfileCollection {
     super('OrganizationProfile', new SimpleSchema({
       username: String,
       organizationName: String,
+      websiteLink: String,
       firstName: String,
       lastName: String,
       image: String,
@@ -46,6 +47,7 @@ class OrganizationProfileCollection extends BaseProfileCollection {
    * Defines the profile associated with an Organization and the associated Meteor account.
    * @param email The email associated with this profile. Will be the username.
    * @param password The password for this user.
+   * @param websiteLink The website link
    * @param firstName The first name.
    * @param lastName The last name.
    * @param organizationName The name of the organization.
@@ -59,13 +61,13 @@ class OrganizationProfileCollection extends BaseProfileCollection {
    * @param environmental Environment that the organization is active on.
    * @param about Message about the organization.
    */
-  define({ username, organizationName, firstName, lastName, password, image, email, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about }) {
+  define({ username, organizationName, websiteLink, firstName, lastName, password, image, email, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about }) {
     if (Meteor.isServer) {
       // const username = email;
       const user = this.findOne({ email, firstName, lastName });
       if (!user) {
         const role = ROLE.ORGANIZATION;
-        const profileID = this._collection.insert({ organizationName, username, firstName, lastName, image, email, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, userID: this.getFakeUserId(), role });
+        const profileID = this._collection.insert({ organizationName, username, websiteLink, firstName, lastName, image, email, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, userID: this.getFakeUserId(), role });
         const userID = Users.define({ username, email, role, password });
         this._collection.update(profileID, { $set: { userID } });
         return profileID;
@@ -81,11 +83,14 @@ class OrganizationProfileCollection extends BaseProfileCollection {
    * @param firstName new first name (optional).
    * @param lastName new last name (optional).
    */
-  update(docID, { firstName, organizationName, lastName, image, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about }) {
+  update(docID, { firstName, organizationName, websiteLink, lastName, image, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about }) {
     this.assertDefined(docID);
     const updateData = {};
     if (organizationName) {
       updateData.organizationName = organizationName;
+    }
+    if (websiteLink) {
+      updateData.websiteLink = websiteLink;
     }
     if (firstName) {
       updateData.firstName = firstName;
@@ -171,6 +176,7 @@ class OrganizationProfileCollection extends BaseProfileCollection {
     const doc = this.findDoc(docID);
     const email = doc.email;
     const username = doc.username;
+    const websiteLink = doc.websiteLink;
     const firstName = doc.firstName;
     const lastName = doc.lastName;
     const image = doc.image;
@@ -183,7 +189,7 @@ class OrganizationProfileCollection extends BaseProfileCollection {
     const fields = doc.fields;
     const environmental = doc.environmental;
     const about = doc.about;
-    return { email, organizationName, firstName, lastName, username, image, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about };
+    return { email, organizationName, websiteLink, firstName, lastName, username, image, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about };
   }
 }
 

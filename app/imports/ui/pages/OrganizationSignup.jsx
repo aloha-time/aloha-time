@@ -28,6 +28,7 @@ export const fieldsType = [
 export const environmentalType = ['Indoor', 'Outdoor', 'Both', 'No Preference'];
 const formSchema = new SimpleSchema({
   organizationName: String,
+  websiteLink: String,
   firstName: String,
   username: String,
   password: String,
@@ -130,6 +131,11 @@ const OrganizationSignup = ({ location }) => {
                 id={COMPONENT_IDS.SIGN_UP_FORM_ORGANIZATION_NAME}
                 name="organizationName"
                 placeholder="Organization Name"
+              />
+              <TextField
+                id={COMPONENT_IDS.SIGN_UP_FORM_ORGANIZATION_WEBSITE}
+                name="websiteLink"
+                placeholder="Website"
               />
               <TextField
                 id={COMPONENT_IDS.SIGN_UP_FORM_FIRSTNAME}
