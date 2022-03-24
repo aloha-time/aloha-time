@@ -34,6 +34,7 @@ export const COMPONENT_IDS = {
   SIGN_UP_FORM_PHONE_NUMBER: 'sign-up-form-phone-umber',
   SIGN_UP_FORM_USERNAME: 'sign-up-form-username',
   SIGN_UP_FORM_ORGANIZATION_NAME: 'sign-up-form-organization-name',
+  SIGN_UP_FORM_ORGANIZATION_WEBSITE: 'sign-up-form-organization-website',
   SIGN_UP_FORM_PRIMARY_ADDRESS: 'sign-up-form-primary-address',
   SIGN_UP_FORM_SUBMIT: 'sign-up-form-submit',
 };

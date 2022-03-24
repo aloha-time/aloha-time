@@ -7,9 +7,9 @@ export const signUpNewOrganizationMethod = new ValidatedMethod({
   name: 'OrganizationProfiles.SignupNewOrganization',
   mixins: [CallPromiseMixin],
   validate: null,
-  run({ username, organizationName, firstName, lastName, password, image, email, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about }) {
+  run({ username, organizationName, websiteLink, firstName, lastName, password, image, email, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about }) {
     if (Meteor.isServer) {
-      OrganizationProfiles.define({ username, organizationName, firstName, lastName, password, image, email, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about });
+      OrganizationProfiles.define({ username, organizationName, websiteLink, firstName, lastName, password, image, email, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about });
     }
   },
 });

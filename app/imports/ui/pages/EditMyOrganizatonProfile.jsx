@@ -26,9 +26,9 @@ const EditMyOrganizationProfile = ({ orgProfile, ready, location }) => {
 
   // On successful submit, insert the data.
   const submit = (data) => {
-    const { organizationName, firstName, lastName, image, email, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, _id } = data;
+    const { organizationName, websiteLink, firstName, lastName, image, email, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, _id } = data;
     const collectionName = OrganizationProfiles.getCollectionName();
-    const updateData = { id: _id, organizationName, firstName, lastName, image, email, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about };
+    const updateData = { id: _id, organizationName, websiteLink, firstName, lastName, image, email, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about };
     updateMethod.callPromise({ collectionName, updateData })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => swal('Success', 'Item updated successfully', 'success'));
@@ -66,6 +66,7 @@ const EditMyOrganizationProfile = ({ orgProfile, ready, location }) => {
                   </Card.Content>
                   <Card.Content>
                     <TextField label='Organization Name' name='organizationName'/>
+                    <TextField label='Website' name='websiteLink'/>
                   </Card.Content>
                   <Card.Content>
                     <TextField label='First Name' name='firstName'/>
