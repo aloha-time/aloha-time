@@ -123,7 +123,6 @@ const MyOrganizationProfile = ({ orgProfile, ready }) => ((ready) ? (
 // Require the organization profile documents in the props.
 MyOrganizationProfile.propTypes = {
   orgProfile: PropTypes.object,
-  opportunities: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 

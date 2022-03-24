@@ -43,7 +43,7 @@ const NavBar = ({ currentUser }) => {
             </Dropdown.Menu>
           </Dropdown>]
         ) : (
-          [<Dropdown id={COMPONENT_IDS.NAVBAR_CURRENT_USER} text={currentUser} pointing="top right" icon={'group'}
+          [<Dropdown id={COMPONENT_IDS.NAVBAR_CURRENT_USER} text={currentUser} pointing="top right" icon={'user'}
             key="logout">
             <Dropdown.Menu>
               {Roles.userIsInRole(Meteor.userId(), [ROLE.VOLUNTEER]) ? (
