@@ -88,7 +88,13 @@ class ViewOpportunity extends React.Component {
         <br/>
         <br/>
         <Grid centered column>
-          {!Roles.userIsInRole(Meteor.userId(), [ROLE.ORGANIZATION]) ? (
+          {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? (
+            <h1>
+              <Icon name='user'/>
+              {this.props.opportunity.owner}
+            </h1>)
+            : ''}
+          {!Roles.userIsInRole(Meteor.userId(), [ROLE.ORGANIZATION, ROLE.ADMIN]) ? (
             <div>
               <Button color='blue'>
                 <Icon name='map marker alternate'/> Get directions
