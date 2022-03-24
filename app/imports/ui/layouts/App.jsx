@@ -58,7 +58,7 @@ class App extends React.Component {
             <OrganizationProtectedRoute path="/my-opportunities" component={ListOpportunityOrganization}/>
             <OrganizationProtectedRoute path="/my-organization-profile" component={MyOrganizationProfile}/>
             <OrganizationProtectedRoute path="/edit-my-organization-profile" component={EditMyOrganizationProfile}/>
-            <ProtectedRoute path="/orginfo/:_id" component={OrgInfo}/>
+            <Route path="/orginfo/:_id" component={OrgInfo}/>
             <OrganizationProtectedRoute path="/add-opportunity" component={AddOpportunity}/>
             <OrganizationProtectedRoute path="/edit-opportunity/:_id" component={EditOpportunity}/>
             <AdminProtectedRoute path="/manage-database" component={ManageDatabase}/>
