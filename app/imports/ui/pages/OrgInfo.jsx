@@ -1,46 +1,19 @@
 import React from 'react';
-import { Container, Loader, Grid, Embed, Header, Feed } from 'semantic-ui-react';
+import { Container, Loader, Grid } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router';
 import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection';
 import OrgItem2 from '../components/OrgItem2';
 
-const pageStyle = { paddingTop: '15px', paddingBottom: '15px' };
+// const pageStyle = { paddingTop: '15px', paddingBottom: '15px' };
 
 /** Renders a table containing all of the Organization documents. Use <OrgItem2> to render each row. */
 const OrgInfo = ({ ready, doc }) => ((ready) ? (
-  <Container style={pageStyle}>
+  <Container fluid>
     <Grid columns='equal'>
       <Grid.Column>
         <OrgItem2 org={doc}/>
-      </Grid.Column>
-      <Grid.Column>
-        <Feed>
-          <Header as="h3" textAlign="center">Activity Feed</Header>
-          <Feed.Event
-            icon='pencil'
-            date='Today'
-            summary='Organization has posted a new opportunity'
-          />
-          <Feed.Event
-            icon='pencil'
-            date='Today'
-            summary='Organization has posted a new opportunity'
-          />
-          <Feed.Event
-            icon='pencil'
-            date='Today'
-            summary='Organization has posted a new opportunity'
-          />
-        </Feed>
-      </Grid.Column>
-      <Grid.Column>
-        <Header as="h3" textAlign="center">Media Feed</Header>
-        <Embed
-          id='dQw4w9WgXcQ'
-          source='youtube'
-        />
       </Grid.Column>
     </Grid>
   </Container>

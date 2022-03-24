@@ -37,7 +37,7 @@ const ShowVolunteerProfile = ({ volProfile, ready }) => ((ready) ? (
             Hours volunteered
         </Header>
         <Header as='h2' textAlign='center'>
-            20 hours
+            0 hours
         </Header>
       </Grid.Column>
     </Grid>
@@ -116,7 +116,7 @@ const ShowVolunteerProfile = ({ volProfile, ready }) => ((ready) ? (
       </Grid.Column>
       <Grid.Column width={6} floated='right'>
         <Header as='h1' textAlign='center'>
-          Opportunity Log
+          Completed Opportunities
         </Header>
         <Item.Group relaxed>
           <Item>
