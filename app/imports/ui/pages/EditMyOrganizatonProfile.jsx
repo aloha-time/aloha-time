@@ -17,6 +17,7 @@ import RadioField from '../components/form-fields/RadioField';
 import { updateMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection';
+import ImageUploadFiled from '../components/form-fields/ImageUploadFiled';
 
 const bridge = new SimpleSchema2Bridge(OrganizationProfiles._schema);
 
@@ -66,6 +67,7 @@ const EditMyOrganizationProfile = ({ orgProfile, ready, location }) => {
                   </Card.Content>
                   <Card.Content>
                     <TextField label='Organization Name' name='organizationName'/>
+                    <ImageUploadFiled label='My Organization Image' name='image'/>
                     <TextField label='Website' name='websiteLink'/>
                   </Card.Content>
                   <Card.Content>

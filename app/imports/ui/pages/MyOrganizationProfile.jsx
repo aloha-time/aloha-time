@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection';
 import CustomDotGroup from '../components/CustomDotGroup';
+import { MyUrl } from '../components/MyUrl';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 
 const headerStyle = { padding: '1em' };
@@ -23,7 +24,7 @@ const MyOrganizationProfile = ({ orgProfile, ready }) => ((ready) ? (
     </div>
     <Grid style={headerStyle}>
       <Grid.Column width={3} style={columnStyle}>
-        <Image centered size='small' src={orgProfile.image} />
+        <Image centered size='small' src={MyUrl(orgProfile.image)} />
       </Grid.Column>
       <Grid.Column verticalAlign='middle' width={9} style={columnStyle}>
         <Header as='h1'>
