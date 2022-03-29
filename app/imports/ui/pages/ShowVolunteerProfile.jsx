@@ -48,7 +48,7 @@ const ShowVolunteerProfile = ({ volProfile, ready }) => ((ready) ? (
         <List relaxed>
           <List.Item>
             <List.Icon name='location arrow' />
-            <List.Content>{volProfile.address} {volProfile.state} {volProfile.city} {volProfile.zip}</List.Content>
+            <List.Content>{volProfile.address} {volProfile.city} {volProfile.state} {volProfile.zip}</List.Content>
           </List.Item>
           <List.Item>
             <List.Icon name='phone' />
