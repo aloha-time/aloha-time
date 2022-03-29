@@ -67,7 +67,7 @@ class VolunteerProfileCollection extends BaseProfileCollection {
       'skillsType.$': { type: String, allowedValues: skills },
       preferencesType: { type: String, allowedValues: preferences },
       availabilityType: { type: String, allowedValues: availability },
-      image: { type: String, defaultValue: '/images/meteor-logo.png' },
+      image: { type: String, defaultValue: 'https://semantic-ui.com/images/wireframe/image.png' },
     }));
   }
 

@@ -22,10 +22,10 @@ function createOrganization(organizationName, username, websiteLink, firstName, 
     OrganizationProfiles.define({ organizationName, username, websiteLink, firstName, lastName, password, image, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email });
   }
 }
-function createVolunteer(email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType, role) {
+function createVolunteer(email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType, image, role) {
   console.log(`  Creating volunteer ${username} with role ${role}.`);
   if (role === ROLE.VOLUNTEER) {
-    VolunteerProfiles.define({ email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType });
+    VolunteerProfiles.define({ email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType, image });
   }
 }
 // When running app for first time, pass a settings file to set up a default user account.
@@ -50,8 +50,8 @@ if (Meteor.users.find().count() === 0) {
   }
   if (Meteor.settings.defaultVolunteers) {
     console.log('Creating the default Volunteer(s)');
-    Meteor.settings.defaultVolunteers.map(({ email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType, role,
-    }) => createVolunteer(email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType, role));
+    Meteor.settings.defaultVolunteers.map(({ email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType, image, role,
+    }) => createVolunteer(email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType, image, role));
   } else {
     console.log('Cannot initialize the database for organization!  Please invoke meteor with a settings file.');
   }
