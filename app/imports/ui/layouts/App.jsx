@@ -48,7 +48,6 @@ class App extends React.Component {
             <Route path="/organization-library" component={ListOrg}/>
             <Route path="/about-us" component={AboutUs}/>
             <Route path="/signup" component={Signup}/>
-            <Route path="/organization-signup" component={OrganizationSignup}/>
             <Route path="/volunteer-signup" component={VolunteerSignUp}/>
             <Route path="/signout" component={Signout}/>
             <Route path="/calendar-schedule" component={CalendarSchedule}/>
@@ -63,6 +62,7 @@ class App extends React.Component {
             <OrganizationProtectedRoute path="/edit-opportunity/:_id" component={EditOpportunity}/>
             <AdminProtectedRoute path="/manage-database" component={ManageDatabase}/>
             <AdminProtectedRoute path="/admin-page" component={AdminPage}/>
+            <AdminProtectedRoute path="/organization-signup" component={OrganizationSignup}/>
             <Route component={NotFound}/>
           </Switch>
           <Footer/>

@@ -50,18 +50,20 @@ const NavBar = ({ currentUser }) => {
                 <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MY_PROFILE} text="My Profile" as={NavLink} exact
                   to="/myProfile"/>)
                 : ''}
-              {Roles.userIsInRole(Meteor.userId(), [ROLE.ORGANIZATION]) ? (
+              {Roles.userIsInRole(Meteor.userId(), [ROLE.ORGANIZATION]) ? ([
                 <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MY_ORGANIZATION_PROFILE} text="My Organization Profile"
-                  as={NavLink} exact
-                  to="/my-organization-profile"/>)
+                  key ='my organization profile' as={NavLink} exact
+                  to="/my-organization-profile"/>,
+                <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MY_OPPORTUNITIES} text="My Opportunities" key='my opportunities' as={NavLink} exact
+                  to="/my-opportunities"/>]
+              )
                 : ''}
-              {Roles.userIsInRole(Meteor.userId(), [ROLE.ORGANIZATION]) ? (
-                <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MY_OPPORTUNITIES} text="My Opportunities" as={NavLink} exact
-                  to="/my-opportunities"/>)
-                : ''}
-              {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? (
-                <Dropdown.Item id={COMPONENT_IDS.NAVBAR_ADMIN_VERIFY} text="Verify Accounts" as={NavLink} exact
-                  to="/verifyAccounts"/>
+              {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? ([
+                <Dropdown.Item id={COMPONENT_IDS.NAVBAR_DROPDOWN_ORGANIZATION_SIGN_UP} text="Organization Sign up" key='organization sign up' as={NavLink} exact
+                  to="/organization-signup"/>,
+                <Dropdown.Item id={COMPONENT_IDS.NAVBAR_ADMIN_VERIFY} text="Verify Accounts" key = 'verify accouts' as={NavLink} exact
+                  to="/verifyAccounts"/>,
+              ]
               ) : ''}
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_SIGN_OUT} icon="sign out" text="Sign Out" as={NavLink} exact
                 to="/signout"/>
