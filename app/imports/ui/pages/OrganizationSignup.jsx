@@ -11,6 +11,7 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { signUpNewOrganizationMethod } from '../../api/user/OrganizationProfileCollection.methods';
 import MultiSelectField from '../components/form-fields/MultiSelectField';
 import RadioField from '../components/form-fields/RadioField';
+import ImageUploadFiled from '../components/form-fields/ImageUploadFiled';
 
 export const fieldsType = [
   'Animal Welfare/Rescue',
@@ -28,6 +29,7 @@ export const fieldsType = [
 export const environmentalType = ['Indoor', 'Outdoor', 'Both', 'No Preference'];
 const formSchema = new SimpleSchema({
   organizationName: String,
+  image: String,
   websiteLink: String,
   firstName: String,
   username: String,
@@ -132,6 +134,7 @@ const OrganizationSignup = ({ location }) => {
                 name="organizationName"
                 placeholder="Organization Name"
               />
+              <ImageUploadFiled label='Organization Image' name='image'/>
               <TextField
                 id={COMPONENT_IDS.SIGN_UP_FORM_ORGANIZATION_WEBSITE}
                 name="websiteLink"
