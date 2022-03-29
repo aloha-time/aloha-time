@@ -27,9 +27,9 @@ const EditMyProfile = ({ volProfile, ready, location }) => {
 
   // On successful submit, insert the data.
   const submit = (data) => {
-    const { firstName, lastName, dateOfBirth, genderType, address, city, state, zip, phone, interestsType, skillsType, preferencesType, availabilityType, _id } = data;
+    const { firstName, lastName, dateOfBirth, genderType, address, city, state, zip, phone, interestsType, skillsType, preferencesType, availabilityType, image, _id } = data;
     const collectionName = VolunteerProfiles.getCollectionName();
-    const updateData = { id: _id, firstName, lastName, dateOfBirth, genderType, address, city, state, zip, phone, interestsType, skillsType, preferencesType, availabilityType };
+    const updateData = { id: _id, firstName, lastName, dateOfBirth, genderType, address, city, state, zip, phone, interestsType, skillsType, preferencesType, availabilityType, image };
     updateMethod.callPromise({ collectionName, updateData })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => swal('Success', 'Profile updated successfully', 'success'));
