@@ -67,6 +67,7 @@ class VolunteerProfileCollection extends BaseProfileCollection {
       'skillsType.$': { type: String, allowedValues: skills },
       preferencesType: { type: String, allowedValues: preferences },
       availabilityType: { type: String, allowedValues: availability },
+      image: { type: String, defaultValue: '/images/meteor-logo.png' },
     }));
   }
 
@@ -89,13 +90,14 @@ class VolunteerProfileCollection extends BaseProfileCollection {
    * @param preferencesType Preferences of the user.
    * @param availabilityType Availability of user.
    */
-  define({ email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType }) {
+  define({ email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType, image }) {
     if (Meteor.isServer) {
       // const username = email;
       const user = this.findOne({ email, firstName, lastName });
       if (!user) {
         const role = ROLE.VOLUNTEER;
-        const profileID = this._collection.insert({ email, firstName, lastName, userID: this.getFakeUserId(), role, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType });
+        const profileID = this._collection.insert({ email, firstName, lastName, userID: this.getFakeUserId(), role, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType,
+          preferencesType, availabilityType, image });
         const userID = Users.define({ username, email, role, password });
         this._collection.update(profileID, { $set: { userID } });
         return profileID;
@@ -111,7 +113,7 @@ class VolunteerProfileCollection extends BaseProfileCollection {
    * @param firstName new first name (optional).
    * @param lastName new last name (optional).
    */
-  update(docID, { firstName, lastName, dateOfBirth, genderType, address, city, state, zip, phone, interestsType, skillsType, preferencesType, availabilityType }) {
+  update(docID, { firstName, lastName, dateOfBirth, genderType, address, city, state, zip, phone, interestsType, skillsType, preferencesType, availabilityType, image }) {
     this.assertDefined(docID);
     const updateData = {};
     if (firstName) {
@@ -152,6 +154,9 @@ class VolunteerProfileCollection extends BaseProfileCollection {
     }
     if (availabilityType) {
       updateData.availabilityType = availabilityType;
+    }
+    if (image) {
+      updateData.image = image;
     }
     this._collection.update(docID, { $set: updateData });
   }
@@ -215,7 +220,8 @@ class VolunteerProfileCollection extends BaseProfileCollection {
     const skillsType = doc.skillsType;
     const preferencesType = doc.preferencesType;
     const availabilityType = doc.availabilityType;
-    return { firstName, lastName, email, dateOfBirth, genderType, address, city, state, zip, phone, interestsType, skillsType, preferencesType, availabilityType };
+    const image = doc.image;
+    return { firstName, lastName, email, dateOfBirth, genderType, address, city, state, zip, phone, interestsType, skillsType, preferencesType, availabilityType, image };
   }
 }
 

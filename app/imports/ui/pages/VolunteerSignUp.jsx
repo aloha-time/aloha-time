@@ -11,6 +11,7 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import MultiSelectField from '../components/form-fields/MultiSelectField';
 import RadioField from '../components/form-fields/RadioField';
 import { signUpNewVolunteerMethod } from '../../api/user/VolunteerProfileCollection.methods';
+import ImageUploadFiled from '../components/form-fields/ImageUploadFiled';
 
 export const gender = ['Female', 'Male', 'Other', 'Prefer Not To Say'];
 export const interests = [
@@ -73,6 +74,7 @@ const formSchema = new SimpleSchema({
   'skillsType.$': { type: String, allowedValues: skills },
   preferencesType: { type: String, allowedValues: preferences },
   availabilityType: { type: String, allowedValues: availability },
+  image: { type: String, required: false },
 });
 
 const bridge = new SimpleSchema2Bridge(formSchema);
@@ -221,6 +223,7 @@ const VolunteerSignup = ({ location }) => {
               <MultiSelectField name='skillsType'/>
               <RadioField name='preferencesType'/>
               <RadioField name='availabilityType'/>
+              <ImageUploadFiled name='image'/>
               <Form.Checkbox required
                 label = "Please confirm that you agree to our privacy policy"
                 name="privacyPolicy"

@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { VolunteerProfiles } from '../../api/user/VolunteerProfileCollection';
 import CustomDotGroup from '../components/CustomDotGroup';
+import { MyUrl } from '../components/MyUrl';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 
 const headerStyle = { padding: '1em' };
@@ -23,7 +24,7 @@ const ShowVolunteerProfile = ({ volProfile, ready }) => ((ready) ? (
     </div>
     <Grid style={headerStyle}>
       <Grid.Column width={3}>
-        <Image centered size='small' src='https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg' />
+        <Image centered size='large' src={MyUrl(volProfile.image)} />
       </Grid.Column>
       <Grid.Column verticalAlign='middle' width={9} style={columnStyle}>
         <Header as='h1'>
@@ -59,7 +60,7 @@ const ShowVolunteerProfile = ({ volProfile, ready }) => ((ready) ? (
           </List.Item>
           <List.Item>
             <List.Icon name='clock outline' />
-            <List.Content> Availability: {volProfile.preferencesType}</List.Content>
+            <List.Content> Availability: {volProfile.availabilityType}</List.Content>
           </List.Item>
         </List>
       </Segment>

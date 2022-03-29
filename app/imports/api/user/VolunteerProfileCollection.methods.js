@@ -7,9 +7,9 @@ export const signUpNewVolunteerMethod = new ValidatedMethod({
   name: 'VolunteerProfiles.SignUpNewVolunteer',
   mixins: [CallPromiseMixin],
   validate: null,
-  run({ email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType }) {
+  run({ email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType, image }) {
     if (Meteor.isServer) {
-      VolunteerProfiles.define({ email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType });
+      VolunteerProfiles.define({ email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType, image });
     }
   },
 });

@@ -17,6 +17,7 @@ import MultiSelectField from '../components/form-fields/MultiSelectField';
 import { VolunteerProfiles } from '../../api/user/VolunteerProfileCollection';
 import { updateMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import ImageUploadFiled from '../components/form-fields/ImageUploadFiled';
 
 const bridge = new SimpleSchema2Bridge(VolunteerProfiles._schema);
 
@@ -75,6 +76,9 @@ const EditMyProfile = ({ volProfile, ready, location }) => {
                   </Card.Content>
                   <Card.Content>
                     <TextField label='Date of Birth' name='dateOfBirth'/>
+                  </Card.Content>
+                  <Card.Content>
+                    <ImageUploadFiled label='My Profile Image' name='image'/>
                   </Card.Content>
                 </Card>
                 <Card fluid>
