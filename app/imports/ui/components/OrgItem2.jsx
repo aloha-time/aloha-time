@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import CustomDotGroup from '../components/CustomDotGroup';
 import 'pure-react-carousel/dist/react-carousel.es.css';
-
+import { MyUrl } from '../components/MyUrl';
 const columnStyle = { paddingTop: '9em' };
 const socialMediaStyle = { paddingTop: '13em' };
 const margSides = { marginLeft: '4em', marginRight: '4em' };
@@ -19,7 +19,7 @@ const OrgItem2 = ({ org }) => (
     <Grid style={margSides}>
       <Grid.Row>
         <Grid.Column width={4} style={columnStyle}>
-          <Image centered size='medium' src={org.image} />
+          <Image centered size='medium' src={MyUrl(org.image)} />
         </Grid.Column>
         <Grid.Column verticalAlign='middle' width={7} style={columnStyle}>
           <Header as='h1'>

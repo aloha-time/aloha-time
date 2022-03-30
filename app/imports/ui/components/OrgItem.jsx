@@ -2,11 +2,11 @@ import React from 'react';
 import { Card, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
-
+import { MyUrl } from '../components/MyUrl';
 /** Renders a single card in the Organization Library page. See pages/ListOrg.jsx. */
 const OrgItem = ({ org }) => (
   <Card>
-    <Image src={org.image} wrapped ui={false} /> {/* will call to the organization collection using something like org.logo */}
+    <Image src={MyUrl(org.image)} wrapped ui={false} /> {/* will call to the organization collection using something like org.logo */}
     <Card.Content>
       <Card.Header>{org.organizationName}</Card.Header> {/* will call to the organization collection using something like org.name */}
       <Card.Meta>{org.fields}</Card.Meta> {/* will call to the organization collection using something like org.type */}
