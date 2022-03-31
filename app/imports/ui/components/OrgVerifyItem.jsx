@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Dropdown, Item, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import { MyUrl } from '../components/MyUrl';
 
 const options = [
   { key: 'edit', icon: 'edit', text: 'Edit Organization', value: 'edit' },
@@ -9,7 +10,7 @@ const options = [
 
 const OrgVerifyItem = ({ organization }) => (
   <Item>
-    <Item.Image src={organization.image} />
+    <Item.Image src={MyUrl(organization.image)} />
     <Item.Content verticalAlign='middle'>
       <Item.Header as='a'>{organization.organizationName}</Item.Header>
       <Item.Meta>
