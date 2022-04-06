@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import CustomDotGroup from '../components/CustomDotGroup';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { MyUrl } from '../components/MyUrl';
+
 const columnStyle = { paddingTop: '9em' };
 const socialMediaStyle = { paddingTop: '13em' };
 const margSides = { marginLeft: '4em', marginRight: '4em' };

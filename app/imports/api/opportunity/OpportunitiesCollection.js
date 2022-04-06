@@ -47,7 +47,10 @@ class OpportunitiesCollection extends BaseCollection {
       phone: String,
       website: String,
       coverImage: String,
-      galleryImage: String,
+      galleryImg1: String,
+      galleryImg2: String,
+      galleryImg3: String,
+      galleryImg4: String,
       ageGroup: {
         type: String,
         allowedValues: opportunityAges,
@@ -76,13 +79,18 @@ class OpportunitiesCollection extends BaseCollection {
    * @param phone the phone number of the contact.
    * @param website the website of the contact.
    * @param coverImage the cover image for the opportunity.
-   * @param galleryImage the gallery images for the opportunity.
+   * @param galleryImg1 the 1st gallery image for the opportunity.
+   * @param galleryImg2 the 2nd gallery image for the opportunity.
+   * @param galleryImg3 the 3rd gallery image for the opportunity.
+   * @param galleryImg4 the 4th gallery image for the opportunity.
    * @param ageGroup the age group for the opportunity.
    * @param environment the type of environment for the opportunity.
    * @param owner the owner of the item.
    * @return {String} the docID of the new document.
    */
-  define({ title, opportunityType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, owner }) {
+  define({ title, opportunityType, startDate, endDate, recurring, description, category, location, contactName,
+    contactPosition, email, phone, website, coverImage, galleryImg1, galleryImg2, galleryImg3,
+    galleryImg4, ageGroup, environment, owner }) {
     const docID = this._collection.insert({
       title,
       opportunityType,
@@ -98,7 +106,10 @@ class OpportunitiesCollection extends BaseCollection {
       phone,
       website,
       coverImage,
-      galleryImage,
+      galleryImg1,
+      galleryImg2,
+      galleryImg3,
+      galleryImg4,
       ageGroup,
       environment,
       owner,
@@ -123,12 +134,15 @@ class OpportunitiesCollection extends BaseCollection {
    * @param phone the new contact phone number.
    * @param website the new contact website.
    * @param coverImage the new cover image.
-   * @param galleryImage the new gallery images.
+   * @param galleryImg1 the new gallery images.
+   * @param galleryImg2 the new gallery images.
+   * @param galleryImg3 the new gallery images.
+   * @param galleryImg4 the new gallery images.
    * @param ageGroup the new age group.
    * @param environment the new environment type.
    */
   update(docID, { title, opportunityType, startDate, endDate, recurring, description,
-    category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup,
+    category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImg1, galleryImg2, galleryImg3, galleryImg4, ageGroup,
     environment }) {
     const updateData = {};
     if (title) {
@@ -173,8 +187,17 @@ class OpportunitiesCollection extends BaseCollection {
     if (coverImage) {
       updateData.coverImage = coverImage;
     }
-    if (galleryImage) {
-      updateData.galleryImage = galleryImage;
+    if (galleryImg1) {
+      updateData.galleryImg1 = galleryImg1;
+    }
+    if (galleryImg2) {
+      updateData.galleryImg2 = galleryImg2;
+    }
+    if (galleryImg3) {
+      updateData.galleryImg3 = galleryImg3;
+    }
+    if (galleryImg4) {
+      updateData.galleryImg4 = galleryImg4;
     }
     if (ageGroup) {
       updateData.ageGroup = ageGroup;
@@ -295,7 +318,8 @@ class OpportunitiesCollection extends BaseCollection {
   /**
    * Returns an object representing the definition of docID in a format appropriate to the restoreOne or define function.
    * @param docID
-   * @return {{owner: (*|number), environment: *, ageGroup: *, galleryImage: *, coverImage: *, galleryImage: *,
+   * @return {{owner: (*|number), environment: *, ageGroup: *, galleryImg4: *, galleryImg3: *, galleryImg2: *,
+   * galleryImg1: *, coverImage: *,
    * website: *, contactPosition: *, contactName: *, location: *,category: *, description: *, recurring: *, endTime: *,
    * startTime: *, endDate: *, startDate: *, opportunityType: *, title}}
    */
@@ -315,11 +339,16 @@ class OpportunitiesCollection extends BaseCollection {
     const phone = doc.phone;
     const website = doc.website;
     const coverImage = doc.coverImage;
-    const galleryImage = doc.galleryImage;
+    const galleryImg1 = doc.galleryImg1;
+    const galleryImg2 = doc.galleryImg2;
+    const galleryImg3 = doc.galleryImg3;
+    const galleryImg4 = doc.galleryImg4;
     const ageGroup = doc.ageGroup;
     const environment = doc.environment;
     const owner = doc.owner;
-    return { title, opportunityType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, owner };
+    return { title, opportunityType, startDate, endDate, recurring, description, category, location, contactName,
+      contactPosition, email, phone, website, coverImage, galleryImg1, galleryImg2, galleryImg3,
+      galleryImg4, ageGroup, environment, owner };
   }
 }
 
