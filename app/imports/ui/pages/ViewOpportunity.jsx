@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Header, Loader, Card, Grid, Button, Icon, Segment, Image } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Grid, Button, Icon, Segment } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
@@ -179,16 +179,16 @@ class ViewOpportunity extends React.Component {
         <br/>
         <Card.Group stackable itemsPerRow={4}>
           <Card link>
-            <Image src={this.props.opportunity.galleryImage}/>
+            <img src={this.props.opportunity.galleryImg1} height="200" alt="galleryimg1"/>
           </Card>
           <Card link>
-            <Image src={this.props.opportunity.galleryImage}/>
+            <img src={this.props.opportunity.galleryImg2} height="200" alt="galleryimg2"/>
           </Card>
           <Card link>
-            <Image src={this.props.opportunity.galleryImage}/>
+            <img src={this.props.opportunity.galleryImg3} height="200" alt="galleryimg3"/>
           </Card>
           <Card link>
-            <Image src={this.props.opportunity.galleryImage}/>
+            <img src={this.props.opportunity.galleryImg4} height="200" alt="galleryimg4"/>
           </Card>
         </Card.Group>
         <Grid columns={3}>

@@ -53,7 +53,19 @@ const formSchema = new SimpleSchema({
     type: String,
     defaultValue: '../images/opportunity_images/opportunity-default.jpg',
   },
-  galleryImage: {
+  galleryImg1: {
+    type: String,
+    defaultValue: '../images/opportunity_images/opportunity-default.jpg',
+  },
+  galleryImg2: {
+    type: String,
+    defaultValue: '../images/opportunity_images/opportunity-default.jpg',
+  },
+  galleryImg3: {
+    type: String,
+    defaultValue: '../images/opportunity_images/opportunity-default.jpg',
+  },
+  galleryImg4: {
     type: String,
     defaultValue: '../images/opportunity_images/opportunity-default.jpg',
   },
@@ -74,10 +86,14 @@ const AddOpportunity = () => {
 
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { title, opportunityType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment } = data;
+    const { title, opportunityType, startDate, endDate, recurring, description, category, location, contactName,
+      contactPosition, email, phone, website, coverImage, galleryImg1, galleryImg2, galleryImg3,
+      galleryImg4, ageGroup, environment } = data;
     const owner = Meteor.user().username;
     const collectionName = Opportunities.getCollectionName();
-    const definitionData = { title, opportunityType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImage, ageGroup, environment, owner };
+    const definitionData = { title, opportunityType, startDate, endDate, recurring, description, category, location,
+      contactName, contactPosition, email, phone, website, coverImage, galleryImg1, galleryImg2,
+      galleryImg3, galleryImg4, ageGroup, environment, owner };
     defineMethod.callPromise({ collectionName, definitionData })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => {
@@ -166,7 +182,10 @@ const AddOpportunity = () => {
                   </Card.Content>
                   <Card.Content>
                     <TextField label='Cover Image' name='coverImage' placeholder='URL to your image'/>
-                    <TextField label='Gallery Images' name='galleryImage' placeholder='URL to your image'/>
+                    <TextField label='Gallery Image 1' name='galleryImg1' placeholder='URL to your image'/>
+                    <TextField label='Gallery Image 2' name='galleryImg2' placeholder='URL to your image'/>
+                    <TextField label='Gallery Image 3' name='galleryImg3' placeholder='URL to your image'/>
+                    <TextField label='Gallery Image 4' name='galleryImg4' placeholder='URL to your image'/>
                     <SelectField checkboxes label='Age Group' name='ageGroup'/>
                     <SelectField checkboxes label='Environment' name='environment'/>
                   </Card.Content>
