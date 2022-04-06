@@ -51,23 +51,23 @@ const formSchema = new SimpleSchema({
   website: String,
   coverImage: {
     type: String,
-    defaultValue: '../images/opportunity_images/opportunity-default.jpg',
+    defaultValue: '../images/opportunity_images/defaults/defaultCoverImg.jpg',
   },
   galleryImg1: {
     type: String,
-    defaultValue: '../images/opportunity_images/opportunity-default.jpg',
+    defaultValue: '../images/opportunity_images/defaults/defaultGalleryImg.jpg',
   },
   galleryImg2: {
     type: String,
-    defaultValue: '../images/opportunity_images/opportunity-default.jpg',
+    defaultValue: '../images/opportunity_images/defaults/defaultGalleryImg.jpg',
   },
   galleryImg3: {
     type: String,
-    defaultValue: '../images/opportunity_images/opportunity-default.jpg',
+    defaultValue: '../images/opportunity_images/defaults/defaultGalleryImg.jpg',
   },
   galleryImg4: {
     type: String,
-    defaultValue: '../images/opportunity_images/opportunity-default.jpg',
+    defaultValue: '../images/opportunity_images/defaults/defaultGalleryImg.jpg',
   },
   ageGroup: {
     type: String,
