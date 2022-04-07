@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Button, Container, Header } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
 const localizer = momentLocalizer(moment);
+
+const events = [
+  {
+    title: 'Health Help',
+    start: new Date(2022, 3, 7),
+    end: new Date(2022, 3, 10),
+  },
+];
 
 /** The calendar scheduler. */
 const CalendarSchedule = () => (
@@ -30,6 +39,7 @@ const CalendarSchedule = () => (
     <div>
       <Calendar
         localizer={localizer}
+        events={events}
         startAccessor="start"
         endAccessor="end"
         style={{ height: 600 }}
