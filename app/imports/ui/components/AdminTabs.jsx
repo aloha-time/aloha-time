@@ -3,6 +3,7 @@ import { Tab, Item } from 'semantic-ui-react';
 import OrgVerifyList from './OrgVerifyList';
 import VolunteerVerifyList from './VolunteerVerifyList';
 import AdminSettingsForm from './AdminSettingsForm';
+import OppVerifyList from './OppVerifyList';
 
 const panes = [
   // eslint-disable-next-line react/display-name
@@ -18,6 +19,10 @@ const panes = [
     <Item.Group divided>
       <VolunteerVerifyList/>
     </Item.Group>
+  </Tab.Pane> },
+  // eslint-disable-next-line react/display-name
+  { menuItem: 'Verify Opportunities', render: () => <Tab.Pane>
+    <OppVerifyList/>
   </Tab.Pane> },
 ];
 

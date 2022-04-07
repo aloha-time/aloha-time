@@ -5,6 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import AdminTabs from '../components/AdminTabs';
 import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection';
 import { VolunteerProfiles } from '../../api/user/VolunteerProfileCollection';
+import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 
 const AdminPage = ({ ready }) => ((ready) ? (
   <Container>
@@ -22,9 +23,10 @@ AdminPage.propTypes = {
 };
 
 export default withTracker(() => {
+  const OppSubscription = Opportunities.subscribeOpportunityAdmin();
   const OrgSubscription = OrganizationProfiles.subscribe();
   const VolSubscription = VolunteerProfiles.subscribe();
-  const ready = OrgSubscription.ready() && VolSubscription.ready();
+  const ready = OrgSubscription.ready() && VolSubscription.ready() && OppSubscription.ready();
   const organization = OrganizationProfiles.find({}, { sort: { organizationName: 1 } }).fetch();
   const volunteer = VolunteerProfiles.find({}, { sort: { firstName: 1 } }).fetch();
   return {

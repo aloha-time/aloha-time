@@ -18,6 +18,7 @@ export const opportunityCategories = ['Animal Welfare/Rescue', 'Child/Family Sup
 export const opportunityAges = ['Family-Friendly', 'Teens', 'Adults', 'Seniors'];
 export const opportunityEnvironments = ['Indoors', 'Outdoors', 'Mixed', 'Virtual'];
 export const opportunityRecurring = ['No', 'Daily', 'Weekly', 'Monthly', 'Yearly'];
+export const opportunityVerify = ['Verified', 'Unverified'];
 
 class OpportunitiesCollection extends BaseCollection {
   constructor() {
@@ -60,6 +61,11 @@ class OpportunitiesCollection extends BaseCollection {
         allowedValues: opportunityEnvironments,
       },
       owner: String,
+      verification: {
+        type: String,
+        allowedValues: opportunityVerify,
+        defaultValue: 'Unverified',
+      },
     }));
   }
 
@@ -140,10 +146,10 @@ class OpportunitiesCollection extends BaseCollection {
    * @param galleryImg4 the new gallery images.
    * @param ageGroup the new age group.
    * @param environment the new environment type.
+   * @param verification shows if the the given opportunity is verified by the admin
    */
   update(docID, { title, opportunityType, startDate, endDate, recurring, description,
-    category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImg1, galleryImg2, galleryImg3, galleryImg4, ageGroup,
-    environment }) {
+    category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImg1, galleryImg2, galleryImg3, galleryImg4, ageGroup, environment, verification }) {
     const updateData = {};
     if (title) {
       updateData.title = title;
@@ -204,6 +210,9 @@ class OpportunitiesCollection extends BaseCollection {
     }
     if (environment) {
       updateData.environment = environment;
+    }
+    if (verification) {
+      updateData.verification = verification;
     }
     this._collection.update(docID, { $set: updateData });
   }
