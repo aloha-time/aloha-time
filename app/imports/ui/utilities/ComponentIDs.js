@@ -11,6 +11,7 @@ export const COMPONENT_IDS = {
   NAVBAR_LOGIN_DROPDOWN_SIGN_IN: 'navbar-login-dropdown-sign-in',
   NAVBAR_LOGIN_DROPDOWN_SIGN_UP: 'navbar-login-dropdown-sign-up',
   NAVBAR_DROPDOWN_ORGANIZATION_SIGN_UP: 'navbar-dropdown-organization-sign-up',
+  NAVBAR_DROPDOWN_ADMIN_PAGE: 'navbar-dropdown-organization-sign-up',
   NAVBAR_HAMBURGER_MENU: 'navbar-hamburger-menu',
   NAVBAR_HAMBURGER_MENU_BROWSE_OPPORTUNITIES: 'navbar-hamburger-menu-browse-opportunities',
   NAVBAR_HAMBURGER_MENU_CALENDAR_SCHEDULE: 'navbar-hamburger-menu-calendar-schedule',
