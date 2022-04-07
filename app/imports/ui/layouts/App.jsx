@@ -26,6 +26,7 @@ import OrganizationSignup from '../pages/OrganizationSignup';
 import VolunteerSignUp from '../pages/VolunteerSignUp';
 import MyOrganizationProfile from '../pages/MyOrganizationProfile';
 import AdminVerifyPage from '../pages/AdminVerifyPage';
+import TheMap from '../components/TheMap';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -39,6 +40,7 @@ class App extends React.Component {
             <Route path="/signin" component={Signin}/>
             <Route path="/myprofile" component={ShowVolunteerProfile}/>
             <Route path="/signup" component={Signup}/>
+            <Route path="/themap" component={TheMap}/>
             <Route path="/organization-signup" component={OrganizationSignup}/>
             <Route path="/volunteer-signup" component={VolunteerSignUp}/>
             <Route path="/signout" component={Signout}/>

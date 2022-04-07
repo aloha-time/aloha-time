@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 import OpportunityItem from '../components/OpportunityItem';
 import { PAGE_IDS } from '../utilities/PageIDs';
+// import TheMap from '../components/TheMap';
 
 /** Renders a table containing all the Opportunity documents. Use <OpportunityItem> to render each row. */
 class ListOpportunity extends React.Component {
