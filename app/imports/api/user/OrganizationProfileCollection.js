@@ -29,7 +29,18 @@ class OrganizationProfileCollection extends BaseProfileCollection {
       websiteLink: String,
       firstName: String,
       lastName: String,
-      image: String,
+      image: { type: String, defaultValue: 'https://semantic-ui.com/images/wireframe/image.png' },
+      galleryImg1: { type: String, defaultValue: 'https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg' },
+
+      galleryImg2: { type: String, defaultValue: 'https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg' },
+
+      galleryImg3: { type: String, defaultValue: 'https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg' },
+
+      galleryImg4: { type: String, defaultValue: 'https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg' },
+
+      galleryImg5: { type: String, defaultValue: 'https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg' },
+
+      galleryImg6: { type: String, defaultValue: 'https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg' },
       email: String,
       primaryAddress: String,
       city: String,
@@ -61,13 +72,16 @@ class OrganizationProfileCollection extends BaseProfileCollection {
    * @param environmental Environment that the organization is active on.
    * @param about Message about the organization.
    */
-  define({ username, organizationName, websiteLink, firstName, lastName, password, image, email, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about }) {
+  define({ username, organizationName, websiteLink, firstName, lastName, password, image, galleryImg1, galleryImg2, galleryImg3, galleryImg4, galleryImg5, galleryImg6,
+    email, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about }) {
     if (Meteor.isServer) {
       // const username = email;
       const user = this.findOne({ email, firstName, lastName });
       if (!user) {
         const role = ROLE.ORGANIZATION;
-        const profileID = this._collection.insert({ organizationName, username, websiteLink, firstName, lastName, image, email, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, userID: this.getFakeUserId(), role });
+        const profileID = this._collection.insert({ organizationName, username, websiteLink,
+          firstName, lastName, image, galleryImg1, galleryImg2, galleryImg3, galleryImg4, galleryImg5, galleryImg6, email, primaryAddress, city, state, zipCode, phoneNumber, fields,
+          environmental, about, userID: this.getFakeUserId(), role });
         const userID = Users.define({ username, email, role, password });
         this._collection.update(profileID, { $set: { userID } });
         return profileID;
@@ -81,9 +95,28 @@ class OrganizationProfileCollection extends BaseProfileCollection {
    * Updates the UserProfile. You cannot change the email or role.
    * @param docID the id of the UserProfile
    * @param firstName new first name (optional).
+   * @param organizationName
+   * @param websiteLink
    * @param lastName new last name (optional).
+   * @param image
+   * @param galleryImg1
+   * @param galleryImg2
+   * @param galleryImg3
+   * @param galleryImg4
+   * @param galleryImg5
+   * @param galleryImg6
+   * @param primaryAddress
+   * @param city
+   * @param state
+   * @param zipCode
+   * @param phoneNumber
+   * @param fields
+   * @param environmental
+   * @param about
    */
-  update(docID, { firstName, organizationName, websiteLink, lastName, image, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about }) {
+  update(docID, { firstName, organizationName, websiteLink, lastName, image,
+    galleryImg1, galleryImg2, galleryImg3, galleryImg4, galleryImg5, galleryImg6,
+    primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about }) {
     this.assertDefined(docID);
     const updateData = {};
     if (organizationName) {
@@ -100,6 +133,24 @@ class OrganizationProfileCollection extends BaseProfileCollection {
     }
     if (image) {
       updateData.image = image;
+    }
+    if (galleryImg1) {
+      updateData.galleryImg1 = galleryImg1;
+    }
+    if (galleryImg2) {
+      updateData.galleryImg2 = galleryImg2;
+    }
+    if (galleryImg3) {
+      updateData.galleryImg3 = galleryImg3;
+    }
+    if (galleryImg4) {
+      updateData.galleryImg4 = galleryImg4;
+    }
+    if (galleryImg5) {
+      updateData.galleryImg5 = galleryImg5;
+    }
+    if (galleryImg6) {
+      updateData.galleryImg6 = galleryImg6;
     }
     if (primaryAddress) {
       updateData.primaryAddress = primaryAddress;
@@ -180,6 +231,12 @@ class OrganizationProfileCollection extends BaseProfileCollection {
     const firstName = doc.firstName;
     const lastName = doc.lastName;
     const image = doc.image;
+    const galleryImg1 = doc.galleryImg1;
+    const galleryImg2 = doc.galleryImg2;
+    const galleryImg3 = doc.galleryImg3;
+    const galleryImg4 = doc.galleryImg4;
+    const galleryImg5 = doc.galleryImg5;
+    const galleryImg6 = doc.galleryImg6;
     const primaryAddress = doc.primaryAddress;
     const city = doc.city;
     const organizationName = doc.organizationName;
@@ -189,7 +246,7 @@ class OrganizationProfileCollection extends BaseProfileCollection {
     const fields = doc.fields;
     const environmental = doc.environmental;
     const about = doc.about;
-    return { email, organizationName, websiteLink, firstName, lastName, username, image, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about };
+    return { email, organizationName, websiteLink, firstName, lastName, username, image, galleryImg1, galleryImg2, galleryImg3, galleryImg4, galleryImg5, galleryImg6, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about };
   }
 }
 

@@ -90,28 +90,28 @@ const MyOrganizationProfile = ({ orgProfile, ready }) => ((ready) ? (
           >
             <Slider>
               <Slide index={0}>
-                <Image src="https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg" />
+                <Image size = 'large' src={MyUrl(orgProfile.galleryImg1)} />
               </Slide>
               <Slide index={1}>
-                <Image src="https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg" />
+                <Image size = 'large' src={MyUrl(orgProfile.galleryImg2)} />
               </Slide>
               <Slide index={2}>
-                <Image src="https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg" />
+                <Image size = 'large' src={MyUrl(orgProfile.galleryImg3)} />
               </Slide>
               <Slide index={3}>
-                <Image src="https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg" />
+                <Image size = 'large' src={MyUrl(orgProfile.galleryImg4)} />
               </Slide>
               <Slide index={4}>
-                <Image src="https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg" />
+                <Image size = 'large' src={MyUrl(orgProfile.galleryImg5)} />
               </Slide>
               <Slide index={5}>
-                <Image src="https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg" />
+                <Image size = 'large' src={MyUrl(orgProfile.galleryImg6)} />
               </Slide>
             </Slider>
             <Divider />
             <CustomDotGroup slides={6} />
           </CarouselProvider>
-          <Button> Upload Image </Button>
+          <Button><Link to="/edit-my-organization-profile-images">Upload Image </Link></Button>
         </Grid.Column>
       </Grid.Row>
     </Grid>

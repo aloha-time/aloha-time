@@ -16,16 +16,20 @@ function createUser(email, firstName, lastName, password, role) {
   }
 }
 
-function createOrganization(organizationName, username, websiteLink, firstName, lastName, password, image, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email, role) {
+function createOrganization(organizationName, username, websiteLink, firstName, lastName, password, image, galleryImg1, galleryImg2, galleryImg3,
+  galleryImg4, galleryImg5, galleryImg6, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email, role) {
   console.log(`  Creating organization ${username} with role ${role}.`);
   if (role === ROLE.ORGANIZATION) {
-    OrganizationProfiles.define({ organizationName, username, websiteLink, firstName, lastName, password, image, primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email });
+    OrganizationProfiles.define({ organizationName, username, websiteLink, firstName, lastName, password, image, galleryImg1, galleryImg2, galleryImg3, galleryImg4, galleryImg5, galleryImg6,
+      primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about, email });
   }
 }
-function createVolunteer(email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType, image, role) {
+function createVolunteer(email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType, image,
+  galleryImg1, galleryImg2, galleryImg3, galleryImg4, galleryImg5, galleryImg6, role) {
   console.log(`  Creating volunteer ${username} with role ${role}.`);
   if (role === ROLE.VOLUNTEER) {
-    VolunteerProfiles.define({ email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType, image });
+    VolunteerProfiles.define({ email, firstName, lastName, password, dateOfBirth, genderType,
+      address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType, image, galleryImg1, galleryImg2, galleryImg3, galleryImg4, galleryImg5, galleryImg6 });
   }
 }
 // When running app for first time, pass a settings file to set up a default user account.
@@ -39,19 +43,21 @@ if (Meteor.users.find().count() === 0) {
   if (Meteor.settings.defaultOrganizations) {
     console.log('Creating the default organization(s)');
     Meteor.settings.defaultOrganizations.map(({ organizationName,
-      username, websiteLink, firstName, lastName, password, image,
+      username, websiteLink, firstName, lastName, password, image, galleryImg1, galleryImg2, galleryImg3, galleryImg4, galleryImg5, galleryImg6,
       primaryAddress, city, state, zipCode,
       phoneNumber, fields, environmental,
       about, email, role,
-    }) => createOrganization(organizationName, username, websiteLink, firstName, lastName, password, image, primaryAddress,
+    }) => createOrganization(organizationName, username, websiteLink, firstName, lastName, password, image, galleryImg1, galleryImg2, galleryImg3, galleryImg4, galleryImg5, galleryImg6, primaryAddress,
       city, state, zipCode, phoneNumber, fields, environmental, about, email, role));
   } else {
     console.log('Cannot initialize the database for organization!  Please invoke meteor with a settings file.');
   }
   if (Meteor.settings.defaultVolunteers) {
     console.log('Creating the default Volunteer(s)');
-    Meteor.settings.defaultVolunteers.map(({ email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType, image, role,
-    }) => createVolunteer(email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType, image, role));
+    Meteor.settings.defaultVolunteers.map(({ email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType,
+      availabilityType, image, galleryImg1, galleryImg2, galleryImg3, galleryImg4, galleryImg5, galleryImg6, role,
+    }) => createVolunteer(email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username,
+      interestsType, skillsType, preferencesType, availabilityType, image, galleryImg1, galleryImg2, galleryImg3, galleryImg4, galleryImg5, galleryImg6, role));
   } else {
     console.log('Cannot initialize the database for organization!  Please invoke meteor with a settings file.');
   }

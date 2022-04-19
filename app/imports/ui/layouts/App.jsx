@@ -31,6 +31,8 @@ import OpportunityHours from '../pages/OpportunityHours';
 import CalendarSchedule from '../pages/CalendarSchedule';
 import EditMyOrganizationProfile from '../pages/EditMyOrganizatonProfile';
 import BrowseOpportunity from '../pages/BrowseOpportunity';
+import EditMyProfileImages from '../pages/EditMyProfileImages';
+import EditMyOrganizationProfileImages from '../pages/EditMyOrganizatonProfileImages';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -53,10 +55,12 @@ class App extends React.Component {
             <Route path="/calendar-schedule" component={CalendarSchedule}/>
             <Route path="/browse-opp" component={BrowseOpportunity}/>
             <VolunteerProtectedRoute path="/edit-my-profile" component={EditMyProfile}/>
+            <VolunteerProtectedRoute path="/edit-my-profile-images" component={EditMyProfileImages}/>
             <VolunteerProtectedRoute path="/opportunity-hours/:_id" component={OpportunityHours}/>
             <OrganizationProtectedRoute path="/my-opportunities" component={ListOpportunityOrganization}/>
             <OrganizationProtectedRoute path="/my-organization-profile" component={MyOrganizationProfile}/>
             <OrganizationProtectedRoute path="/edit-my-organization-profile" component={EditMyOrganizationProfile}/>
+            <OrganizationProtectedRoute path="/edit-my-organization-profile-images" component={EditMyOrganizationProfileImages}/>
             <Route path="/orginfo/:_id" component={OrgInfo}/>
             <OrganizationProtectedRoute path="/add-opportunity" component={AddOpportunity}/>
             <OrganizationProtectedRoute path="/edit-opportunity/:_id" component={EditOpportunity}/>

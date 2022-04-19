@@ -68,6 +68,18 @@ class VolunteerProfileCollection extends BaseProfileCollection {
       preferencesType: { type: String, allowedValues: preferences },
       availabilityType: { type: String, allowedValues: availability },
       image: { type: String, defaultValue: 'https://semantic-ui.com/images/wireframe/image.png' },
+      galleryImg1: { type: String, defaultValue: 'https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg' },
+
+      galleryImg2: { type: String, defaultValue: 'https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg' },
+
+      galleryImg3: { type: String, defaultValue: 'https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg' },
+
+      galleryImg4: { type: String, defaultValue: 'https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg' },
+
+      galleryImg5: { type: String, defaultValue: 'https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg' },
+
+      galleryImg6: { type: String, defaultValue: 'https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg' },
+
     }));
   }
 
@@ -90,14 +102,16 @@ class VolunteerProfileCollection extends BaseProfileCollection {
    * @param preferencesType Preferences of the user.
    * @param availabilityType Availability of user.
    */
-  define({ email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType, image }) {
+  define({ email, firstName, lastName, password, dateOfBirth, genderType, address, city, state, zip, phone, username,
+    interestsType, skillsType, preferencesType, availabilityType,
+    image, galleryImg1, galleryImg2, galleryImg3, galleryImg4, galleryImg5, galleryImg6 }) {
     if (Meteor.isServer) {
       // const username = email;
       const user = this.findOne({ email, firstName, lastName });
       if (!user) {
         const role = ROLE.VOLUNTEER;
         const profileID = this._collection.insert({ email, firstName, lastName, userID: this.getFakeUserId(), role, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType,
-          preferencesType, availabilityType, image });
+          preferencesType, availabilityType, image, galleryImg1, galleryImg2, galleryImg3, galleryImg4, galleryImg5, galleryImg6 });
         const userID = Users.define({ username, email, role, password });
         this._collection.update(profileID, { $set: { userID } });
         return profileID;
@@ -113,7 +127,7 @@ class VolunteerProfileCollection extends BaseProfileCollection {
    * @param firstName new first name (optional).
    * @param lastName new last name (optional).
    */
-  update(docID, { firstName, lastName, dateOfBirth, genderType, address, city, state, zip, phone, interestsType, skillsType, preferencesType, availabilityType, image }) {
+  update(docID, { firstName, lastName, dateOfBirth, genderType, address, city, state, zip, phone, interestsType, skillsType, preferencesType, availabilityType, image, galleryImg1, galleryImg2, galleryImg3, galleryImg4, galleryImg5, galleryImg6 }) {
     this.assertDefined(docID);
     const updateData = {};
     if (firstName) {
@@ -157,6 +171,24 @@ class VolunteerProfileCollection extends BaseProfileCollection {
     }
     if (image) {
       updateData.image = image;
+    }
+    if (galleryImg1) {
+      updateData.galleryImg1 = galleryImg1;
+    }
+    if (galleryImg2) {
+      updateData.galleryImg2 = galleryImg2;
+    }
+    if (galleryImg3) {
+      updateData.galleryImg3 = galleryImg3;
+    }
+    if (galleryImg4) {
+      updateData.galleryImg4 = galleryImg4;
+    }
+    if (galleryImg5) {
+      updateData.galleryImg5 = galleryImg5;
+    }
+    if (galleryImg6) {
+      updateData.galleryImg6 = galleryImg6;
     }
     this._collection.update(docID, { $set: updateData });
   }
@@ -221,7 +253,13 @@ class VolunteerProfileCollection extends BaseProfileCollection {
     const preferencesType = doc.preferencesType;
     const availabilityType = doc.availabilityType;
     const image = doc.image;
-    return { firstName, lastName, email, dateOfBirth, genderType, address, city, state, zip, phone, interestsType, skillsType, preferencesType, availabilityType, image };
+    const galleryImg1 = doc.galleryImg1;
+    const galleryImg2 = doc.galleryImg2;
+    const galleryImg3 = doc.galleryImg3;
+    const galleryImg4 = doc.galleryImg4;
+    const galleryImg5 = doc.galleryImg5;
+    const galleryImg6 = doc.galleryImg6;
+    return { firstName, lastName, email, dateOfBirth, genderType, address, city, state, zip, phone, interestsType, skillsType, preferencesType, availabilityType, image, galleryImg1, galleryImg2, galleryImg3, galleryImg4, galleryImg5, galleryImg6 };
   }
 }
 

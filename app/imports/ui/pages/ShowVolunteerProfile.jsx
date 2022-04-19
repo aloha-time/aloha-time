@@ -92,28 +92,28 @@ const ShowVolunteerProfile = ({ volProfile, ready }) => ((ready) ? (
         >
           <Slider>
             <Slide index={0}>
-              <Image src="https://149366112.v2.pressablecdn.com/wp-content/uploads/2014/05/1959781_10152032231622849_2043556589_n.jpg" />
+              <Image size= 'large' src={MyUrl(volProfile.galleryImg1)} />
             </Slide>
             <Slide index={1}>
-              <Image src="https://www.peggyadams.org/sites/default/files/images/2018-03/volunteer-PA.jpg " />
+              <Image size= 'large' src={MyUrl(volProfile.galleryImg2)} />
             </Slide>
             <Slide index={2}>
-              <Image src="https://humaneloudoun.org/wp-content/uploads/2020/01/AnimalServicesVolunteer.jpg" />
+              <Image size= 'large' src={MyUrl(volProfile.galleryImg3)} />
             </Slide>
             <Slide index={3}>
-              <Image src="https://images.everydayhealth.com/images/coronavirus/how-and-where-to-volunteer-safely-during-the-pandemic-rm-722x406.jpg?sfvrsn=e1c370c2_1" />
+              <Image size= 'large' src={MyUrl(volProfile.galleryImg4)} />
             </Slide>
             <Slide index={4}>
-              <Image src="https://www.californiavolunteers.ca.gov/wp-content/uploads/2021/02/Matthew.png" />
+              <Image size= 'large' src={MyUrl(volProfile.galleryImg5)} />
             </Slide>
             <Slide index={5}>
-              <Image src="https://coda.newjobs.com/api/imagesproxy/ms/niche/images/articles/Liz/volunteering.jpg" />
+              <Image size= 'large' src={MyUrl(volProfile.galleryImg6)} />
             </Slide>
           </Slider>
           <Divider />
           <CustomDotGroup slides={6} />
         </CarouselProvider>
-        <Button> Upload Image </Button>
+        <Button> <Link to="/edit-my-profile-images"> Upload Images </Link> </Button>
       </Grid.Column>
       <Grid.Column width={6} floated='right'>
         <Header as='h1' textAlign='center'>

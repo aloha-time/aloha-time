@@ -352,6 +352,12 @@
       "preferencesType":"Indoor",
       "availabilityType":"One-time",
       "image": "/images/johnfoo.jpeg",
+      "galleryImg1": "https://149366112.v2.pressablecdn.com/wp-content/uploads/2014/05/1959781_10152032231622849_2043556589_n.jpg",
+      "galleryImg2": "https://www.peggyadams.org/sites/default/files/images/2018-03/volunteer-PA.jpg",
+      "galleryImg3": "https://humaneloudoun.org/wp-content/uploads/2020/01/AnimalServicesVolunteer.jpg",
+      "galleryImg4": "https://images.everydayhealth.com/images/coronavirus/how-and-where-to-volunteer-safely-during-the-pandemic-rm-722x406.jpg?sfvrsn=e1c370c2_1",
+      "galleryImg5": "https://www.californiavolunteers.ca.gov/wp-content/uploads/2021/02/Matthew.png",
+      "galleryImg6": "https://coda.newjobs.com/api/imagesproxy/ms/niche/images/articles/Liz/volunteering.jpg",
       "role":"VOLUNTEER"
     }
   ],
