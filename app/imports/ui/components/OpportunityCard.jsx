@@ -2,11 +2,12 @@ import React from 'react';
 import { Button, Card, Icon, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, NavLink } from 'react-router-dom';
+import { MyUrl } from './MyUrl';
 
 /** Renders a single row in the Browse Opportunity table. See pages/BrowseOpportunity.jsx. */
 const OpportunityCard = ({ opportunity }) => (
   <Card link fluid>
-    <Image large src={opportunity.coverImage} wrapped ui={false} as={NavLink}
+    <Image large src={MyUrl(opportunity.coverImage)} wrapped ui={false} as={NavLink}
       exact to={`/view-opportunity/${opportunity._id}`}/>
     <Card.Content>
       <Card.Header>

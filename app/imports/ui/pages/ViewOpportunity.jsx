@@ -9,6 +9,7 @@ import { Roles } from 'meteor/alanning:roles';
 import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { ROLE } from '../../api/role/Role';
+import { MyUrl } from '../components/MyUrl';
 
 /** Renders a table containing all the Opportunity documents. Use <OpportunityItem> to render each row. */
 class ViewOpportunity extends React.Component {
@@ -46,7 +47,7 @@ class ViewOpportunity extends React.Component {
           </div>)
           : ''}
         <Card fluid>
-          <img src={this.props.opportunity.coverImage} height={500} alt="cover image"/>
+          <img src={MyUrl(this.props.opportunity.coverImage)} height={500} alt="cover image"/>
         </Card>
         <br/>
         <Grid columns={3}>
@@ -179,16 +180,16 @@ class ViewOpportunity extends React.Component {
         <br/>
         <Card.Group stackable itemsPerRow={4}>
           <Card link>
-            <img src={this.props.opportunity.galleryImg1} height="200" alt="galleryimg1"/>
+            <img src={MyUrl(this.props.opportunity.galleryImg1)} height="200" alt="galleryimg1"/>
           </Card>
           <Card link>
-            <img src={this.props.opportunity.galleryImg2} height="200" alt="galleryimg2"/>
+            <img src={MyUrl(this.props.opportunity.galleryImg2)} height="200" alt="galleryimg2"/>
           </Card>
           <Card link>
-            <img src={this.props.opportunity.galleryImg3} height="200" alt="galleryimg3"/>
+            <img src={MyUrl(this.props.opportunity.galleryImg3)} height="200" alt="galleryimg3"/>
           </Card>
           <Card link>
-            <img src={this.props.opportunity.galleryImg4} height="200" alt="galleryimg4"/>
+            <img src={MyUrl(this.props.opportunity.galleryImg4)} height="200" alt="galleryimg4"/>
           </Card>
         </Card.Group>
         <Grid columns={3}>
@@ -232,7 +233,7 @@ export default withTracker(() => {
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // Get the Opportunity documents and sort them by name.
-  const opportunity = Opportunities.findDoc(opportunityId);
+  const opportunity = (ready) ? Opportunities.findDoc(opportunityId) : undefined;
   return {
     opportunity,
     ready,

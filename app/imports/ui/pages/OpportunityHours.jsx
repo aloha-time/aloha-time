@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { useParams } from 'react-router';
 import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import { MyUrl } from '../components/MyUrl';
 
 /** Renders a table containing all the Opportunity documents. Use <OpportunityItem> to render each row. */
 class OpportunityHours extends React.Component {
@@ -55,7 +56,7 @@ class OpportunityHours extends React.Component {
         </Grid>
         <br/>
         <Card fluid>
-          <img src={this.props.opportunity.coverImage} height={500} alt="cover image"/>
+          <img src={MyUrl(this.props.opportunity.coverImage)} height={500} alt="cover image"/>
         </Card>
         <br/>
         <Grid columns={3}>

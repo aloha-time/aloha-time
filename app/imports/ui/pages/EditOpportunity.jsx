@@ -19,6 +19,7 @@ import { NavLink } from 'react-router-dom';
 import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 import { updateMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import ImageUploadFiled from '../components/form-fields/ImageUploadFiled';
 
 const bridge = new SimpleSchema2Bridge(Opportunities._schema);
 
@@ -113,11 +114,11 @@ const EditOpportunity = ({ doc, ready }) => {
                     </Card.Header>
                   </Card.Content>
                   <Card.Content>
-                    <TextField label='Cover Image' name='coverImage' placeholder='URL to your image'/>
-                    <TextField label='Gallery Image 1' name='galleryImg1' placeholder='URL to your image'/>
-                    <TextField label='Gallery Image 2' name='galleryImg2' placeholder='URL to your image'/>
-                    <TextField label='Gallery Image 3' name='galleryImg3' placeholder='URL to your image'/>
-                    <TextField label='Gallery Image 4' name='galleryImg4' placeholder='URL to your image'/>
+                    <ImageUploadFiled label='Cover Image' name='coverImage' />
+                    <ImageUploadFiled label='Gallery Image 1' name='galleryImg1'/>
+                    <ImageUploadFiled label='Gallery Image 2' name='galleryImg2'/>
+                    <ImageUploadFiled label='Gallery Image 3' name='galleryImg3'/>
+                    <ImageUploadFiled label='Gallery Image 4' name='galleryImg4'/>
                     <SelectField checkboxes label='Age Group' name='ageGroup'/>
                     <SelectField checkboxes label='Environment' name='environment'/>
                   </Card.Content>

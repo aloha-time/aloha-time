@@ -5,6 +5,7 @@ import { withRouter, NavLink } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { ROLE } from '../../api/role/Role';
+import { MyUrl } from './MyUrl';
 
 /** Renders a single row in the List Opportunity table. See pages/ListOpportunity.jsx. */
 class OpportunityItem extends React.Component {
@@ -23,7 +24,7 @@ class OpportunityItem extends React.Component {
     const { activeIndex } = this.state;
     return (
       <Card link fluid>
-        <Image large src={OpportunityInfo.coverImage} wrapped ui={false} as={NavLink}
+        <Image large src={MyUrl(OpportunityInfo.coverImage)} wrapped ui={false} as={NavLink}
           exact to={`/view-opportunity/${this.props.opportunity._id}`}/>
         <Card.Content>
           <Card.Header>

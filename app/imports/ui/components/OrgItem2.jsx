@@ -109,22 +109,22 @@ const OrgItem2 = ({ org }) => (
           >
             <Slider>
               <Slide index={0}>
-                <Image src="https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg" />
+                <Image size = 'large' src={MyUrl(org.galleryImg1)}/>
               </Slide>
               <Slide index={1}>
-                <Image src="https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg" />
+                <Image size = 'large' src={MyUrl(org.galleryImg2)}/>
               </Slide>
               <Slide index={2}>
-                <Image src="https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg" />
+                <Image size = 'large' src={MyUrl(org.galleryImg3)}/>
               </Slide>
               <Slide index={3}>
-                <Image src="https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg" />
+                <Image size = 'large' src={MyUrl(org.galleryImg4)}/>
               </Slide>
               <Slide index={4}>
-                <Image src="https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg" />
+                <Image size = 'large' src={MyUrl(org.galleryImg5)}/>
               </Slide>
               <Slide index={5}>
-                <Image src="https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg" />
+                <Image size = 'large' src={MyUrl(org.galleryImg6)}/>
               </Slide>
             </Slider>
             <Divider />
@@ -174,6 +174,12 @@ const OrgItem2 = ({ org }) => (
 OrgItem2.propTypes = {
   org: PropTypes.shape({
     image: PropTypes.string,
+    galleryImg1: PropTypes.string,
+    galleryImg2: PropTypes.string,
+    galleryImg3: PropTypes.string,
+    galleryImg4: PropTypes.string,
+    galleryImg5: PropTypes.string,
+    galleryImg6: PropTypes.string,
     organizationName: PropTypes.string,
     firstName: PropTypes.string,
     lastName: PropTypes.string,
