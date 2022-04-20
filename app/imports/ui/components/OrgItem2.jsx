@@ -168,8 +168,6 @@ OrgItem2.propTypes = {
   opportunities: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
-
-// Wrap this component in withRouter since we use the <Link> React Router element.
 export default withTracker((org) => {
   // Get access to Opportunity documents.
   const subscription = Opportunities.subscribeOpportunity();
