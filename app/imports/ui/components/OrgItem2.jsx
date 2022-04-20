@@ -149,7 +149,7 @@ const OrgItem2 = ({ org, opportunities }) => (
                     we do not have any opportunity now!
                   </Card.Header>
                   <Card.Content>
-                    Thank you for you interest! <Icon size= 'large' color= 'yellow' name ='smile'/>
+                    Thank you for your interest! <Icon size= 'large' color= 'yellow' name ='smile'/>
                   </Card.Content>
                 </Card.Content>
               </Card>
