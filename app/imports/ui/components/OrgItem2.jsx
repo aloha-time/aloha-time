@@ -164,28 +164,7 @@ const OrgItem2 = ({ org, opportunities }) => (
 // Require a document to be passed to this component.
 // since it is only a mockup don't need to have this part finished yet
 OrgItem2.propTypes = {
-  org: PropTypes.shape({
-    image: PropTypes.string,
-    username: PropTypes.string,
-    galleryImg1: PropTypes.string,
-    galleryImg2: PropTypes.string,
-    galleryImg3: PropTypes.string,
-    galleryImg4: PropTypes.string,
-    galleryImg5: PropTypes.string,
-    galleryImg6: PropTypes.string,
-    organizationName: PropTypes.string,
-    firstName: PropTypes.string,
-    lastName: PropTypes.string,
-    fields: PropTypes.array,
-    primaryAddress: PropTypes.string,
-    state: PropTypes.string,
-    city: PropTypes.string,
-    zipCode: PropTypes.string,
-    about: PropTypes.string,
-    phoneNumber: PropTypes.string,
-    email: PropTypes.string,
-    websiteLink: PropTypes.string,
-  }).isRequired,
+  org: PropTypes.object.isRequired,
   opportunities: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
@@ -195,6 +174,7 @@ export default withTracker((org) => {
   // Get access to Opportunity documents.
   const subscription = Opportunities.subscribeOpportunity();
   // Determine if the subscription is ready
+  console.log(org);
   const ready = subscription.ready();
   const opportunities = Opportunities.find({ owner: org.org.username }, { sort: { name: 1 } }).fetch();
   return {
