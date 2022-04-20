@@ -73,7 +73,6 @@ const EditMyOrganizationProfile = ({ orgProfile, ready, location }) => {
                   <Card.Content>
                     <TextField label='First Name' name='firstName'/>
                     <TextField label='Last Name' name='lastName'/>
-                    <TextField label='image' name='image'/>
                   </Card.Content>
                 </Card>
                 <Card fluid>
