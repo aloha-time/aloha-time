@@ -1,18 +1,20 @@
 import React from 'react';
-import { Container, Image, Grid, Header, List, Divider, Segment, Card } from 'semantic-ui-react';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Container, Image, Grid, Header, List, Divider, Segment, Card, Icon } from 'semantic-ui-react';
 import { CarouselProvider, Slide, Slider } from 'pure-react-carousel';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 import CustomDotGroup from '../components/CustomDotGroup';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { MyUrl } from '../components/MyUrl';
+import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
+import OpportunityItem from './OpportunityItem';
 
 const columnStyle = { paddingTop: '9em' };
 const socialMediaStyle = { paddingTop: '13em' };
 const margSides = { marginLeft: '4em', marginRight: '4em' };
 
 /** Renders a single card in the Organization Library. See pages/ListOrg.jsx. */
-const OrgItem2 = ({ org }) => (
+const OrgItem2 = ({ org, opportunities }) => (
   <Container fluid>
     <div className="my-organization-top">
       <Image size='medium' src="/images/VAlogo.png" centered/>
@@ -136,32 +138,22 @@ const OrgItem2 = ({ org }) => (
             Recent Opportunities
           </Header>
           <Segment style={{ overflow: 'auto', maxHeight: 450 }}>
-            <Card.Group centered>
-              <Card>
-                <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} />
+            {opportunities.length !== 0 ? (
+              <Card.Group centered>
+                {opportunities.map((opportunity) => <OpportunityItem key={opportunity._id} opportunity={opportunity} />)}
+              </Card.Group>) : (
+              <Card color='red' centered>
                 <Card.Content>
-                  <Card.Header>Opportunity A</Card.Header>
-                  <Card.Meta>
-                    <span className='date'>Date created</span>
-                  </Card.Meta>
-                  <Card.Description>
-                    Lorem ipsum
-                  </Card.Description>
+                  <Icon size = 'large' color = 'red' name= 'alarm'/>
+                  <Card.Header>
+                    we do not have any opportunity now!
+                  </Card.Header>
+                  <Card.Content>
+                    Thank you for you interest! <Icon size= 'large' color= 'yellow' name ='smile'/>
+                  </Card.Content>
                 </Card.Content>
               </Card>
-              <Card>
-                <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} />
-                <Card.Content>
-                  <Card.Header>Opportunity B</Card.Header>
-                  <Card.Meta>
-                    <span className='date'>Date created</span>
-                  </Card.Meta>
-                  <Card.Description>
-                    Lorem ipsum
-                  </Card.Description>
-                </Card.Content>
-              </Card>
-            </Card.Group>
+            )}
           </Segment>
         </Grid.Column>
       </Grid.Row>
@@ -174,6 +166,7 @@ const OrgItem2 = ({ org }) => (
 OrgItem2.propTypes = {
   org: PropTypes.shape({
     image: PropTypes.string,
+    username: PropTypes.string,
     galleryImg1: PropTypes.string,
     galleryImg2: PropTypes.string,
     galleryImg3: PropTypes.string,
@@ -193,7 +186,20 @@ OrgItem2.propTypes = {
     email: PropTypes.string,
     websiteLink: PropTypes.string,
   }).isRequired,
+  opportunities: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired,
 };
 
 // Wrap this component in withRouter since we use the <Link> React Router element.
-export default withRouter(OrgItem2);
+export default withTracker((org) => {
+  // Get access to Opportunity documents.
+  const subscription = Opportunities.subscribeOpportunity();
+  // Determine if the subscription is ready
+  const ready = subscription.ready();
+  const opportunities = Opportunities.find({ owner: org.org.username }, { sort: { name: 1 } }).fetch();
+  console.log(opportunities);
+  return {
+    opportunities,
+    ready,
+  };
+})(OrgItem2);
