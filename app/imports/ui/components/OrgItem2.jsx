@@ -174,7 +174,6 @@ export default withTracker((org) => {
   // Get access to Opportunity documents.
   const subscription = Opportunities.subscribeOpportunity();
   // Determine if the subscription is ready
-  console.log(org);
   const ready = subscription.ready();
   const opportunities = Opportunities.find({ owner: org.org.username }, { sort: { name: 1 } }).fetch();
   return {
