@@ -1,14 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import { Container, Header, Loader } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import Map, { Marker } from 'react-map-gl';
 import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 import { PAGE_IDS } from '../utilities/PageIDs';
-
-import 'mapbox-gl/dist/mapbox-gl.css';
-
-const MAPBOX_TOKEN = 'pk.eyJ1IjoicmFpbmxsbyIsImEiOiJjbDJia3Znam4wOGJtM2tsNmh3MHNoMDltIn0.x_Sj4gsHvYT0faOiijV9oQ'; // Set your mapbox token here
+import MapInset from '../components/MapInset';
 
 /** Renders a table containing all of the Opportunity documents. Use <OpportunityItem> to render each row. */
 const ViewMap = ({ ready }) => ((ready) ? (
@@ -24,21 +20,7 @@ const ViewMap = ({ ready }) => ((ready) ? (
     <br/>
     <br/>
     <br/>
-    <Map
-      initialViewState={{
-        latitude: 21.4845,
-        longitude: -157.9618,
-        zoom: 9.7,
-      }}
-      style={{ width: 800, height: 600 }}
-      mapStyle="mapbox://styles/mapbox/streets-v9"
-      mapboxAccessToken={MAPBOX_TOKEN}
-    >
-      <Marker longitude={-157.800385} latitude={21.267996} color="red" />
-      <Marker longitude={-157.894543} latitude={21.335468} color="orange" />
-      <Marker longitude={-157.674078} latitude={21.285214} color="blue" />
-      <Marker longitude={-157.817841} latitude={21.290279} color="green" />
-    </Map>
+    <MapInset/>
   </Container>
 ) : <Loader active>Getting data</Loader>);
 
