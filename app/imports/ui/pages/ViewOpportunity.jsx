@@ -10,6 +10,7 @@ import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { ROLE } from '../../api/role/Role';
 import { MyUrl } from '../components/MyUrl';
+import MapInset from '../components/MapInset';
 
 /** Renders a table containing all the Opportunity documents. Use <OpportunityItem> to render each row. */
 class ViewOpportunity extends React.Component {
@@ -161,10 +162,7 @@ class ViewOpportunity extends React.Component {
               <Segment>
                 <Icon name='map marker alternate'/> Location
                 <p><h3>{this.props.opportunity.location}</h3></p>
-                <div className="map">
-                  <iframe width="500" height="200" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"
-                    src="https://www.openstreetmap.org/export/embed.html?bbox=-158.42234810348603%2C21.16792215058402%2C-157.6793976640329%2C21.7615698948541&amp;layer=mapnik"/>
-                </div>
+                <MapInset/>
               </Segment>
               <Segment>
                 <Icon name='block layout'/> Category

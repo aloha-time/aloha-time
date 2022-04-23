@@ -14,6 +14,7 @@ import OpportunityItemOrganization from '../components/OpportunityItemOrganizati
 import { PAGE_IDS } from '../utilities/PageIDs';
 import MultiSelectField from '../components/form-fields/MultiSelectField';
 import { ROLE } from '../../api/role/Role';
+import MapInset from '../components/MapInset';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = (allOpportunities) => new SimpleSchema({
@@ -127,10 +128,7 @@ class ListOpportunityOrganization extends React.Component {
               <Tab panes={panes} />
             </Grid.Column>
             <Grid.Column width={10}>
-              <div className="map">
-                <iframe width="695" height="370" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=-158.42234810348603%2C21.16792215058402%2C-157.6793976640329%2C21.7615698948541&amp;layer=mapnik"/>
-              </div>
+              <MapInset/>
             </Grid.Column>
           </Grid.Row>
         </Grid>
