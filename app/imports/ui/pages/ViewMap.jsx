@@ -34,7 +34,10 @@ const ViewMap = ({ ready }) => ((ready) ? (
       mapStyle="mapbox://styles/mapbox/streets-v9"
       mapboxAccessToken={MAPBOX_TOKEN}
     >
-      <Marker longitude={-122.4} latitude={37.8} color="red" />
+      <Marker longitude={-157.800385} latitude={21.267996} color="red" />
+      <Marker longitude={-157.894543} latitude={21.335468} color="orange" />
+      <Marker longitude={-157.674078} latitude={21.285214} color="blue" />
+      <Marker longitude={-157.817841} latitude={21.290279} color="green" />
     </Map>
   </Container>
 ) : <Loader active>Getting data</Loader>);
