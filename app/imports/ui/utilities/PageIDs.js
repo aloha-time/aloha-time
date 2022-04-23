@@ -20,4 +20,5 @@ export const PAGE_IDS = {
   OPPORTUNITY_HOURS: 'opportunity-hours',
   CALENDAR_SCHEDULE: 'calendar-schedule',
   BROWSE_OPPORTUNITIES: 'browse-opportunities',
+  VIEW_MAP: 'view-map',
 };
