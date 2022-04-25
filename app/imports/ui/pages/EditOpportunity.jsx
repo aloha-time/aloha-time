@@ -121,7 +121,7 @@ const EditOpportunity = ({ doc, ready }) => {
                     <ImageUploadFiled label='Gallery Image 3' name='galleryImg3'/>
                     <ImageUploadFiled label='Gallery Image 4' name='galleryImg4'/>
                     <SelectField checkboxes label='Age Group' name='ageGroup'/>
-                    <SelectField checkboxes label='Environment' name='environment'/>
+                    <MultiSelectField checkboxes label='Environment' name='environment'/>
                   </Card.Content>
                 </Card>
                 <SubmitField value='Submit'/>

@@ -151,7 +151,9 @@ class ViewOpportunity extends React.Component {
               </Segment>
               <Segment>
                 <Icon name='tree'/> Environment
-                <p><h3>{this.props.opportunity.environment}</h3></p>
+                <h3>
+                  <List bulleted relaxed items={this.props.opportunity.environment}/>
+                </h3>
               </Segment>
               <Segment>
                 <Icon name='block layout'/> Other Details
@@ -166,8 +168,9 @@ class ViewOpportunity extends React.Component {
               </Segment>
               <Segment>
                 <Icon name='block layout'/> Category
-                <h3><List bulleted relaxed items={this.props.opportunity.category}>
-                </List></h3>
+                <h3>
+                  <List bulleted relaxed items={this.props.opportunity.category}/>
+                </h3>
               </Segment>
               <Segment>
                 <Icon name='globe'/> Website
