@@ -162,6 +162,12 @@ i.bars.icon {
   color: #838485 !important;
 }
 
+.mapinset{
+
+  width: auto;
+  height: auto;
+}
+
 /*showVolunteerProfile content
 
 .horizontalSlider___281Ls .carousel__slider .carousel__slider--horizontal {
