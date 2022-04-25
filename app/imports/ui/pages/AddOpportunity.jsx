@@ -75,6 +75,10 @@ const formSchema = new SimpleSchema({
     defaultValue: '../images/opportunity_images/defaults/defaultGalleryImg.jpg',
   },
   ageGroup: {
+    type: Array,
+    required: false,
+  },
+  'ageGroup.$': {
     type: String,
     allowedValues: opportunityAges,
   },
@@ -194,7 +198,7 @@ const AddOpportunity = () => {
                     <ImageUploadFiled label='Gallery Image 2' name='galleryImg2'/>
                     <ImageUploadFiled label='Gallery Image 3' name='galleryImg3'/>
                     <ImageUploadFiled label='Gallery Image 4' name='galleryImg4'/>
-                    <SelectField checkboxes label='Age Group' name='ageGroup'/>
+                    <MultiSelectField checkboxes label='Age Group' name='ageGroup'/>
                     <MultiSelectField checkboxes label='Environment' name='environment'/>
                   </Card.Content>
                 </Card>

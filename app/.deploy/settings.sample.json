@@ -32,7 +32,9 @@
       "galleryImg2": "../images/opportunity_images/healthhelp/healthhelp2.jpg",
       "galleryImg3": "../images/opportunity_images/healthhelp/healthhelp3.jpg",
       "galleryImg4": "../images/opportunity_images/healthhelp/healthhelp4.jpg",
-      "ageGroup": "Adults",
+      "ageGroup": [
+        "Adults"
+      ],
       "environment": [
         "Indoors"
       ],
@@ -58,7 +60,9 @@
       "galleryImg2": "../images/opportunity_images/beachcleanup/beachcleanup2.jpg",
       "galleryImg3": "../images/opportunity_images/beachcleanup/beachcleanup3.jpg",
       "galleryImg4": "../images/opportunity_images/beachcleanup/beachcleanup4.jpg",
-      "ageGroup": "Teens",
+      "ageGroup": [
+        "Teens"
+      ],
       "environment": [
         "Outdoors"
       ],
@@ -84,7 +88,9 @@
       "galleryImg2": "../images/opportunity_images/fooddrive/fooddrive2.jpg",
       "galleryImg3": "../images/opportunity_images/fooddrive/fooddrive3.jpg",
       "galleryImg4": "../images/opportunity_images/fooddrive/fooddrive4.jpg",
-      "ageGroup": "Family-Friendly",
+      "ageGroup": [
+        "Family-Friendly"
+      ],
       "environment": [
         "Mixed"
       ],
@@ -110,7 +116,9 @@
       "galleryImg2": "../images/opportunity_images/dogwalk/dogwalk2.jpg",
       "galleryImg3": "../images/opportunity_images/dogwalk/dogwalk3.jpg",
       "galleryImg4": "../images/opportunity_images/dogwalk/dogwalk4.jpg",
-      "ageGroup": "Seniors",
+      "ageGroup": [
+        "Seniors"
+      ],
       "environment": [
         "Virtual"
       ],

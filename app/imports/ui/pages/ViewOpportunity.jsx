@@ -157,7 +157,9 @@ class ViewOpportunity extends React.Component {
               </Segment>
               <Segment>
                 <Icon name='block layout'/> Other Details
-                <p><h3>{this.props.opportunity.ageGroup}</h3></p>
+                <h3>
+                  <List bulleted relaxed items={this.props.opportunity.ageGroup}/>
+                </h3>
               </Segment>
             </Grid.Column>
             <Grid.Column>
