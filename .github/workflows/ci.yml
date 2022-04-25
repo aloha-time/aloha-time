@@ -1,4 +1,4 @@
-name: Aloha-time
+name: ci-aloha-time
 
 on:
   push:
