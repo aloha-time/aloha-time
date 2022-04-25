@@ -20,6 +20,7 @@ import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 import { updateMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import ImageUploadFiled from '../components/form-fields/ImageUploadFiled';
+import MultiSelectField from '../components/form-fields/MultiSelectField';
 
 const bridge = new SimpleSchema2Bridge(Opportunities._schema);
 
@@ -87,7 +88,7 @@ const EditOpportunity = ({ doc, ready }) => {
                   <Card.Content>
                     <LongTextField label='Description' name='description' placeholder='Please enter a detailed
                     description of the volunteer opportunity.'/>
-                    <SelectField checkboxes label='Category' name='category'/>
+                    <MultiSelectField checkboxes label='Category' name='category'/>
                     <TextField label='Location' name='location' placeholder='e.g. "Honolulu"'/>
                   </Card.Content>
                 </Card>

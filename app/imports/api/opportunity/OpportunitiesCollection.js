@@ -11,14 +11,53 @@ export const opportunityPublications = {
   opportunityOrganization: 'OpportunityOrganization',
   opportunityAdmin: 'OpportunityAdmin',
 };
-export const opportunityTypes = ['Event', 'Ongoing'];
-export const opportunityCategories = ['Animal Welfare/Rescue', 'Child/Family Support', 'COVID-19 Recovery',
-  'Crisis/Disaster Relief', 'Education', 'Elderly/Senior Care', 'Environment', 'Food Insecurity',
-  'Homelessness/Poverty', 'Housing', 'Ongoing Positions', 'Special Needs'];
-export const opportunityAges = ['Family-Friendly', 'Teens', 'Adults', 'Seniors'];
-export const opportunityEnvironments = ['Indoors', 'Outdoors', 'Mixed', 'Virtual'];
-export const opportunityRecurring = ['No', 'Daily', 'Weekly', 'Monthly', 'Yearly'];
-export const opportunityVerify = ['Verified', 'Unverified'];
+
+export const opportunityTypes = [
+  'Event',
+  'Ongoing',
+];
+
+export const opportunityCategories = [
+  'Animal Welfare/Rescue',
+  'Child/Family Support',
+  'COVID-19 Recovery',
+  'Crisis/Disaster Relief',
+  'Education',
+  'Elderly/Senior Care',
+  'Environment',
+  'Food Insecurity',
+  'Homelessness/Poverty',
+  'Housing',
+  'Ongoing Positions',
+  'Special Needs',
+];
+
+export const opportunityAges = [
+  'Family-Friendly',
+  'Teens',
+  'Adults',
+  'Seniors',
+];
+
+export const opportunityEnvironments = [
+  'Indoors',
+  'Outdoors',
+  'Mixed',
+  'Virtual',
+];
+
+export const opportunityRecurring = [
+  'No',
+  'Daily',
+  'Weekly',
+  'Monthly',
+  'Yearly',
+];
+
+export const opportunityVerify = [
+  'Verified',
+  'Unverified',
+];
 
 class OpportunitiesCollection extends BaseCollection {
   constructor() {
@@ -38,6 +77,9 @@ class OpportunitiesCollection extends BaseCollection {
       },
       description: String,
       category: {
+        type: Array,
+      },
+      'category.$': {
         type: String,
         allowedValues: opportunityCategories,
       },

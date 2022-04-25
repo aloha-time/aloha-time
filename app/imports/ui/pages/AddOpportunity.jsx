@@ -20,6 +20,7 @@ import {
   opportunityCategories, opportunityEnvironments, opportunityRecurring,
   opportunityTypes,
 } from '../../api/opportunity/OpportunitiesCollection';
+import MultiSelectField from '../components/form-fields/MultiSelectField';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import ImageUploadFiled from '../components/form-fields/ImageUploadFiled';
@@ -41,6 +42,9 @@ const formSchema = new SimpleSchema({
   },
   description: String,
   category: {
+    type: Array,
+  },
+  'category.$': {
     type: String,
     allowedValues: opportunityCategories,
   },
@@ -155,7 +159,7 @@ const AddOpportunity = () => {
                   <Card.Content>
                     <LongTextField label='Description' name='description' placeholder='Please enter a detailed
                     description of the volunteer opportunity.'/>
-                    <SelectField checkboxes label='Category' name='category'/>
+                    <MultiSelectField checkboxes label='Category' name='category'/>
                     <TextField label='Location' name='location' placeholder='e.g. "Honolulu"'/>
                   </Card.Content>
                 </Card>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Header, Loader, Card, Grid, Button, Icon, Segment } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Grid, Button, Icon, Segment, List } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
@@ -166,7 +166,8 @@ class ViewOpportunity extends React.Component {
               </Segment>
               <Segment>
                 <Icon name='block layout'/> Category
-                <p><h3>{this.props.opportunity.category}</h3></p>
+                <h3><List bulleted relaxed items={this.props.opportunity.category}>
+                </List></h3>
               </Segment>
               <Segment>
                 <Icon name='globe'/> Website
