@@ -33,7 +33,9 @@
       "galleryImg3": "../images/opportunity_images/healthhelp/healthhelp3.jpg",
       "galleryImg4": "../images/opportunity_images/healthhelp/healthhelp4.jpg",
       "ageGroup": "Adults",
-      "environment": "Indoors",
+      "environment": [
+        "Indoors"
+      ],
       "owner": "HelpIsOnTheWay"
     },
     { "title": "Beach Cleanup",
@@ -57,7 +59,9 @@
       "galleryImg3": "../images/opportunity_images/beachcleanup/beachcleanup3.jpg",
       "galleryImg4": "../images/opportunity_images/beachcleanup/beachcleanup4.jpg",
       "ageGroup": "Teens",
-      "environment": "Outdoors",
+      "environment": [
+        "Outdoors"
+      ],
       "owner": "MakeAWishHI"
     },
     { "title": "Food Drive",
@@ -81,7 +85,9 @@
       "galleryImg3": "../images/opportunity_images/fooddrive/fooddrive3.jpg",
       "galleryImg4": "../images/opportunity_images/fooddrive/fooddrive4.jpg",
       "ageGroup": "Family-Friendly",
-      "environment": "Mixed",
+      "environment": [
+        "Mixed"
+      ],
       "owner": "HIFoodBank"
     },
     { "title": "Virtual Dog Walk",
@@ -105,7 +111,9 @@
       "galleryImg3": "../images/opportunity_images/dogwalk/dogwalk3.jpg",
       "galleryImg4": "../images/opportunity_images/dogwalk/dogwalk4.jpg",
       "ageGroup": "Seniors",
-      "environment": "Virtual",
+      "environment": [
+        "Virtual"
+      ],
       "owner": "SaveTheAnimals"
     }
   ],

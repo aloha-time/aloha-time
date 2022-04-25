@@ -99,6 +99,9 @@ class OpportunitiesCollection extends BaseCollection {
         allowedValues: opportunityAges,
       },
       environment: {
+        type: Array,
+      },
+      'environment.$': {
         type: String,
         allowedValues: opportunityEnvironments,
       },
