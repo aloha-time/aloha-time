@@ -95,6 +95,10 @@ class OpportunitiesCollection extends BaseCollection {
       galleryImg3: String,
       galleryImg4: String,
       ageGroup: {
+        type: Array,
+        required: false,
+      },
+      'ageGroup.$': {
         type: String,
         allowedValues: opportunityAges,
       },

@@ -61,7 +61,7 @@ OpportunityCard.propTypes = {
     galleryImg2: PropTypes.string,
     galleryImg3: PropTypes.string,
     galleryImg4: PropTypes.string,
-    ageGroup: PropTypes.string,
+    ageGroup: PropTypes.array,
     environment: PropTypes.array,
     owner: PropTypes.string,
     _id: PropTypes.string,
