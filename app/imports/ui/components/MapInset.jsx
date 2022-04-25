@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 import Map, { Marker } from 'react-map-gl';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -51,8 +50,7 @@ MapInset.propTypes = {
     environment: PropTypes.string,
     owner: PropTypes.string,
     _id: PropTypes.string,
-  }).isRequired,
+  }),
 };
 
-// Wrap this component in withRouter since we use the <Link> React Router element.
-export default withRouter(MapInset);
+export default MapInset;
