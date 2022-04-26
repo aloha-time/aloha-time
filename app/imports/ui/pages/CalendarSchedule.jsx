@@ -48,6 +48,16 @@ const CalendarSchedule = () => {
   const allEndDates = _.pick(Opportunities.find({}, {}).fetch(), 'endDate');
   const allNeeded = Opportunities.find({}, { fields: { title: 1, startDate: 1, endDate: 1 } }).fetch();
 
+  /* const newArray = allNeeded.map(({
+    endDate: end,
+    ...rest
+  }) => ({
+    end,
+    ...rest,
+  })); */
+
+  const newArray = allNeeded.map(({ title, startDate, endDate }) => ({ title: title, start: startDate, end: endDate }));
+
   const [newEvent, setNewEvent] = useState({ title: '', start: '', end: '' });
   const [allEvents, setAllEvents] = useState(events);
 
@@ -59,6 +69,7 @@ const CalendarSchedule = () => {
   console.log(allStartDates);
   console.log(allEndDates);
   console.log(allNeeded);
+  console.log(newArray);
   return (
     <Container id={PAGE_IDS.CALENDAR_SCHEDULE}>
       <div className="organization-sign-up-top">
@@ -91,7 +102,7 @@ const CalendarSchedule = () => {
           : ''}
         <Calendar
           localizer={localizer}
-          events={allEvents}
+          events={newArray}
           startAccessor="start"
           endAccessor="end"
           style={{ height: 600 }}
