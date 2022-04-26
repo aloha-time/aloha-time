@@ -22,6 +22,12 @@ const ViewOpportunity = ({ opportunity, ready, currentUser }) => {
     window.open(link);
   };
 
+  const openEmail = () => {
+    const link = `mailto:${opportunity.email}`;
+    // eslint-disable-next-line no-undef
+    window.open(link);
+  };
+
   const removeItem = (opp) => {
     removeItMethod.callPromise({ instance: opp }).catch(error => {
       const message = `${error.message}`;
@@ -118,7 +124,7 @@ const ViewOpportunity = ({ opportunity, ready, currentUser }) => {
             <Button color='blue'>
               <Icon name='share alternate'/> Share
             </Button>
-            <Button color='blue'>
+            <Button color='blue' onClick={openEmail}>
               <Icon name='mail'/> Send an email
             </Button>
           </div>)
