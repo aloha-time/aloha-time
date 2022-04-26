@@ -16,7 +16,7 @@ const localizer = momentLocalizer(moment);
 const CalendarSchedule = () => {
 
   /* find the title, startDate and endDate from each event in the OpportunitiesCollection */
-  const eventFields = Opportunities.find({}, { fields: { title: 1, startDate: 1, endDate: 1 } }).fetch();
+  const eventFields = Opportunities.find({ verification: 'Verified' }, { fields: { title: 1, startDate: 1, endDate: 1 } }).fetch();
 
   /* use map to rename the fields title to title, startDate to start, endDate to end and remove _id */
   const myEventsList = eventFields.map(({ title, startDate, endDate }) => ({ title: title, start: startDate, end: endDate }));
@@ -65,7 +65,7 @@ export default withTracker(() => {
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // Get the Opportunity documents and sort them by name.
-  const opportunities = Opportunities.find({}, { sort: { name: 1 } }).fetch();
+  const opportunities = Opportunities.find({ verification: 'Verified' }, { sort: { name: 1 } }).fetch();
   return {
     opportunities,
     ready,
