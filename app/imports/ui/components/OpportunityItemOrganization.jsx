@@ -3,6 +3,8 @@ import { Accordion, Button, Card, Icon, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, NavLink } from 'react-router-dom';
 import { MyUrl } from './MyUrl';
+import { removeItMethod } from '../../api/opportunity/OpportunitiesCollection.methods';
+import swal from 'sweetalert';
 
 /** Renders a single row in the List Opportunity Organization table. See pages/ListOpportunityOrganization.jsx. */
 const OpportunityItemOrganization = ({ opportunity }) => {
@@ -13,6 +15,18 @@ const OpportunityItemOrganization = ({ opportunity }) => {
     // console.log(titleProps);
     const newIndex = activeIndex === titleProps.index ? -1 : titleProps.index;
     setActiveIndex(newIndex);
+  };
+
+  const removeItem = (opp) => {
+    removeItMethod.callPromise({ instance: opp }).catch(error => {
+      const message = `${error.message}`;
+      swal('Error', message, 'error');
+    });
+    swal({
+      title: 'Removed!',
+      text: 'You have removed an opportunity!',
+      icon: 'success',
+    });
   };
 
   return (
@@ -60,7 +74,7 @@ const OpportunityItemOrganization = ({ opportunity }) => {
         <Button color='blue' as={NavLink} exact to={`/edit-opportunity/${opportunity._id}`}>
             Edit
         </Button>
-        <Button color='red'>
+        <Button color='red' onClick={() => removeItem(opportunity)}>
             Delete
         </Button>
       </Card.Content>
