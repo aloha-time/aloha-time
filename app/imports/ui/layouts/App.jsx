@@ -30,7 +30,6 @@ import EditMyProfile from '../pages/EditMyProfile';
 import OpportunityHours from '../pages/OpportunityHours';
 import CalendarSchedule from '../pages/CalendarSchedule';
 import EditMyOrganizationProfile from '../pages/EditMyOrganizatonProfile';
-import BrowseOpportunity from '../pages/BrowseOpportunity';
 import EditMyProfileImages from '../pages/EditMyProfileImages';
 import EditMyOrganizationProfileImages from '../pages/EditMyOrganizatonProfileImages';
 import ViewMap from '../pages/ViewMap';
@@ -54,7 +53,6 @@ class App extends React.Component {
             <Route path="/volunteer-signup" component={VolunteerSignUp}/>
             <Route path="/signout" component={Signout}/>
             <Route path="/calendar-schedule" component={CalendarSchedule}/>
-            <Route path="/browse-opp" component={BrowseOpportunity}/>
             <Route path="/view-map" component={ViewMap}/>
             <VolunteerProtectedRoute path="/edit-my-profile" component={EditMyProfile}/>
             <VolunteerProtectedRoute path="/edit-my-profile-images" component={EditMyProfileImages}/>

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Accordion, Card, Icon, Image } from 'semantic-ui-react';
+import { Accordion, Button, Card, Icon, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, NavLink } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
+import swal from 'sweetalert';
 import { ROLE } from '../../api/role/Role';
 import { MyUrl } from './MyUrl';
+import { removeItMethod } from '../../api/opportunity/OpportunitiesCollection.methods';
 
 /** Renders a single row in the List Opportunity table. See pages/ListOpportunity.jsx. */
 const OpportunityItem = ({ opportunity }) => {
@@ -16,6 +18,18 @@ const OpportunityItem = ({ opportunity }) => {
     // console.log(titleProps);
     const newIndex = activeIndex === titleProps.index ? -1 : titleProps.index;
     setActiveIndex(newIndex);
+  };
+
+  const removeItem = (opp) => {
+    removeItMethod.callPromise({ instance: opp }).catch(error => {
+      const message = `${error.message}`;
+      swal('Error', message, 'error');
+    });
+    swal({
+      title: 'Removed!',
+      text: 'You have removed an opportunity!',
+      icon: 'success',
+    });
   };
 
   return (
@@ -61,6 +75,10 @@ const OpportunityItem = ({ opportunity }) => {
       </Card.Content>
       {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? (
         <Card.Content extra>
+          <Button color='red' onClick={() => removeItem(opportunity)}>
+                    Delete
+          </Button>
+          {' | '}
           <Icon name='user'/>
           {opportunity.owner}
         </Card.Content>)
