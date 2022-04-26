@@ -6,11 +6,13 @@ import { NavLink } from 'react-router-dom';
 import { useParams } from 'react-router';
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
+import swal from 'sweetalert';
 import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { ROLE } from '../../api/role/Role';
 import { MyUrl } from '../components/MyUrl';
 import MapInset from '../components/MapInset';
+import { removeItMethod } from '../../api/opportunity/OpportunitiesCollection.methods';
 
 /** Renders a table containing all the Opportunity documents. Use <OpportunityItem> to render each row. */
 const ViewOpportunity = ({ opportunity, ready, currentUser }) => {
@@ -18,6 +20,18 @@ const ViewOpportunity = ({ opportunity, ready, currentUser }) => {
     const link = `https://www.google.com/maps/place/${opportunity.location}`;
     // eslint-disable-next-line no-undef
     window.open(link);
+  };
+
+  const removeItem = (opp) => {
+    removeItMethod.callPromise({ instance: opp }).catch(error => {
+      const message = `${error.message}`;
+      swal('Error', message, 'error');
+    });
+    swal({
+      title: 'Removed!',
+      text: 'You have removed an opportunity!',
+      icon: 'success',
+    });
   };
 
   /** Render the page once subscriptions have been received. */
@@ -130,7 +144,8 @@ const ViewOpportunity = ({ opportunity, ready, currentUser }) => {
             <Button color='blue' as={NavLink} exact to="/add-opportunity">
               <Icon name='add circle'/> Add new opportunity
             </Button>
-            <Button color='red'>
+            <Button color='red' onClick={() => removeItem(opportunity)} as={NavLink}
+              exact to="/my-opportunities">
               <Icon name='trash alternate'/> Delete this opportunity
             </Button>
           </div>)
