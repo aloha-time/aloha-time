@@ -16,7 +16,7 @@ import { removeItMethod } from '../../api/opportunity/OpportunitiesCollection.me
 
 /** Renders a table containing all the Opportunity documents. Use <OpportunityItem> to render each row. */
 const ViewOpportunity = ({ opportunity, ready, currentUser }) => {
-  const openNewTab = () => {
+  const openDirection = () => {
     const link = `https://www.google.com/maps/place/${opportunity.location}`;
     // eslint-disable-next-line no-undef
     window.open(link);
@@ -112,7 +112,7 @@ const ViewOpportunity = ({ opportunity, ready, currentUser }) => {
           : ''}
         {!Roles.userIsInRole(Meteor.userId(), [ROLE.ORGANIZATION, ROLE.ADMIN]) ? (
           <div>
-            <Button color='blue' onClick={openNewTab}>
+            <Button color='blue' onClick={openDirection}>
               <Icon name='map marker alternate'/> Get directions
             </Button>
             <Button color='blue'>
