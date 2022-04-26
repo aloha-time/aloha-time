@@ -6,7 +6,7 @@ import {
   DateField,
   ErrorsField,
   HiddenField,
-  LongTextField,
+  LongTextField, NumField,
   SelectField,
   SubmitField,
   TextField,
@@ -29,11 +29,11 @@ const EditOpportunity = ({ doc, ready }) => {
 
   // On successful submit, insert the data.
   const submit = (data) => {
-    const { title, opportunityType, startDate, endDate, recurring, description, category, location, contactName,
+    const { title, opportunityType, startDate, endDate, recurring, description, category, location, longitude, latitude, contactName,
       contactPosition, email, phone, website, coverImage, galleryImg1, galleryImg2, galleryImg3,
       galleryImg4, ageGroup, environment, _id } = data;
     const collectionName = Opportunities.getCollectionName();
-    const updateData = { id: _id, title, opportunityType, startDate, endDate, recurring, description, category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImg1, galleryImg2, galleryImg3,
+    const updateData = { id: _id, title, opportunityType, startDate, endDate, recurring, description, category, location, longitude, latitude, contactName, contactPosition, email, phone, website, coverImage, galleryImg1, galleryImg2, galleryImg3,
       galleryImg4, ageGroup, environment };
     updateMethod.callPromise({ collectionName, updateData })
       .catch(error => swal('Error', error.message, 'error'))
@@ -90,6 +90,8 @@ const EditOpportunity = ({ doc, ready }) => {
                     description of the volunteer opportunity.'/>
                     <MultiSelectField checkboxes label='Category' name='category'/>
                     <TextField label='Location' name='location' placeholder='e.g. "Honolulu"'/>
+                    <NumField label='Longitude' name='longitude' placeholder='-157.818694'/>
+                    <NumField label='Latitude' name='latitude' placeholder='21.29828'/>
                   </Card.Content>
                 </Card>
                 <Card fluid>

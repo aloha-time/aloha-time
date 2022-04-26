@@ -186,7 +186,9 @@ const ViewOpportunity = ({ opportunity, ready, currentUser }) => {
           <Grid.Column>
             <Segment>
               <Icon name='map marker alternate'/> Location
-              <h3>{opportunity.location}</h3>
+              <h3>Address: {opportunity.location}</h3>
+              <h3>Longitude: {opportunity.longitude}</h3>
+              <h3>Latitude: {opportunity.latitude}</h3>
               <Divider/>
               <Grid container fluid>
                 <MapInset/>

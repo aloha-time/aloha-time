@@ -98,6 +98,8 @@ OpportunityItem.propTypes = {
     description: PropTypes.string,
     category: PropTypes.array,
     location: PropTypes.string,
+    longitude: PropTypes.number,
+    latitude: PropTypes.number,
     contactName: PropTypes.string,
     contactPosition: PropTypes.string,
     email: PropTypes.string,
