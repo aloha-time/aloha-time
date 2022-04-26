@@ -176,7 +176,7 @@ export default withTracker(() => {
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // Get the Opportunity documents and sort them by name.
-  const opportunities = Opportunities.find({}, { sort: { name: 1 } }).fetch();
+  const opportunities = Opportunities.find({ verification: 'Verified' }, { sort: { name: 1 } }).fetch();
   return {
     opportunities,
     ready,
