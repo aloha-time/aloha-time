@@ -1,54 +1,38 @@
-import React, { useState } from 'react';
+import React /* { useState } */ from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import DatePicker from 'react-datepicker';
+/* import DatePicker from 'react-datepicker'; */
 import 'react-datepicker/dist/react-datepicker.css';
-import { Button } from 'semantic-ui-react';
+/* import { Button } from 'semantic-ui-react'; */
 import PropTypes from 'prop-types';
 import { withRouter /* Link */ } from 'react-router-dom';
-import { Meteor } from 'meteor/meteor';
-import { Roles } from 'meteor/alanning:roles';
-import { ROLE } from '../../api/role/Role';
-
-const localizer = momentLocalizer(moment);
-
-const myEventsList = [
-  {
-    title: 'Health Help',
-    start: new Date(2022, 3, 15),
-    end: new Date(2022, 3, 28),
-  },
-  {
-    title: 'Beach Cleanup',
-    start: new Date(2022, 3, 17),
-    end: new Date(2022, 3, 25),
-  },
-  {
-    title: 'Food Drive',
-    start: new Date(2022, 3, 18),
-    end: new Date(2022, 3, 28),
-  },
-  {
-    title: 'Virtual Dog Walk',
-    start: new Date(2022, 3, 5),
-    end: new Date(2022, 3, 10),
-  },
-];
+/* import { Meteor } from 'meteor/meteor'; */
+/* import { Roles } from 'meteor/alanning:roles'; */
+/* import { ROLE } from '../../api/role/Role'; */
 
 /** Renders a single row in the Calendar Schedule page. See pages/CalendarSchedule.jsx. */
-const CalendarItem = (/* { stuff } */) => {
+const CalendarItem = ({ opportunity }) => {
+  const localizer = momentLocalizer(moment);
 
-  const [newEvent, setNewEvent] = useState({ title: '', start: '', end: '' });
+  const myEventsList = [
+    {
+      title: opportunity.title,
+      start: new Date(opportunity.startDate),
+      end: new Date(opportunity.endDate),
+    },
+  ];
+
+  /* const [newEvent, setNewEvent] = useState({ title: '', start: '', end: '' });
   const [allEvents, setAllEvents] = useState(myEventsList);
 
   function handleAddEvent() {
     setAllEvents([...allEvents, newEvent]);
-  }
-
+  } */
+  console.log(myEventsList);
   return (
     <div>
-      {Roles.userIsInRole(Meteor.userId(), [ROLE.ORGANIZATION]) ? (
+      {/* {Roles.userIsInRole(Meteor.userId(), [ROLE.ORGANIZATION]) ? (
         <div>
           <input type="text" placeholder="Add Title"
             value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}/>
@@ -58,7 +42,7 @@ const CalendarItem = (/* { stuff } */) => {
             selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
           <Button style={{ marginTop: '10px', marginBottom: '10px' }} onClick={handleAddEvent}>Add Event</Button>
         </div>)
-        : ''}
+        : ''} */}
       <Calendar
         localizer={localizer}
         events={myEventsList}
@@ -72,10 +56,28 @@ const CalendarItem = (/* { stuff } */) => {
 
 // Require a document to be passed to this component.
 CalendarItem.propTypes = {
-  stuff: PropTypes.shape({
-    name: PropTypes.string,
-    quantity: PropTypes.number,
-    condition: PropTypes.string,
+  opportunity: PropTypes.shape({
+    title: PropTypes.string,
+    opportunityType: PropTypes.string,
+    startDate: PropTypes.date,
+    endDate: PropTypes.date,
+    recurring: PropTypes.string,
+    description: PropTypes.string,
+    category: PropTypes.array,
+    location: PropTypes.string,
+    contactName: PropTypes.string,
+    contactPosition: PropTypes.string,
+    email: PropTypes.string,
+    phone: PropTypes.string,
+    website: PropTypes.string,
+    coverImage: PropTypes.string,
+    galleryImg1: PropTypes.string,
+    galleryImg2: PropTypes.string,
+    galleryImg3: PropTypes.string,
+    galleryImg4: PropTypes.string,
+    ageGroup: PropTypes.array,
+    environment: PropTypes.array,
+    owner: PropTypes.string,
     _id: PropTypes.string,
   }).isRequired,
 };
