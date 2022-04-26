@@ -372,6 +372,8 @@
         "COVID-19 Recovery"
       ],
       "location": "Honolulu",
+      "longitude": -157.800385,
+      "latitude": 21.267996,
       "contactName": "Ihupani Keoni",
       "contactPosition": "Coordinator",
       "email": "healthhelp@hawaii.edu",
@@ -400,6 +402,8 @@
         "Environment"
       ],
       "location": "Honolulu, HI 96825",
+      "longitude": -157.800385,
+      "latitude": 21.267996,
       "contactName": "Manalani Onakea",
       "contactPosition": "Founder",
       "email": "beachcleanup@hawaii.edu",
@@ -428,6 +432,8 @@
         "Food Insecurity"
       ],
       "location": "Kaneohe",
+      "longitude": -157.800385,
+      "latitude": 21.267996,
       "contactName": "Kalino Kawena",
       "contactPosition": "Supervisor",
       "email": "fooddrive@hawaii.edu",
@@ -456,6 +462,8 @@
         "Elderly/Senior Care"
       ],
       "location": "Oahu",
+      "longitude": -157.800385,
+      "latitude": 21.267996,
       "contactName": "Aheahe Akamu",
       "contactPosition": "Organizer",
       "email": "virtualdogwalk@hawaii.edu",
