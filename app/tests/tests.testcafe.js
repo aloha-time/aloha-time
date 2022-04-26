@@ -3,13 +3,30 @@ import { signInPage } from './signin.page';
 import { navBar } from './navbar.component';
 import { volunteerSignUp } from './volunteersignup.page';
 import { landingPage } from './landing.page';
+import { aboutUsPage } from './aboutus.page';
+import { browseOpportunitiesPage } from './browseopportunities.page';
+import { calendarSchedulePage } from './calendarschedule.page';
+import { organizationLibraryPage } from './organizationlibrary.page';
 
 /* global fixture:false, test:false */
 
 /** Credentials for one of the sample users defined in settings.development.json. */
 const credentials = { username: 'john@foo.com', password: 'changeme' };
 const adminCredentials = { username: 'admin@foo.com', password: 'changeme' };
-const newCredentials = { username: 'jane@foo.com', password: 'changeme' };
+const newCredentials = {
+  firstName: 'jane',
+  lastName: 'foo',
+  email: 'jane@foo.com',
+  dateOfBirth: '12/25/1999',
+  primaryAddress: '92-1047 Olani St Unit 1206',
+  city: 'Kapolei',
+  state: 'HI',
+  zipcode: '96707',
+  phoneNumber: '8081234567',
+  username: 'janefoo',
+  password: 'changeme',
+  conPassword: 'changeme',
+};
 
 fixture('matrp localhost test with default db')
   .page('http://localhost:3000');
@@ -28,7 +45,49 @@ test('Test that sign in and sign out work', async () => {
 
 test('Test that volunteer sign up and sign out work', async () => {
   await navBar.gotoVolunteerSignupPage();
-  await volunteerSignUp.signupVolunteer(newCredentials.username, newCredentials.password);
+  await volunteerSignUp.isDisplayed();
+  await volunteerSignUp.signupVolunteer(
+    newCredentials.firstName,
+    newCredentials.lastName,
+    newCredentials.email,
+    newCredentials.dateOfBirth,
+    newCredentials.primaryAddress,
+    newCredentials.city,
+    newCredentials.state,
+    newCredentials.zipcode,
+    newCredentials.phoneNumber,
+    newCredentials.username,
+    newCredentials.password,
+    newCredentials.conPassword,
+  );
+});
+
+test('Test the Browse Opportunities page', async () => {
+  await navBar.gotoSigninPage();
+  await signInPage.signin(newCredentials.username, newCredentials.password);
+  await navBar.goToBrowseOpportunitiesPage();
+  await browseOpportunitiesPage.isDisplayed();
+});
+
+test('Test the Calendar Schedule page', async () => {
+  await navBar.gotoSigninPage();
+  await signInPage.signin(newCredentials.username, newCredentials.password);
+  await navBar.goToCalendarSchedulePage();
+  await calendarSchedulePage.isDisplayed();
+});
+
+test('Test the Organization Library page', async () => {
+  await navBar.gotoSigninPage();
+  await signInPage.signin(newCredentials.username, newCredentials.password);
+  await navBar.goToOrganizationLibraryPage();
+  await organizationLibraryPage.isDisplayed();
+});
+
+test('Test the About Us page', async () => {
+  await navBar.gotoSigninPage();
+  await signInPage.signin(newCredentials.username, newCredentials.password);
+  await navBar.goToAboutUsPage();
+  await aboutUsPage.isDisplayed();
 });
 
 test('Test that user pages show up', async () => {

@@ -18,6 +18,34 @@ class NavBar {
     await t.click(`#${COMPONENT_IDS.NAVBAR_LOGIN_DROPDOWN_SIGN_IN}`);
   }
 
+  /**
+  async goToBrowseOpportunitiesPage() {
+    await this.ensureLogout();
+    await t.click(`#${COMPONENT_IDS.NAVBAR_HAMBURGER_MENU}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_BROWSE_OPPORTUNITIES}`);
+  }
+* */
+
+  async goToCalendarSchedulePage() {
+    await this.ensureLogout();
+    await t.click(`#${COMPONENT_IDS.NAVBAR_HAMBURGER_MENU}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_CALENDAR_SCHEDULE}`);
+  }
+
+  /**
+  async goToOrganizationLibraryPage() {
+    await this.ensureLogout();
+    await t.click(`#${COMPONENT_IDS.NAVBAR_HAMBURGER_MENU}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_ORGANIZATION_LIBRARY}`);
+  }
+   * */
+
+  async goToAboutUsPage() {
+    await this.ensureLogout();
+    await t.click(`#${COMPONENT_IDS.NAVBAR_HAMBURGER_MENU}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_HAMBURGER_MENU_ABOUT_US}`);
+  }
+
   /** Check that the specified user is currently logged in. */
   async isLoggedIn(username) {
     const loggedInUser = await Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).innerText;
