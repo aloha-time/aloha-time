@@ -175,21 +175,21 @@ const VolunteerSignup = ({ location }) => {
                 placeholder="E-mail address"
               />
               <TextField
-                id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL}
+                id={COMPONENT_IDS.SIGN_UP_FORM_DATE_OF_BIRTH}
                 name="dateOfBirth"
                 placeholder="You must be at least 16 years olf to join Volunteer Ally)"
               />
-              <RadioField name='genderType'/>
+              <RadioField id={COMPONENT_IDS.SIGN_UP_FORM_GENDER_TYPE} name='genderType'/>
               <TextField
                 id={COMPONENT_IDS.SIGN_UP_FORM_PRIMARY_ADDRESS}
                 name="address"
                 placeholder="Primary Address"
               />
               <Form.Group widths='equal'>
-                <TextField label='City' name= "city" placeholder='City'/>
-                <TextField label='State' name = "state" placeholder='State' />
+                <TextField id={COMPONENT_IDS.SIGN_UP_FORM_CITY} label='City' name= "city" placeholder='City'/>
+                <TextField id={COMPONENT_IDS.SIGN_UP_FORM_STATE} label='State' name = "state" placeholder='State' />
               </Form.Group>
-              <TextField label='Zip/Postal Code' name = "zip" placeholder='Zip Code'/>
+              <TextField id={COMPONENT_IDS.SIGN_UP_FORM_ZIPCODE} label='Zip/Postal Code' name = "zip" placeholder='Zip Code'/>
               <TextField
                 label="Phone Number"
                 id={COMPONENT_IDS.SIGN_UP_FORM_PHONE_NUMBER}
@@ -219,12 +219,13 @@ const VolunteerSignup = ({ location }) => {
                 onChange={handleChange}
               />
               <br/>
-              <MultiSelectField name='interestsType'/>
-              <MultiSelectField name='skillsType'/>
-              <RadioField name='preferencesType'/>
-              <RadioField name='availabilityType'/>
-              <ImageUploadFiled name='image'/>
+              <MultiSelectField id={COMPONENT_IDS.SIGN_UP_FORM_INTERESTS_TYPE} name='interestsType'/>
+              <MultiSelectField id={COMPONENT_IDS.SIGN_UP_FORM_SKILLS_TYPE} name='skillsType'/>
+              <RadioField id={COMPONENT_IDS.SIGN_UP_FORM_PREF_TYPE} name='preferencesType'/>
+              <RadioField id={COMPONENT_IDS.SIGN_UP_FORM_AVAIL_TYPE} name='availabilityType'/>
+              <ImageUploadFiled id={COMPONENT_IDS.SIGN_UP_FORM_IMAGE} name='image'/>
               <Form.Checkbox required
+                id={COMPONENT_IDS.SIGN_UP_FORM_PRIVACY_POLICY}
                 label = "Please confirm that you agree to our privacy policy"
                 name="privacyPolicy"
                 value="true"

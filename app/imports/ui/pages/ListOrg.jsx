@@ -4,12 +4,13 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection';
 import OrgItem from '../components/OrgItem';
+import { PAGE_IDS } from '../utilities/PageIDs';
 
 const pageStyle = { paddingTop: '15px', paddingBottom: '15px' };
 
 /** Renders a table containing all of the Organizations. Use <OrgItem> to render each row. */
 const ListOrg = ({ ready, orgs }) => ((ready) ? (
-  <Container style={ pageStyle }>
+  <Container id={PAGE_IDS.LANDING} style={ pageStyle }>
     <Card.Group itemsPerRow={4} style={ pageStyle } centered> {/* will eventually be a single OrgItem, something along the lines of {orgs.map((org) => <OrgItem key={org._id} org={org} />)} */}
       {orgs.map((org) => <OrgItem key={org._id} org={org} />)}
     </Card.Group>
