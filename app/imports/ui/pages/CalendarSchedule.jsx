@@ -1,19 +1,56 @@
 import React from 'react';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
+import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import { Container, Loader } from 'semantic-ui-react';
+import { Button, Container, Header } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import 'react-datepicker/dist/react-datepicker.css';
-import CalendarItem from '../components/CalendarItem';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 
+const localizer = momentLocalizer(moment);
+
 /** The calendar scheduler. */
-const CalendarSchedule = ({ ready /* stuffs */ }) => ((ready) ? (
-  <Container id={PAGE_IDS.CALENDAR_SCHEDULE}>
-    <CalendarItem/>
-  </Container>
-) : <Loader active>Getting data</Loader>);
+const CalendarSchedule = () => {
+
+  /* find the title, startDate and endDate from each event in the OpportunitiesCollection */
+  const eventFields = Opportunities.find({}, { fields: { title: 1, startDate: 1, endDate: 1 } }).fetch();
+
+  /* use map to rename the fields title to title, startDate to start, endDate to end and remove _id */
+  const myEventsList = eventFields.map(({ title, startDate, endDate }) => ({ title: title, start: startDate, end: endDate }));
+
+  return (
+    <Container id={PAGE_IDS.CALENDAR_SCHEDULE}>
+      <div className="organization-sign-up-top">
+        <Header as="h2" textAlign="center" inverted>
+            Calendar
+        </Header>
+        <Header as="h5" textAlign="center" inverted>
+            View the schedule of upcoming opportunities
+        </Header>
+      </div>
+      <br/>
+      <Button floated='right' color='blue' as={NavLink}
+        exact to="/browse-opportunities">
+          See all Available Opportunities
+      </Button>
+      <br/>
+      <br/>
+      <br/>
+      <div>
+        <Calendar
+          localizer={localizer}
+          events={myEventsList}
+          startAccessor="start"
+          endAccessor="end"
+          style={{ height: 600 }}
+        />
+      </div>
+    </Container>
+  );
+};
 
 // Require an array of Opportunity documents in the props.
 CalendarSchedule.propTypes = {
