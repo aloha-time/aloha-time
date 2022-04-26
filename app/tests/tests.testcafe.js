@@ -4,9 +4,7 @@ import { navBar } from './navbar.component';
 import { volunteerSignUp } from './volunteersignup.page';
 import { landingPage } from './landing.page';
 import { aboutUsPage } from './aboutus.page';
-import { browseOpportunitiesPage } from './browseopportunities.page';
 import { calendarSchedulePage } from './calendarschedule.page';
-import { organizationLibraryPage } from './organizationlibrary.page';
 
 /* global fixture:false, test:false */
 
@@ -61,28 +59,14 @@ test('Test that volunteer sign up and sign out work', async () => {
     newCredentials.conPassword,
   );
 });
-/**
-test('Test the Browse Opportunities page', async () => {
-  await navBar.gotoSigninPage();
-  await signInPage.signin(newCredentials.username, newCredentials.password);
-  await navBar.goToBrowseOpportunitiesPage();
-  await browseOpportunitiesPage.isDisplayed();
-});
-**/
+
 test('Test the Calendar Schedule page', async () => {
   await navBar.gotoSigninPage();
   await signInPage.signin(newCredentials.username, newCredentials.password);
   await navBar.goToCalendarSchedulePage();
   await calendarSchedulePage.isDisplayed();
 });
-/**
-test('Test the Organization Library page', async () => {
-  await navBar.gotoSigninPage();
-  await signInPage.signin(newCredentials.username, newCredentials.password);
-  await navBar.goToOrganizationLibraryPage();
-  await organizationLibraryPage.isDisplayed();
-});
-**/
+
 test('Test the About Us page', async () => {
   await navBar.gotoSigninPage();
   await signInPage.signin(newCredentials.username, newCredentials.password);
