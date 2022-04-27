@@ -1,13 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Map, { Marker } from 'react-map-gl';
-
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Loader } from 'semantic-ui-react';
+import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 
 const MAPBOX_TOKEN = 'pk.eyJ1IjoicmFpbmxsbyIsImEiOiJjbDJia3Znam4wOGJtM2tsNmh3MHNoMDltIn0.x_Sj4gsHvYT0faOiijV9oQ'; // Set your mapbox token here
 
 /** Renders a single row in the Browse Opportunity table. See pages/BrowseOpportunity.jsx. */
-const MapInset = () => (
+const MapInset = ({ ready, opportunities }) => ((ready) ? (
   <Map
     initialViewState={{
       latitude: 21.29828,
@@ -18,41 +20,26 @@ const MapInset = () => (
     mapStyle="mapbox://styles/mapbox/streets-v9"
     mapboxAccessToken={MAPBOX_TOKEN}
   >
-    <Marker longitude={-157.800385} latitude={21.267996} color="red" />
-    <Marker longitude={-157.894543} latitude={21.335468} color="orange" />
-    <Marker longitude={-157.674078} latitude={21.285214} color="blue" />
-    <Marker longitude={-157.817841} latitude={21.290279} color="green" />
+    {opportunities.map((opportunity) => <Marker key={opportunity._id} longitude={opportunity.longitude} latitude={opportunity.latitude} color='red'/>)}
   </Map>
-);
+) : <Loader active>Getting data</Loader>);
 
 // Require a document to be passed to this component.
 MapInset.propTypes = {
-  opportunity: PropTypes.shape({
-    title: PropTypes.string,
-    opportunityType: PropTypes.string,
-    startDate: PropTypes.date,
-    endDate: PropTypes.date,
-    recurring: PropTypes.string,
-    description: PropTypes.string,
-    category: PropTypes.string,
-    location: PropTypes.string,
-    longitude: PropTypes.number,
-    latitude: PropTypes.number,
-    contactName: PropTypes.string,
-    contactPosition: PropTypes.string,
-    email: PropTypes.string,
-    phone: PropTypes.string,
-    website: PropTypes.string,
-    coverImage: PropTypes.string,
-    galleryImg1: PropTypes.string,
-    galleryImg2: PropTypes.string,
-    galleryImg3: PropTypes.string,
-    galleryImg4: PropTypes.string,
-    ageGroup: PropTypes.string,
-    environment: PropTypes.string,
-    owner: PropTypes.string,
-    _id: PropTypes.string,
-  }),
+  opportunities: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired,
 };
 
-export default MapInset;
+// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
+export default withTracker(() => {
+  // Get access to Opportunity documents.
+  const subscription = Opportunities.subscribeOpportunity();
+  // Determine if the subscription is ready
+  const ready = subscription.ready();
+  // Get the Opportunity documents and sort them by name.
+  const opportunities = Opportunities.find({}, { sort: { name: 1 } }).fetch();
+  return {
+    opportunities,
+    ready,
+  };
+})(MapInset);
