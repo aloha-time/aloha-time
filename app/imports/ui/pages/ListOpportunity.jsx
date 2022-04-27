@@ -10,16 +10,22 @@ import OpportunityItem from '../components/OpportunityItem';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { ROLE } from '../../api/role/Role';
 import MapInset from '../components/MapInset';
+import FilterByTitle from '../components/FilterByTitle';
+import FilterByCategory from '../components/FilterByCategory';
+import FilterByAge from '../components/FilterByAge';
+import FilterByEnvironment from '../components/FilterByEnvironment';
 
 /** Renders a table containing all of the Opportunity documents. Use <OpportunityItem> to render each row. */
 const ListOpportunity = ({ ready, opportunities }) => {
   const panes = [
     // eslint-disable-next-line react/display-name
-    { menuItem: 'Tab 1', render: () => <Tab.Pane>Tab 1 Content</Tab.Pane> },
+    { menuItem: 'Title', render: () => <Tab.Pane><FilterByTitle/></Tab.Pane> },
     // eslint-disable-next-line react/display-name
-    { menuItem: 'Tab 2', render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
+    { menuItem: 'Category', render: () => <Tab.Pane><FilterByCategory/></Tab.Pane> },
     // eslint-disable-next-line react/display-name
-    { menuItem: 'Tab 3', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
+    { menuItem: 'Age', render: () => <Tab.Pane><FilterByAge/></Tab.Pane> },
+    // eslint-disable-next-line react/display-name
+    { menuItem: 'Environment', render: () => <Tab.Pane><FilterByEnvironment/></Tab.Pane> },
   ];
 
   return ((ready) ? (
