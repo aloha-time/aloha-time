@@ -11,7 +11,7 @@ import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { ROLE } from '../../api/role/Role';
 import { MyUrl } from '../components/MyUrl';
-import MapInset from '../components/MapInset';
+import MapInsetView from '../components/MapInsetView';
 import { removeItMethod } from '../../api/opportunity/OpportunitiesCollection.methods';
 
 /** Renders a table containing all the Opportunity documents. Use <OpportunityItem> to render each row. */
@@ -187,11 +187,9 @@ const ViewOpportunity = ({ opportunity, ready, currentUser }) => {
             <Segment>
               <Icon name='map marker alternate'/> Location
               <h3>Address: {opportunity.location}</h3>
-              <h3>Longitude: {opportunity.longitude}</h3>
-              <h3>Latitude: {opportunity.latitude}</h3>
               <Divider/>
               <Grid container fluid>
-                <MapInset/>
+                <MapInsetView/>
               </Grid>
             </Segment>
             <Segment>
@@ -263,7 +261,7 @@ export default withTracker(() => {
   const ready = subscription.ready();
   // Get the Opportunity documents and sort them by name.
   const opportunity = (ready) ? Opportunities.findDoc(opportunityId) : undefined;
-  console.log(opportunity);
+  // console.log(opportunity);
   return {
     opportunity,
     ready,
