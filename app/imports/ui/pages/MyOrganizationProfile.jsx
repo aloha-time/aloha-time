@@ -40,7 +40,7 @@ const MyOrganizationProfile = ({ orgProfile, ready }) => ((ready) ? (
             <Button> Change Username </Button>
           </List.Content>
           <List.Content>
-            <Button> Change Password </Button>
+            <Button><Link to="/password-change">Change Password</Link></Button>
           </List.Content>
         </List>
       </Grid.Column>

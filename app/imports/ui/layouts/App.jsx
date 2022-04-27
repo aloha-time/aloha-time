@@ -9,6 +9,7 @@ import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import ListOrg from '../pages/ListOrg';
 import OrgInfo from '../pages/OrgInfo';
+
 import ListOpportunity from '../pages/ListOpportunity';
 import ListOpportunityOrganization from '../pages/ListOpportunityOrganization';
 import AddOpportunity from '../pages/AddOpportunity';
@@ -32,6 +33,7 @@ import CalendarSchedule from '../pages/CalendarSchedule';
 import EditMyOrganizationProfile from '../pages/EditMyOrganizatonProfile';
 import EditMyProfileImages from '../pages/EditMyProfileImages';
 import EditMyOrganizationProfileImages from '../pages/EditMyOrganizatonProfileImages';
+import PasswordChange from '../pages/PasswordChange';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -52,6 +54,7 @@ class App extends React.Component {
             <Route path="/volunteer-signup" component={VolunteerSignUp}/>
             <Route path="/signout" component={Signout}/>
             <Route path="/calendar-schedule" component={CalendarSchedule}/>
+            <Route path="/password-change" component={PasswordChange}/>
             <VolunteerProtectedRoute path="/edit-my-profile" component={EditMyProfile}/>
             <VolunteerProtectedRoute path="/edit-my-profile-images" component={EditMyProfileImages}/>
             <VolunteerProtectedRoute path="/opportunity-hours/:_id" component={OpportunityHours}/>

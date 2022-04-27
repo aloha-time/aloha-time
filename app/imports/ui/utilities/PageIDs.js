@@ -22,4 +22,5 @@ export const PAGE_IDS = {
   BROWSE_OPPORTUNITIES: 'browse-opportunities',
   ORGANIZATION_LIBRARY: 'organization-library',
   VIEW_MAP: 'view-map',
+  PASSWORD_CHANGE: 'password-change',
 };
