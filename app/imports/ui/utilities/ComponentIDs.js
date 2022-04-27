@@ -51,4 +51,8 @@ export const COMPONENT_IDS = {
   SIGN_UP_FORM_PRIVACY_POLICY: 'sig-up-form-privacy-policy',
   SIGN_UP_FORM_SUBMIT: 'sign-up-form-submit',
   OPPORTUNITY_CARD_EDIT: 'opportunity-card-edit',
+  ADMIN_OLD_PASSWORD: 'admin-old-password',
+  ADMIN_NEW_PASSWORD: 'admin-new-password',
+  ADMIN_NEW_CONFIRM_PASSWORD: 'admin-new-confirm-password',
+  ADMIN_FORM_SUBMIT: 'admin-form-submit',
 };
