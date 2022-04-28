@@ -46,9 +46,11 @@ const NavBar = ({ currentUser }) => {
           [<Dropdown id={COMPONENT_IDS.NAVBAR_CURRENT_USER} text={currentUser} pointing="top right" icon={'user'}
             key="logout">
             <Dropdown.Menu>
-              {Roles.userIsInRole(Meteor.userId(), [ROLE.VOLUNTEER]) ? (
-                <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MY_PROFILE} text="My Profile" as={NavLink} exact
-                  to="/myProfile"/>)
+              {Roles.userIsInRole(Meteor.userId(), [ROLE.VOLUNTEER]) ? ([
+                <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MY_PROFILE} text="My Profile" key='my profile' as={NavLink} exact
+                  to="/myProfile"/>,
+                <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MY_BOOKMARKS} text="My Bookmarks" key='my bookmarks' as={NavLink} exact
+                  to="/myBookmarks"/>])
                 : ''}
               {Roles.userIsInRole(Meteor.userId(), [ROLE.ORGANIZATION]) ? ([
                 <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MY_ORGANIZATION_PROFILE} text="My Organization Profile"

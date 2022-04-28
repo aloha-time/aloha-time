@@ -23,10 +23,10 @@ const ShowVolunteerProfile = ({ volProfile, ready }) => ((ready) ? (
       <Image size='medium' src="/images/VAlogo.png" centered/>
     </div>
     <Grid style={headerStyle}>
-      <Grid.Column width={3}>
+      <Grid.Column width={3} style={margSides}>
         <Image centered size='large' src={MyUrl(volProfile.image)} />
       </Grid.Column>
-      <Grid.Column verticalAlign='middle' width={9} style={columnStyle}>
+      <Grid.Column verticalAlign='middle' width={7} style={columnStyle}>
         <Header as='h1'>
           {volProfile.firstName} {volProfile.lastName}
         </Header>

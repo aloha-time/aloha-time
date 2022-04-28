@@ -21,6 +21,7 @@ export const COMPONENT_IDS = {
   NAVBAR_MANAGE_DROPDOWN: 'navbar-manage-dropdown',
   NAVBAR_MANAGE_DROPDOWN_DATABASE: 'navbar-manage-dropdown-database',
   NAVBAR_MY_PROFILE: 'navbar-my-profile',
+  NAVBAR_MY_BOOKMARKS: 'navbar-my-bookmarks',
   NAVBAR_MY_OPPORTUNITIES: 'navbar-my-opportunities',
   NAVBAR_ACCOUNT_SETTINGS: 'navbar-account-settings',
   NAVBAR_MY_ORGANIZATION_PROFILE: 'navbar-my-organization-profile',
