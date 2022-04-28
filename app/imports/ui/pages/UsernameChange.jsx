@@ -8,10 +8,14 @@ import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-semantic
 import swal from 'sweetalert';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Roles } from 'meteor/alanning:roles';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { VolunteerUpdateMethod } from '../../api/user/VolunteerProfileCollection.methods';
 import { VolunteerProfiles } from '../../api/user/VolunteerProfileCollection';
+import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection';
+import { ROLE } from '../../api/role/Role';
+import { OrganizationUpdateMethod } from '../../api/user/OrganizationProfileCollection.methods';
 
 /**
  * Signup component is similar to signin component, but we create a new user instead.
@@ -36,8 +40,14 @@ const UsernameChange = ({ location }) => {
   const submit = (data, formRef) => {
     const result = Meteor.user({ fields: { username: 1 } }).username;
     if (match(data.username, result)) {
-      const matcher = VolunteerProfiles.findOne({ userID: Meteor.userId() }, {});
-      VolunteerUpdateMethod.callPromise({ DocId: matcher._id, userId: Meteor.userId(), newName: data.username }).catch(error => swal('Error', error.message, 'error'));
+      if (Roles.userIsInRole(Meteor.userId(), [ROLE.VOLUNTEER])) {
+        const matcher = VolunteerProfiles.findOne({ userID: Meteor.userId() }, {});
+        VolunteerUpdateMethod.callPromise({ DocId: matcher._id, userId: Meteor.userId(), newName: data.username }).catch(error => swal('Error', error.message, 'error'));
+      }
+      if (Roles.userIsInRole(Meteor.userId(), [ROLE.ORGANIZATION])) {
+        const matcher = OrganizationProfiles.findOne({ userID: Meteor.userId() }, {});
+        OrganizationUpdateMethod.callPromise({ DocId: matcher._id, userId: Meteor.userId(), newName: data.username }).catch(error => swal('Error', error.message, 'error'));
+      }
       formRef.reset();
       swal({
         title: 'Changed Applied!',
@@ -46,7 +56,7 @@ const UsernameChange = ({ location }) => {
       });
       setRedirectToReferer(true);
     } else {
-      swal('Error!', 'Same username!', 'error');
+      swal('Error!', 'Same as old username!', 'error');
     }
   };
   const { from } = location.state || { from: { pathname: '/signin' } };
@@ -91,8 +101,11 @@ UsernameChange.propTypes = {
 };
 export default withTracker(() => {
   const subscription = VolunteerProfiles.subscribe();
+  const subscription2 = OrganizationProfiles.subscribe();
   const ready = subscription.ready();
+  const ready2 = subscription2.ready();
   return {
     ready,
+    ready2,
   };
 })(UsernameChange);
