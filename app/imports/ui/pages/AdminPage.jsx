@@ -6,6 +6,7 @@ import AdminTabs from '../components/AdminTabs';
 import { OrganizationProfiles } from '../../api/user/OrganizationProfileCollection';
 import { VolunteerProfiles } from '../../api/user/VolunteerProfileCollection';
 import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
+import { AdminProfiles } from '../../api/user/AdminProfileCollection';
 
 const AdminPage = ({ ready }) => ((ready) ? (
   <Container>
@@ -26,7 +27,8 @@ export default withTracker(() => {
   const OppSubscription = Opportunities.subscribeOpportunityAdmin();
   const OrgSubscription = OrganizationProfiles.subscribe();
   const VolSubscription = VolunteerProfiles.subscribe();
-  const ready = OrgSubscription.ready() && VolSubscription.ready() && OppSubscription.ready();
+  const AdminSubscription = AdminProfiles.subscribe();
+  const ready = OrgSubscription.ready() && VolSubscription.ready() && OppSubscription.ready() && AdminSubscription.ready();
   const organization = OrganizationProfiles.find({}, { sort: { organizationName: 1 } }).fetch();
   const volunteer = VolunteerProfiles.find({}, { sort: { firstName: 1 } }).fetch();
   return {

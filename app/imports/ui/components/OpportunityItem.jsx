@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Accordion, Button, Card, Icon, Image } from 'semantic-ui-react';
+import { Accordion, Button, Card, Icon, Image, List } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, NavLink } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
@@ -52,7 +52,10 @@ const OpportunityItem = ({ opportunity }) => {
           <Icon name='map marker alternate'/>
           {opportunity.location}
         </Card.Meta>
-        <Card.Meta>Category: {opportunity.category}</Card.Meta>
+        <Card.Meta>
+          <Icon name='block layout'/>
+          <List horizontal bulleted items={opportunity.category}/>
+        </Card.Meta>
       </Card.Content>
       <Card.Content>
         <Accordion>
@@ -91,25 +94,12 @@ const OpportunityItem = ({ opportunity }) => {
 OpportunityItem.propTypes = {
   opportunity: PropTypes.shape({
     title: PropTypes.string,
-    opportunityType: PropTypes.string,
     startDate: PropTypes.date,
     endDate: PropTypes.date,
-    recurring: PropTypes.string,
     description: PropTypes.string,
     category: PropTypes.array,
     location: PropTypes.string,
-    contactName: PropTypes.string,
-    contactPosition: PropTypes.string,
-    email: PropTypes.string,
-    phone: PropTypes.string,
-    website: PropTypes.string,
     coverImage: PropTypes.string,
-    galleryImg1: PropTypes.string,
-    galleryImg2: PropTypes.string,
-    galleryImg3: PropTypes.string,
-    galleryImg4: PropTypes.string,
-    ageGroup: PropTypes.array,
-    environment: PropTypes.array,
     owner: PropTypes.string,
     _id: PropTypes.string,
   }).isRequired,

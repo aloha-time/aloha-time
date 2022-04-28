@@ -8,6 +8,7 @@ import {
   SubmitField,
   TextField,
   DateField,
+  NumField,
 } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
@@ -49,6 +50,8 @@ const formSchema = new SimpleSchema({
     allowedValues: opportunityCategories,
   },
   location: String,
+  longitude: Number,
+  latitude: Number,
   contactName: String,
   contactPosition: String,
   email: String,
@@ -98,12 +101,12 @@ const AddOpportunity = () => {
 
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { title, opportunityType, startDate, endDate, recurring, description, category, location, contactName,
+    const { title, opportunityType, startDate, endDate, recurring, description, category, location, longitude, latitude, contactName,
       contactPosition, email, phone, website, coverImage, galleryImg1, galleryImg2, galleryImg3,
       galleryImg4, ageGroup, environment } = data;
     const owner = Meteor.user().username;
     const collectionName = Opportunities.getCollectionName();
-    const definitionData = { title, opportunityType, startDate, endDate, recurring, description, category, location,
+    const definitionData = { title, opportunityType, startDate, endDate, recurring, description, category, location, longitude, latitude,
       contactName, contactPosition, email, phone, website, coverImage, galleryImg1, galleryImg2,
       galleryImg3, galleryImg4, ageGroup, environment, owner };
     defineMethod.callPromise({ collectionName, definitionData })
@@ -168,6 +171,8 @@ const AddOpportunity = () => {
                     description of the volunteer opportunity.'/>
                     <MultiSelectField checkboxes label='Category' name='category'/>
                     <TextField label='Location' name='location' placeholder='e.g. "Honolulu"'/>
+                    <NumField label='Longitude' name='longitude' placeholder='-157.818694'/>
+                    <NumField label='Latitude' name='latitude' placeholder='21.29828'/>
                   </Card.Content>
                 </Card>
                 <Card fluid>

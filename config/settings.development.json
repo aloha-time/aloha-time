@@ -373,7 +373,9 @@
       "category": [
         "COVID-19 Recovery"
       ],
-      "location": "Honolulu",
+      "location": "4155 Diamond Head Rd, Honolulu, HI 96816",
+      "longitude": -157.800385,
+      "latitude": 21.267996,
       "contactName": "Ihupani Keoni",
       "contactPosition": "Coordinator",
       "email": "healthhelp@hawaii.edu",
@@ -401,7 +403,9 @@
       "category": [
         "Environment"
       ],
-      "location": "Honolulu, HI 96825",
+      "location": "Sandy Beach, Honolulu, HI",
+      "longitude": -157.674078,
+      "latitude": 21.285214,
       "contactName": "Manalani Onakea",
       "contactPosition": "Founder",
       "email": "beachcleanup@hawaii.edu",
@@ -429,7 +433,9 @@
       "category": [
         "Food Insecurity"
       ],
-      "location": "Kaneohe",
+      "location": "2611 Kilihau St, Honolulu, HI 96819",
+      "longitude": -157.894543,
+      "latitude": 21.335468,
       "contactName": "Kalino Kawena",
       "contactPosition": "Supervisor",
       "email": "fooddrive@hawaii.edu",
@@ -457,7 +463,9 @@
       "category": [
         "Elderly/Senior Care"
       ],
-      "location": "Oahu",
+      "location": "2700 Waialae Ave, Honolulu, HI 96826",
+      "longitude": -157.817841,
+      "latitude": 21.290279,
       "contactName": "Aheahe Akamu",
       "contactPosition": "Organizer",
       "email": "virtualdogwalk@hawaii.edu",

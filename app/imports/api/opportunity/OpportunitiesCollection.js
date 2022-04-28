@@ -84,6 +84,8 @@ class OpportunitiesCollection extends BaseCollection {
         allowedValues: opportunityCategories,
       },
       location: String,
+      longitude: Number,
+      latitude: Number,
       contactName: String,
       contactPosition: String,
       email: String,
@@ -128,6 +130,8 @@ class OpportunitiesCollection extends BaseCollection {
    * @param description the description of the opportunity.
    * @param category the category of the opportunity.
    * @param location the location of the opportunity.
+   * @param longitude the longitude of the opportunity.
+   * @param latitude the latitude of the opportunity.
    * @param contactName the name to contact.
    * @param contactPosition the position of the contact.
    * @param email the email of the contact.
@@ -143,7 +147,7 @@ class OpportunitiesCollection extends BaseCollection {
    * @param owner the owner of the item.
    * @return {String} the docID of the new document.
    */
-  define({ title, opportunityType, startDate, endDate, recurring, description, category, location, contactName,
+  define({ title, opportunityType, startDate, endDate, recurring, description, category, location, longitude, latitude, contactName,
     contactPosition, email, phone, website, coverImage, galleryImg1, galleryImg2, galleryImg3,
     galleryImg4, ageGroup, environment, owner }) {
     const docID = this._collection.insert({
@@ -155,6 +159,8 @@ class OpportunitiesCollection extends BaseCollection {
       description,
       category,
       location,
+      longitude,
+      latitude,
       contactName,
       contactPosition,
       email,
@@ -183,6 +189,8 @@ class OpportunitiesCollection extends BaseCollection {
    * @param description the new description.
    * @param category the new category.
    * @param location the new location.
+   * @param longitude the new longitude.
+   * @param latitude the new latitude.
    * @param contactName the new contact name.
    * @param contactPosition the new contact position.
    * @param email the new contact email.
@@ -198,7 +206,7 @@ class OpportunitiesCollection extends BaseCollection {
    * @param verification shows if the the given opportunity is verified by the admin
    */
   update(docID, { title, opportunityType, startDate, endDate, recurring, description,
-    category, location, contactName, contactPosition, email, phone, website, coverImage, galleryImg1, galleryImg2, galleryImg3, galleryImg4, ageGroup, environment, verification }) {
+    category, location, longitude, latitude, contactName, contactPosition, email, phone, website, coverImage, galleryImg1, galleryImg2, galleryImg3, galleryImg4, ageGroup, environment, verification }) {
     const updateData = {};
     if (title) {
       updateData.title = title;
@@ -223,6 +231,12 @@ class OpportunitiesCollection extends BaseCollection {
     }
     if (location) {
       updateData.location = location;
+    }
+    if (longitude) {
+      updateData.longitude = longitude;
+    }
+    if (latitude) {
+      updateData.latitude = latitude;
     }
     if (contactName) {
       updateData.contactName = contactName;
@@ -333,16 +347,6 @@ class OpportunitiesCollection extends BaseCollection {
   }
 
   /**
-   * Subscription method for opportunity owned by the volunteer user.
-   */
-  subscribeOpportunityVolunteer() {
-    if (Meteor.isClient) {
-      return Meteor.subscribe(opportunityPublications.opportunityVolunteer);
-    }
-    return null;
-  }
-
-  /**
    * Subscription method for opportunity owned by the organization user.
    */
   subscribeOpportunityOrganization() {
@@ -378,7 +382,7 @@ class OpportunitiesCollection extends BaseCollection {
    * @param docID
    * @return {{owner: (*|number), environment: *, ageGroup: *, galleryImg4: *, galleryImg3: *, galleryImg2: *,
    * galleryImg1: *, coverImage: *,
-   * website: *, contactPosition: *, contactName: *, location: *,category: *, description: *, recurring: *, endTime: *,
+   * website: *, contactPosition: *, contactName: *, latitude: *, longitude: *, location: *, category: *, description: *, recurring: *, endTime: *,
    * startTime: *, endDate: *, startDate: *, opportunityType: *, title}}
    */
   dumpOne(docID) {
@@ -391,6 +395,8 @@ class OpportunitiesCollection extends BaseCollection {
     const description = doc.description;
     const category = doc.category;
     const location = doc.location;
+    const longitude = doc.longitude;
+    const latitude = doc.latitude;
     const contactName = doc.contactName;
     const contactPosition = doc.contactPosition;
     const email = doc.email;
@@ -404,7 +410,7 @@ class OpportunitiesCollection extends BaseCollection {
     const ageGroup = doc.ageGroup;
     const environment = doc.environment;
     const owner = doc.owner;
-    return { title, opportunityType, startDate, endDate, recurring, description, category, location, contactName,
+    return { title, opportunityType, startDate, endDate, recurring, description, category, location, longitude, latitude, contactName,
       contactPosition, email, phone, website, coverImage, galleryImg1, galleryImg2, galleryImg3,
       galleryImg4, ageGroup, environment, owner };
   }

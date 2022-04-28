@@ -37,10 +37,10 @@ const MyOrganizationProfile = ({ orgProfile, ready }) => ((ready) ? (
       <Grid.Column width={3} verticalAlign='middle' style={columnStyle}>
         <List relaxed floated='right'>
           <List.Content>
-            <Button> Change Username </Button>
+            <Button><Link to="/username-change">Change username</Link></Button>
           </List.Content>
           <List.Content>
-            <Button> Change Password </Button>
+            <Button><Link to="/password-change">Change Password</Link></Button>
           </List.Content>
         </List>
       </Grid.Column>

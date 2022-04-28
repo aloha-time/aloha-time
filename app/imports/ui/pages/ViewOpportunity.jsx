@@ -1,5 +1,17 @@
 import React from 'react';
-import { Container, Header, Loader, Card, Grid, Button, Icon, Segment, List, Divider } from 'semantic-ui-react';
+import {
+  Container,
+  Header,
+  Loader,
+  Card,
+  Grid,
+  Button,
+  Icon,
+  Segment,
+  List,
+  Divider,
+  Dropdown,
+} from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
@@ -7,17 +19,32 @@ import { useParams } from 'react-router';
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import swal from 'sweetalert';
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  RedditIcon,
+  RedditShareButton,
+  EmailIcon,
+  EmailShareButton } from 'react-share';
 import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { ROLE } from '../../api/role/Role';
 import { MyUrl } from '../components/MyUrl';
-import MapInset from '../components/MapInset';
+import MapInsetView from '../components/MapInsetView';
 import { removeItMethod } from '../../api/opportunity/OpportunitiesCollection.methods';
 
 /** Renders a table containing all the Opportunity documents. Use <OpportunityItem> to render each row. */
 const ViewOpportunity = ({ opportunity, ready, currentUser }) => {
-  const openNewTab = () => {
+  const openDirection = () => {
     const link = `https://www.google.com/maps/place/${opportunity.location}`;
+    // eslint-disable-next-line no-undef
+    window.open(link);
+  };
+
+  const openEmail = () => {
+    const link = `mailto:${opportunity.email}`;
     // eslint-disable-next-line no-undef
     window.open(link);
   };
@@ -112,15 +139,62 @@ const ViewOpportunity = ({ opportunity, ready, currentUser }) => {
           : ''}
         {!Roles.userIsInRole(Meteor.userId(), [ROLE.ORGANIZATION, ROLE.ADMIN]) ? (
           <div>
-            <Button color='blue' onClick={openNewTab}>
+            <Button color='blue' onClick={openDirection}>
               <Icon name='map marker alternate'/> Get directions
             </Button>
-            <Button color='blue'>
-              <Icon name='share alternate'/> Share
-            </Button>
-            <Button color='blue'>
+            <Button color='blue' onClick={openEmail}>
               <Icon name='mail'/> Send an email
             </Button>
+            <Button.Group color='blue'>
+              <Button><Icon name='share alternate'/>Share</Button>
+              <Dropdown
+                className='button icon'
+                floating
+                trigger={<></>}
+              >
+                <Dropdown.Menu>
+                  <Dropdown.Item>
+                    <FacebookShareButton
+                      url={`https://aloha-time.xyz/#/view-opportunity/${opportunity._id}`}
+                      quote={opportunity.title}
+                      className="Demo__some-network__share-button"
+                    >
+                      <FacebookIcon size={32} round />
+                    </FacebookShareButton>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <TwitterShareButton
+                      url={`https://aloha-time.xyz/#/view-opportunity/${opportunity._id}`}
+                      title={opportunity.title}
+                      className="Demo__some-network__share-button"
+                    >
+                      <TwitterIcon size={32} round />
+                    </TwitterShareButton>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <RedditShareButton
+                      url={`https://aloha-time.xyz/#/view-opportunity/${opportunity._id}`}
+                      title={opportunity.title}
+                      windowWidth={660}
+                      windowHeight={460}
+                      className="Demo__some-network__share-button"
+                    >
+                      <RedditIcon size={32} round />
+                    </RedditShareButton>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <EmailShareButton
+                      url={`https://aloha-time.xyz/#/view-opportunity/${opportunity._id}`}
+                      subject={opportunity.title}
+                      body="Link to event: "
+                      className="Demo__some-network__share-button"
+                    >
+                      <EmailIcon size={32} round />
+                    </EmailShareButton>
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Button.Group>
           </div>)
           : ''}
         {Roles.userIsInRole(Meteor.userId(), [ROLE.VOLUNTEER]) ? (
@@ -180,10 +254,10 @@ const ViewOpportunity = ({ opportunity, ready, currentUser }) => {
           <Grid.Column>
             <Segment>
               <Icon name='map marker alternate'/> Location
-              <h3>{opportunity.location}</h3>
+              <h3>Address: {opportunity.location}</h3>
               <Divider/>
               <Grid container fluid>
-                <MapInset/>
+                <MapInsetView/>
               </Grid>
             </Segment>
             <Segment>
@@ -255,7 +329,7 @@ export default withTracker(() => {
   const ready = subscription.ready();
   // Get the Opportunity documents and sort them by name.
   const opportunity = (ready) ? Opportunities.findDoc(opportunityId) : undefined;
-  console.log(opportunity);
+  // console.log(opportunity);
   return {
     opportunity,
     ready,
