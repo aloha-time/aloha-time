@@ -27,9 +27,18 @@ const BookmarkButton = ({ opportunity, username }) => {
     });
   };
   return (
-    <Button color='blue' onClick={bookmarkHandle}>
+      /**
+    (check ?
+      <Button color='blue' onClick={bookmarkHandle} disabled>
+        <Icon name='heart'/> Bookmark
+      </Button> :
+      <Button color='blue' onClick={bookmarkHandle}>
+        <Icon name='heart'/> Bookmark
+      </Button>
+    )**/
+      <Button color='blue' onClick={bookmarkHandle}>
       <Icon name='heart'/> Bookmark
-    </Button>
+      </Button>
   );
 };
 

@@ -7,7 +7,7 @@ import { useParams } from 'react-router';
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
-// import { VolunteerBookmarks } from '../../api/bookmarks/VolunteerBookmarkCollection';
+import { VolunteerBookmarks } from '../../api/bookmarks/VolunteerBookmarkCollection';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { ROLE } from '../../api/role/Role';
 import { MyUrl } from '../components/MyUrl';
@@ -15,16 +15,25 @@ import MapInset from '../components/MapInset';
 import BookmarkButton from '../components/BookmarkButton';
 
 /** Renders a table containing all the Opportunity documents. Use <OpportunityItem> to render each row. */
-const ViewOpportunity = ({ opportunity, ready, currentUser }) => {
+const ViewOpportunity = ({ opportunity, ready, currentUser, bookmarks }) => {
   const openNewTab = () => {
     const link = `https://www.google.com/maps/place/${opportunity.location}`;
     // eslint-disable-next-line no-undef
     window.open(link);
   };
 
-  console.log(opportunity);
-  // console.log(bookmarks);
+  // console.log(opportunity);
+  console.log(bookmarks);
   console.log(currentUser);
+
+  /**
+  const bkmkID = bookmarks.map(bookmark => bookmark.opportunityID);
+  let check = false;
+  console.log(opportunity);
+  if (bkmkID.includes(opportunity._id)) {
+    check = true;
+  }
+   * */
 
   /** Render the page once subscriptions have been received. */
   return (ready) ? (
@@ -228,7 +237,7 @@ const ViewOpportunity = ({ opportunity, ready, currentUser }) => {
 // Require an array of Opportunity documents in the props.
 ViewOpportunity.propTypes = {
   opportunity: PropTypes.object.isRequired,
-  // bookmarks: PropTypes.array,
+  bookmarks: PropTypes.array,
   ready: PropTypes.bool.isRequired,
   currentUser: PropTypes.string.isRequired,
 };
@@ -241,15 +250,15 @@ export default withTracker(() => {
   const opportunityId = _id;
   // Get access to Opportunity documents.
   const subscription = Opportunities.subscribeOpportunity();
-  // const subscription2 = VolunteerBookmarks.subscribeVolunteerBookmark();
+  const subscription2 = VolunteerBookmarks.subscribeVolunteerBookmark();
   // Determine if the subscription is ready
-  const ready = subscription.ready();
+  const ready = subscription.ready() && subscription2.ready();
   // Get the Opportunity documents and sort them by name.
-  const opportunity = Opportunities.getOpportunity(opportunityId);
-  // const bookmarks = VolunteerBookmarks.getVolunteerBookmark(currentUser);
+  const opportunity = (ready) ? Opportunities.findDoc(opportunityId) : undefined;
+  const bookmarks = VolunteerBookmarks.getVolunteerBookmark(currentUser);
   return {
     opportunity,
-    // bookmarks,
+    bookmarks,
     ready,
     currentUser,
   };

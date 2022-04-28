@@ -4,6 +4,7 @@ import { UserProfiles } from '../user/UserProfileCollection';
 import { VolunteerProfiles } from '../user/VolunteerProfileCollection';
 import { OrganizationProfiles } from '../user/OrganizationProfileCollection';
 import { Opportunities } from '../opportunity/OpportunitiesCollection';
+import { VolunteerBookmarks } from '../bookmarks/VolunteerBookmarkCollection';
 
 class MATRPClass {
   collections;
@@ -20,6 +21,7 @@ class MATRPClass {
       VolunteerProfiles,
       OrganizationProfiles,
       Opportunities,
+      VolunteerBookmarks,
     ];
     /*
      * A list of collection class instances in the order required for them to be sequentially loaded from a file.
@@ -30,6 +32,7 @@ class MATRPClass {
       VolunteerProfiles,
       OrganizationProfiles,
       Opportunities,
+      VolunteerBookmarks,
     ];
 
     /*

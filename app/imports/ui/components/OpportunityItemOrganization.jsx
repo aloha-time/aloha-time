@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Accordion, Button, Card, Icon, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, NavLink } from 'react-router-dom';
+import swal from 'sweetalert';
 import { MyUrl } from './MyUrl';
 import { removeItMethod } from '../../api/opportunity/OpportunitiesCollection.methods';
-import swal from 'sweetalert';
 
 /** Renders a single row in the List Opportunity Organization table. See pages/ListOpportunityOrganization.jsx. */
 const OpportunityItemOrganization = ({ opportunity }) => {

@@ -40,16 +40,13 @@ class VolunteerBookmarkCollection extends BaseCollection {
       Meteor.publish(volunteerBookmarksPublications.volunteerBookmark, function publish() {
         if (this.userId) {
           const username = Meteor.users.findOne(this.userId).username;
-          return instance._collection.find({ owner: username });
+          return instance._collection.find({ bookmarkOwner: username });
         }
         return this.ready();
       });
 
       Meteor.publish(volunteerBookmarksPublications.volunteerBookmarkCommunity, function publish() {
-        if (this.userId) {
-          return instance._collection.find();
-        }
-        return this.ready();
+        return instance._collection.find();
       });
     }
   }
@@ -69,9 +66,9 @@ class VolunteerBookmarkCollection extends BaseCollection {
   }
 
   // Get the opportunities that a specific volunteer bookmarked
-  getVolunteerBookmark() {
-    // return this._collection.find({ bookmarkOwner: username }, {}).fetch();
-    return this._collection.find().fetch();
+  getVolunteerBookmark(username) {
+    return this._collection.find({ bookmarkOwner: username }, {}).fetch();
+    // return this._collection.find().fetch();
   }
 
   // Gets the opportunities of all volunteers that bookmarked any opportunity
