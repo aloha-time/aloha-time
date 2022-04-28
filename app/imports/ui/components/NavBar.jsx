@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { exact } from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter, NavLink } from 'react-router-dom';
@@ -46,9 +46,12 @@ const NavBar = ({ currentUser }) => {
           [<Dropdown id={COMPONENT_IDS.NAVBAR_CURRENT_USER} text={currentUser} pointing="top right" icon={'user'}
             key="logout">
             <Dropdown.Menu>
-              {Roles.userIsInRole(Meteor.userId(), [ROLE.VOLUNTEER]) ? (
+              {Roles.userIsInRole(Meteor.userId(), [ROLE.VOLUNTEER]) ? ([
                 <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MY_PROFILE} text="My Profile" as={NavLink} exact
-                  to="/myProfile"/>)
+                  to="/myProfile"/>,
+                <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MY_PROFILE} text="Submit Hours" as={NavLink} exact
+                  to="/submit-hours"/>]
+                  )
                 : ''}
               {Roles.userIsInRole(Meteor.userId(), [ROLE.ORGANIZATION]) ? ([
                 <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MY_ORGANIZATION_PROFILE} text="My Organization Profile"

@@ -33,6 +33,8 @@ import CalendarSchedule from '../pages/CalendarSchedule';
 import EditMyOrganizationProfile from '../pages/EditMyOrganizatonProfile';
 import EditMyProfileImages from '../pages/EditMyProfileImages';
 import EditMyOrganizationProfileImages from '../pages/EditMyOrganizatonProfileImages';
+import ViewMap from '../pages/ViewMap';
+import SubmitHours from '../pages/SubmitHours';
 import PasswordChange from '../pages/PasswordChange';
 import UsernameChange from '../pages/UsernameChange';
 
@@ -60,6 +62,7 @@ class App extends React.Component {
             <VolunteerProtectedRoute path="/edit-my-profile" component={EditMyProfile}/>
             <VolunteerProtectedRoute path="/edit-my-profile-images" component={EditMyProfileImages}/>
             <VolunteerProtectedRoute path="/opportunity-hours/:_id" component={OpportunityHours}/>
+            <VolunteerProtectedRoute path="/submit-hours" component={SubmitHours}/>
             <OrganizationProtectedRoute path="/my-opportunities" component={ListOpportunityOrganization}/>
             <OrganizationProtectedRoute path="/my-organization-profile" component={MyOrganizationProfile}/>
             <OrganizationProtectedRoute path="/edit-my-organization-profile" component={EditMyOrganizationProfile}/>
