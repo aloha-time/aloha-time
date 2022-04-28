@@ -9,7 +9,6 @@ import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import ListOrg from '../pages/ListOrg';
 import OrgInfo from '../pages/OrgInfo';
-
 import ListOpportunity from '../pages/ListOpportunity';
 import ListOpportunityOrganization from '../pages/ListOpportunityOrganization';
 import AddOpportunity from '../pages/AddOpportunity';
@@ -33,10 +32,11 @@ import CalendarSchedule from '../pages/CalendarSchedule';
 import EditMyOrganizationProfile from '../pages/EditMyOrganizatonProfile';
 import EditMyProfileImages from '../pages/EditMyProfileImages';
 import EditMyOrganizationProfileImages from '../pages/EditMyOrganizatonProfileImages';
-import ViewMap from '../pages/ViewMap';
+// import ViewMap from '../pages/ViewMap';
 import SubmitHours from '../pages/SubmitHours';
 import PasswordChange from '../pages/PasswordChange';
 import UsernameChange from '../pages/UsernameChange';
+import MyBookmarks from '../pages/MyBookmarks';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -49,6 +49,7 @@ class App extends React.Component {
             <Route exact path="/" component={Landing}/>
             <Route path="/signin" component={Signin}/>
             <VolunteerProtectedRoute path="/myprofile" component={ShowVolunteerProfile}/>
+            <VolunteerProtectedRoute path="/mybookmarks" component={MyBookmarks}/>
             <Route path="/browse-opportunities" component={ListOpportunity}/>
             <Route path="/view-opportunity/:_id" component={ViewOpportunity}/>
             <Route path="/organization-library" component={ListOrg}/>

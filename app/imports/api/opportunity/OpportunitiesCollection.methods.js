@@ -18,9 +18,9 @@ export const updateMethod = new ValidatedMethod({
   name: 'OpportunitiesCollection.update',
   mixins: [CallPromiseMixin],
   validate: null,
-  run({ updateData }) {
+  run(updateData) {
     if (Meteor.isServer) {
-      Opportunities.update(updateData.id, updateData);
+      Opportunities.update(updateData._id, updateData);
     }
   },
 });

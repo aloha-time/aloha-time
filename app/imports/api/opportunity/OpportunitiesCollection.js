@@ -112,6 +112,7 @@ class OpportunitiesCollection extends BaseCollection {
         allowedValues: opportunityEnvironments,
       },
       owner: String,
+      bookmarks: Number,
       verification: {
         type: String,
         allowedValues: opportunityVerify,
@@ -149,7 +150,7 @@ class OpportunitiesCollection extends BaseCollection {
    */
   define({ title, opportunityType, startDate, endDate, recurring, description, category, location, longitude, latitude, contactName,
     contactPosition, email, phone, website, coverImage, galleryImg1, galleryImg2, galleryImg3,
-    galleryImg4, ageGroup, environment, owner }) {
+    galleryImg4, ageGroup, environment, owner, bookmarks }) {
     const docID = this._collection.insert({
       title,
       opportunityType,
@@ -174,6 +175,7 @@ class OpportunitiesCollection extends BaseCollection {
       ageGroup,
       environment,
       owner,
+      bookmarks,
     });
     return docID;
   }
@@ -206,7 +208,7 @@ class OpportunitiesCollection extends BaseCollection {
    * @param verification shows if the the given opportunity is verified by the admin
    */
   update(docID, { title, opportunityType, startDate, endDate, recurring, description,
-    category, location, longitude, latitude, contactName, contactPosition, email, phone, website, coverImage, galleryImg1, galleryImg2, galleryImg3, galleryImg4, ageGroup, environment, verification }) {
+    category, location, longitude, latitude, contactName, contactPosition, email, phone, website, coverImage, galleryImg1, galleryImg2, galleryImg3, galleryImg4, ageGroup, environment, verification, bookmarks }) {
     const updateData = {};
     if (title) {
       updateData.title = title;
@@ -276,6 +278,9 @@ class OpportunitiesCollection extends BaseCollection {
     }
     if (verification) {
       updateData.verification = verification;
+    }
+    if (bookmarks) {
+      updateData.bookmarks = bookmarks;
     }
     this._collection.update(docID, { $set: updateData });
   }
@@ -367,6 +372,12 @@ class OpportunitiesCollection extends BaseCollection {
     return null;
   }
 
+  getOpportunity(id) {
+    const opportunities = this._collection.find().fetch();
+    const final = opportunities.filter(opportunity => opportunity._id === id);
+    return final[0];
+  }
+
   /**
    * Default implementation of assertValidRoleForMethod. Asserts that userId is logged in as an Admin or User.
    * This is used in the define, update, and removeIt Meteor methods associated with each class.
@@ -410,9 +421,10 @@ class OpportunitiesCollection extends BaseCollection {
     const ageGroup = doc.ageGroup;
     const environment = doc.environment;
     const owner = doc.owner;
+    const bookmarks = doc.bookmarks;
     return { title, opportunityType, startDate, endDate, recurring, description, category, location, longitude, latitude, contactName,
       contactPosition, email, phone, website, coverImage, galleryImg1, galleryImg2, galleryImg3,
-      galleryImg4, ageGroup, environment, owner };
+      galleryImg4, ageGroup, environment, owner, bookmarks };
   }
 }
 

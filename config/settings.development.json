@@ -392,7 +392,8 @@
       "environment": [
         "Indoors"
       ],
-      "owner": "HelpIsOnTheWay"
+      "owner": "HelpIsOnTheWay",
+      "bookmarks": 0
     },
     { "title": "Beach Cleanup",
       "opportunityType": "Ongoing",
@@ -422,7 +423,8 @@
       "environment": [
         "Outdoors"
       ],
-      "owner": "MakeAWishHI"
+      "owner": "MakeAWishHI",
+      "bookmarks": 0
     },
     { "title": "Food Drive",
       "opportunityType": "Event",
@@ -452,7 +454,8 @@
       "environment": [
         "Mixed"
       ],
-      "owner": "HIFoodBank"
+      "owner": "HIFoodBank",
+      "bookmarks": 0
     },
     { "title": "Virtual Dog Walk",
       "opportunityType": "Event",
@@ -482,7 +485,8 @@
       "environment": [
         "Virtual"
       ],
-      "owner": "SaveTheAnimals"
+      "owner": "SaveTheAnimals",
+      "bookmarks": 0
     }
   ],
   "public": {
