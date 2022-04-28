@@ -59,4 +59,6 @@ export const COMPONENT_IDS = {
   NEW_PASSWORD: 'new-password',
   NEW_CONFIRM_PASSWORD: 'new-confirm-password',
   FORM_SUBMIT: 'form-submit',
+  ADMIN_USERNAME: 'admin-username',
+  ADMIN_USERNAME_FORM_SUBMIT: 'admin-username-form-submit',
 };
