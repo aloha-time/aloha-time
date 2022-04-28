@@ -13,3 +13,14 @@ export const signUpNewOrganizationMethod = new ValidatedMethod({
     }
   },
 });
+
+export const orgRemoveItMethod = new ValidatedMethod({
+  name: 'OrganizationProfile.removeIt',
+  mixins: [CallPromiseMixin],
+  validate: null,
+  run({ instance }) {
+    if (Meteor.isServer) {
+      OrganizationProfiles.removeIt(instance._id);
+    }
+  },
+});
