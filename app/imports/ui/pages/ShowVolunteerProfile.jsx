@@ -34,6 +34,8 @@ const ShowVolunteerProfile = ({ volProfile, ready }) => ((ready) ? (
         <p>Date of Birth: {volProfile.dateOfBirth}</p>
       </Grid.Column>
       <Grid.Column verticalAlign='middle' width={4} style={columnStyle}>
+        <Button><Link to="/password-change">Change Password</Link></Button>
+        <Button><Link to="/username-change">Change username</Link></Button>
         <Header as='h1' textAlign='center'>
             Hours volunteered
         </Header>

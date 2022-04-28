@@ -6,3 +6,4 @@ import '../imports/api/base/BaseCollection.methods';
 import '../imports/api/user/OrganizationProfileCollection.methods';
 import '../imports/api/user/VolunteerProfileCollection.methods';
 import '../imports/api/opportunity/OpportunitiesCollection.methods';
+import '../imports/api/user/AdminProfileCollection.methods';
