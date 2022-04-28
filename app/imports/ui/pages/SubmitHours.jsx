@@ -12,12 +12,9 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { Redirect } from 'react-router-dom';
-import RadioField from '../components/form-fields/RadioField';
-import MultiSelectField from '../components/form-fields/MultiSelectField';
 import { VolunteerProfiles } from '../../api/user/VolunteerProfileCollection';
 import { updateMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
-import ImageUploadFiled from '../components/form-fields/ImageUploadFiled';
 
 const bridge = new SimpleSchema2Bridge(VolunteerProfiles._schema);
 
@@ -48,7 +45,7 @@ const EditMyProfile = ({ volProfile, ready, location }) => {
           Submit Your Hours
         </Header>
         <Header as="h5" textAlign="center" inverted>
-          Current Hours Volunteered: {volProfile.hours} 
+          Current Hours Volunteered: {volProfile.hours}
         </Header>
       </div>
       <br/>

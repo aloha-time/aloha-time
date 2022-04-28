@@ -33,7 +33,6 @@ import CalendarSchedule from '../pages/CalendarSchedule';
 import EditMyOrganizationProfile from '../pages/EditMyOrganizatonProfile';
 import EditMyProfileImages from '../pages/EditMyProfileImages';
 import EditMyOrganizationProfileImages from '../pages/EditMyOrganizatonProfileImages';
-import ViewMap from '../pages/ViewMap';
 import SubmitHours from '../pages/SubmitHours';
 import PasswordChange from '../pages/PasswordChange';
 import UsernameChange from '../pages/UsernameChange';

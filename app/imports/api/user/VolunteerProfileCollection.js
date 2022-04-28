@@ -272,7 +272,8 @@ class VolunteerProfileCollection extends BaseProfileCollection {
     const galleryImg4 = doc.galleryImg4;
     const galleryImg5 = doc.galleryImg5;
     const galleryImg6 = doc.galleryImg6;
-    return { firstName, lastName, email, dateOfBirth, genderType, address, city, state, zip, phone, hours, interestsType, skillsType, preferencesType, availabilityType, image, galleryImg1, galleryImg2, galleryImg3, galleryImg4, galleryImg5, galleryImg6 };
+    return { firstName, lastName, email, dateOfBirth, genderType, address, city, state, zip, phone, hours, interestsType, skillsType, preferencesType, availabilityType, image, galleryImg1, galleryImg2, galleryImg3, galleryImg4,
+      galleryImg5, galleryImg6 };
   }
 }
 
