@@ -347,16 +347,6 @@ class OpportunitiesCollection extends BaseCollection {
   }
 
   /**
-   * Subscription method for opportunity owned by the volunteer user.
-   */
-  subscribeOpportunityVolunteer() {
-    if (Meteor.isClient) {
-      return Meteor.subscribe(opportunityPublications.opportunityVolunteer);
-    }
-    return null;
-  }
-
-  /**
    * Subscription method for opportunity owned by the organization user.
    */
   subscribeOpportunityOrganization() {
