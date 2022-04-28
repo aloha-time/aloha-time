@@ -7,9 +7,11 @@ import { Meteor } from 'meteor/meteor';
 import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import PropTypes from 'prop-types';
+import { withTracker } from 'meteor/react-meteor-data';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { VolunteerUpdateMethod } from '../../api/user/VolunteerProfileCollection.methods';
+import { VolunteerProfiles } from '../../api/user/VolunteerProfileCollection';
 
 /**
  * Signup component is similar to signin component, but we create a new user instead.
@@ -34,7 +36,8 @@ const UsernameChange = ({ location }) => {
   const submit = (data, formRef) => {
     const result = Meteor.user({ fields: { username: 1 } }).username;
     if (match(data.username, result)) {
-      VolunteerUpdateMethod.callPromise({ userId: Meteor.userId(), newName: data.username }).catch(error => swal('Error', error.message, 'error'));
+      const matcher = VolunteerProfiles.findOne({ userID: Meteor.userId() }, {});
+      VolunteerUpdateMethod.callPromise({ DocId: matcher._id, userId: Meteor.userId(), newName: data.username }).catch(error => swal('Error', error.message, 'error'));
       formRef.reset();
       swal({
         title: 'Changed Applied!',
@@ -86,4 +89,10 @@ const UsernameChange = ({ location }) => {
 UsernameChange.propTypes = {
   location: PropTypes.object,
 };
-export default UsernameChange;
+export default withTracker(() => {
+  const subscription = VolunteerProfiles.subscribe();
+  const ready = subscription.ready();
+  return {
+    ready,
+  };
+})(UsernameChange);

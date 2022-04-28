@@ -18,9 +18,10 @@ export const VolunteerUpdateMethod = new ValidatedMethod({
   name: 'VolunteerProfileCollection.update',
   mixins: [CallPromiseMixin],
   validate: null,
-  run({ userId, newName }) {
+  run({ DocId, userId, newName }) {
     if (Meteor.isServer) {
       Accounts.setUsername(userId, newName);
+      VolunteerProfiles.update(DocId, { username: newName });
     }
   },
 });
