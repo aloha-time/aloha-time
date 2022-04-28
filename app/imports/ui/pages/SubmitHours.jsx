@@ -27,9 +27,9 @@ const EditMyProfile = ({ volProfile, ready, location }) => {
 
   // On successful submit, insert the data.
   const submit = (data) => {
-    const { firstName, lastName, dateOfBirth, genderType, address, city, state, zip, phone, interestsType, skillsType, preferencesType, availabilityType, image, _id } = data;
+    const { firstName, lastName, dateOfBirth, genderType, address, city, state, zip, phone, hours, interestsType, skillsType, preferencesType, availabilityType, image, _id } = data;
     const collectionName = VolunteerProfiles.getCollectionName();
-    const updateData = { id: _id, firstName, lastName, dateOfBirth, genderType, address, city, state, zip, phone, interestsType, skillsType, preferencesType, availabilityType, image };
+    const updateData = { id: _id, firstName, lastName, dateOfBirth, genderType, address, city, state, zip, phone, hours, interestsType, skillsType, preferencesType, availabilityType, image };
     updateMethod.callPromise({ collectionName, updateData })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => swal('Success', 'Profile updated successfully', 'success'));
@@ -45,10 +45,10 @@ const EditMyProfile = ({ volProfile, ready, location }) => {
     <Container id={PAGE_IDS.EDIT_MY_PROFILE}>
       <div className="organization-sign-up-top">
         <Header as="h2" textAlign="center" inverted>
-          Edit My Profile
+          Submit Your Hours
         </Header>
         <Header as="h5" textAlign="center" inverted>
-          Modify your listing
+          Current Hours Volunteered: {volProfile.hours} 
         </Header>
       </div>
       <br/>
@@ -66,64 +66,7 @@ const EditMyProfile = ({ volProfile, ready, location }) => {
                     </Card.Header>
                   </Card.Content>
                   <Card.Content>
-                    <TextField label='First Name' name='firstName'/>
-                  </Card.Content>
-                  <Card.Content>
-                    <TextField label='Last Name' name='lastName'/>
-                  </Card.Content>
-                  <Card.Content>
-                    <RadioField label='Gender' name='genderType'/>
-                  </Card.Content>
-                  <Card.Content>
-                    <TextField label='Date of Birth' name='dateOfBirth'/>
-                  </Card.Content>
-                  <Card.Content>
-                    <ImageUploadFiled label='My Profile Image' name='image'/>
-                  </Card.Content>
-                </Card>
-                <Card fluid>
-                  <Card.Content>
-                    <Card.Header>
-                      <Icon name='pencil alternate'/>
-                      Contact Information
-                    </Card.Header>
-                  </Card.Content>
-                  <Card.Content>
-                    <TextField label='Phone' name='phone' placeholder='**********'/>
-                  </Card.Content>
-                </Card>
-                <Card fluid>
-                  <Card.Content>
-                    <Card.Header>
-                      <Icon name='pencil alternate'/>
-                      Primary Address
-                    </Card.Header>
-                  </Card.Content>
-                  <Card.Content>
-                    <TextField label='address' name='address' placeholder='address'/>
-                    <TextField label='city' name='city' placeholder='HI'/>
-                    <TextField label='state' name='state' placeholder='Honolulu'/>
-                    <TextField label='zip' name='zip' placeholder='96817'/>
-                  </Card.Content>
-                </Card>
-                <Card fluid>
-                  <Card.Content>
-                    <Card.Header>
-                      <Icon name='pencil alternate'/>
-                      Addition Information
-                    </Card.Header>
-                  </Card.Content>
-                  <Card.Content>
-                    <RadioField label='Environmental' name='preferencesType' placeholder='environment preferences'/>
-                  </Card.Content>
-                  <Card.Content>
-                    <MultiSelectField label='Interests' name='interestsType'/>
-                  </Card.Content>
-                  <Card.Content>
-                    <MultiSelectField label='Skills' name='skillsType'/>
-                  </Card.Content>
-                  <Card.Content>
-                    <RadioField label='availability' name='availabilityType'/>
+                    <TextField label='Submit Hours' name='hours'/>
                   </Card.Content>
                 </Card>
                 <SubmitField value='Submit'/>
