@@ -115,7 +115,7 @@ class OrganizationProfileCollection extends BaseProfileCollection {
    * @param about
    */
   update(docID, { firstName, organizationName, websiteLink, lastName, image,
-    galleryImg1, galleryImg2, galleryImg3, galleryImg4, galleryImg5, galleryImg6,
+    username, galleryImg1, galleryImg2, galleryImg3, galleryImg4, galleryImg5, galleryImg6,
     primaryAddress, city, state, zipCode, phoneNumber, fields, environmental, about }) {
     this.assertDefined(docID);
     const updateData = {};
@@ -133,6 +133,9 @@ class OrganizationProfileCollection extends BaseProfileCollection {
     }
     if (image) {
       updateData.image = image;
+    }
+    if (username) {
+      updateData.username = username;
     }
     if (galleryImg1) {
       updateData.galleryImg1 = galleryImg1;
