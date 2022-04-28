@@ -127,7 +127,8 @@ class VolunteerProfileCollection extends BaseProfileCollection {
    * @param firstName new first name (optional).
    * @param lastName new last name (optional).
    */
-  update(docID, { firstName, lastName, dateOfBirth, genderType, address, city, state, zip, phone, username, interestsType, skillsType, preferencesType, availabilityType, image, galleryImg1, galleryImg2, galleryImg3, galleryImg4, galleryImg5, galleryImg6 }) {
+  update(docID, { firstName, lastName, dateOfBirth, genderType, address, city, state, zip, phone, username,
+    interestsType, skillsType, preferencesType, availabilityType, image, galleryImg1, galleryImg2, galleryImg3, galleryImg4, galleryImg5, galleryImg6 }) {
     this.assertDefined(docID);
     const updateData = {};
     if (firstName) {

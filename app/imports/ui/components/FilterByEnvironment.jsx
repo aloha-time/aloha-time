@@ -1,70 +1,71 @@
-import React from 'react';
-import { Loader, Container, Segment, Card } from 'semantic-ui-react';
+import React, { useState } from 'react';
+import { Loader, Container, Card, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import SimpleSchema from 'simpl-schema';
-import { _ } from 'meteor/underscore';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { AutoForm, SubmitField } from 'uniforms-semantic';
-import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
+import { Opportunities, opportunityEnvironments } from '../../api/opportunity/OpportunitiesCollection';
+import MultiSelectField from './form-fields/MultiSelectField';
 import OpportunityItem from './OpportunityItem';
-import MultiSelectField from '../components/form-fields/MultiSelectField';
 
-/** Create a schema to specify the structure of the data to appear in the form. */
-const makeSchema = (allOpportunities) => new SimpleSchema({
-  opportunities: { type: Array, label: 'Opportunities', optional: true },
-  'opportunities.$': { type: String, allowedValues: allOpportunities },
-});
-console.log(`makeSchema: ${makeSchema}`);
+/** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
+const FilterByEnvironment = ({ ready }) => {
 
-/** Renders a table containing all the Opportunity documents. Use <OpportunityItem> to render each row. */
-class FilterByEnvironment extends React.Component {
+  /* useState for submitting. Initial state is an empty array [] */
+  const [select, setSelect] = useState({ environment: [] });
 
-  constructor(props) {
-    super(props);
-    this.state = { opportunities: [] };
-  }
+  /* On submit insert the data */
+  const submit = (data) => {
+    setSelect(data);
+  };
 
-  submit(data) {
-    this.setState({ opportunities: data.opportunities || [] });
-  }
+  /* Clicking will clear the form fields */
+  const clear = (formRef) => {
+    formRef.reset();
+  };
 
-  /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
-  render() {
-    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
-  }
+  /* return an array of selected environments */
+  const environs = select.environment;
 
-  /** Render the page once subscriptions have been received. */
-  renderPage() {
-    const allOpportunities4 = _.pluck(Opportunities.find({}, {}).fetch(), 'environment');
-    const formSchema4 = makeSchema(allOpportunities4);
-    const bridge4 = new SimpleSchema2Bridge(formSchema4);
-    const opportunityList4 = Opportunities.find({ environment: { $in: this.state.opportunities } }, {}).fetch();
+  /* Form Schema used for the MultiSelectField, select multiple fields */
+  const formSchema = new SimpleSchema({
+    environment: {
+      type: Array,
+    },
+    'environment.$': {
+      type: String,
+      allowedValues: opportunityEnvironments,
+    },
+  });
 
-    console.log(allOpportunities4);
-    console.log(formSchema4);
-    console.log(bridge4);
-    console.log(opportunityList4);
-    console.log(this.state.opportunities);
+  /* bridge the Simple Schema */
+  const bridge = new SimpleSchema2Bridge(formSchema);
 
-    return (
-      <Container>
-        <AutoForm style={{ paddingBottom: '20px' }} schema={bridge4} onSubmit={data => this.submit(data)} >
-          <Segment>
-            <MultiSelectField label='' id='opportunities' name='opportunities' showInlineError={true}
-              placeholder={'Find by Environment'}/>
-            <SubmitField id='submit' value='Submit'/>
-          </Segment>
-        </AutoForm>
-        <Card.Group stackable itemsPerRow={1} centered>{opportunityList4.map((opportunities, index) => <OpportunityItem
-          key={index}
-          opportunity={opportunities}/>)}
-        </Card.Group>
-      </Container>
-    );
-  }
+  /* Use $in operator to match values of the passed array on the Opportunities collection. Returns matching opportunities */
+  const selectList = Opportunities.find({ environment: { $in: environs } }, {}).fetch();
 
-}
+  let fRef = null;
+
+  return ((ready) ? (
+    <Container>
+      <AutoForm ref={ref => {
+        fRef = ref;
+      }} style={{ paddingBottom: '20px' }} schema={bridge} onSubmit={data => submit(data)}>
+        <MultiSelectField id='environment' name='environment' label='' showInlineError={true}
+          placeholder={'Find by Environment'}/>
+        <SubmitField id='submit' value='Submit'/>
+        <Button color='red' onClick={() => clear(fRef)}>
+            Clear
+        </Button>
+      </AutoForm>
+      <Card.Group stackable itemsPerRow={4} centered>{selectList.map((opportunities) => <OpportunityItem
+        key={opportunities._id}
+        opportunity={opportunities}/>)}
+      </Card.Group>
+    </Container>
+  ) : <Loader active>Getting data</Loader>);
+};
 
 // Require a document to be passed to this component.
 FilterByEnvironment.propTypes = {
@@ -72,7 +73,7 @@ FilterByEnvironment.propTypes = {
   ready: PropTypes.bool.isRequired,
 };
 
-// Wrap this component in withRouter since we use the <Link> React Router element.
+// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
   // Get access to Opportunity documents.
   const subscription = Opportunities.subscribeOpportunity();

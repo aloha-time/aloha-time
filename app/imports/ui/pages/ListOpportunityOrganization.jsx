@@ -1,5 +1,5 @@
-import React from 'react';
-import { Container, Header, Loader, Button, Grid, Card, Tab } from 'semantic-ui-react';
+import React, { useState } from 'react';
+import { Container, Header, Loader, Button, Grid, Card, Tab, Accordion, Icon } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
@@ -9,27 +9,42 @@ import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 import OpportunityItemOrganization from '../components/OpportunityItemOrganization';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { ROLE } from '../../api/role/Role';
-import MapInset from '../components/MapInset';
+import FilterByTitle from '../components/FilterByTitle';
+import FilterByCategory from '../components/FilterByCategory';
+import FilterByAge from '../components/FilterByAge';
+import FilterByEnvironment from '../components/FilterByEnvironment';
 
 /** Renders a table containing all of the Opportunity documents. Use <OpportunityItemOrganization> to render each row. */
 const ListOpportunityOrganization = ({ ready, opportunities }) => {
+
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleClick = (e, titleProps) => {
+    e.preventDefault();
+    // console.log(titleProps);
+    const newIndex = activeIndex === titleProps.index ? -1 : titleProps.index;
+    setActiveIndex(newIndex);
+  };
+
   const panes = [
     // eslint-disable-next-line react/display-name
-    { menuItem: 'Tab 1', render: () => <Tab.Pane>Tab 1 Content</Tab.Pane> },
+    { menuItem: 'Title', render: () => <Tab.Pane><FilterByTitle/></Tab.Pane> },
     // eslint-disable-next-line react/display-name
-    { menuItem: 'Tab 2', render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
+    { menuItem: 'Category', render: () => <Tab.Pane><FilterByCategory/></Tab.Pane> },
     // eslint-disable-next-line react/display-name
-    { menuItem: 'Tab 3', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
+    { menuItem: 'Age', render: () => <Tab.Pane><FilterByAge/></Tab.Pane> },
+    // eslint-disable-next-line react/display-name
+    { menuItem: 'Environment', render: () => <Tab.Pane><FilterByEnvironment/></Tab.Pane> },
   ];
 
   return ((ready) ? (
     <Container id={PAGE_IDS.LIST_OPPORTUNITY}>
       <div className="organization-sign-up-top">
         <Header as="h2" textAlign="center" inverted>
-            Browse Opportunities
+          My Opportunities
         </Header>
         <Header as="h5" textAlign="center" inverted>
-            Volunteer for upcoming or existing events
+          Your organization&apos;s active opportunities
         </Header>
       </div>
       <br/>
@@ -42,14 +57,21 @@ const ListOpportunityOrganization = ({ ready, opportunities }) => {
       <br/>
       <Grid>
         <Grid.Row>
-          <Grid.Column width={6}>
-            <Header>
+          <Accordion>
+            <Accordion.Title
+              active={activeIndex === 0}
+              index={0}
+              onClick={handleClick}
+            >
+              <h3>
+                <Icon name='dropdown'/>
+                Filter Results
+              </h3>
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 0}>
               <Tab panes={panes} />
-            </Header>
-          </Grid.Column>
-          <Grid.Column width={10}>
-            <MapInset/>
-          </Grid.Column>
+            </Accordion.Content>
+          </Accordion>
         </Grid.Row>
       </Grid>
       <br/>
@@ -89,12 +111,13 @@ ListOpportunityOrganization.propTypes = {
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
+  const currentUser = Meteor.user() ? Meteor.user().username : ' ';
   // Get access to Opportunity documents.
   const subscription = Opportunities.subscribeOpportunityOrganization();
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // Get the Opportunity documents and sort them by name.
-  const opportunities = Opportunities.find({}, { sort: { name: 1 } }).fetch();
+  const opportunities = Opportunities.find({ verification: 'Verified', owner: { $in: [currentUser] } }, { sort: { name: 1 } }).fetch();
   return {
     opportunities,
     ready,

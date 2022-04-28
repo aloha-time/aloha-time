@@ -1,5 +1,5 @@
-import React from 'react';
-import { Container, Header, Loader, Button, Grid, Card, Tab } from 'semantic-ui-react';
+import React, { useState } from 'react';
+import { Container, Header, Loader, Button, Grid, Card, Tab, Accordion, Icon } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
@@ -17,6 +17,16 @@ import FilterByEnvironment from '../components/FilterByEnvironment';
 
 /** Renders a table containing all of the Opportunity documents. Use <OpportunityItem> to render each row. */
 const ListOpportunity = ({ ready, opportunities }) => {
+
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleClick = (e, titleProps) => {
+    e.preventDefault();
+    // console.log(titleProps);
+    const newIndex = activeIndex === titleProps.index ? -1 : titleProps.index;
+    setActiveIndex(newIndex);
+  };
+
   const panes = [
     // eslint-disable-next-line react/display-name
     { menuItem: 'Title', render: () => <Tab.Pane><FilterByTitle/></Tab.Pane> },
@@ -46,16 +56,28 @@ const ListOpportunity = ({ ready, opportunities }) => {
       <br/>
       <br/>
       <br/>
+      <Grid centered columns={2}>
+        <Grid.Row>
+          <MapInset/>
+        </Grid.Row>
+      </Grid>
       <Grid>
         <Grid.Row>
-          <Grid.Column width={6}>
-            <Header>
+          <Accordion>
+            <Accordion.Title
+              active={activeIndex === 0}
+              index={0}
+              onClick={handleClick}
+            >
+              <h3>
+                <Icon name='dropdown'/>
+               Filter Results
+              </h3>
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 0}>
               <Tab panes={panes} />
-            </Header>
-          </Grid.Column>
-          <Grid.Column width={10}>
-            <MapInset/>
-          </Grid.Column>
+            </Accordion.Content>
+          </Accordion>
         </Grid.Row>
       </Grid>
       <br/>

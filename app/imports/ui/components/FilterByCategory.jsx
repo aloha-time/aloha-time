@@ -1,70 +1,71 @@
-import React from 'react';
-import { Loader, Container, Segment, Card } from 'semantic-ui-react';
+import React, { useState } from 'react';
+import { Loader, Container, Card, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import SimpleSchema from 'simpl-schema';
-import { _ } from 'meteor/underscore';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { AutoForm, SubmitField } from 'uniforms-semantic';
-import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
+import { Opportunities, opportunityCategories } from '../../api/opportunity/OpportunitiesCollection';
+import MultiSelectField from './form-fields/MultiSelectField';
 import OpportunityItem from './OpportunityItem';
-import MultiSelectField from '../components/form-fields/MultiSelectField';
 
-/** Create a schema to specify the structure of the data to appear in the form. */
-const makeSchema = (allOpportunities) => new SimpleSchema({
-  opportunities: { type: Array, label: 'Opportunities', optional: true },
-  'opportunities.$': { type: String, allowedValues: allOpportunities },
-});
-console.log(`makeSchema: ${makeSchema}`);
+/** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
+const FilterByCategory = ({ ready }) => {
 
-/** Renders a table containing all the Opportunity documents. Use <OpportunityItem> to render each row. */
-class FilterByCategory extends React.Component {
+  /* useState for submitting. Initial state is an empty array [] */
+  const [select, setSelect] = useState({ category: [] });
 
-  constructor(props) {
-    super(props);
-    this.state = { opportunities: [] };
-  }
+  /* On submit insert the data */
+  const submit = (data) => {
+    setSelect(data);
+  };
 
-  submit(data) {
-    this.setState({ opportunities: data.opportunities || [] });
-  }
+  /* Clicking will clear the form fields */
+  const clear = (formRef) => {
+    formRef.reset();
+  };
 
-  /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
-  render() {
-    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
-  }
+  /* return an array of selected categories */
+  const categs = select.category;
 
-  /** Render the page once subscriptions have been received. */
-  renderPage() {
-    const allOpportunities2 = _.pluck(Opportunities.find({}, {}).fetch(), 'category');
-    const formSchema2 = makeSchema(allOpportunities2);
-    const bridge2 = new SimpleSchema2Bridge(formSchema2);
-    const opportunityList2 = Opportunities.find({ category: { $in: this.state.opportunities } }, {}).fetch();
+  /* Form Schema used for the MultiSelectField, select multiple fields */
+  const formSchema = new SimpleSchema({
+    category: {
+      type: Array,
+    },
+    'category.$': {
+      type: String,
+      allowedValues: opportunityCategories,
+    },
+  });
 
-    console.log(allOpportunities2);
-    console.log(formSchema2);
-    console.log(bridge2);
-    console.log(opportunityList2);
-    console.log(this.state.opportunities);
+  /* bridge the Simple Schema */
+  const bridge = new SimpleSchema2Bridge(formSchema);
 
-    return (
-      <Container>
-        <AutoForm style={{ paddingBottom: '20px' }} schema={bridge2} onSubmit={data => this.submit(data)} >
-          <Segment>
-            <MultiSelectField label='' id='opportunities' name='opportunities' showInlineError={true}
-              placeholder={'Find by Category'}/>
-            <SubmitField id='submit' value='Submit'/>
-          </Segment>
-        </AutoForm>
-        <Card.Group stackable itemsPerRow={1} centered>{opportunityList2.map((opportunities, index) => <OpportunityItem
-          key={index}
-          opportunity={opportunities}/>)}
-        </Card.Group>
-      </Container>
-    );
-  }
+  /* Use $in operator to match values of the passed array on the Opportunities collection. Returns matching opportunities */
+  const selectList = Opportunities.find({ category: { $in: categs } }, {}).fetch();
 
-}
+  let fRef = null;
+
+  return ((ready) ? (
+    <Container>
+      <AutoForm ref={ref => {
+        fRef = ref;
+      }} style={{ paddingBottom: '20px' }} schema={bridge} onSubmit={data => submit(data)}>
+        <MultiSelectField id='category' name='category' label='' showInlineError={true}
+          placeholder={'Find by Category'}/>
+        <SubmitField id='submit' value='Submit'/>
+        <Button color='red' onClick={() => clear(fRef)}>
+          Clear
+        </Button>
+      </AutoForm>
+      <Card.Group stackable itemsPerRow={4} centered>{selectList.map((opportunities) => <OpportunityItem
+        key={opportunities._id}
+        opportunity={opportunities}/>)}
+      </Card.Group>
+    </Container>
+  ) : <Loader active>Getting data</Loader>);
+};
 
 // Require a document to be passed to this component.
 FilterByCategory.propTypes = {
@@ -72,7 +73,7 @@ FilterByCategory.propTypes = {
   ready: PropTypes.bool.isRequired,
 };
 
-// Wrap this component in withRouter since we use the <Link> React Router element.
+// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
   // Get access to Opportunity documents.
   const subscription = Opportunities.subscribeOpportunity();

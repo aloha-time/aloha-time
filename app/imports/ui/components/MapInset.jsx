@@ -16,7 +16,7 @@ const MapInset = ({ ready, opportunities }) => ((ready) ? (
       longitude: -157.945738,
       zoom: 9.1,
     }}
-    style={{ width: 700, height: 400 }}
+    style={{ width: 1130, height: 400 }}
     mapStyle="mapbox://styles/mapbox/streets-v9"
     mapboxAccessToken={MAPBOX_TOKEN}
   >
