@@ -23,4 +23,5 @@ export const PAGE_IDS = {
   ORGANIZATION_LIBRARY: 'organization-library',
   VIEW_MAP: 'view-map',
   PASSWORD_CHANGE: 'password-change',
+  USERNAME_CHANGE: 'username-change',
 };
