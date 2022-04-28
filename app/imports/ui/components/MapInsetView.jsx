@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Map, { Marker } from 'react-map-gl';
+import Map, { Marker, FullscreenControl } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Loader } from 'semantic-ui-react';
@@ -10,20 +10,34 @@ import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
 const MAPBOX_TOKEN = 'pk.eyJ1IjoicmFpbmxsbyIsImEiOiJjbDJia3Znam4wOGJtM2tsNmh3MHNoMDltIn0.x_Sj4gsHvYT0faOiijV9oQ'; // Set your mapbox token here
 
 /** Renders a single row in the Browse Opportunity table. See pages/BrowseOpportunity.jsx. */
-const MapInsetView = ({ ready, opportunity }) => ((ready) ? (
-  <Map
-    initialViewState={{
-      latitude: opportunity.latitude,
-      longitude: opportunity.longitude,
-      zoom: 15,
-    }}
-    style={{ width: 700, height: 400 }}
-    mapStyle="mapbox://styles/mapbox/streets-v9"
-    mapboxAccessToken={MAPBOX_TOKEN}
-  >
-    <Marker longitude={opportunity.longitude} latitude={opportunity.latitude} color='red'/>
-  </Map>
-) : <Loader active>Getting data</Loader>);
+const MapInsetView = ({ ready, opportunity }) => {
+
+  const openDirection = () => {
+    const link = `https://www.google.com/maps/place/${opportunity.location}`;
+    // eslint-disable-next-line no-undef
+    window.open(link);
+  };
+
+  return ((ready) ? (
+    <Map
+      initialViewState={{
+        latitude: opportunity.latitude,
+        longitude: opportunity.longitude,
+        zoom: 15,
+      }}
+      style={{ width: 700, height: 400 }}
+      mapStyle="mapbox://styles/mapbox/streets-v9"
+      mapboxAccessToken={MAPBOX_TOKEN}
+    >
+      <Marker
+        longitude={opportunity.longitude}
+        latitude={opportunity.latitude}
+        color='red'
+        onClick={openDirection}/>
+      <FullscreenControl/>
+    </Map>
+  ) : <Loader active>Getting data</Loader>);
+};
 
 // Require a document to be passed to this component.
 MapInsetView.propTypes = {
