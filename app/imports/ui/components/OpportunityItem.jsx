@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Accordion, Button, Card, Icon, Image } from 'semantic-ui-react';
+import { Accordion, Button, Card, Icon, Image, List } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, NavLink } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
@@ -52,7 +52,10 @@ const OpportunityItem = ({ opportunity }) => {
           <Icon name='map marker alternate'/>
           {opportunity.location}
         </Card.Meta>
-        <Card.Meta>Category: {opportunity.category}</Card.Meta>
+        <Card.Meta>
+          <Icon name='block layout'/>
+          <List horizontal bulleted items={opportunity.category}/>
+        </Card.Meta>
       </Card.Content>
       <Card.Content>
         <Accordion>
