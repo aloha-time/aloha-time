@@ -7,10 +7,12 @@ import { useParams } from 'react-router';
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Opportunities } from '../../api/opportunity/OpportunitiesCollection';
+// import { VolunteerBookmarks } from '../../api/bookmarks/VolunteerBookmarkCollection';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { ROLE } from '../../api/role/Role';
 import { MyUrl } from '../components/MyUrl';
 import MapInset from '../components/MapInset';
+import BookmarkButton from '../components/BookmarkButton';
 
 /** Renders a table containing all the Opportunity documents. Use <OpportunityItem> to render each row. */
 const ViewOpportunity = ({ opportunity, ready, currentUser }) => {
@@ -19,6 +21,10 @@ const ViewOpportunity = ({ opportunity, ready, currentUser }) => {
     // eslint-disable-next-line no-undef
     window.open(link);
   };
+
+  console.log(opportunity);
+  // console.log(bookmarks);
+  console.log(currentUser);
 
   /** Render the page once subscriptions have been received. */
   return (ready) ? (
@@ -114,9 +120,7 @@ const ViewOpportunity = ({ opportunity, ready, currentUser }) => {
             <Button color='blue'>
               <Icon name='chat'/> Direct message
             </Button>
-            <Button color='blue'>
-              <Icon name='heart'/> Bookmark
-            </Button>
+            <BookmarkButton opportunity={opportunity} username={currentUser} />
             <Button color='blue'>
               <Icon name='exclamation circle'/> Report
             </Button>
@@ -223,9 +227,10 @@ const ViewOpportunity = ({ opportunity, ready, currentUser }) => {
 
 // Require an array of Opportunity documents in the props.
 ViewOpportunity.propTypes = {
-  opportunity: PropTypes.object,
+  opportunity: PropTypes.object.isRequired,
+  // bookmarks: PropTypes.array,
   ready: PropTypes.bool.isRequired,
-  currentUser: PropTypes.string,
+  currentUser: PropTypes.string.isRequired,
 };
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
@@ -236,13 +241,15 @@ export default withTracker(() => {
   const opportunityId = _id;
   // Get access to Opportunity documents.
   const subscription = Opportunities.subscribeOpportunity();
+  // const subscription2 = VolunteerBookmarks.subscribeVolunteerBookmark();
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // Get the Opportunity documents and sort them by name.
-  const opportunity = (ready) ? Opportunities.findDoc(opportunityId) : undefined;
-  console.log(opportunity);
+  const opportunity = Opportunities.getOpportunity(opportunityId);
+  // const bookmarks = VolunteerBookmarks.getVolunteerBookmark(currentUser);
   return {
     opportunity,
+    // bookmarks,
     ready,
     currentUser,
   };
