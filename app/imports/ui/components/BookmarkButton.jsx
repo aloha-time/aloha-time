@@ -13,7 +13,7 @@ const BookmarkButton = ({ opportunity, username }) => {
     const opportunityID = opportunity._id;
     const updateData = opportunity;
     updateData.bookmarks = opportunity.bookmarks + 1;
-    updateMethod.call(updateData, (error) => (error ?
+    updateBookmarkMethod.call(updateData, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Data edited successfully', 'success')));
     volunteerBookmarkDefineMethod.call({

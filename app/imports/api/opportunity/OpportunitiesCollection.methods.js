@@ -18,6 +18,17 @@ export const updateMethod = new ValidatedMethod({
   name: 'OpportunitiesCollection.update',
   mixins: [CallPromiseMixin],
   validate: null,
+  run({ updateData }) {
+    if (Meteor.isServer) {
+      Opportunities.update(updateData.id, updateData);
+    }
+  },
+});
+
+export const updateBookmarkMethod = new ValidatedMethod({
+  name: 'OpportunitiesCollection.updateBookmark',
+  mixins: [CallPromiseMixin],
+  validate: null,
   run(updateData) {
     if (Meteor.isServer) {
       Opportunities.update(updateData._id, updateData);
