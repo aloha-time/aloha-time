@@ -27,7 +27,7 @@ const BookmarkButton = ({ opportunity, username }) => {
     });
   };
   return (
-      /**
+  /**
     (check ?
       <Button color='blue' onClick={bookmarkHandle} disabled>
         <Icon name='heart'/> Bookmark
@@ -35,10 +35,10 @@ const BookmarkButton = ({ opportunity, username }) => {
       <Button color='blue' onClick={bookmarkHandle}>
         <Icon name='heart'/> Bookmark
       </Button>
-    )**/
-      <Button color='blue' onClick={bookmarkHandle}>
+    )* */
+    <Button color='blue' onClick={bookmarkHandle}>
       <Icon name='heart'/> Bookmark
-      </Button>
+    </Button>
   );
 };
 

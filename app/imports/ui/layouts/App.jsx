@@ -34,6 +34,7 @@ import BrowseOpportunity from '../pages/BrowseOpportunity';
 import EditMyProfileImages from '../pages/EditMyProfileImages';
 import EditMyOrganizationProfileImages from '../pages/EditMyOrganizatonProfileImages';
 import ViewMap from '../pages/ViewMap';
+import MyBookmarks from '../pages/MyBookmarks';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -46,6 +47,7 @@ class App extends React.Component {
             <Route exact path="/" component={Landing}/>
             <Route path="/signin" component={Signin}/>
             <VolunteerProtectedRoute path="/myprofile" component={ShowVolunteerProfile}/>
+            <VolunteerProtectedRoute path="/mybookmarks" component={MyBookmarks}/>
             <Route path="/browse-opportunities" component={ListOpportunity}/>
             <Route path="/view-opportunity/:_id" component={ViewOpportunity}/>
             <Route path="/organization-library" component={ListOrg}/>

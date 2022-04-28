@@ -22,7 +22,7 @@ const ViewOpportunity = ({ opportunity, ready, currentUser, bookmarks }) => {
     window.open(link);
   };
 
-  // console.log(opportunity);
+  console.log(opportunity);
   console.log(bookmarks);
   console.log(currentUser);
 
