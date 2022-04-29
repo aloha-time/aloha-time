@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import swal from 'sweetalert';
-import { updateMethod } from '../../api/opportunity/OpportunitiesCollection.methods';
+import { updateBookmarkMethod } from '../../api/opportunity/OpportunitiesCollection.methods';
 import { volunteerBookmarkDefineMethod } from '../../api/bookmarks/VolunteerBookmarkCollection.methods';
 
 /** Renders an add Bookmark Button */

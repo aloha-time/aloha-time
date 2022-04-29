@@ -313,7 +313,7 @@ const ViewOpportunity = ({ opportunity, ready, currentUser, bookmarks }) => {
 
 // Require an array of Opportunity documents in the props.
 ViewOpportunity.propTypes = {
-  opportunity: PropTypes.object.isRequired,
+  opportunity: PropTypes.object,
   bookmarks: PropTypes.array,
   ready: PropTypes.bool.isRequired,
   currentUser: PropTypes.string.isRequired,
