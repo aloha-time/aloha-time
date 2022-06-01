@@ -39,7 +39,7 @@ import { removeItMethod } from '../../api/opportunity/OpportunitiesCollection.me
 import BookmarkButton from '../components/BookmarkButton';
 
 /** Renders a table containing all the Opportunity documents. Use <OpportunityItem> to render each row. */
-const ViewOpportunity = ({ opportunity, ready, currentUser, bookmarks }) => {
+const ViewOpportunity = ({ opportunity, ready, currentUser /* bookmarks */ }) => {
   const openDirection = () => {
     const link = `https://www.google.com/maps/place/${opportunity.location}`;
     // eslint-disable-next-line no-undef
